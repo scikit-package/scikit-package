@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frequently asked questions (FAQ) &mdash; scikit-package 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f539c95a"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="How to release conda-forge package" href="conda_forge_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            scikit-package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cookiecutter_guide.html">How to cookiecut Python package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_guide.html">How to release Python package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda_forge_guide.html">How to release conda-forge package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently asked questions (FAQ)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#formatting">Formatting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-modify-line-width-limits">How do I modify line-width limits?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pre-commit">Pre-commit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-ignore-words-lines-files-in-automatic-spelling-checks-in-pre-commit">How do I ignore words/lines/files in automatic spelling checks in pre-commit?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#release">Release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-is-the-package-version-set-and-retrieved">How is the package version set and retrieved?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-include-exclude-files-in-pypi-release">How do I include/exclude files in PyPI release?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-have-we-decided-to-include-test-files-in-the-pypi-source-distribution">Why have we decided to include test files in the PyPI source distribution?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#github-actions">GitHub Actions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-set-different-python-versions-for-github-ci">How do I set different Python versions for GitHub CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-difference-between-pull-request-and-pull-request-target">What is the difference between <code class="docutils literal notranslate"><span class="pre">pull_request</span></code> and <code class="docutils literal notranslate"><span class="pre">pull_request_target</span></code>?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dependency-management">Dependency management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-are-both-pip-txt-and-conda-txt-provided">Why are both pip.txt and conda.txt provided?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">scikit-package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Frequently asked questions (FAQ)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/frequently_asked_questions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="frequently-asked-questions-faq">
+<span id="frequently-asked-questions"></span><span id="index-0"></span><h1>Frequently asked questions (FAQ)<a class="headerlink" href="#frequently-asked-questions-faq" title="Link to this heading"></a></h1>
+<p>Here, you will learn how to customize the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> template for your own project, such as setting the line-width and including/excluding files for PyPI distribution. We also provide design decisions for the current setup of the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> template.</p>
+<section id="formatting">
+<h2>Formatting<a class="headerlink" href="#formatting" title="Link to this heading"></a></h2>
+<section id="how-do-i-modify-line-width-limits">
+<h3>How do I modify line-width limits?<a class="headerlink" href="#how-do-i-modify-line-width-limits" title="Link to this heading"></a></h3>
+<p>Three files need to be modified:</p>
+<ol class="arabic simple">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">.isort.cfg</span></code>, modify <code class="docutils literal notranslate"><span class="pre">line_length</span></code></p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">.flake8</span></code>, modify <code class="docutils literal notranslate"><span class="pre">max-line-length</span></code></p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, modify <code class="docutils literal notranslate"><span class="pre">line-length</span></code> under <code class="docutils literal notranslate"><span class="pre">[tool.black]</span></code>.</p></li>
+</ol>
+</section>
+</section>
+<section id="pre-commit">
+<h2>Pre-commit<a class="headerlink" href="#pre-commit" title="Link to this heading"></a></h2>
+<section id="how-do-i-ignore-words-lines-files-in-automatic-spelling-checks-in-pre-commit">
+<h3>How do I ignore words/lines/files in automatic spelling checks in pre-commit?<a class="headerlink" href="#how-do-i-ignore-words-lines-files-in-automatic-spelling-checks-in-pre-commit" title="Link to this heading"></a></h3>
+<p>To ignore a word, add it to <code class="docutils literal notranslate"><span class="pre">.codespell/ignore_words.txt</span></code>.</p>
+<p>To ignore a specific line, add it to <code class="docutils literal notranslate"><span class="pre">.codespell/ignore_lines.txt</span></code>. See the example below:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>;; src/translation.py
+;; The following single-line comment is written in German.
+# Hallo Welt
+</pre></div>
+</div>
+<p>To ignore a specific file extension, add <code class="docutils literal notranslate"><span class="pre">*.ext</span></code> to the <code class="docutils literal notranslate"><span class="pre">skip</span></code> section under <code class="docutils literal notranslate"><span class="pre">[tool.codespell]</span></code> in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>. For example, to ignore <code class="docutils literal notranslate"><span class="pre">.cif</span></code> and <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files, use <code class="docutils literal notranslate"><span class="pre">skip</span> <span class="pre">=</span> <span class="pre">&quot;*.cif,*.dat&quot;</span></code>.</p>
+</section>
+</section>
+<section id="release">
+<h2>Release<a class="headerlink" href="#release" title="Link to this heading"></a></h2>
+<section id="how-is-the-package-version-set-and-retrieved">
+<h3>How is the package version set and retrieved?<a class="headerlink" href="#how-is-the-package-version-set-and-retrieved" title="Link to this heading"></a></h3>
+<p>In <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, the <code class="docutils literal notranslate"><span class="pre">setuptools-git-versioning</span></code> tool is used to dynamically retrieve the version based on the latest tag in the repository. The latest tag is pushed during the release workflow. The dynamically parsed version is globally accessible, via <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;.__version__</span></code>.</p>
+</section>
+<section id="how-do-i-include-exclude-files-in-pypi-release">
+<h3>How do I include/exclude files in PyPI release?<a class="headerlink" href="#how-do-i-include-exclude-files-in-pypi-release" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code> file is used to control which files are included in the source distribution. Try running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">build</span></code> and see the content under the <code class="docutils literal notranslate"><span class="pre">dist</span></code> folder generated.</p>
+<p>To include all files under a folder, use <code class="docutils literal notranslate"><span class="pre">graft</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>graft src
+graft tests
+</pre></div>
+</div>
+<p>To include specific file(s), use <code class="docutils literal notranslate"><span class="pre">include</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>include AUTHORS.txt LICENSE*.txt README.rst
+</pre></div>
+</div>
+<p>To exclude files globally, use <code class="docutils literal notranslate"><span class="pre">globally-exclude</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>global-exclude *.py[cod]  # Exclude all .pyc, .pyo, and .pyd files.
+global-exclude .DS_Store  # Exclude Mac filesystem artifacts.
+global-exclude __pycache__  # Exclude Python cache directories.
+global-exclude .git*  # Exclude git files and directories.
+</pre></div>
+</div>
+</section>
+<section id="why-have-we-decided-to-include-test-files-in-the-pypi-source-distribution">
+<h3>Why have we decided to include test files in the PyPI source distribution?<a class="headerlink" href="#why-have-we-decided-to-include-test-files-in-the-pypi-source-distribution" title="Link to this heading"></a></h3>
+<p>We decided to include test files in the PyPI source distribution to facilitate unit testing with a newly built Conda package.</p>
+<p>The conda-forge CI uses the source code distributed via PyPI to build a Conda package. After building the package, we want to run pytest to ensure all unit tests pass before release. Therefore, test files must be included in the source code. In contrast, no documentation is distributed with the package, as it is already accessible from the GitHub repository and does not serve a practical purpose in the distribution package itself.</p>
+</section>
+</section>
+<section id="github-actions">
+<h2>GitHub Actions<a class="headerlink" href="#github-actions" title="Link to this heading"></a></h2>
+<section id="how-do-i-set-different-python-versions-for-github-ci">
+<h3>How do I set different Python versions for GitHub CI?<a class="headerlink" href="#how-do-i-set-different-python-versions-for-github-ci" title="Link to this heading"></a></h3>
+<p>The default Python version is 3.13 for <code class="docutils literal notranslate"><span class="pre">_tests-on-pr.yml</span></code> and <code class="docutils literal notranslate"><span class="pre">_publish-docs-on-release.yml</span></code>. Python 3.11 through 3.13 are for <code class="docutils literal notranslate"><span class="pre">_matrix-and-codecov-on-merge-to-main.yml</span></code>. To override the default, modify the three <code class="docutils literal notranslate"><span class="pre">.yml</span></code> files above in <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> as shown below:</p>
+<ol class="arabic simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">python_version</span></code> in <code class="docutils literal notranslate"><span class="pre">.github/workflows/tests-on-pr.yml</span></code>:</p></li>
+</ol>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tests-on-pr</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Billingegroup/release-scripts/.github/workflows/_tests-on-pr.yml@v0</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">package-name</span>
+<span class="w">    </span><span class="nt">c_extension</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">headless</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">python_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.12</span>
+<span class="w">  </span><span class="nt">secrets</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">CODECOV_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.CODECOV_TOKEN }}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">python_version</span></code> in <code class="docutils literal notranslate"><span class="pre">.github/workflows/_publish-docs-on-release.yml</span></code>:</p></li>
+</ol>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">docs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Billingegroup/release-scripts/.github/workflows/_tests-on-pr.yml@v0</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">package-name</span>
+<span class="w">    </span><span class="nt">c_extension</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">headless</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">python_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.12</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">python_versions</span></code> in <code class="docutils literal notranslate"><span class="pre">.github/workflows/_matrix-and-codecov-on-merge-to-main.yml</span></code>:</p></li>
+</ol>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">matrix-coverage</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Billingegroup/release-scripts/.github/workflows/_matrix-and-codecov-on-merge-to-main.yml@v0</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">python_versions</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;3.11,</span><span class="nv"> </span><span class="s">3.12&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="what-is-the-difference-between-pull-request-and-pull-request-target">
+<h3>What is the difference between <code class="docutils literal notranslate"><span class="pre">pull_request</span></code> and <code class="docutils literal notranslate"><span class="pre">pull_request_target</span></code>?<a class="headerlink" href="#what-is-the-difference-between-pull-request-and-pull-request-target" title="Link to this heading"></a></h3>
+<p>For the current GitHub CI for checking a news item, <code class="docutils literal notranslate"><span class="pre">pull_request_target</span></code> is used instead of <code class="docutils literal notranslate"><span class="pre">pull_request</span></code> as shown below:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check News Item</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">pull_request_target</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pull_request</span></code>: This event configures the <code class="docutils literal notranslate"><span class="pre">GITHUB_TOKEN</span></code> with read-only permissions by default, especially when triggered by forks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pull_request_target</span></code>: This event grants the <code class="docutils literal notranslate"><span class="pre">GITHUB_TOKEN</span></code> write permissions, enabling it to perform actions that modify the repository, such as posting comments, updating pull request statuses, or merging code. The news CI creates a comment when an additional news <code class="docutils literal notranslate"><span class="pre">.rst</span></code> is not found under the <code class="docutils literal notranslate"><span class="pre">news</span></code> folder. Hence, <code class="docutils literal notranslate"><span class="pre">pull_request_target</span></code> is used.</p></li>
+</ul>
+<p>Another key difference is that with <code class="docutils literal notranslate"><span class="pre">pull_request_target</span></code>, the <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file <strong>must already be merged</strong> in the base branch at the time the pull request is opened or updated. For more, please refer to <a class="reference external" href="https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#pull_request_target">GitHub docs</a>.</p>
+</section>
+</section>
+<section id="dependency-management">
+<h2>Dependency management<a class="headerlink" href="#dependency-management" title="Link to this heading"></a></h2>
+<section id="why-are-both-pip-txt-and-conda-txt-provided">
+<h3>Why are both pip.txt and conda.txt provided?<a class="headerlink" href="#why-are-both-pip-txt-and-conda-txt-provided" title="Link to this heading"></a></h3>
+<p>Our preferred choice for installing the cookiecuttered package is as a Conda package, as outlined in the template <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> file. With Conda, the end user can install all associated dependencies by running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">new_env</span> <span class="pre">&lt;package-name&gt;</span></code>. Additionally, the environment is tested via conda-forge CI before the Conda package is released, which helps ensure the package’s compatibility with its dependencies. Hence, we list conda package dependencies in <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code>.</p>
+<p>However, we also want to allow users to install the package via <code class="docutils literal notranslate"><span class="pre">pip</span></code>. To support this, we provide a separate file for pip dependencies, <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code>. In most cases, the dependencies listed in <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code> will be identical. However, there can be exceptions. For example, <code class="docutils literal notranslate"><span class="pre">matplotlib-base</span></code> is preferred for Conda installations, while <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> is used for pip installations.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="conda_forge_guide.html" class="btn btn-neutral float-left" title="How to release conda-forge package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

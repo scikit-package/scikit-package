@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to release Python package &mdash; scikit-package 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f539c95a"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to release conda-forge package" href="conda_forge_guide.html" />
+    <link rel="prev" title="How to cookiecut Python package" href="cookiecutter_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            scikit-package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cookiecutter_guide.html">How to cookiecut Python package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to release Python package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#faq-for-pypi-github-release">FAQ for PyPI/GitHub release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instructions-for-github-repository-contributors">Instructions for GitHub repository contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instructions-for-prof-billinge-for-release">Instructions for Prof. Billinge for release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appendix-1-setup-pypi-token">Appendix 1. Setup <code class="docutils literal notranslate"><span class="pre">PYPI_TOKEN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appendix-2-setup-pat-token">Appendix 2. Setup <code class="docutils literal notranslate"><span class="pre">PAT_TOKEN</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conda_forge_guide.html">How to release conda-forge package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequently_asked_questions.html">Frequently asked questions (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">scikit-package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">How to release Python package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/release_guide.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-release-python-package">
+<span id="release-guide"></span><span id="index-0"></span><h1>How to release Python package<a class="headerlink" href="#how-to-release-python-package" title="Link to this heading"></a></h1>
+<section id="faq-for-pypi-github-release">
+<h2>FAQ for PyPI/GitHub release<a class="headerlink" href="#faq-for-pypi-github-release" title="Link to this heading"></a></h2>
+<p>Q1. No conda-forge feedstock yet? Create one by following the instructions <a class="reference internal" href="conda_forge_guide.html#create-feedstock"><span class="std std-ref">here</span></a>.</p>
+<p>Q2. Not a feedstock admin? Create an issue with the title/comment: <code class="docutils literal notranslate"><span class="pre">&#64;conda-forge-admin,</span> <span class="pre">please</span> <span class="pre">add</span> <span class="pre">user</span> <span class="pre">&#64;username</span></code>. Example <a class="reference external" href="https://github.com/conda-forge/diffpy.pdffit2-feedstock/issues/21">issue</a>.</p>
+<p>Q3. Interested in pre-release? Please follow the instructions under the <code class="docutils literal notranslate"><span class="pre">conda-forge:</span> <span class="pre">pre-release</span></code> section <a href="#id1"><span class="problematic" id="id2">:ref:`here &lt;conda-pre-release&gt;`_</span></a>.</p>
+</section>
+<section id="instructions-for-github-repository-contributors">
+<h2>Instructions for GitHub repository contributors<a class="headerlink" href="#instructions-for-github-repository-contributors" title="Link to this heading"></a></h2>
+<p>When you are ready for PyPI and GitHub release, please follow these steps:</p>
+<ol class="arabic simple">
+<li><p>In the repository, create an issue on GitHub with the “Release” option.</p></li>
+<li><p>Check off all items in the first checklist for PyPI/GitHub release.</p></li>
+<li><p>After PyPI/GitHub release, create a PR into the conda-forge feedstock. While doing so, check off items in the second checklist. See Appendix 1.</p></li>
+<li><p>After conda release, complete the third checklist and close the issue.</p></li>
+</ol>
+</section>
+<section id="instructions-for-prof-billinge-for-release">
+<h2>Instructions for Prof. Billinge for release<a class="headerlink" href="#instructions-for-prof-billinge-for-release" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Review the checklist prepared by the contributor in the issue.</p></li>
+<li><p>Ensure <code class="docutils literal notranslate"><span class="pre">PYPI_TOKEN</span></code> and <code class="docutils literal notranslate"><span class="pre">PAT_TOKEN</span></code> are configured at the org level. See Appendix <a class="reference internal" href="#appendix-pypi-token"><span class="std std-ref">1</span></a>, <a class="reference internal" href="#appendix-pat-token"><span class="std std-ref">2</span></a>, respectively.</p></li>
+<li><p>In your terminal, run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">main</span></code> to sync with the main branch.</p></li>
+<li><p>Run the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># For pre-release, use *.*.*rc* i.g. 1.0.0rc0</span>
+<span class="c1"># For release, use *.*.* i.g. 1.0.0</span>
+<span class="n">git</span> <span class="n">tag</span> <span class="o">&lt;</span><span class="n">version</span><span class="o">-</span><span class="n">number</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">upstream</span> <span class="o">&lt;</span><span class="n">version</span><span class="o">-</span><span class="n">number</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Done! Once the tag is pushed, visit the <code class="docutils literal notranslate"><span class="pre">Actions</span></code> tab in the repository to monitor the CI progress.</p></li>
+</ol>
+<p>Post GitHub/PyPI release for conda-forge release:</p>
+<ol class="arabic simple" start="5">
+<li><p>Comment <code class="docutils literal notranslate"><span class="pre">GitHub/PyPI</span> <span class="pre">release</span> <span class="pre">done!</span></code> or <code class="docutils literal notranslate"><span class="pre">GitHub/PyPI</span> <span class="pre">pre-release</span> <span class="pre">done!</span></code> in the issue.</p></li>
+<li><p>The contributor will make a PR into the conda-forge feedstock. Review and approve the PR.</p></li>
+<li><p>Wait for the contributor to test the released package. The issue will be closed by the contributor.</p></li>
+</ol>
+</section>
+<section id="appendix-1-setup-pypi-token">
+<span id="appendix-pypi-token"></span><h2>Appendix 1. Setup <code class="docutils literal notranslate"><span class="pre">PYPI_TOKEN</span></code><a class="headerlink" href="#appendix-1-setup-pypi-token" title="Link to this heading"></a></h2>
+<p>Generate a PyPI API token from <code class="docutils literal notranslate"><span class="pre">pypi.org</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Visit <a class="reference external" href="https://pypi.org/manage/account/">https://pypi.org/manage/account/</a> and log in.</p></li>
+<li><p>Scroll down to the <code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">tokens</span></code> section and click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">API</span> <span class="pre">token</span></code>.</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">Token</span> <span class="pre">name</span></code> to <code class="docutils literal notranslate"><span class="pre">PYPI_TOKEN</span></code>.</p></li>
+<li><p>Choose the appropriate <code class="docutils literal notranslate"><span class="pre">Scope</span></code> for the token.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">token</span></code> and copy the generated token.</p></li>
+</ol>
+<p>Add the generated token to GitHub:</p>
+<ol class="arabic simple">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> page of the org (or repository).</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Actions</span></code> tab under <code class="docutils literal notranslate"><span class="pre">Secrets</span> <span class="pre">and</span> <span class="pre">variables</span></code>.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">org</span> <span class="pre">secret</span></code>, name it <code class="docutils literal notranslate"><span class="pre">PYPI_TOKEN</span></code>, and paste the token value.</p></li>
+<li><p>Done!</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/add-pypi-secret.png"><img alt="add-pypi-secret" src="_images/add-pypi-secret.png" style="width: 600px;" />
+</a>
+</section>
+<section id="appendix-2-setup-pat-token">
+<span id="appendix-pat-token"></span><h2>Appendix 2. Setup <code class="docutils literal notranslate"><span class="pre">PAT_TOKEN</span></code><a class="headerlink" href="#appendix-2-setup-pat-token" title="Link to this heading"></a></h2>
+<p>The GitHub workflow needs to link with this privilege through a personal access token (PAT) of the admin (Prof. Billinge).</p>
+<ol class="arabic simple">
+<li><p>Visit <a class="reference external" href="https://github.com/settings/tokens">https://github.com/settings/tokens</a></p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">new</span> <span class="pre">token</span></code> and choose the classic option.</p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Note</span></code>, write, “GitHub CI release”</p></li>
+<li><p>Set the Expiration date of the token.</p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">scopes</span></code>, check <code class="docutils literal notranslate"><span class="pre">repo</span></code> and <code class="docutils literal notranslate"><span class="pre">user</span></code>.</p></li>
+<li><p>Scroll down, click <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">token</span></code>.</p></li>
+<li><p>Done!</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/add-personal-access-token.png"><img alt="add-personal-access-token" src="_images/add-personal-access-token.png" style="width: 600px;" />
+</a>
+<p>Copy and paste the <code class="docutils literal notranslate"><span class="pre">PAT_TOKEN</span></code> to your GitHub organization:</p>
+<ol class="arabic simple">
+<li><p>Visit <code class="docutils literal notranslate"><span class="pre">Settings</span></code> in the organization.</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Actions</span></code> tab under <code class="docutils literal notranslate"><span class="pre">Secrets</span> <span class="pre">and</span> <span class="pre">variables</span></code>.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">organization</span> <span class="pre">secret</span></code> and add a new secret and name it as <code class="docutils literal notranslate"><span class="pre">PAT_TOKEN</span></code>.</p></li>
+<li><p>Done!</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cookiecutter_guide.html" class="btn btn-neutral float-left" title="How to cookiecut Python package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="conda_forge_guide.html" class="btn btn-neutral float-right" title="How to release conda-forge package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

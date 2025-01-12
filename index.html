@@ -1,0 +1,243 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>scikit-package documentation &mdash; scikit-package 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f539c95a"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            scikit-package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cookiecutter_guide.html">How to cookiecut Python package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_guide.html">How to release Python package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda_forge_guide.html">How to release conda-forge package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequently_asked_questions.html">Frequently asked questions (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">scikit-package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">scikit-package documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="title">
+<h1>scikit-package documentation<a class="headerlink" href="#title" title="Link to this heading"></a></h1>
+<div class="line-block">
+<div class="line">Software version 0.0.1.</div>
+<div class="line">Last updated January 12, 2025.</div>
+</div>
+<p>Welcome to Billinge Group’s Python cookiecutter documentation!</p>
+<section id="statement-of-need">
+<h2>Statement of need<a class="headerlink" href="#statement-of-need" title="Link to this heading"></a></h2>
+<p>Your research impact can be amplified by distributing your contributions through well-documented software packages. However, creating these packages requires time dedicated to software infrastructure and ongoing maintenance. <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> is a Python package standard and generator that helps you launch new scientific code or migrate existing ones.</p>
+<p><code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> provides research-quality documents suitable for open-source development and supports Python versions compatible with the <a class="reference external" href="https://scientific-python.org/specs/spec-0000/">SPEC0</a> proposal through automated workflows. Additionally, it offers a streamlined process for building and distributing your scientific software, ensuring reproducibility across all major operating systems. With <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>, you can focus on developing your scientific code while ensuring it reaches a broader audience.</p>
+</section>
+<section id="what-are-the-useful-features">
+<h2>What are the useful features?<a class="headerlink" href="#what-are-the-useful-features" title="Link to this heading"></a></h2>
+<p>To help increase your research impact, <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> offers the following features:</p>
+<ul class="simple">
+<li><p>Automated <a class="reference external" href="https://peps.python.org/pep-0008/">PEP8</a> and <a class="reference external" href="https://peps.python.org/pep-0256/">PEP256</a> standard checks.</p></li>
+<li><p>Automated PyPI/GitHub release, testing, documentation, and CHANGELOG updates.</p></li>
+<li><p>Streamlined package release workflow with a checklist.</p></li>
+<li><p>Latest Python version support compatible with <a class="reference external" href="https://scientific-python.org/specs/spec-0000/">SPEC0</a>.</p></li>
+<li><p>Rich README template containing badges, installation, support, and contribution guide.</p></li>
+<li><p>Automatic spelling check, linting for .json, .yml, and .md files.</p></li>
+</ul>
+<p>For more technical details, it includes:</p>
+<ul class="simple">
+<li><p>Pull requests with coverage reports using <code class="docutils literal notranslate"><span class="pre">Codecov</span></code> and checks with <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">CI</span></code>.</p></li>
+<li><p>Namespace package support, e.g., <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">diffpy.utils</span></code>.</p></li>
+<li><p>conda-package <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> generation with a template.</p></li>
+<li><p>Support for non-pure Python package releases with <code class="docutils literal notranslate"><span class="pre">cibuildwheel</span></code>.</p></li>
+<li><p>Support for headless GitHub CI testing for GUI applications.</p></li>
+<li><p>Reusable GitHub Actions workflows located in <a class="reference external" href="https://github.com/Billingegroup/release-scripts/tree/main/.github/workflows">Billingegroup/release-scripts</a>.</p></li>
+</ul>
+</section>
+<section id="how-do-i-get-started">
+<h2>How do I get started?<a class="headerlink" href="#how-do-i-get-started" title="Link to this heading"></a></h2>
+<p>Please visit the <a class="reference internal" href="getting_started.html#getting-started"><span class="std std-ref">Getting started</span></a> page to learn how to navigate the documentation!</p>
+</section>
+<section id="how-do-i-receive-support">
+<h2>How do I receive support?<a class="headerlink" href="#how-do-i-receive-support" title="Link to this heading"></a></h2>
+<p>If you have any questions or have trouble, please read the <a class="reference internal" href="frequently_asked_questions.html#frequently-asked-questions"><span class="std std-ref">Frequently asked questions (FAQ)</span></a> section to see if your questions have already been answered. If there aren’t answers available, please create an issue. The team will reach out.</p>
+</section>
+<section id="how-can-i-contribute">
+<h2>How can I contribute?<a class="headerlink" href="#how-can-i-contribute" title="Link to this heading"></a></h2>
+<p>Do you have any new features? Please make an issue via the GitHub issue tracker for further discussions. For a minor typo or grammatically incorrect sentence, please make a pull request. Before making a PR, please run <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">run</span> <span class="pre">--all-files</span></code> to ensure the code is formatted.</p>
+</section>
+<section id="who-are-using-scikit-package">
+<h2>Who are using <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>?<a class="headerlink" href="#who-are-using-scikit-package" title="Link to this heading"></a></h2>
+<p>The full list of packages is as follows:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.pdffit2">diffpy.pdffit2</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.fourigui">diffpy.fourigui</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.pdfgui">diffpy.pdfgui</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.utils">diffpy.utils</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.structure">diffpy.structure</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.labpdfproc">diffpy.labpdfproc</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.pdfmorph">diffpy.pdfmorph</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.snmf">diffpy.snmf</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.srmise">diffpy.srmise</a></p></li>
+<li><p><a class="reference external" href="https://github.com/regro/regolith">regolith</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Billingegroup/bg-mpl-stylesheets">bg-mpl-stylesheets</a></p></li>
+</ul>
+<section id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h3>
+<p>scikit-package is developed by Billinge Group and its community contributors.</p>
+<p>For a detailed list of contributors, see
+<a class="reference external" href="https://github.com/Billingegroup/scikit-package/graphs/contributors">https://github.com/Billingegroup/scikit-package/graphs/contributors</a>.</p>
+</section>
+<section id="acknowledgements">
+<h3>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading"></a></h3>
+<p>The Billinge Group’s scikit-package has been modified from the NSLS-II scientific cookiecutter: <a class="reference external" href="https://github.com/nsls-ii/scientific-python-cookiecutter">https://github.com/nsls-ii/scientific-python-cookiecutter</a></p>
+</section>
+<section id="table-of-contents">
+<h3>Table of contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#are-you-here-for-cookiecutting">Are you here for cookiecutting?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#are-you-here-for-release">Are you here for release?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cookiecutter_guide.html">How to cookiecut Python package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cookiecutter_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookiecutter_guide.html#warnings">WARNINGS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookiecutter_guide.html#pre-commit-workflow">1. Pre-commit workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookiecutter_guide.html#cookiecutter-main-workflow">1. Cookiecutter main workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookiecutter_guide.html#api-documentation-workflow">3. API documentation workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookiecutter_guide.html#final-sign-off">4. Final sign-off</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookiecutter_guide.html#appendix-1-codecov-token-setup-for-the-repository">Appendix 1. Codecov token setup for the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookiecutter_guide.html#appendix-2-how-to-configure-pre-commit-ci-via-github-apps">Appendix 2. How to configure pre-commit CI via GitHub Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookiecutter_guide.html#appendix-3-how-to-test-your-package-locally">Appendix 3. How to test your package locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookiecutter_guide.html#appendix-4-how-to-build-documentation-locally">Appendix 4. How to build documentation locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookiecutter_guide.html#appendix-5-how-to-write-branch-name-rst-news-file">Appendix 5. How to write <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code> news file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release_guide.html">How to release Python package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release_guide.html#faq-for-pypi-github-release">FAQ for PyPI/GitHub release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_guide.html#instructions-for-github-repository-contributors">Instructions for GitHub repository contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_guide.html#instructions-for-prof-billinge-for-release">Instructions for Prof. Billinge for release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_guide.html#appendix-1-setup-pypi-token">Appendix 1. Setup <code class="docutils literal notranslate"><span class="pre">PYPI_TOKEN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="release_guide.html#appendix-2-setup-pat-token">Appendix 2. Setup <code class="docutils literal notranslate"><span class="pre">PAT_TOKEN</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conda_forge_guide.html">How to release conda-forge package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="conda_forge_guide.html#i-am-new-to-conda-forge-how-do-i-create-a-conda-package">I am new to conda-forge. How do I create a conda package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conda_forge_guide.html#i-already-have-a-conda-package-how-do-i-distribute-a-new-package-version">I already have a conda package. How do I distribute a new package version?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conda_forge_guide.html#i-am-familiar-with-the-regular-conda-release-process-how-do-i-do-pre-release">I am familiar with the regular conda release process. How do I do pre-release?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conda_forge_guide.html#appendix-1-background-info-on-meta-yml">Appendix 1. Background info on <code class="docutils literal notranslate"><span class="pre">meta.yml</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="frequently_asked_questions.html">Frequently asked questions (FAQ)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="frequently_asked_questions.html#formatting">Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="frequently_asked_questions.html#pre-commit">Pre-commit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="frequently_asked_questions.html#release">Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="frequently_asked_questions.html#github-actions">GitHub Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="frequently_asked_questions.html#dependency-management">Dependency management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#open-source-license-agreement">OPEN SOURCE LICENSE AGREEMENT</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+</ul>
+</div>
+</section>
+<section id="indices">
+<h3>Indices<a class="headerlink" href="#indices" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
