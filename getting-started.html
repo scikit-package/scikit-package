@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="How to cookiecut Python package" href="cookiecutter_guide.html" />
+    <link rel="next" title="How to release Python package" href="release-guide.html" />
     <link rel="prev" title="scikit-package documentation" href="index.html" /> 
 </head>
 
@@ -44,14 +44,13 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#are-you-here-for-cookiecutting">Are you here for cookiecutting?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#are-you-here-for-release">Are you here for release?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#are-you-here-to-standardize-your-python-project-with-scikit-package">Are you here to standardize your Python project with scikit-package?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#are-you-here-to-create-a-new-release">Are you here to create a new release?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cookiecutter_guide.html">How to cookiecut Python package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release_guide.html">How to release Python package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="conda_forge_guide.html">How to release conda-forge package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="frequently_asked_questions.html">Frequently asked questions (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-guide.html">How to release Python package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conda-forge-guide.html">How to release conda-forge package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 </ul>
@@ -72,7 +71,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Getting started</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/getting-started.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -82,17 +81,18 @@
              
   <section id="getting-started">
 <span id="index-0"></span><span id="id1"></span><h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
-<section id="are-you-here-for-cookiecutting">
-<h2>Are you here for cookiecutting?<a class="headerlink" href="#are-you-here-for-cookiecutting" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">skpackage</span></code> refers to the process of standardizing a Python package structure using the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> template.</p>
+<section id="are-you-here-to-standardize-your-python-project-with-scikit-package">
+<h2>Are you here to standardize your Python project with scikit-package?<a class="headerlink" href="#are-you-here-to-standardize-your-python-project-with-scikit-package" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
-<li><p>Do you already have a Python package you want to standardize with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>? Please follow the full instructions <a class="reference internal" href="cookiecutter_guide.html#cookiecutter-title"><span class="std std-ref">here</span></a>.</p></li>
-<li><p>Do you already have a scikit-packaged package and you want to use the latest version? Please follow the instructions in <a class="reference internal" href="cookiecutter_guide.html#cookiecutter-workflow-main"><span class="std std-ref">here</span></a>.</p></li>
-<li><p>Do you want to start a new Python repository with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>? Start from the Cookiecutter workflow section <a class="reference internal" href="cookiecutter_guide.html#cookiecutter-workflow-main"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>You have an existing Python project. Do you want to standardize your project with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>? Please follow the full instructions <a class="reference internal" href="scikit-package-guide.html#scikit-package-header"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>You already have a scikit-packageed project. Do you want to use the latest version of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> to re-standard your project? Please follow the instructions in <a class="reference internal" href="scikit-package-guide.html#scikit-package-workflow-main"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>Do you want to start a new Python project with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>? Start from the scikit-package workflow section <a class="reference internal" href="scikit-package-guide.html#scikit-package-workflow-main"><span class="std std-ref">here</span></a>.</p></li>
 </ol>
 </section>
-<section id="are-you-here-for-release">
-<h2>Are you here for release?<a class="headerlink" href="#are-you-here-for-release" title="Link to this heading"></a></h2>
-<p>You already have a package standardized with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>. Do you want to release your package to <code class="docutils literal notranslate"><span class="pre">GitHub</span></code>, <code class="docutils literal notranslate"><span class="pre">PyPI</span></code>, and <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> by creating a tag to your GitHub repository? Start from <a class="reference internal" href="release_guide.html#release-guide"><span class="std std-ref">here</span></a>.</p>
+<section id="are-you-here-to-create-a-new-release">
+<h2>Are you here to create a new release?<a class="headerlink" href="#are-you-here-to-create-a-new-release" title="Link to this heading"></a></h2>
+<p>Do you want to release your project to <code class="docutils literal notranslate"><span class="pre">GitHub</span></code>, <code class="docutils literal notranslate"><span class="pre">PyPI</span></code>, and <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> by creating a tag to your GitHub repository? Start from <a class="reference internal" href="release-guide.html#release-guide"><span class="std std-ref">here</span></a>.</p>
 </section>
 </section>
 
@@ -101,7 +101,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="scikit-package documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cookiecutter_guide.html" class="btn btn-neutral float-right" title="How to cookiecut Python package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="release-guide.html" class="btn btn-neutral float-right" title="How to release Python package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

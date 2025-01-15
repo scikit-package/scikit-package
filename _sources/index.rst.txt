@@ -7,7 +7,7 @@
 | Software version |release|.
 | Last updated |today|.
 
-Welcome to Billinge Group's Python cookiecutter documentation!
+Welcome to Billinge Group's Python scikit-package documentation!
 
 Statement of need
 -----------------
@@ -40,12 +40,12 @@ For more technical details, it includes:
 How do I get started?
 ---------------------
 
-Please visit the :ref:`Getting started <getting_started>` page to learn how to navigate the documentation!
+Please visit the :ref:`Getting started <getting-started>` page to learn how to navigate the documentation!
 
 How do I receive support?
 -------------------------
 
-If you have any questions or have trouble, please read the :ref:`Frequently asked questions (FAQ) <frequently_asked_questions>` section to see if your questions have already been answered. If there aren't answers available, please create an issue. The team will reach out.
+If you have any questions or have trouble, please read the :ref:`Frequently asked questions (FAQ) <frequently-asked-questions>` section to see if your questions have already been answered. If there aren't answers available, please create an issue. The team will reach out.
 
 How can I contribute?
 ---------------------
@@ -73,6 +73,10 @@ The full list of packages is as follows:
 Authors
 =======
 
+- Sangjoon Lee (sl5400@columbia.edu)
+- Andrew Yang (ay2546@columbia.edu)
+- Simon Billinge (sb2896@columbia.edu)
+
 scikit-package is developed by Billinge Group and its community contributors.
 
 For a detailed list of contributors, see
@@ -90,11 +94,11 @@ Table of contents
 .. toctree::
    :maxdepth: 2
 
-   getting_started
-   cookiecutter_guide
-   release_guide
-   conda_forge_guide
-   frequently_asked_questions
+   getting-started
+   skpackage-guide
+   release-guide
+   conda-forge-guide
+   frequently-asked-questions
    license
    release
 
