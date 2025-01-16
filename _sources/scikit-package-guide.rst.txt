@@ -5,7 +5,7 @@
 .. _scikit-package-header:
 
 ==========================================================
-How to standarlize your Python package with scikit-package
+How to standarlize your Python project with scikit-package
 ==========================================================
 
 .. _scikit-package-installation:

@@ -44,6 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scikit-package-guide.html">How to standarlize your Python project with scikit-package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-guide.html">How to release Python package</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">How to release conda-forge package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#i-already-have-a-conda-forge-feedstock-i-want-to-release-a-new-package-version-how-do-i-do-that">I already have a conda-forge feedstock. I want to release a new package version. How do I do that?</a></li>
@@ -103,7 +104,7 @@
 <p>The process is divided into three steps:</p>
 <ol class="arabic simple">
 <li><p><a class="reference internal" href="#conda-forge-recipe-prepare"><span class="std std-ref">Prepare recipe:</span></a> You will learn to prepare package information in a file called <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> using our group’s scikit-package template. The file serves as a recipe for building your conda package. The recipe contains the package version, the source code, the dependencies, the license, etc.</p></li>
-<li><p><a class="reference internal" href="#conda-forge-recipe-upload"><span class="std std-ref">Upload therecipe:</span></a> Once you have the <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> generated, you will create a pull request the staged-recipe repository in the conda-forge repository <a class="reference external" href="https://github.com/conda-forge/staged-recipes">here</a></p></li>
+<li><p><a class="reference internal" href="#conda-forge-recipe-upload"><span class="std std-ref">Upload the recipe:</span></a> Once you have the <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> generated, you will create a pull request the staged-recipe repository in the conda-forge repository <a class="reference external" href="https://github.com/conda-forge/staged-recipes">here</a></p></li>
 <li><p><a class="reference internal" href="#conda-forge-recipe-review"><span class="std std-ref">Recipe review:</span></a> One of the community members of conda-forge will review your <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> and provide feedback. Once the recipe is approved, you will have a package available for <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code> automatically, and you will have your own designated feedstock repository that contains <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> in <code class="docutils literal notranslate"><span class="pre">https://github.com/conda-forge/&lt;package-name&gt;-feedstock</span></code>.</p></li>
 </ol>
 </section>
@@ -130,32 +131,32 @@
 <dt class="field-even">version<span class="colon">:</span></dt>
 <dd class="field-even"><p>The version of the package.</p>
 </dd>
-<dt class="field-odd">Select<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Choose PyPI.  PyPI’s <code class="docutils literal notranslate"><span class="pre">sdist</span></code> containing requirements files, src/tests, and <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></p>
+<dt class="field-odd">source<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Choose PyPI.</p>
 </dd>
 <dt class="field-even">short_description<span class="colon">:</span></dt>
-<dd class="field-even"><p>A short description of the project</p>
+<dd class="field-even"><p>The short description of the project.</p>
 </dd>
 <dt class="field-odd">full_description<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A full description of the project</p>
+<dd class="field-odd"><p>The full description of the project.</p>
 </dd>
 <dt class="field-even">license_file<span class="colon">:</span></dt>
 <dd class="field-even"><p>The license file that is located in your project repository. i.e., <code class="docutils literal notranslate"><span class="pre">LICENSE.rst</span></code>.</p>
 </dd>
 <dt class="field-odd">maintainers<span class="colon">:</span></dt>
-<dd class="field-odd"><p>You may have multiple maintainers <code class="docutils literal notranslate"><span class="pre">sbillinge,</span> <span class="pre">bobleesj</span></code> or just <code class="docutils literal notranslate"><span class="pre">sbillinge</span></code></p>
+<dd class="field-odd"><p>You may have multiple maintainers <code class="docutils literal notranslate"><span class="pre">sbillinge,</span> <span class="pre">bobleesj</span></code> or just <code class="docutils literal notranslate"><span class="pre">sbillinge</span></code>.</p>
 </dd>
 <dt class="field-even">build_requirements<span class="colon">:</span></dt>
-<dd class="field-even"><p>copy <code class="docutils literal notranslate"><span class="pre">requirements/build.txt</span></code> from the project repo. It should be empty for pure Python packages, otherwise compilers will be required.</p>
+<dd class="field-even"><p>copy <code class="docutils literal notranslate"><span class="pre">requirements/build.txt</span></code> from the project repo. It should be empty for pure Python packages.</p>
 </dd>
 <dt class="field-odd">host_requirements<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Copy the following for the <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">&gt;=3.11,</span> <span class="pre">setuptools,</span> <span class="pre">setuptools-git-versioning</span> <span class="pre">&gt;=2.0,</span> <span class="pre">pip</span></code>. Copy <code class="docutils literal notranslate"><span class="pre">requirements/host.txt</span></code></p>
+<dd class="field-odd"><p>Type <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">&gt;=3.11,</span> <span class="pre">setuptools,</span> <span class="pre">setuptools-git-versioning</span> <span class="pre">&gt;=2.0,</span> <span class="pre">pip</span></code> from <code class="docutils literal notranslate"><span class="pre">requirements/host.txt</span></code>.</p>
 </dd>
 <dt class="field-even">runtime_requirements<span class="colon">:</span></dt>
-<dd class="field-even"><p>copy <code class="docutils literal notranslate"><span class="pre">requirements/conda.txt</span></code>:</p>
+<dd class="field-even"><p>Type the runtime dependencies from  <code class="docutils literal notranslate"><span class="pre">requirements/conda.txt</span></code>.</p>
 </dd>
 <dt class="field-odd">testing_requirements<span class="colon">:</span></dt>
-<dd class="field-odd"><p>copy <code class="docutils literal notranslate"><span class="pre">requirements/test.txt</span></code></p>
+<dd class="field-odd"><p>Type the testing dependencies from <code class="docutils literal notranslate"><span class="pre">requirements/test.txt</span></code>.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -194,7 +195,7 @@
 <section id="use-the-conda-forge-feedstock-to-release-a-new-version">
 <span id="conda-forge-feedstock-release"></span><h2>Use the conda-forge feedstock to release a new version<a class="headerlink" href="#use-the-conda-forge-feedstock-to-release-a-new-version" title="Link to this heading"></a></h2>
 <p>We release a new package once we have the <code class="docutils literal notranslate"><span class="pre">version</span></code> and <code class="docutils literal notranslate"><span class="pre">SHA256</span></code> sections in <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> in <code class="docutils literal notranslate"><span class="pre">https://github.com/conda-forge/&lt;package-name&gt;-feedstock</span></code> located in the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch. The conda-forge team asks to only modify <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code>.</p>
-<p>First, we will attain th <code class="docutils literal notranslate"><span class="pre">SHA256</span></code> value from <a class="reference external" href="http://pypi.org">pypi.org</a>:</p>
+<p>First, we will copy the <code class="docutils literal notranslate"><span class="pre">SHA256</span></code> value from <a class="reference external" href="http://pypi.org">pypi.org</a>:</p>
 <ol class="arabic simple">
 <li><p>Visit the project on PyPI at <code class="docutils literal notranslate"><span class="pre">https://pypi.org/project/&lt;package-name&gt;</span></code></p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">files</span></code> under <code class="docutils literal notranslate"><span class="pre">Navigation</span></code></p></li>

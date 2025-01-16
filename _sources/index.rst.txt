@@ -95,7 +95,7 @@ Table of contents
    :maxdepth: 2
 
    getting-started
-   skpackage-guide
+   scikit-package-guide
    release-guide
    conda-forge-guide
    frequently-asked-questions

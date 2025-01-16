@@ -24,7 +24,7 @@ The process is divided into three steps:
 
 1. :ref:`Prepare recipe: <conda-forge-recipe-prepare>` You will learn to prepare package information in a file called ``meta.yaml`` using our group's scikit-package template. The file serves as a recipe for building your conda package. The recipe contains the package version, the source code, the dependencies, the license, etc.
 
-2. :ref:`Upload therecipe: <conda-forge-recipe-upload>` Once you have the ``meta.yaml`` generated, you will create a pull request the staged-recipe repository in the conda-forge repository `here <https://github.com/conda-forge/staged-recipes>`_
+2. :ref:`Upload the recipe: <conda-forge-recipe-upload>` Once you have the ``meta.yaml`` generated, you will create a pull request the staged-recipe repository in the conda-forge repository `here <https://github.com/conda-forge/staged-recipes>`_
 
 3. :ref:`Recipe review: <conda-forge-recipe-review>` One of the community members of conda-forge will review your ``meta.yaml`` and provide feedback. Once the recipe is approved, you will have a package available for ``conda install`` automatically, and you will have your own designated feedstock repository that contains ``meta.yaml`` in ``https://github.com/conda-forge/<package-name>-feedstock``.
 
@@ -51,23 +51,23 @@ If you are interested in learning more about each component within ``meta.yaml``
 
  :version: The version of the package.
 
- :Select: Choose PyPI.  PyPI's ``sdist`` containing requirements files, src/tests, and ``pyproject.toml``
+ :source: Choose PyPI.
 
- :short_description: A short description of the project
+ :short_description: The short description of the project.
 
- :full_description: A full description of the project
+ :full_description: The full description of the project.
 
  :license_file: The license file that is located in your project repository. i.e., ``LICENSE.rst``.
 
- :maintainers: You may have multiple maintainers ``sbillinge, bobleesj`` or just ``sbillinge``
+ :maintainers: You may have multiple maintainers ``sbillinge, bobleesj`` or just ``sbillinge``.
 
- :build_requirements: copy ``requirements/build.txt`` from the project repo. It should be empty for pure Python packages, otherwise compilers will be required.
+ :build_requirements: copy ``requirements/build.txt`` from the project repo. It should be empty for pure Python packages.
 
- :host_requirements: Copy the following for the ``python >=3.11, setuptools, setuptools-git-versioning >=2.0, pip``. Copy ``requirements/host.txt``
+ :host_requirements: Type ``python >=3.11, setuptools, setuptools-git-versioning >=2.0, pip`` from ``requirements/host.txt``.
 
- :runtime_requirements: copy ``requirements/conda.txt``:
+ :runtime_requirements: Type the runtime dependencies from  ``requirements/conda.txt``.
 
- :testing_requirements: copy ``requirements/test.txt``
+ :testing_requirements: Type the testing dependencies from ``requirements/test.txt``.
 
 Now, you have ``recipes/<package-name>/meta.yaml`` generated.
 
@@ -104,14 +104,12 @@ Now, you have ``recipes/<package-name>/meta.yaml`` generated.
 
 .. _conda-forge-recipe-review:
 
-
 3. Wait for recipe review
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Wait for a ``conda-forge`` volunteer reviewer to review your submission. It may take up to one week.
 
 2. Once the PR is merged by the reviewer (1) your package is available on conda-forge, and (2) a new repository will be created under https://github.com/conda-forge/package-name-feedstock/. Example: https://github.com/conda-forge/diffpy.structure-feedstock.
-
 
 .. _conda-forge-feedstock-release:
 
@@ -120,7 +118,7 @@ Use the conda-forge feedstock to release a new version
 
 We release a new package once we have the ``version`` and ``SHA256`` sections in ``meta.yaml`` in ``https://github.com/conda-forge/<package-name>-feedstock`` located in the ``main`` branch. The conda-forge team asks to only modify ``meta.yaml``.
 
-First, we will attain th ``SHA256`` value from `pypi.org <http://pypi.org>`_:
+First, we will copy the ``SHA256`` value from `pypi.org <http://pypi.org>`_:
 
 #. Visit the project on PyPI at ``https://pypi.org/project/<package-name>``
 

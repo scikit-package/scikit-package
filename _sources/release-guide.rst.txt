@@ -17,7 +17,7 @@ PyPI/GitHub release
 
 #. In the repository, create an issue on GitHub with the "Release" option as shown below:
 
-   .. image:: ./img/add-personal-access-token.png
+   .. image:: ./img/release-issue.png
       :alt: add-personal-access-token
       :width: 600px
 

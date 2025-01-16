@@ -349,7 +349,7 @@ Other considerations for maintaining group infrastructure
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Be extremely careful with changes that are visible to users.
-- Try not to pass down technical debt to future members. Do the extra work so that others can save time. i.e, making a PR to the scikit-package repo once an issue has been identified in a scikit-packageed project.
+- Try not to pass down technical debt to future members. Do the extra work so that others can save time. i.e, making a PR to the scikit-package repo once an issue has been identified in a scikit-packaged project.
 reducing compute time, especially when computing resources are not the primary constraint.
 - It is easier to remove things (e.g., dependencies) we don't want than to add things that are needed in certain circumstances.
 
@@ -453,7 +453,7 @@ Dependency management
 Why are both pip.txt and conda.txt provided?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Our preferred choice for installing the scikit-packageed package is as a Conda package, as outlined in the template ``README.rst`` file. With Conda, the end user can install all associated dependencies by running ``conda create --name new_env <package-name>``. Additionally, the environment is tested via conda-forge CI before the Conda package is released, which helps ensure the package's compatibility with its dependencies. Hence, we list conda package dependencies in ``conda.txt``.
+Our preferred choice for installing the scikit-packaged package is as a Conda package, as outlined in the template ``README.rst`` file. With Conda, the end user can install all associated dependencies by running ``conda create --name new_env <package-name>``. Additionally, the environment is tested via conda-forge CI before the Conda package is released, which helps ensure the package's compatibility with its dependencies. Hence, we list conda package dependencies in ``conda.txt``.
 
 However, we also want to allow users to install the package via ``pip``. To support this, we provide a separate file for pip dependencies, ``pip.txt``. In most cases, the dependencies listed in ``conda.txt`` and ``pip.txt`` will be identical. However, there can be exceptions. For example, ``matplotlib-base`` is preferred for Conda installations, while ``matplotlib`` is used for pip installations.
 

@@ -44,6 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scikit-package-guide.html">How to standarlize your Python project with scikit-package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-guide.html">How to release Python package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conda-forge-guide.html">How to release conda-forge package</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently asked questions (FAQ)</a><ul>
@@ -415,7 +416,7 @@ release: A new package version is being prepared.
 <h3>Other considerations for maintaining group infrastructure<a class="headerlink" href="#other-considerations-for-maintaining-group-infrastructure" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Be extremely careful with changes that are visible to users.</p></li>
-<li><p>Try not to pass down technical debt to future members. Do the extra work so that others can save time. i.e, making a PR to the scikit-package repo once an issue has been identified in a scikit-packageed project.</p></li>
+<li><p>Try not to pass down technical debt to future members. Do the extra work so that others can save time. i.e, making a PR to the scikit-package repo once an issue has been identified in a scikit-packaged project.</p></li>
 </ul>
 <p>reducing compute time, especially when computing resources are not the primary constraint.
 - It is easier to remove things (e.g., dependencies) we don’t want than to add things that are needed in certain circumstances.</p>
@@ -511,7 +512,7 @@ release: A new package version is being prepared.
 <h2>Dependency management<a class="headerlink" href="#dependency-management" title="Link to this heading"></a></h2>
 <section id="why-are-both-pip-txt-and-conda-txt-provided">
 <h3>Why are both pip.txt and conda.txt provided?<a class="headerlink" href="#why-are-both-pip-txt-and-conda-txt-provided" title="Link to this heading"></a></h3>
-<p>Our preferred choice for installing the scikit-packageed package is as a Conda package, as outlined in the template <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> file. With Conda, the end user can install all associated dependencies by running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">new_env</span> <span class="pre">&lt;package-name&gt;</span></code>. Additionally, the environment is tested via conda-forge CI before the Conda package is released, which helps ensure the package’s compatibility with its dependencies. Hence, we list conda package dependencies in <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code>.</p>
+<p>Our preferred choice for installing the scikit-packaged package is as a Conda package, as outlined in the template <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> file. With Conda, the end user can install all associated dependencies by running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">new_env</span> <span class="pre">&lt;package-name&gt;</span></code>. Additionally, the environment is tested via conda-forge CI before the Conda package is released, which helps ensure the package’s compatibility with its dependencies. Hence, we list conda package dependencies in <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code>.</p>
 <p>However, we also want to allow users to install the package via <code class="docutils literal notranslate"><span class="pre">pip</span></code>. To support this, we provide a separate file for pip dependencies, <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code>. In most cases, the dependencies listed in <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code> will be identical. However, there can be exceptions. For example, <code class="docutils literal notranslate"><span class="pre">matplotlib-base</span></code> is preferred for Conda installations, while <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> is used for pip installations.</p>
 </section>
 </section>
