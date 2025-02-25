@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>scikit-package documentation &mdash; scikit-package 0.0.1 documentation</title>
+  <title>Statement of need &mdash; scikit-package 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=f539c95a"></script>
+      <script src="_static/documentation_options.js?v=d58853b1"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -43,7 +43,8 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scikit-package-guide.html">How to standarlize your Python project with scikit-package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration-guide.html">How to migrate your existing Python package with scikit-package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new-project-guide.html">How to start a new Python project with scikit-package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-guide.html">How to release Python package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conda-forge-guide.html">How to release conda-forge package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
@@ -65,7 +66,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">scikit-package documentation</li>
+      <li class="breadcrumb-item active">Statement of need</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,20 +76,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="title">
-<h1>scikit-package documentation<a class="headerlink" href="#title" title="Link to this heading"></a></h1>
+  <hr class="docutils" />
 <div class="line-block">
-<div class="line">Software version 0.0.1.</div>
+<div class="line">Software version 0.0.2.</div>
 <div class="line">Last updated February 25, 2025.</div>
 </div>
 <p>Welcome to Billinge Group’s Python scikit-package documentation!</p>
 <section id="statement-of-need">
-<h2>Statement of need<a class="headerlink" href="#statement-of-need" title="Link to this heading"></a></h2>
+<h1>Statement of need<a class="headerlink" href="#statement-of-need" title="Link to this heading"></a></h1>
 <p>Your research impact can be amplified by distributing your contributions through well-documented software packages. However, creating these packages requires time dedicated to software infrastructure and ongoing maintenance. <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> is a Python package standard and generator that helps you launch new scientific code or migrate existing ones.</p>
 <p><code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> provides research-quality documents suitable for open-source development and supports Python versions compatible with the <a class="reference external" href="https://scientific-python.org/specs/spec-0000/">SPEC0</a> proposal through automated workflows. Additionally, it offers a streamlined process for building and distributing your scientific software, ensuring reproducibility across all major operating systems. With <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>, you can focus on developing your scientific code while ensuring it reaches a broader audience.</p>
 </section>
+<section id="who-are-using-scikit-package">
+<h1>Who are using <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>?<a class="headerlink" href="#who-are-using-scikit-package" title="Link to this heading"></a></h1>
+<p>The full list of packages is as follows:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.pdffit2">diffpy.pdffit2</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.fourigui">diffpy.fourigui</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.pdfgui">diffpy.pdfgui</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.utils">diffpy.utils</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.structure">diffpy.structure</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.labpdfproc">diffpy.labpdfproc</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.pdfmorph">diffpy.pdfmorph</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.snmf">diffpy.snmf</a></p></li>
+<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.srmise">diffpy.srmise</a></p></li>
+<li><p><a class="reference external" href="https://github.com/regro/regolith">regolith</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Billingegroup/bg-mpl-stylesheets">bg-mpl-stylesheets</a></p></li>
+</ul>
+</section>
 <section id="what-are-the-useful-features">
-<h2>What are the useful features?<a class="headerlink" href="#what-are-the-useful-features" title="Link to this heading"></a></h2>
+<h1>What are the useful features?<a class="headerlink" href="#what-are-the-useful-features" title="Link to this heading"></a></h1>
 <p>To help increase your research impact, <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> offers the following features:</p>
 <ul class="simple">
 <li><p>Automated <a class="reference external" href="https://peps.python.org/pep-0008/">PEP8</a> and <a class="reference external" href="https://peps.python.org/pep-0256/">PEP256</a> standard checks.</p></li>
@@ -109,35 +126,18 @@
 </ul>
 </section>
 <section id="how-do-i-get-started">
-<h2>How do I get started?<a class="headerlink" href="#how-do-i-get-started" title="Link to this heading"></a></h2>
+<h1>How do I get started?<a class="headerlink" href="#how-do-i-get-started" title="Link to this heading"></a></h1>
 <p>Please visit the <a class="reference internal" href="getting-started.html#getting-started"><span class="std std-ref">Getting started</span></a> page to learn how to navigate the documentation!</p>
 </section>
 <section id="how-do-i-receive-support">
-<h2>How do I receive support?<a class="headerlink" href="#how-do-i-receive-support" title="Link to this heading"></a></h2>
+<h1>How do I receive support?<a class="headerlink" href="#how-do-i-receive-support" title="Link to this heading"></a></h1>
 <p>If you have any questions or have trouble, please read the <a class="reference internal" href="frequently-asked-questions.html#frequently-asked-questions"><span class="std std-ref">Frequently asked questions (FAQ)</span></a> section to see if your questions have already been answered. If there aren’t answers available, please create an issue. The team will reach out.</p>
 </section>
 <section id="how-can-i-contribute">
-<h2>How can I contribute?<a class="headerlink" href="#how-can-i-contribute" title="Link to this heading"></a></h2>
+<h1>How can I contribute?<a class="headerlink" href="#how-can-i-contribute" title="Link to this heading"></a></h1>
 <p>Do you have any new features? Please make an issue via the GitHub issue tracker for further discussions. For a minor typo or grammatically incorrect sentence, please make a pull request. Before making a PR, please run <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">run</span> <span class="pre">--all-files</span></code> to ensure the code is formatted.</p>
-</section>
-<section id="who-are-using-scikit-package">
-<h2>Who are using <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>?<a class="headerlink" href="#who-are-using-scikit-package" title="Link to this heading"></a></h2>
-<p>The full list of packages is as follows:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.pdffit2">diffpy.pdffit2</a></p></li>
-<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.fourigui">diffpy.fourigui</a></p></li>
-<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.pdfgui">diffpy.pdfgui</a></p></li>
-<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.utils">diffpy.utils</a></p></li>
-<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.structure">diffpy.structure</a></p></li>
-<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.labpdfproc">diffpy.labpdfproc</a></p></li>
-<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.pdfmorph">diffpy.pdfmorph</a></p></li>
-<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.snmf">diffpy.snmf</a></p></li>
-<li><p><a class="reference external" href="https://github.com/diffpy/diffpy.srmise">diffpy.srmise</a></p></li>
-<li><p><a class="reference external" href="https://github.com/regro/regolith">regolith</a></p></li>
-<li><p><a class="reference external" href="https://github.com/Billingegroup/bg-mpl-stylesheets">bg-mpl-stylesheets</a></p></li>
-</ul>
 <section id="authors">
-<h3>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h3>
+<h2>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Sangjoon Lee (<a class="reference external" href="mailto:sl5400&#37;&#52;&#48;columbia&#46;edu">sl5400<span>&#64;</span>columbia<span>&#46;</span>edu</a>)</p></li>
 <li><p>Andrew Yang (<a class="reference external" href="mailto:ay2546&#37;&#52;&#48;columbia&#46;edu">ay2546<span>&#64;</span>columbia<span>&#46;</span>edu</a>)</p></li>
@@ -148,11 +148,11 @@
 <a class="reference external" href="https://github.com/Billingegroup/scikit-package/graphs/contributors">https://github.com/Billingegroup/scikit-package/graphs/contributors</a>.</p>
 </section>
 <section id="acknowledgements">
-<h3>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading"></a></h3>
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading"></a></h2>
 <p>The Billinge Group’s scikit-package has been modified from the NSLS-II scientific cookiecutter: <a class="reference external" href="https://github.com/nsls-ii/scientific-python-cookiecutter">https://github.com/nsls-ii/scientific-python-cookiecutter</a></p>
 </section>
 <section id="table-of-contents">
-<h3>Table of contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h3>
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a><ul>
@@ -160,20 +160,22 @@
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#are-you-here-to-create-a-new-release">Are you here to create a new release?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="scikit-package-guide.html">How to standarlize your Python project with scikit-package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#tips-and-how-to-receive-support">Tips and how to receive support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#pre-commit-workflow">1. Pre-commit workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#scikit-package-main-workflow">2. scikit-package main workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#api-documentation-workflow">3. API documentation workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#final-sign-off">4. Final sign-off</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#appendix-1-how-to-test-your-package-locally">Appendix 1. How to test your package locally</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#appendix-2-how-to-build-documentation-locally">Appendix 2. How to build documentation locally</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#appendix-3-how-to-write-branch-name-rst-news-file">Appendix 3. How to write <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code> news file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#appendix-4-codecov-token-setup-for-the-repository">Appendix 4. Codecov token setup for the repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#appendix-5-how-to-configure-pre-commit-ci-via-github-apps">Appendix 5. How to configure pre-commit CI via GitHub Apps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scikit-package-guide.html#appendix-6-how-to-setup-github-pages-for-your-package">Appendix 6. How to setup GitHub Pages for your package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration-guide.html">How to migrate your existing Python package with scikit-package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migration-guide.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration-guide.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration-guide.html#tips-and-how-to-receive-support">Tips and how to receive support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration-guide.html#migration-overview-and-expected-outcome">Migration overview and expected outcome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration-guide.html#pre-commit-workflow">1. Pre-commit workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration-guide.html#migration-workflow">2. Migration workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration-guide.html#documentation-workflow">3. Documentation workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration-guide.html#clean-up">4. Clean up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration-guide.html#what-s-next">What’s next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="new-project-guide.html">How to start a new Python project with scikit-package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="new-project-guide.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new-project-guide.html#scikit-package-main-workflow">scikit-package main workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new-project-guide.html#host-your-project-on-github">Host your project on GitHub</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="release-guide.html">How to release Python package</a><ul>
@@ -210,19 +212,19 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="release.html#id1">0.0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release.html#id1">0.0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release.html#id2">0.0.1</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </section>
 <section id="indices">
-<h3>Indices<a class="headerlink" href="#indices" title="Link to this heading"></a></h3>
+<h2>Indices<a class="headerlink" href="#indices" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
-</section>
 </section>
 </section>
 

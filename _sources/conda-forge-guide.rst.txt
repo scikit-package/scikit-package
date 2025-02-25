@@ -21,7 +21,6 @@ Overview
 
 The process is divided into three steps:
 
-
 1. :ref:`Prepare recipe: <conda-forge-recipe-prepare>` You will learn to prepare package information in a file called ``meta.yaml`` using our group's scikit-package template. The file serves as a recipe for building your conda package. The recipe contains the package version, the source code, the dependencies, the license, etc.
 
 2. :ref:`Upload the recipe: <conda-forge-recipe-upload>` Once you have the ``meta.yaml`` generated, you will create a pull request the staged-recipe repository in the conda-forge repository `here <https://github.com/conda-forge/staged-recipes>`_

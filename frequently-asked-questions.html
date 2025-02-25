@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Frequently asked questions (FAQ) &mdash; scikit-package 0.0.1 documentation</title>
+  <title>Frequently asked questions (FAQ) &mdash; scikit-package 0.0.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=f539c95a"></script>
+      <script src="_static/documentation_options.js?v=d58853b1"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -44,12 +44,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scikit-package-guide.html">How to standarlize your Python project with scikit-package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration-guide.html">How to migrate your existing Python package with scikit-package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new-project-guide.html">How to start a new Python project with scikit-package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-guide.html">How to release Python package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conda-forge-guide.html">How to release conda-forge package</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently asked questions (FAQ)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pre-commit">Pre-commit</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-do-i-modify-line-width-limits">How do I modify line-width limits?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-skip-a-specific-file-for-flake8-and-black">How do I skip a specific file for <code class="docutils literal notranslate"><span class="pre">flake8</span></code> and <code class="docutils literal notranslate"><span class="pre">black</span></code>?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-do-i-ignore-words-lines-files-in-automatic-spelling-checks-in-pre-commit">How do I ignore words/lines/files in automatic spelling checks in pre-commit?</a></li>
 </ul>
 </li>
@@ -70,7 +72,12 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#billinge-group-standards">Billinge Group standards</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-we-communicate-via-github-commit-messages-and-issue-titles">How we communicate via GitHub commit messages and issue titles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#how-we-communciate-development-progress-with-news-files">How we communciate development progress with news files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-we-write-changelog-rst-with-news-files-in-prs">How we write CHANGELOG.rst with news files in PRs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guidelines-for-writing-news-items">Guidelines for writing news items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#where-to-place-the-news-item-in-branch-name-rst">Where to place the news item in <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>?</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#github-pull-request-practices">GitHub Pull Request practices</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-we-write-tests-with-pytest">How we write tests with Pytest</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-we-write-docstrings">How we write docstrings</a></li>
@@ -142,6 +149,7 @@
 <p>Here, you will learn how to customize the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> template for your own project, such as setting the line-width and including/excluding files for PyPI distribution. We also provide design decisions for the current setup of the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> template.</p>
 <section id="pre-commit">
 <h2>Pre-commit<a class="headerlink" href="#pre-commit" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Pre-commit</span></code> attempts to automatically fix code style issues. The following questions are used to customize the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> configuration for your project’s needs.</p>
 <section id="how-do-i-modify-line-width-limits">
 <h3>How do I modify line-width limits?<a class="headerlink" href="#how-do-i-modify-line-width-limits" title="Link to this heading"></a></h3>
 <p>Three files need to be modified:</p>
@@ -151,16 +159,21 @@
 <li><p>In <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, modify <code class="docutils literal notranslate"><span class="pre">line-length</span></code> under <code class="docutils literal notranslate"><span class="pre">[tool.black]</span></code>.</p></li>
 </ol>
 </section>
+<section id="how-do-i-skip-a-specific-file-for-flake8-and-black">
+<h3>How do I skip a specific file for <code class="docutils literal notranslate"><span class="pre">flake8</span></code> and <code class="docutils literal notranslate"><span class="pre">black</span></code>?<a class="headerlink" href="#how-do-i-skip-a-specific-file-for-flake8-and-black" title="Link to this heading"></a></h3>
+<p>To skip files checked by <code class="docutils literal notranslate"><span class="pre">flake8</span></code>, include the file path in <code class="docutils literal notranslate"><span class="pre">.flake8</span></code> under the <code class="docutils literal notranslate"><span class="pre">exclude</span></code> section.</p>
+<p>To prevent <code class="docutils literal notranslate"><span class="pre">black</span></code> from formatting, include the file path in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> under the <code class="docutils literal notranslate"><span class="pre">[tool.black]</span></code> section.</p>
+</section>
 <section id="how-do-i-ignore-words-lines-files-in-automatic-spelling-checks-in-pre-commit">
 <span id="codespell-add-word"></span><h3>How do I ignore words/lines/files in automatic spelling checks in pre-commit?<a class="headerlink" href="#how-do-i-ignore-words-lines-files-in-automatic-spelling-checks-in-pre-commit" title="Link to this heading"></a></h3>
-<p>To ignore a word, add it to <code class="docutils literal notranslate"><span class="pre">.codespell/ignore_words.txt</span></code>.</p>
-<p>To ignore a specific line, add it to <code class="docutils literal notranslate"><span class="pre">.codespell/ignore_lines.txt</span></code>. See the example below:</p>
+<p>To ignore a word, add it to <code class="docutils literal notranslate"><span class="pre">.codespell/ignore_words.txt</span></code>. See an example <a class="reference external" href="https://github.com/diffpy/diffpy.fourigui/blob/main/.codespell/ignore_words.txt">here</a>.</p>
+<p>To ignore a specific line, add it to <code class="docutils literal notranslate"><span class="pre">.codespell/ignore_lines.txt</span></code>. See an example below:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>;; src/translation.py
 ;; The following single-line comment is written in German.
 # Hallo Welt
 </pre></div>
 </div>
-<p>To ignore a specific file extension, add <code class="docutils literal notranslate"><span class="pre">*.ext</span></code> to the <code class="docutils literal notranslate"><span class="pre">skip</span></code> section under <code class="docutils literal notranslate"><span class="pre">[tool.codespell]</span></code> in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>. For example, to ignore <code class="docutils literal notranslate"><span class="pre">.cif</span></code> and <code class="docutils literal notranslate"><span class="pre">.dat</span></code> files, use <code class="docutils literal notranslate"><span class="pre">skip</span> <span class="pre">=</span> <span class="pre">&quot;*.cif,*.dat&quot;</span></code>.</p>
+<p>To ignore a specific file extension, add <code class="docutils literal notranslate"><span class="pre">*.ext</span></code> to the <code class="docutils literal notranslate"><span class="pre">skip</span></code> section under <code class="docutils literal notranslate"><span class="pre">[tool.codespell]</span></code> in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>. Please see an example <a class="reference external" href="https://github.com/diffpy/diffpy.fourigui/blob/main//pyproject.toml">here</a>.</p>
 </section>
 </section>
 <section id="project-setup">
@@ -236,7 +249,6 @@ global-exclude .git*  # Exclude git files and directories.
 </section>
 <section id="billinge-group-standards">
 <h2>Billinge Group standards<a class="headerlink" href="#billinge-group-standards" title="Link to this heading"></a></h2>
-<p>Please follow the guidelines <a class="reference internal" href="scikit-package-guide.html#news-file-guide"><span class="std std-ref">here</span></a>.</p>
 <section id="how-we-communicate-via-github-commit-messages-and-issue-titles">
 <h3>How we communicate via GitHub commit messages and issue titles<a class="headerlink" href="#how-we-communicate-via-github-commit-messages-and-issue-titles" title="Link to this heading"></a></h3>
 <p>For commit messages and issue titles, we add prefixes adopted from <a class="reference external" href="https://www.conventionalcommits.org">https://www.conventionalcommits.org</a>:</p>
@@ -252,6 +264,7 @@ build: Changes that affect the build artifact or external dependencies.
 ci: Updates to CI configuration files and scripts.
 revert: Reverts a previous commit.
 release: A new package version is being prepared.
+skpkg: Using scikit-package to create a new package or maintain an existing package.
 </pre></div>
 </div>
 <ul class="simple">
@@ -264,12 +277,39 @@ release: A new package version is being prepared.
 <p>A commit message is written for PR reviewers and for debuggers. Avoid verbosity for a quick overview. An ideal commit message communicates file(s) of interest, the reason for the modification, and what modifications were made. e.g., “chore: move all files from docs to doc for scikit-packaging.”</p>
 </div>
 </section>
-<section id="how-we-communciate-development-progress-with-news-files">
-<h3>How we communciate development progress with news files<a class="headerlink" href="#how-we-communciate-development-progress-with-news-files" title="Link to this heading"></a></h3>
-<p>Please refer to the process of generating a news file for each PR <a class="reference internal" href="scikit-package-guide.html#news-file-guide"><span class="std std-ref">here</span></a>.</p>
+<section id="how-we-write-changelog-rst-with-news-files-in-prs">
+<h3>How we write CHANGELOG.rst with news files in PRs<a class="headerlink" href="#how-we-write-changelog-rst-with-news-files-in-prs" title="Link to this heading"></a></h3>
+<p id="news-file-guide">We require that each PR includes a news item of <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code> file under the <code class="docutils literal notranslate"><span class="pre">news</span></code> directory.</p>
+<section id="motivation">
+<h4>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">.rst</span></code> files under the <code class="docutils literal notranslate"><span class="pre">news</span></code> directory are used to compile and update the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> file during releases. Hence, these news items are of interest to both developers and technical users looking for specific keywords.</p>
+</section>
+<section id="guidelines-for-writing-news-items">
+<h4>Guidelines for writing news items<a class="headerlink" href="#guidelines-for-writing-news-items" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Do not remove <code class="docutils literal notranslate"><span class="pre">news/TEMPLATE.rst</span></code>. Make a copy called <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>.</p></li>
+<li><p>Do not modify other section headers in the rst file. Replace <code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">&lt;news</span> <span class="pre">item&gt;</span></code> only. See example news files in <a class="reference external" href="https://github.com/bobleesj/diffpy.utils/blob/ba4b985df971440325442a50ac6de63eaad05fa5/news/no-empty-object.rst">Example 1</a> and <a class="reference external" href="https://github.com/bobleesj/diffpy.utils/blob/f79e88eadfcd7b58e84c6caa591a960d79689ba9/news/prettier-pre-commit.rst">Example 2</a>.</p></li>
+<li><p>Begin with “No news”, “no news”, or “no news added” for trivial changes with the following format:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>**Added:**
+
+* No news: &lt;brief reason&gt;
+</pre></div>
+</div>
+</section>
+<section id="where-to-place-the-news-item-in-branch-name-rst">
+<h4>Where to place the news item in <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>?<a class="headerlink" href="#where-to-place-the-news-item-in-branch-name-rst" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">**Added:**</span></code> includes features or functionality of interest to users and developers, such as support for a new Python version or the addition of a useful feature.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Changed:**</span></code> includes modifications that affect end-users or developers, such as API changes or dependencies replaced.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Fixed:**</span></code> includes bug fixes or refactoring.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Deprecated:**</span></code> includes methods, classes, or workflows that are no longer supported in the future release.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Removed:**</span></code> includes the opposite of the “Added” section, referring to features or functionality that have been removed.</p></li>
+</ul>
+</section>
 </section>
 <section id="github-pull-request-practices">
-<h3>GitHub Pull Request practices<a class="headerlink" href="#github-pull-request-practices" title="Link to this heading"></a></h3>
+<span id="codecov-token-setup"></span><h3>GitHub Pull Request practices<a class="headerlink" href="#github-pull-request-practices" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Have a theme for each PR to reduce cognitive overload for the reviewer.</p></li>
 <li><p>Make PRs small with the possibility of rejection.</p></li>
@@ -426,7 +466,7 @@ release: A new package version is being prepared.
 <h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
 <section id="how-can-i-preview-documentation-in-real-time">
 <h3>How can I preview documentation in real-time?<a class="headerlink" href="#how-can-i-preview-documentation-in-real-time" title="Link to this heading"></a></h3>
-<p>You may use Visual Studio Code. Please refer to the following section <a class="reference internal" href="scikit-package-guide.html#build-documentation-preview-real-time"><span class="std std-ref">here</span></a>.</p>
+<p>You may use Visual Studio Code. Please refer to the following section <span class="xref std std-ref">here</span>.</p>
 </section>
 <section id="how-do-i-re-deploy-online-documentation-without-another-release">
 <h3>How do I re-deploy online documentation without another release?<a class="headerlink" href="#how-do-i-re-deploy-online-documentation-without-another-release" title="Link to this heading"></a></h3>
@@ -448,8 +488,8 @@ release: A new package version is being prepared.
 <section id="github-actions">
 <h2>GitHub Actions<a class="headerlink" href="#github-actions" title="Link to this heading"></a></h2>
 <section id="how-do-i-set-different-python-versions-for-github-ci">
-<h3>How do I set different Python versions for GitHub CI?<a class="headerlink" href="#how-do-i-set-different-python-versions-for-github-ci" title="Link to this heading"></a></h3>
-<p>The default is Python 3.13 for <code class="docutils literal notranslate"><span class="pre">_tests-on-pr.yml</span></code> and <code class="docutils literal notranslate"><span class="pre">_publish-docs-on-release.yml</span></code>. Python 3.11, 3.12, and 3.13 are used for <code class="docutils literal notranslate"><span class="pre">_matrix-and-codecov-on-merge-to-main.yml</span></code>. To override the default, modify the three <code class="docutils literal notranslate"><span class="pre">.yml</span></code> files above in <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> as shown below:</p>
+<span id="github-actions-python-versions"></span><h3>How do I set different Python versions for GitHub CI?<a class="headerlink" href="#how-do-i-set-different-python-versions-for-github-ci" title="Link to this heading"></a></h3>
+<p>The default is Python 3.13 for <code class="docutils literal notranslate"><span class="pre">./github/workflows/tests-on-pr.yml</span></code> and <code class="docutils literal notranslate"><span class="pre">./github/workflows/publish-docs-on-release.yml</span></code>. Python 3.11, 3.12, and 3.13 are used for <code class="docutils literal notranslate"><span class="pre">./github/workflows/matrix-and-codecov-on-merge-to-main.yml</span></code>. To override the default, modify the three <code class="docutils literal notranslate"><span class="pre">.yml</span></code> files above in <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> as shown below:</p>
 <ol class="arabic simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">python_version</span></code> in <code class="docutils literal notranslate"><span class="pre">.github/workflows/tests-on-pr.yml</span></code>:</p></li>
 </ol>

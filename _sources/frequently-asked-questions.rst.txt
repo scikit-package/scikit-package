@@ -13,6 +13,8 @@ Here, you will learn how to customize the ``scikit-package`` template for your o
 Pre-commit
 ----------
 
+``Pre-commit`` attempts to automatically fix code style issues. The following questions are used to customize the ``pre-commit`` configuration for your project's needs.
+
 How do I modify line-width limits?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -22,22 +24,20 @@ Three files need to be modified:
 2. In ``.flake8``, modify ``max-line-length``.
 3. In ``pyproject.toml``, modify ``line-length`` under ``[tool.black]``.
 
+
+How do I skip a specific file for ``flake8`` and ``black``?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To skip files checked by ``flake8``, include the file path in ``.flake8`` under the ``exclude`` section.
+
+To prevent ``black`` from formatting, include the file path in ``pyproject.toml`` under the ``[tool.black]`` section.
+
 .. _codespell-add-word:
 
 How do I ignore words/lines/files in automatic spelling checks in pre-commit?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To ignore a word, add it to ``.codespell/ignore_words.txt``.
-
-To ignore a specific line, add it to ``.codespell/ignore_lines.txt``. See the example below:
-
-.. code-block:: text
-
-  ;; src/translation.py
-  ;; The following single-line comment is written in German.
-  # Hallo Welt
-
-To ignore a specific file extension, add ``*.ext`` to the ``skip`` section under ``[tool.codespell]`` in ``pyproject.toml``. For example, to ignore ``.cif`` and ``.dat`` files, use ``skip = "*.cif,*.dat"``.
+.. include:: snippets/codespell-ignore.rst
 
 Project setup
 -------------
@@ -135,8 +135,6 @@ The conda-forge CI uses the source code distributed via PyPI to build a Conda pa
 Billinge Group standards
 ------------------------
 
-Please follow the guidelines :ref:`here <news-file-guide>`.
-
 How we communicate via GitHub commit messages and issue titles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -156,6 +154,7 @@ For commit messages and issue titles, we add prefixes adopted from https://www.c
   ci: Updates to CI configuration files and scripts.
   revert: Reverts a previous commit.
   release: A new package version is being prepared.
+  skpkg: Using scikit-package to create a new package or maintain an existing package.
 
 - Example 1: "feat: create a ``DiffractionObject.morph_to()`` method"
 - Example 2: "bug: handle divide by zero error in ``DiffractionObject.scale_to``"
@@ -164,10 +163,10 @@ Please see an example here: https://github.com/Billingegroup/scikit-package/issu
 
 .. attention:: A commit message is written for PR reviewers and for debuggers. Avoid verbosity for a quick overview. An ideal commit message communicates file(s) of interest, the reason for the modification, and what modifications were made. e.g., “chore: move all files from docs to doc for scikit-packaging."
 
-How we communciate development progress with news files
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+How we write CHANGELOG.rst with news files in PRs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Please refer to the process of generating a news file for each PR :ref:`here<news-file-guide>`.
+.. include:: snippets/news-file-format.rst
 
 GitHub Pull Request practices
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -384,10 +383,12 @@ Please read our pre-release section in the conda-forge release guide :ref:`here 
 GitHub Actions
 --------------
 
+.. _github-actions-python-versions:
+
 How do I set different Python versions for GitHub CI?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The default is Python 3.13 for ``_tests-on-pr.yml`` and ``_publish-docs-on-release.yml``. Python 3.11, 3.12, and 3.13 are used for ``_matrix-and-codecov-on-merge-to-main.yml``. To override the default, modify the three ``.yml`` files above in ``.github/workflows/`` as shown below:
+The default is Python 3.13 for ``./github/workflows/tests-on-pr.yml`` and ``./github/workflows/publish-docs-on-release.yml``. Python 3.11, 3.12, and 3.13 are used for ``./github/workflows/matrix-and-codecov-on-merge-to-main.yml``. To override the default, modify the three ``.yml`` files above in ``.github/workflows/`` as shown below:
 
 1. Add ``python_version`` in ``.github/workflows/tests-on-pr.yml``:
 

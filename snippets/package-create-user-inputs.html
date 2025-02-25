@@ -1,0 +1,166 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; scikit-package 0.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d58853b1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            scikit-package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration-guide.html">How to migrate your existing Python package with scikit-package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../new-project-guide.html">How to start a new Python project with scikit-package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-guide.html">How to release Python package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conda-forge-guide.html">How to release conda-forge package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scikit-package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/snippets/package-create-user-inputs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <ol class="arabic simple">
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span></code> inside the project directory.</p></li>
+<li><p>Answer the questions as follows.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">proj</span></code> stands for “project” and <code class="docutils literal notranslate"><span class="pre">gh</span></code> for “GitHub”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">proj_owner_name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>e.g., <code class="docutils literal notranslate"><span class="pre">Simon</span> <span class="pre">J.</span> <span class="pre">L.</span> <span class="pre">Billinge</span></code>.</p>
+</dd>
+<dt class="field-even">proj_owner_email<span class="colon">:</span></dt>
+<dd class="field-even"><p>e.g., <code class="docutils literal notranslate"><span class="pre">sbillinge&#64;columbia.edu</span></code>.</p>
+</dd>
+<dt class="field-odd">proj_owner_gh_username<span class="colon">:</span></dt>
+<dd class="field-odd"><p>e.g., <code class="docutils literal notranslate"><span class="pre">sbillinge</span></code>.</p>
+</dd>
+<dt class="field-even">contributors<span class="colon">:</span></dt>
+<dd class="field-even"><p>e.g., <code class="docutils literal notranslate"><span class="pre">Billinge</span> <span class="pre">Group</span> <span class="pre">members</span> <span class="pre">and</span> <span class="pre">community</span> <span class="pre">contributors</span></code>.</p>
+</dd>
+<dt class="field-odd">license_holders<span class="colon">:</span></dt>
+<dd class="field-odd"><p>e.g., <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">Trustees</span> <span class="pre">of</span> <span class="pre">Columbia</span> <span class="pre">University</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">City</span> <span class="pre">of</span> <span class="pre">New</span> <span class="pre">York</span></code>.</p>
+</dd>
+<dt class="field-even">project_name<span class="colon">:</span></dt>
+<dd class="field-even"><p>e.g., <code class="docutils literal notranslate"><span class="pre">my-package</span></code>. For a namespace package, use e.g., <code class="docutils literal notranslate"><span class="pre">diffpy.my-package</span></code>.</p>
+</dd>
+<dt class="field-odd">github_org<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The GitHub organization name or owner’s GitHub username. e.g., <code class="docutils literal notranslate"><span class="pre">diffpy</span></code> or <code class="docutils literal notranslate"><span class="pre">sbillinge</span></code>.</p>
+</dd>
+<dt class="field-even">github_repo_name<span class="colon">:</span></dt>
+<dd class="field-even"><p>e.g., <code class="docutils literal notranslate"><span class="pre">my-package</span></code>. The repository name of the project displayed on GitHub.</p>
+</dd>
+<dt class="field-odd">package_dist_name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name in the package distribution in PyPI and conda-forge. If your package name contains <code class="docutils literal notranslate"><span class="pre">_</span></code>, replace it with <code class="docutils literal notranslate"><span class="pre">-</span></code>. e.g., <code class="docutils literal notranslate"><span class="pre">my-package</span></code>. For a namespace package, use e.g., <code class="docutils literal notranslate"><span class="pre">diffpy.my-package</span></code>.</p>
+</dd>
+<dt class="field-even">package_dir_name<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the package directory. e.g., <code class="docutils literal notranslate"><span class="pre">src/my_package</span></code>. Unlike <code class="docutils literal notranslate"><span class="pre">project_name</span></code>, it must be lowercase so that it can be imported as <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">my_package</span></code>.</p>
+</dd>
+<dt class="field-odd">proj_short_description<span class="colon">:</span></dt>
+<dd class="field-odd"><p>e.g., <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">package</span> <span class="pre">for</span> <span class="pre">doing</span> <span class="pre">science.</span></code></p>
+</dd>
+<dt class="field-even">keywords<span class="colon">:</span></dt>
+<dd class="field-even"><p>Each word is separated by a comma and a space. e.g., <code class="docutils literal notranslate"><span class="pre">pdf,</span> <span class="pre">diffraction,</span> <span class="pre">neutron,</span> <span class="pre">x-ray</span></code>. The keywords may be found in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> or <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.</p>
+</dd>
+<dt class="field-odd">min_python_version<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The minimum Python version for package distribution.</p>
+</dd>
+<dt class="field-even">max_python_version<span class="colon">:</span></dt>
+<dd class="field-even"><p>The maximum Python version for package distribution.</p>
+</dd>
+<dt class="field-odd">needs_c_code_compiled<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether the package requires C/C++ code that requires building the package. For pure Python packages, type <code class="docutils literal notranslate"><span class="pre">1</span></code> to select <code class="docutils literal notranslate"><span class="pre">No</span></code>.</p>
+</dd>
+<dt class="field-even">has_gui_tests<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the package runs headless testing in GitHub CI. If your package does not contain a GUI, type <code class="docutils literal notranslate"><span class="pre">1</span></code> to select <code class="docutils literal notranslate"><span class="pre">No</span></code>.</p>
+</dd>
+</dl>
+<ol class="arabic simple">
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">ls</span></code> to see the project directory.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&lt;package_dir_name&gt;</span></code> to change the directory to the re-packaged directory.</p></li>
+</ol>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
