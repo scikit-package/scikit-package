@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Release Notes &mdash; scikit-package 0.0.1rc0 documentation</title>
+  <title>Release Notes &mdash; scikit-package 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=1ea0b0c9"></script>
+      <script src="_static/documentation_options.js?v=f539c95a"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -48,7 +48,10 @@
 <li class="toctree-l1"><a class="reference internal" href="conda-forge-guide.html">How to release conda-forge package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Release Notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.0.1</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -77,6 +80,44 @@
              
   <section id="release-notes">
 <span id="index-0"></span><h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>0.0.1<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p><strong>Added:</strong></p>
+<ul class="simple">
+<li><p>Add full description of <cite>scikit-package</cite> in <cite>pyproject.toml</cite>.</p></li>
+<li><p>Add motivating statements under the Statement of need section in <cite>index.rst</cite>.</p></li>
+<li><p>Add <cite>package create</cite> and <cite>package update</cite> commands once <cite>scikit-package</cite> is installed.</p></li>
+<li><p>instructions on pre-commit GitHub setup, how to test package and render doc locally</p></li>
+<li><p>FAQ descriptions on Github workflow, namespace package setup, deploy docs via GitHub Actions</p></li>
+<li><p>Add extra metadata of email, name, username, license holder, etc. collected to dynamically populate rendered cookiecuttered files.</p></li>
+<li><p>Add conda-forge feedstock creation and maintenance guide.</p></li>
+<li><p>Add instructions for Codecov setup in documentation.</p></li>
+<li><p>Add FAQ section to the documentation on how to customize the template and design decisions for the current setup.</p></li>
+<li><p>Add demo .gif file used in README.rst in generating a package and building documentation with <cite>scikit-package</cite>.</p></li>
+<li><p>Add <cite>Getting started`</cite> page in documentation.</p></li>
+<li><p>Add FAQ section on why both <cite>pip.txt`</cite> and <cite>conda.txt`</cite> added.</p></li>
+<li><p>Add FAQ section on how version is set and retrieved dynamically.</p></li>
+<li><p>Support Billinge group’s reusesable workflow by adding requirement files and <cite>environment.yml</cite>.</p></li>
+<li><p>Add Sphinx documentation for <cite>scikit-package</cite>.</p></li>
+<li><p>Add documentation for Python package release with GitHub Actions.</p></li>
+<li><p>field-list feature in Sphinx to better manage the user inputs in How to cookiecut package section</p></li>
+<li><p>Add automatic linting of .md, .yml, .rst files via prettier hook in <cite>pre-commit</cite>.</p></li>
+<li><p>Add automatic docstring linting with PEP 257 compliance with <cite>docformatter</cite> in <cite>pre-commit</cite>.</p></li>
+<li><p>Configure <cite>PYTHON_MAX_VERSION</cite> and <cite>PYTHON_MIN_VERSION</cite> in <cite>doc/source/conf.py</cite> to increase maintainability throughout the documentation.</p></li>
+</ul>
+<p><strong>Changed:</strong></p>
+<ul class="simple">
+<li><p>Rename repositroy and package name to <cite>scikit-package</cite>.</p></li>
+<li><p>Import <cite>package_dir_name`</cite> in the <cite>__init__.py</cite> instead of <cite>conda_pypi_package_dist_name</cite> to ensure package import is lowercased.</p></li>
+<li><p>Change default line-length to 79 characters in <cite>black</cite>, <cite>flake</cite>, and <cite>isort</cite> configuration files for PEP8 compatibility.</p></li>
+<li><p>Change question and default answer format on user prompt on C extension and headless GUI with improved wording.</p></li>
+<li><p>Standarlize the current repository based on <cite>scikit-package</cite> structure.</p></li>
+</ul>
+<p><strong>Fixed:</strong></p>
+<ul class="simple">
+<li><p>Update corresponding email to <a class="reference external" href="mailto:sb2896&#37;&#52;&#48;columbia&#46;edu">sb2896<span>&#64;</span>columbia<span>&#46;</span>edu</a>.</p></li>
+</ul>
+</section>
 </section>
 
 
