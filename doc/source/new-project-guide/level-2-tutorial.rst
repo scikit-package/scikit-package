@@ -47,7 +47,7 @@ This is the content of ``file_one.py``:
 .. code-block:: python
 
     # file_one.py
-    from calculator import dot_product
+    from shared_functions import dot_product
 
     v1 = [1, 2]
     v2 = [3, 4]
@@ -58,15 +58,15 @@ This is the content of ``file_two.py``:
 .. code-block:: python
 
     # file_two.py
-    import calculator
+    import shared_functions
 
     v3 = [5, 6]
     v4 = [7, 8]
-    print(calculator.dot_product(v3, v4))  # returns 83
+    print(shared_functions.dot_product(v3, v4))  # returns 83
 
 .. note::
 
-    Notice that in ``file_two.py``, you can import the entire module ``calculator`` and use the function ``dot_product`` by prefixing it with the module name. Importing a modele is a good practice when you have multiple functions in the same file. This way, you can avoid name conflicts and make your code more readable.
+    Notice that in ``file_two.py``, you can import the entire module ``shared_functions`` and use the function ``dot_product`` by prefixing it with the module name. Importing a modele is a good practice when you have multiple functions in the same file. This way, you can avoid name conflicts and make your code more readable.
 
 Are you having trouble running the code?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
