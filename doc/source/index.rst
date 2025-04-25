@@ -44,7 +44,7 @@ The steps are divided into five levels of shareability and complexity, allowing 
 - Level 5, ``public``, is the final step, where the source code is uploaded online so that anyone in the world can install the package, sourced from PyPI or conda-forge.
 
 
-Who are using ``scikit-package``?
+Who is using ``scikit-package``?
 ----------------------------------
 
 The full list of packages is as follows:
