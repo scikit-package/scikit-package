@@ -221,7 +221,7 @@ Trigger pre-commit hooks automatically with Git commit
 
     .. code-block:: bash
 
-        git add LICENSE
+        git add .
         git commit -m "chore: remove LICENSE file created from initial GitHub repo creation"
 
     .. note::
@@ -349,19 +349,19 @@ Below is a summary of the commands used at level 4 ``system`` in ``scikit-packag
 
 .. code-block:: bash
 
-    conda create -n skpkg_env scikit-package pre-commit
+    conda create -n skpkg-env scikit-package pre-commit
     conda activate skpkg_env
-    cd /path/to/your/project/location
+    cd ~/dev
     package create system
         [1/6] project_name (my-project): diffraction-utils
         [2/6] github_org (billingegroup): johndoe
-        [3/6] github_repo_name (my-project): diffraction-utils
-        [4/6] conda_pypi_package_dist_name (my-project): diffraction-utils
-        [5/6] package_dir_name (my_project): diffraction_utils
+        [3/6] github_repo_name (diffraction-utils): diffraction-utils
+        [4/6] conda_pypi_package_dist_name (diffraction-utils): diffraction-utils
+        [5/6] package_dir_name (diffraction_utils): diffraction_utils
         [6/6] project_owner_name (Simon Billinge): John Doe
     cd diffraction-utils
-    pip install -e .
     conda install --file requirements/test.txt
+    pip install -e .
     pytest
     git init
     git remote add origin https://github.com/mygithubusername/diffraction-utils.git
@@ -372,7 +372,7 @@ Below is a summary of the commands used at level 4 ``system`` in ``scikit-packag
     git commit -m "skpkg: start a new project with skpkg system template"
     git push --set-upstream origin skpkg-proj
     rm LICENSE
-    git add LICENSE
+    git add .
     git commit -m "chore: remove LICENSE file created from initial GitHub repo creation"
     git push --set-upstream origin skpkg-proj
 

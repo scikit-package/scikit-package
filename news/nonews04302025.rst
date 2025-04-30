@@ -1,6 +1,6 @@
 **Added:**
 
-* added: added codeblock summary for level 4 docs
+* codeblock summary for level 4 docs
 
 **Changed:**
 
