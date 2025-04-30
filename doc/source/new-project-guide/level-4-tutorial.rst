@@ -355,9 +355,9 @@ Below is a summary of the commands used at level 4 ``system`` in ``scikit-packag
     package create system
         [1/6] project_name (my-project): diffraction-utils
         [2/6] github_org (billingegroup): johndoe
-        [3/6] github_repo_name (diffraction-utils): diffraction-utils
-        [4/6] conda_pypi_package_dist_name (diffraction-utils): diffraction-utils
-        [5/6] package_dir_name (diffraction_utils): diffraction_utils
+        [3/6] github_repo_name (diffraction-utils):
+        [4/6] conda_pypi_package_dist_name (diffraction-utils):
+        [5/6] package_dir_name (diffraction_utils):
         [6/6] project_owner_name (Simon Billinge): John Doe
     cd diffraction-utils
     conda install --file requirements/test.txt
