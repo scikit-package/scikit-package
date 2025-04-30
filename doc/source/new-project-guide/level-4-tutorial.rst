@@ -374,7 +374,7 @@ Below is a summary of the commands used at level 4 ``system`` in ``scikit-packag
     rm LICENSE
     git add .
     git commit -m "chore: remove LICENSE file created from initial GitHub repo creation"
-    git push --set-upstream origin skpkg-proj
+    git push
 
 
 
