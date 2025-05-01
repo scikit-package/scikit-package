@@ -4,9 +4,9 @@
 
 .. _overview:
 
-===============
-Overview
-===============
+============================================
+Overview of code sharing with Scikit-Package
+============================================
 
 
 Here are the 5 levels of sharing your code. We provide tutorials for each level.
