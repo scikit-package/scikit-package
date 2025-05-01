@@ -1,6 +1,10 @@
 
 #######
 
+.. image:: ../../img/logos/scikit-package-logo-text.png
+    :width: 400px
+    :align: center
+
 .. |title| replace:: scikit-package documentation
 
 | Software version |release|.
@@ -52,7 +56,7 @@ The full list of packages is as follows:
 - `diffpy.pdffit2 <https://github.com/diffpy/diffpy.pdffit2>`_
 - `diffpy.fourigui <https://github.com/diffpy/diffpy.fourigui>`_
 - `diffpy.pdfgui <https://github.com/diffpy/diffpy.pdfgui>`_
-- `diffpy.utils <https://github.com/diffpy/diffpy.utils>`_
+- `diffpy. <https://github.com/diffpy/diffpy.utils>`_
 - `diffpy.structure <https://github.com/diffpy/diffpy.structure>`_
 - `diffpy.labpdfproc <https://github.com/diffpy/diffpy.labpdfproc>`_
 - `diffpy.pdfmorph <https://github.com/diffpy/diffpy.pdfmorph>`_
@@ -123,9 +127,6 @@ Table of contents
    :maxdepth: 2
 
    getting-started
-   start-new-project-no-package
-   start-new-project-package-lightweight
-   start-new-project-package-full
    pypi-release-guide
    conda-forge-release-guide
    migration-guide
