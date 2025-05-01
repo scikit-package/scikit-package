@@ -7,5 +7,7 @@
 =====================================================================
 (Level 5) Start a full Python package ready for public release
 =====================================================================
+.. toctree::
+   :maxdepth: 1
 
-.. include:: new-project-guide/level-5-tutorial.rst
+   new-project-guide/level-5-tutorial.rst

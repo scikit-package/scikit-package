@@ -8,5 +8,7 @@
 (Level 4) Start a lightweight Python package (Recommended)
 =====================================================================
 
+.. toctree::
+   :maxdepth: 1
 
-.. include:: new-project-guide/level-4-tutorial.rst
+   new-project-guide/level-4-tutorial.rst

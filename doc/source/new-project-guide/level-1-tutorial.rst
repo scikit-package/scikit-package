@@ -1,3 +1,5 @@
+:orphan:
+
 Level 1. Reuse code within a file
 ---------------------------------
 
