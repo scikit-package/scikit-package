@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publish on GitHub and to PyPI &mdash; scikit-package 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f539c95a"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Create conda package with conda-forge" href="conda-forge.html" />
+    <link rel="prev" title="(Level 5) Share code as a publicly installable Python package" href="../tutorials/level-5-tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            scikit-package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">TUTORIALS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/level-1-2-3-tutorials.html">(Level 1-3) Reuse code within a file, across files and folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/level-4-tutorial.html">(Level 4) Share code as a locally installable Python package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/level-5-tutorial.html">(Level 5) Share code as a publicly installable Python package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Publish on GitHub and to PyPI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initiate-a-release-process-with-github-issue">Initiate a release process with GitHub issue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#start-pre-release">Start pre-release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#full-release-after-pre-release">Full release after pre-release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#release-conda-forge-package">Release conda-forge package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appendix-1-setup-pypi-token-to-allow-github-actions-to-upload-to-pypi">Appendix 1. Setup <code class="docutils literal notranslate"><span class="pre">PYPI_TOKEN</span></code> to allow GitHub Actions to upload to PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appendix-2-setup-pat-token-to-allow-github-actions-to-compile-changelog-rst">Appendix 2. Setup <code class="docutils literal notranslate"><span class="pre">PAT_TOKEN</span></code> to allow GitHub Actions to compile <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appendix-3-host-documentation-online-with-github-pages">Appendix 3. Host documentation online with GitHub Pages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conda-forge.html">Create conda package with conda-forge</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../billinge-group-standards.html">Billinge Group standards</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">SUPPORT</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scikit-package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Publish on GitHub and to PyPI</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/release-guides/pypi-github.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="publish-on-github-and-to-pypi">
+<span id="release-pypi-github"></span><span id="index-0"></span><h1>Publish on GitHub and to PyPI<a class="headerlink" href="#publish-on-github-and-to-pypi" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>In this guide, you will learn to release your source code to GitHub and PyPI so that by the end of the guide, you can install your package via <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&lt;package-name&gt;</span></code>.</p>
+</section>
+<section id="initiate-a-release-process-with-github-issue">
+<h2>Initiate a release process with GitHub issue<a class="headerlink" href="#initiate-a-release-process-with-github-issue" title="Link to this heading"></a></h2>
+<div class="admonition important" id="release-instructions-contributor">
+<p class="admonition-title">Important</p>
+<p>Make sure you have your project is standarlized with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> up to Level 5. Otherwise, please start from the Overview page <a class="reference internal" href="../overview.html#overview"><span class="std std-ref">here</span></a>.</p>
+</div>
+<ol class="arabic">
+<li><p>In the repository, create an issue on GitHub with the “Release” option as shown below:</p>
+<a class="reference internal image-reference" href="../_images/release-issue.png"><img alt="add-personal-access-token" src="../_images/release-issue.png" style="width: 600px;" />
+</a>
+</li>
+<li><p>Check off all items in the first checklist for PyPI/GitHub release.</p></li>
+<li><p>Proceed to the next section.</p></li>
+</ol>
+</section>
+<section id="start-pre-release">
+<h2>Start pre-release<a class="headerlink" href="#start-pre-release" title="Link to this heading"></a></h2>
+<ol class="arabic" id="release-instructions-project-maintainer">
+<li><p>Review the release GitHub issue created in the previous step.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">PYPI_TOKEN</span></code> and <code class="docutils literal notranslate"><span class="pre">PAT_TOKEN</span></code> are configured at the organization or repository level by following the instructions in Appendix <a class="reference internal" href="#pypi-token-setup"><span class="std std-ref">1</span></a>, <a class="reference internal" href="#pat-token-setup"><span class="std std-ref">2</span></a>, respectively.</p></li>
+<li><p>Setup GitHub pages at the repository level by following the instructions in Appendix <a class="reference internal" href="#gh-pages-setup"><span class="std std-ref">3</span></a>.</p></li>
+<li><p>Confirm the <code class="docutils literal notranslate"><span class="pre">maintainer_github_username</span></code> section in <code class="docutils literal notranslate"><span class="pre">.github/workflows/build-wheel-release-upload.yml</span></code> is that of the project maintainer.</p></li>
+<li><p>In your terminal, run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">main</span></code> to sync with the main branch.</p></li>
+<li><p>Run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For pre-release, use *.*.*-rc.* e.g., 1.0.0-rc.0</span>
+<span class="c1"># rc stands for release candidate</span>
+$<span class="w"> </span>git<span class="w"> </span>tag<span class="w"> </span>&lt;version&gt;-rc.&lt;rc-number&gt;
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>&lt;version&gt;-rc.&lt;rc-number&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Done! Once the tag is pushed, visit the <span class="guilabel">Actions</span> tab in the repository to monitor the CI progress.</p></li>
+<li><p>You will see that the GitHub Actions workflow is triggered and the package is built and uploaded to PyPI and GitHub.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">pre-release</span></code>, it will not update the documentation on GitHub Pages. It will also not update the changelog. See the next section for the full release process.</p></li>
+</ol>
+</section>
+<section id="full-release-after-pre-release">
+<h2>Full release after pre-release<a class="headerlink" href="#full-release-after-pre-release" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>In your terminal, run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">main</span></code> to sync with the main branch.</p></li>
+<li><p>Run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For release, use *.*.* e.g., 1.0.0</span>
+$<span class="w"> </span>git<span class="w"> </span>tag<span class="w"> </span>&lt;version&gt;
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>&lt;version&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Notice that the documentation is deployed. It will also update the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code>.</p></li>
+<li><p>Now that you have your source code uploaded to <code class="docutils literal notranslate"><span class="pre">PyPI</span></code>, we will then now provide a conda package as well.</p></li>
+</ol>
+</section>
+<section id="release-conda-forge-package">
+<h2>Release conda-forge package<a class="headerlink" href="#release-conda-forge-package" title="Link to this heading"></a></h2>
+<p>To support <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&lt;package-name&gt;</span></code>, for your package, follow the instructions <span class="xref std std-ref">here</span>.</p>
+</section>
+<section id="appendix-1-setup-pypi-token-to-allow-github-actions-to-upload-to-pypi">
+<span id="pypi-token-setup"></span><h2>Appendix 1. Setup <code class="docutils literal notranslate"><span class="pre">PYPI_TOKEN</span></code> to allow GitHub Actions to upload to PyPI<a class="headerlink" href="#appendix-1-setup-pypi-token-to-allow-github-actions-to-upload-to-pypi" title="Link to this heading"></a></h2>
+<p>Generate a PyPI API token from <code class="docutils literal notranslate"><span class="pre">pypi.org</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Visit <a class="reference external" href="https://pypi.org/manage/account/">https://pypi.org/manage/account/</a> and log in.</p></li>
+<li><p>Scroll down to the <span class="guilabel">API tokens</span> section and click <span class="guilabel">Add API token</span>.</p></li>
+<li><p>Set the <span class="guilabel">Token name</span> to <code class="docutils literal notranslate"><span class="pre">PYPI_TOKEN</span></code>.</p></li>
+<li><p>Choose the appropriate <span class="guilabel">Scope</span> for the token.</p></li>
+<li><p>Click <span class="guilabel">Create token</span> and copy the generated token.</p></li>
+</ol>
+<p>Add the generated token to GitHub:</p>
+<ol class="arabic simple">
+<li><p>Navigate to the <span class="guilabel">Settings</span> page of the org (or repository).</p></li>
+<li><p>Click the <span class="guilabel">Actions</span> tab under <span class="guilabel">Secrets and variables</span>.</p></li>
+<li><p>Click <span class="guilabel">New org secret</span>, name it <code class="docutils literal notranslate"><span class="pre">PYPI_TOKEN</span></code>, and paste the token value.</p></li>
+<li><p>Done!</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/add-pypi-secret.png"><img alt="add-pypi-secret" src="../_images/add-pypi-secret.png" style="width: 600px;" />
+</a>
+</section>
+<section id="appendix-2-setup-pat-token-to-allow-github-actions-to-compile-changelog-rst">
+<span id="pat-token-setup"></span><h2>Appendix 2. Setup <code class="docutils literal notranslate"><span class="pre">PAT_TOKEN</span></code> to allow GitHub Actions to compile <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code><a class="headerlink" href="#appendix-2-setup-pat-token-to-allow-github-actions-to-compile-changelog-rst" title="Link to this heading"></a></h2>
+<p>Recall that dring a release (not pre-release) process, the GitHub Actions workflow compiles the news items in the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> file in the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch. Hence, the GitHub workflow needs to link with this privilege through a personal access token (PAT) of the project maintainer.</p>
+<ol class="arabic simple">
+<li><p>Visit <a class="reference external" href="https://github.com/settings/tokens">https://github.com/settings/tokens</a></p></li>
+<li><p>Click <span class="guilabel">Generate new token</span> and choose the classic option.</p></li>
+<li><p>Under <span class="guilabel">Note</span>, write, “GitHub CI release”</p></li>
+<li><p>Set the Expiration date of the token.</p></li>
+<li><p>Under <span class="guilabel">Select scopes</span>, check <span class="guilabel">repo</span> and <span class="guilabel">user</span>.</p></li>
+<li><p>Scroll down, click <span class="guilabel">Generate token</span>.</p></li>
+<li><p>Done!</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/add-personal-access-token.png"><img alt="add-personal-access-token" src="../_images/add-personal-access-token.png" style="width: 600px;" />
+</a>
+<p>Copy and paste the <code class="docutils literal notranslate"><span class="pre">PAT_TOKEN</span></code> to your GitHub organization:</p>
+<p><span class="guilabel">Settings</span> in the organization.</p>
+<ol class="arabic simple">
+<li><p>Click the <span class="guilabel">Actions</span> tab under <span class="guilabel">Secrets and variables</span>.</p></li>
+<li><p>Click <span class="guilabel">New organization secret</span> and add a new secret and name it as <code class="docutils literal notranslate"><span class="pre">PAT_TOKEN</span></code>.</p></li>
+<li><p>Done!</p></li>
+</ol>
+</section>
+<section id="appendix-3-host-documentation-online-with-github-pages">
+<span id="gh-pages-setup"></span><h2>Appendix 3. Host documentation online with GitHub Pages<a class="headerlink" href="#appendix-3-host-documentation-online-with-github-pages" title="Link to this heading"></a></h2>
+<p>Let’s now host the documentation online, e.g., <code class="docutils literal notranslate"><span class="pre">https://diffpy.github.io/diffpy.utils</span></code>, using GitHub Pages.</p>
+<ol class="arabic">
+<li><p>Visit <span class="menuselection">Settings ‣ Code and automation ‣ Pages</span>.</p></li>
+<li><p>Click <span class="guilabel">Deploy from a branch</span> under <span class="guilabel">Source</span>.</p></li>
+<li><p>Choose the <span class="guilabel">gh-pages</span> branch and <span class="guilabel">/(root)</span></p></li>
+<li><p>Click <span class="guilabel">Save</span>.</p>
+<img alt="setup-github-pages-from-branch" src="../_images/github-pages.png" />
+</li>
+<li><p>Done! Wait a few minutes and visit your GitHub Pages URL!</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tutorials/level-5-tutorial.html" class="btn btn-neutral float-left" title="(Level 5) Share code as a publicly installable Python package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="conda-forge.html" class="btn btn-neutral float-right" title="Create conda package with conda-forge" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -15,6 +15,32 @@ Pre-commit
 
 ``Pre-commit`` attempts to automatically fix code style issues. The following questions are used to customize the ``pre-commit`` configuration for your project's needs.
 
+How is pre-commit used in each Level?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Here is a recommended setup and hooks for ``pre-commit`` for each level:
+
+.. list-table::
+  :header-rows: 1
+
+  * - Level
+    - Name
+    - Recommended setup
+    - Hooks used
+  * - 3
+    - ``workspace``
+    - Run ``pre-commit run --all-files`` locally.
+    - Automatic linting with ``black``, ``prettier``, ``docformatter``
+  * - 4
+    - ``system``
+    - Use ``pre-commit install`` locally, ``pre-commit CI`` in GitHub
+    - Level 3 hooks, PEP 8 check with ``flake8``, default hooks (merge conflicts, end-of-file-fixer, etc.)
+  * - 5
+    - ``public``
+    - Same as Level 4
+    - Level 4 hooks, no commits to ``main``, spell checker with ``codespell``,
+
+
 How do I modify line-width limits?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -32,7 +58,18 @@ To skip files checked by ``flake8``, include the file path in ``.flake8`` under 
 
 To prevent ``black`` from formatting, include the file path in ``pyproject.toml`` under the ``[tool.black]`` section.
 
-.. _codespell-add-word:
+.. _faq-pre-commit-error:
+
+How do I fix conflicted hook auto-fix errors?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You may encounter the following error message when you run ``git commit -m <your-commit-message>``: ::
+
+  Stashed changes conflicted with hook auto-fixes...
+
+To solve this problem, run ``git add <file>`` on the files modified by ``pre-commit``. Then, re-enter same commit message above using ``git commit -m <your-commit-message>``. Why do we need to run ``git add`` again? The files that are linted by ``pre-commit`` are not staged to the local Git database. So, we stage them manually again with ``git add``.
+
+.. _faq-codespell-ignore:
 
 How do I ignore words/lines/files in automatic spelling checks in pre-commit?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -42,46 +79,62 @@ How do I ignore words/lines/files in automatic spelling checks in pre-commit?
 Project setup
 -------------
 
-I read ``scikit-package`` supports a namespace package. What is it and how do I set it up?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _faq-project-setup-namespace:
 
-In plain English, a namespace package refers to a package that is organized in a way that allows importing and installing a package like ``pip install diffpy.pdffit2``. The package starts with an ``org-name`` or similar, and each package has a separate repository, i.e., https://github.com/diffpy/diffpy.pdffit2. The consistency in naming can be beneficial for research groups by organizing research software projects and maintaining branding, as demonstrated by software projects in https://www.diffpy.org/.
+I read ``scikit-package`` allows namespace support for importing packages. What is it, and how do I set it up?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-What is the difference between a namespace package and a regular package?
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+A research group often maintains multiple software packages under a single GitHub organization.
+For the purposes of branding and also differentiating packages with similar names, it can sometimes be beneficial for the organization or research group name (or some other branding name) to appear in the package name itself.
 
-The difference is in the folder structure:
+Here is an example. Consider the package called ``diffpy.pdffit2``. The package starts with an organization identifier of ``diffpy``, and the package name is ``pdffit2``. There is a separate GitHub repository for this package (https://github.com/diffpy/diffpy.pdffit2) while it is developed under the DiffPy organization (https://github.com/diffpy). The user can import the package as ``import diffpy.pdffit2 as pdffit2`` in any Python script.
 
-For a regular package ``bg-mpl-stylesheets``:
+.. note::
+
+  This namespace feature is only available in Level 5, ``public``. In programming, a "namespace" refers to a unique identifier that can hold many classes, functions, and variable names. Here we extend the concept that the top level namespace holds multiple packages.
+
+What is the difference in folder structure compared to a standard package?
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+For a standard package, the folder structure is as follows:
 
 .. code-block:: text
 
   ├── src
-  │   ├── bg_mpl_stylesheets
+  │   ├── <package_name>
   │   │   ├── __init__.py
-  │   │   ├── colors.py
-  │   │   ├── inkscape_tools.py
+  │   │   ├── file_one.py
+  │   │   ├── file_two.py
 
-You would import it as ``import bg_mpl_stylesheets`` and the package name is ``bg-mpl-stylesheets`` on PyPI and conda-forge. See https://pypi.org/project/bg-mpl-stylesheets/.
-
-In constrat, here is an example of the ``diffpy.utils`` namespace package:
+For a package to be imported using ``import <namespace_name>.<package_name>``, the folder structure is as follows:
 
 .. code-block:: text
 
-  ├── pyproject.toml
   ├── src
-  │   ├── diffpy
+  │   ├── <namespace_name>
   │   │   ├── __init__.py
-  │   │   └── utils
+  │   │   └── <package_name>
   │   │       ├── __init__.py
-  │   │       ├── diffraction_objects.py
+  │   │       ├── file_one.py
+  │   │       ├── file_two.py
 
-Notice that there is a ``diffpy`` folder under ``src``. The package name is ``diffpy.utils`` on PyPI and conda-forge and installable like ``pip install diffpy.utils``.
+How do I set it up with ``scikit-package``?
+"""""""""""""""""""""""""""""""""""""""""""
 
-Now, I am interested in setting up a namespace package. How do I set it up?
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Our ``scikit-package`` automatically handles this folder setup for you! When you run ``package create public``, simply enter ``project_name`` as, e.g., ``<namespace_name>.<package_name>``, like the default value provided. ``scikit-package`` adjusts the folder structure based on the presence of the ``.`` that separates the ``<namespace_name>`` and ``<package_name>``.
 
-Our ``scikit-package`` handles a namespace package automatically for you! This is what makes our scikit-package unique. All you have to do while creating a scikit-package package is to provide your package name as e.g., ``diffpy.my_project`` when prompted by ``scikit-package https://github.com/Billingegroup/scikit-package``. The scikit-package will automatically create a namespace package for you based on the existence of the ``.`` that separates the ``diffpy`` and ``my_project``.
+In Level 5, why do we adopt ``README.rst`` instead of ``README.md``?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We adopt ``README.rst`` at Level 5 because reStructuredText (``.rst``) provides a more configurable format and control. One key advantage of ``.rst`` is its native support for advanced formatting, such as precise control over image size and layout: ::
+
+  .. |Icon| image:: img/logos/scikit-package-logo-text.png
+      :target: https://Billingegroup.github.io/scikit-package
+      :height: 150px
+
+Achieving the same result in Markdown often requires raw HTML, which is less readable and may render inconsistently across platforms.
+
+Switching to ``README.rst`` at Level 5 helps users appreciate the formatting power of ``.rst`` and serves as a stepping stone toward writing full documentation in ``.rst`` as part of the ``scikit-package`` documentation standard.
 
 Release
 -------
@@ -91,7 +144,7 @@ Release
 How can I change who is authorized to release a package?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In ``.github/workflows/build-wheel-release-upload.yml``, modify ``github_admin_username`` to the desired GitHub username. This username will be able to authorize the release by pushing the tag as instructed :ref:`here <release-instructions-project-owner>`.
+In ``.github/workflows/build-wheel-release-upload.yml``, modify ``github_admin_username`` to the desired GitHub username. This username will be able to authorize the release by pushing the tag as instructed :ref:`here <release-instructions-project-maintainer>`.
 
 How is the package version set and retrieved?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -132,233 +185,157 @@ We decided to include test files in the PyPI source distribution to facilitate u
 
 The conda-forge CI uses the source code distributed via PyPI to build a Conda package. After building the package, we want to run pytest to ensure all unit tests pass before release. Therefore, test files must be included in the source code. In contrast, no documentation is distributed with the package, as it is already accessible from the GitHub repository and does not serve a practical purpose in the distribution package itself.
 
-Billinge Group standards
-------------------------
-
-How we communicate via GitHub commit messages and issue titles
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-For commit messages and issue titles, we add prefixes adopted from https://www.conventionalcommits.org:
-
-.. code-block:: text
-
-  feat: A new feature has been added.
-  fix: A bug has been fixed.
-  docs: Documentation changes only.
-  style: Changes that don't affect code functionality (e.g., formatting, whitespace).
-  refactor: Code changes that neither fix a bug nor add a feature.
-  perf: Performance improvements.
-  test: Adding missing tests or correcting existing ones.
-  chore: Updates to the build process or auxiliary tools.
-  build: Changes that affect the build artifact or external dependencies.
-  ci: Updates to CI configuration files and scripts.
-  revert: Reverts a previous commit.
-  release: A new package version is being prepared.
-  skpkg: Using scikit-package to create a new package or maintain an existing package.
-
-- Example 1: "feat: create a ``DiffractionObject.morph_to()`` method"
-- Example 2: "bug: handle divide by zero error in ``DiffractionObject.scale_to``"
-
-Please see an example here: https://github.com/Billingegroup/scikit-package/issues. There are a few benefits to adding prefixes to GitHub issue titles. First, it helps us prioritize tasks from the notifications. Second, it helps reference issues in a comment within an issue or pull request and organize tasks.
-
-.. attention:: A commit message is written for PR reviewers and for debuggers. Avoid verbosity for a quick overview. An ideal commit message communicates file(s) of interest, the reason for the modification, and what modifications were made. e.g., “chore: move all files from docs to doc for scikit-packaging."
-
-How we write CHANGELOG.rst with news files in PRs
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. include:: snippets/news-file-format.rst
-
-GitHub Pull Request practices
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-#. Have a theme for each PR to reduce cognitive overload for the reviewer.
-
-#. Make PRs small with the possibility of rejection.
-
-#. Write “closes #<issue-number>” in the PR comment to automatically close the issue when the PR is merged. See `GitHub documentation <https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue>`_.
-
-#. Review your own PR. Start as a draft PR, visit “Files changed”, add comments, and then request a review. In-line comments are needed if the changes are not obvious for the reviewer.
-
-#. If another commit was pushed after “ready for review”, write another comment “ready for review after fixing ____” so that the reviewer is directed to the PR, not the file changes by the new commit.
-
-#. PR from a new branch if it contains a meaningless commit history.
-
-#. Do not force push. Use ``git revert`` to unwind the previous commit.
-
-#. If you’ve made a mistake but have not used ``git add``, use ``git restore <file-name>``.
-
-#.  Before CI is integrated, include local test passing results in each PR to save time for the reviewer.
-
-#.  For migrating files from one folder to another folder, use ``git mv``.
-
-#. For writing release news, “changed” refers to what would affect the user. “Fixed” refers to bugs or refactoring.
-
-#. No news file is needed for fixing typos or grammatical errors.
-
-#. Each PR is designed to address an issue on GitHub. If there is no issue, make one.
-
-#. For deleting files generated by the OS such as ``.DS_Store`` use ``git rm`` instead of ``git add`` to also remove from the Git index (staging area).
-
-#. When a PR is closed for any reason, add a single sentence in the comment explaining why the PR is being closed. If a new PR is created, add the new PR link in the comment.
-
-How we write tests with Pytest
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The following practices have been developed to ensure consistency in writing tests:
-
-#. Comment starts with a uppercase letter (PEP8 standard) unless it's a name starting with a lowercase letter like a function name.
-
-#. Include a high-level test function comment e.g., ``# Test conversion of q to tth with q and wavelength``
-
-#. Use ``C1: Start with a capital letter...`` or ``Case 1: Start...`` for each condition under ``@pytest.mark.parametrize``.
-
-#. If applicable, group similar test conditions under a single case. Numerate each test condition.
-
-#. Divide a test case comment into two parts: ``x, y, z (conditions), expect...``. Ensure there is a ``expect`` keyword after the test conditions provided.
-
-#. Use descriptive yet concise variable names for expected values (e.g., ``expected_xarrays`` instead of ``expected``)
-
-#. Order test cases from the most general to edge cases. This helps readers understand the basic function behavior first before utilizing or encountering unusual features or behaviors.
-
-#. Consider moving reusable code objects to ``conftest.py``. See warning messages and objects defined in https://github.com/diffpy/diffpy.utils/blob/main/tests/conftest.py available in each test function in https://github.com/diffpy/diffpy.utils/blob/main/tests/test_diffraction_objects.py/
-
-Pytest example 1
-
-.. code-block:: python
-
-  @pytest.mark.parametrize(
-      "xtype, expected_xarray",
-      [
-          # Test whether on_xtype returns the correct xarray values
-          # C1: tth to tth, expect no change in xarray value
-          # 1. "tth" provided, expect tth
-          # 2. "2theta" provided, expect tth
-          ("tth", np.array([30, 60])),
-          ("2theta", np.array([30, 60])),
-          # C2: "q" provided, expect q converted from tth
-          ("q", np.array([0.51764, 1])),
-          # C3: "d" provided, expect d converted from tth
-          ("d", np.array([12.13818, 6.28319])),
-      ],
-  )
-  def test_on_xtype(xtype, expected_xarray, do_minimal_tth):
-      pass
-
-Pytest example 2 - multi-line arguments
-
-- Add `# C1:` inside within `( ... )`. More examples `here <https://github.com/diffpy/diffpy.utils/pull/277>`_.
-
-.. code-block:: python
-
-  @pytest.mark.parametrize(
-      "do_args_1, do_args_2, expected_equality, wavelength_warning_expected",
-      [
-          # Test when __eq__ returns True and False
-          (  # C1: Identical args, expect equality
-              {
-                  "name": "same",
-                  "scat_quantity": "x-ray",
-                  "wavelength": 0.71,
-                  "xtype": "q",
-                  "xarray": np.array([1.0, 2.0]),
-                  "yarray": np.array([100.0, 200.0]),
-                  "metadata": {"thing1": 1},
-              },
-              {
-                  "name": "same",
-                  "scat_quantity": "x-ray",
-                  "wavelength": 0.71,
-                  "xtype": "q",
-                  "xarray": np.array([1.0, 2.0]),
-                  "yarray": np.array([100.0, 200.0]),
-                  "metadata": {"thing1": 1},
-              },
-              True,
-              False,
-          ),
-          (  # C2: Different names, expect inequality
-              {
-                  "name": "something",
-                  "xtype": "tth",
-                  "xarray": np.empty(0),
-                  "yarray": np.empty(0),
-                  "metadata": {"thing1": 1, "thing2": "thing2"},
-              },
-              {
-                  "name": "something else",
-                  "xtype": "tth",
-                  "xarray": np.empty(0),
-                  "yarray": np.empty(0),
-                  "metadata": {"thing1": 1, "thing2": "thing2"},
-              },
-              False,
-              True,
-          ),
-      ],
-  )
-  def test_equality(do_args_1, do_args_2, expected_equality, wavelength_warning_expected):
-      pass
-
-
-
-1. Comment starts with a uppercase letter (PEP8 standard) unless it's a name starting with a lowercase letter like a function name.
-
-How we write docstrings
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Please bookmark the following:
-
-  PEP257: https://peps.python.org/pep-0257
-
-  PEP8: https://peps.python.org/pep-0008/
-
-  NumPy document style guide: https://numpydoc.readthedocs.io/en/latest/format.html
-
-In the group, we follow the NumPy standard:
-
-#. A one-line summary that does not use variable names or the function name is added before a full description.
-
-#. Use "Return a dict" instead of "Returns a dict". Comments are instructions.
-
-#. "The" is used for the starting description of attribute/parameter/return
-
-#. Full docstrings are not required for private functions.
-
-For examples, please refer to https://github.com/diffpy/diffpy.utils/blob/main/src/diffpy/utils/diffraction_objects.py.
-
-How we design error message
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Divide an error message into two sections: (1) reason for error, (2) what to do to fix it. Ex) "Both release and pre-release specified. Please re-run the command specifying either release or pre_release.” Error messages are for users. Consider users without programming knowledge.
-
-How we write file names
-^^^^^^^^^^^^^^^^^^^^^^^
-
-For public-facing documents accessible via URLs, use minus signs ``-`` between words:
-
-- For project names, i.e., ``https://github.com/billingegroup/bg-mpl-stylesheets``
-
-- For doc/file paths, i.e., ``doc/source/frequently-asked-questions.rst``
-
-For CLI, also use minus signs ``-`` for args:
-
-- i.e., ``gh pr list --author "@sbillinge"``
-
-Other considerations for maintaining group infrastructure
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- Be extremely careful with changes that are visible to users.
-- Try not to pass down technical debt to future members. Do the extra work so that others can save time. i.e, making a PR to the scikit-package repo once an issue has been identified in a scikit-packaged project.
-reducing compute time, especially when computing resources are not the primary constraint.
-- It is easier to remove things (e.g., dependencies) we don't want than to add things that are needed in certain circumstances.
 
 Documentation
 -------------
 
-How can I preview documentation in real-time?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+How can I preview ``Sphinx`` documentation in real-time?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You may use Visual Studio Code. Please refer to the following section :ref:`here <build-documentation-preview-real-time>`.
+.. include:: snippets/doc-local-build.rst
+
+.. _faq-doc-api-standard:
+
+How do I build API .rst files automatically for a standard Python package?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can generate ``.rst`` files using the ``sphinx-apidoc`` extension.
+
+#. Install ``sphinx-apidoc``:
+
+    .. code-block:: bash
+
+        pip install sphinx-apidoc
+
+#. Run the following command to generate ``.rst`` under the ``doc/source/api`` directory:
+
+    .. code-block:: bash
+
+        sphinx-apidoc -o doc/source/api src/<package_dir_name>
+
+#. Done!
+
+Instead of manually running the ``sphinx-apidoc -o ..`` command from your terminal, here is a recommended way to **automate** the process of generating API documentation:
+
+#. Replace the following code block in your ``doc/source/conf.py`` from
+
+    .. code-block:: python
+
+        extensions = [
+            "sphinx.ext.autodoc",
+            "sphinx.ext.napoleon",
+            "sphinx.ext.todo",
+            "sphinx.ext.viewcode",
+            "sphinx.ext.intersphinx",
+            "sphinx_rtd_theme",
+            "m2r",
+        ]
+
+    to
+
+    .. code-block:: python
+
+        extensions = [
+            "sphinxcontrib.apidoc",  # Add this extension to run sphinx-apidoc
+            "sphinx.ext.napoleon",
+            "sphinx.ext.todo",
+            "sphinx.ext.viewcode",
+            "sphinx.ext.intersphinx",
+            "sphinx_rtd_theme",
+            "m2r",
+        ]
+
+
+        # Configure where to find the source code and write API .rst files
+        apidoc_module_dir = '../../src/<package_dir_name>'
+        apidoc_output_dir = 'api'
+        apidoc_excluded_paths = ['tests']
+        apidoc_separate_modules = True
+
+#. Replace ``<package_dir_name>`` with the directory name under ``src``, e.g., ``my_package``.
+
+#. Run ``sphinx-reload doc``.
+
+#. Notice that the ``.rst`` files under ``doc/source/api`` are generated whenever the documentation is re-rendered.
+
+#. Done! You can ``git add doc/source/api`` and commit the changes.
+
+.. _faq-doc-api-namespace:
+
+How do I build API .rst files for a Python package with a namespace import?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you are using a namespace import, ``sphinx-apidoc`` will not work. We have develoepd our own script called ``auto_api.py`` to generate the API documentation.
+
+#. Run ``git clone https://github.com/Billingegroup/release-scripts.git`` into a folder outside of the project directory. Here is the folder structure:
+
+    .. code-block:: text
+
+      dev/
+      ├── <namespace_name>.<package_name>
+      │   ├── pyproject.toml
+      │   └── doc/source/api/
+      │   └── src
+      │       └── <namespace_name>
+      │           ├── __init__.py
+      │           └── <pakcage_name>
+      │               ├── __init__.py
+      │               └── file_one.py
+      └── release-scripts
+          └── auto_api.py
+
+#. Run ``cd <namespace_name>.<package_name>`` to enter the package directory.
+
+#. Run ``python -m build`` to build the package. You may have to install ``python-build`` first.
+
+#. Run the ``auto_api.py`` script. This is done by running ``python <path_to_auto_api_script> <package_name> <path_to_package_name> <path_to_api_directory>``. Here is an example below:
+
+    .. code-block:: bash
+
+        cd ~/dev/<namespace_name>.<package_name>
+        python ../release-scripts/auto_api.py <namespace_name>.<package_name> ./src/<namespace_name>/<package_name> ./doc/source/api
+
+    .. note:: Here is an example of how ``diffpy.utils`` uses the ``auto_api.py`` script. The folder structure is as follows:
+
+      .. code-block:: text
+
+          dev/
+          ├── diffpy.utils
+          │   ├── pyproject.toml
+          │   └── doc/source/api/
+          │   └── src
+          │       └── diffpy
+          │           ├── __init__.py
+          │           └── utils
+          │               ├── __init__.py
+          │               └── file_one.py
+          └── release-scripts
+              └── auto_api.py
+
+      Then you would run the following command:
+
+      .. code-block:: bash
+
+            cd ~/dev/diffpy.utils
+            python ../release-scripts/auto_api.py diffpy.utils ./src/diffpy/utils ./doc/source/api/
+
+#. Done! You will see that the ``.rst`` files under ``doc/source/api`` are generated.
+
+
+#. (Optional) Feel free to use the following shortcut. Add the following function to your ``~/.bashrc`` or ``~/.zshrc`` file and activate it by running ``source ~/.bashrc`` or ``source ~/.zshrc``:
+
+    .. code-block:: bash
+
+        api() {
+            IMPORT_NAME=$(basename "$(pwd)")  # e.g., "diffpy.utils"
+            IMPORT_PATH=$(echo "$IMPORT_NAME" | tr '.' '/')  # e.g., "diffpy/utils"
+            MODULE_PATH="src/$IMPORT_PATH"  # e.g., "src/diffpy/utils"
+            DOC_PATH="doc/source/api"
+
+            python "../release-scripts/auto_api.py" "$IMPORT_NAME" "$MODULE_PATH" "$DOC_PATH"
+        }
+
+    Once you enter the project directory, run ``api`` in the terminal to generate the API documentation automatically so that you don't have to type the full command every time!
 
 How do I re-deploy online documentation without another release?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -385,10 +362,10 @@ GitHub Actions
 
 .. _github-actions-python-versions:
 
-How do I set different Python versions for GitHub CI?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In Level 5, How do I set different Python versions for GitHub CI?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The default is Python 3.13 for ``./github/workflows/tests-on-pr.yml`` and ``./github/workflows/publish-docs-on-release.yml``. Python 3.11, 3.12, and 3.13 are used for ``./github/workflows/matrix-and-codecov-on-merge-to-main.yml``. To override the default, modify the three ``.yml`` files above in ``.github/workflows/`` as shown below:
+Python |PYTHON_MAX_VERSION| is the current default Python version in ``.github/workflows/tests-on-pr.yml`` and ``.github/workflows/publish-docs-on-release.yml``. Python |PYTHON_MIN_VERSION| to |PYTHON_MAX_VERSION| are used in ``.github/workflows/matrix-and-codecov-on-merge-to-main.yml``. To override the defaults, modify the three ``.yml`` files mentioned above in ``.github/workflows/`` as shown below:
 
 1. Add ``python_version`` in ``.github/workflows/tests-on-pr.yml``:
 
@@ -429,6 +406,25 @@ The default is Python 3.13 for ``./github/workflows/tests-on-pr.yml`` and ``./gi
       ...
       python_versions: "3.11, 3.12"
 
+In Level 5, what are the workflows running in each pull request?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. The first workflow is called ``Tests on PR`` from ``.github/workflows/tests-on-pr.yml``. This workflow creates a new conda environment on Linux and installs the dependencies listed in the ``requirements`` folder using the ``conda-forge`` channel. The conda environment is configured to use the highest Python version specified when the project was initially created. It then runs the unit tests located in the ``tests`` folder, similar to how you would run them locally.
+
+#. The second workflow uses ``pre-commit CI``. This workflow checks the incoming code in the PR using ``pre-commit`` hooks and automatically applies fixes when possible. If any fixes are made, an additional commit is created by the ``pre-commit`` app. However, some hooks, such as spell checkers, may still fail even after auto-fixes. In such cases, the CI fails. The user first needs to pull the additional commit made by the ``pre-commit CI``, fix the error manually, and then push a commit to the working branch.
+
+#. The third workflow uses the ``Codecov`` app, which adds a comment to the PR summarizing the changes in code coverage as part of the ``.github/workflows/tests-on-pr.yml`` workflow. This workflow fails if no tests are provided for the new code or if the test coverage percentage decreases below the acceptable threshold. The threshold can be adjusted in the ``.codecov.yml`` file located in the project root directory.
+
+#. The fourth workflow checks for a news file in the PR using ``.github/workflows/check-news-item.yml``. If no news item is included for the proposed changes, this workflow fails and leaves a comment prompting the contributor to submit a new PR with the appropriate news file. Please refer to the best practices section on news items :ref:`here <news-item-practice>`.
+
+In Level 5, I see that another workflow is running once a PR is merged to ``main``. What is it?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The workflow ``.github/workflows/matrix-and-codecov-on-merge-to-main.yml`` is triggered. The goal is to ensure the latest code is tested not only on Linux but also across multiple operating systems and Python versions. This workflow runs tests on macOS (both Apple Silicon and Intel chips), Linux, and Windows and against three different Python versions, including the latest configured version. To modify the Python versions used in the workflows, refer to :ref:`github-actions-python-versions`.
+
+.. note:: These workflow files call scripts located at https://github.com/Billingegroup/release-scripts, which are centrally managed by the ``scikit-package`` development team. This centralized approach ensures that individual packages do not need to be updated separately when adding support for new Python versions or operating systems.
+
+
 What is the difference between ``pull_request`` and ``pull_request_target``?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -448,30 +444,53 @@ For the current GitHub CI for checking a news item, ``pull_request_target`` is u
 
 Another key difference is that with ``pull_request_target``, the ``.yml`` file **must already be merged** in the base branch at the time the pull request is opened or updated. For more, please refer to `GitHub docs <https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#pull_request_target>`_.
 
+.. _faq-dependency-management:
+
 Dependency management
 ---------------------
 
-Why are both pip.txt and conda.txt provided?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _faq-dependency-files:
+
+What are ``docs.txt``, ``test.txt``, ``build.txt``, and ``conda.txt`` files under ``\requirements`` in Level 4 and Level 5?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:pip.txt: list all PyPI packages required to install the package via `pip install <package-name>`.
+
+:conda.txt: list all Conda packages required for running the package in GitHub CI. It should be typically identcal as the ``pip.txt`` file.
+
+:test.txt: packages required for the testing suite to ensure all tests pass.
+
+:docs.txt: packages required for building the package documentation page.
+
+:build.txt: list all conda packages required for building the package in GitHub CI, including those specified in the build section of meta.yaml (conda-recipe).
+
+
+.. _faq-pip-conda-both-provided:
+
+
+Why are both ``pip.txt`` and ``conda.txt`` provided?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Our preferred choice for installing the scikit-packaged package is as a Conda package, as outlined in the template ``README.rst`` file. With Conda, the end user can install all associated dependencies by running ``conda create --name new_env <package-name>``. Additionally, the environment is tested via conda-forge CI before the Conda package is released, which helps ensure the package's compatibility with its dependencies. Hence, we list conda package dependencies in ``conda.txt``.
 
 However, we also want to allow users to install the package via ``pip``. To support this, we provide a separate file for pip dependencies, ``pip.txt``. In most cases, the dependencies listed in ``conda.txt`` and ``pip.txt`` will be identical. However, there can be exceptions. For example, ``matplotlib-base`` is preferred for Conda installations, while ``matplotlib`` is used for pip installations.
 
+.. _faq-github-workflow:
+
 GitHub workflow
 ---------------
 
 I am new to GitHub. Why do we use Git/GitHub?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-GitHub allows multiple contributors to work on a software project simultaneously under an organization like ``Billingegroup`` or ``diffpy``. There are two primary needs. First, we want to ensure that any changes under this organization are reviewed by the organization's project owner. Second, we want to ensure we add new changes from the latest version of the code, particularly when working with multiple contributors across different time zones. Hence, we use GitHub to serve the needs with a specific workflow below. Please see below for an overview of the GitHub workflow.
+GitHub allows multiple contributors to work on a software project simultaneously under an organization like ``Billingegroup`` or ``diffpy``. There are two primary needs. First, we want to ensure that any changes under this organization are reviewed by the organization's project maintainer. Second, we want to ensure we add new changes from the latest version of the code, particularly when working with multiple contributors across different time zones. Hence, we use GitHub to serve the needs with a specific workflow below. Please see below for an overview of the GitHub workflow.
 
 .. _github-workflow-overview:
 
 What is the general the workflow?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Since sk-packaging requires a basic understanding of GitHub's workflow, we will provide you with a brief overview and how to set up your repository.
+Starting a new Python package in Level 4 and 5 requires a basic understanding of GitHub's workflow, we will provide you with a brief overview and how to set up your repository.
 
 First, if you are working on a package from an organization like ``github.com/diffpy`` or ``github.com/Billingegroup``, you first copy the repository of the organization to your GitHub user account. This process is called ``forking``.
 
@@ -606,3 +625,46 @@ Again, you checkout a new branch from the ``main`` branch. You can name it anyth
   git checkout -b docs-typo
 
 You repeat the process of git add, commit, push to your ``origin`` (your forked repository) and then make a PR to the ``upstream`` repository (the organization's repository).
+
+Maintaining ``scikit-package``
+------------------------------
+
+When should we expect different Python versions to be supported in the GitHub workflows?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Please check the **Support Window** section in the official Scientific Python specification: https://scientific-python.org/specs/spec-0000/
+
+Which files should be modified when there is a new Python version?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When updating Python version support, please modify the following files accordingly:
+
+In https://github.com/Billingegroup/scikit-package:
+
+.. list-table::
+   :header-rows: 1
+
+   * - File
+     - Variables to update
+   * - ``doc/source/conf.py``
+     - ``PYTHON_DEFAULT_MAX_VERSION`` and ``PYTHON_DEFAULT_MIN_VERSION``
+
+In https://github.com/Billingegroup/release-scripts:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Workflow file
+     - Key to update
+   * - ``.github/workflows/_matrix-and-codecov-on-merge-to-main.yml``
+     - ``python_versions``
+   * - ``.github/workflows/_publish-docs-on-release.yml``
+     - ``python_version``
+   * - ``.github/workflows/_check-news-item.yml``
+     - ``python_version``
+   * - ``.github/workflows/_build-pure-python-package.yml``
+     - ``python-version``
+   * - ``.github/workflows/_tests-on-pr.yml``
+     - ``python_version``
+   * - ``.github/workflows/_tests-on-pr-no-codecov-no-headless.yml``
+     - ``python-version``

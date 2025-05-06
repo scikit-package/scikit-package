@@ -1,24 +1,25 @@
-Follow these steps sequentially:
+#. Install the requirements for building the documentation.
 
-.. code-block:: bash
+    .. code-block:: bash
 
-    # Create a new environment, specify the Python version and install packages
-    conda create -n <project-name>_env \
-        --file requirements/test.txt \
-        --file requirements/conda.txt \
-        --file requirements/build.txt
+        $ conda install --file requirements/docs.txt
 
-    # Activate the environment
-    conda activate diffpy_utils_env
+#. Then we will use an external tool called ``sphinx-reload`` to automatically reload the documentation when you make changes to ``.rst`` files.
 
-    cd doc
-    make html
-    open open build/html/index.html
+    .. code-block:: bash
 
-To run as a single command:
+        $ pip install sphinx-reload
 
-.. code-block:: bash
+    .. note::
 
-    cd doc && make html && open build/html/index.html && cd ..
+        ``sphinx-reload`` is only available via pip install.
 
-Your default browser will open the documentation in a new window.
+#. A HTML will appear automatically in your browser by running the following command:
+
+    .. code-block:: bash
+
+        $ sphinx-reload doc
+
+.. note::
+
+    If you see the error "No module named" (e.g., ``WARNING: autodoc: failed to import module 'tools' from module 'diffpy.pdfmorph'; the following exception was raised: No module named 'diffpy.utils'``), it can be resolved by adding ``autodoc_mock_imports = [<pkg>]`` to your ``conf.py`` right under imports. This file is located in ``/doc/source/conf.py``.

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Install scikit-package with conda &mdash; scikit-package 0.0.1 documentation</title>
+  <title>&lt;no title&gt; &mdash; scikit-package 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -87,9 +87,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda</li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/snippets/scikit-installation.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/snippets/5-levels-table.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -97,33 +97,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="install-scikit-package-with-conda">
-<span id="scikit-package-installation"></span><h1>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda<a class="headerlink" href="#install-scikit-package-with-conda" title="Link to this heading"></a></h1>
-<ol class="arabic">
-<li><p>Ensure you have <code class="docutils literal notranslate"><span class="pre">conda</span></code> installed and the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel added to your conda configuration. If you haven’t, check <a class="reference internal" href="../tutorials/level-1-2-3-tutorials.html#conda-env-setup-simple"><span class="std std-ref">here</span></a> for instructions on how to install and include the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel.</p></li>
-<li><p>Create a new environment named <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;-env</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code>. Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> simultaneously by running the following command:</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>skpkg-env<span class="w"> </span>scikit-package<span class="w"> </span>pre-commit
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p>Activate the environment:</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>skpkg-env
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p>Confirm that you have the latest version of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> available on GitHub:</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>show<span class="w"> </span>scikit-package
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-</ol>
-</section>
+  <table class="docutils align-default" id="id1">
+<caption><span class="caption-text">5 levels of reusing/sharing code</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 5.0%" />
+<col style="width: 15.0%" />
+<col style="width: 40.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Level</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Scope</p></th>
+<th class="head"><p>How to setup</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">function</span></code></p></td>
+<td><p>Reuse code in the single file.</p></td>
+<td><p><a class="reference internal" href="../tutorials/level-1-2-3-tutorials.html#tutorial-level-1"><span class="std std-ref">See Level 1 tutorial</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">module</span></code></p></td>
+<td><p>Reuse code across files.</p></td>
+<td><p><a class="reference internal" href="../tutorials/level-1-2-3-tutorials.html#tutorial-level-2"><span class="std std-ref">See Level 2 tutorial</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">workspace</span></code></p></td>
+<td><p>Reuse code across project folders.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span> <span class="pre">workspace</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">system</span></code></p></td>
+<td><p>Reuse code across any files in the computer.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span> <span class="pre">system</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">public</span></code></p></td>
+<td><p>Share code as publicly installable package.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span> <span class="pre">public</span></code></p></td>
+</tr>
+</tbody>
+</table>
 
 
            </div>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Install scikit-package with conda &mdash; scikit-package 0.0.1 documentation</title>
+  <title>&lt;no title&gt; &mdash; scikit-package 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -87,9 +87,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda</li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/snippets/scikit-installation.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/snippets/github-codecov-setup.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -97,33 +97,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="install-scikit-package-with-conda">
-<span id="scikit-package-installation"></span><h1>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda<a class="headerlink" href="#install-scikit-package-with-conda" title="Link to this heading"></a></h1>
+  <p id="codecov-token-setup">For each PR, we use <code class="docutils literal notranslate"><span class="pre">Codecov</span></code> to report the test coverage percentage change as shown below.</p>
+<img alt="codecov-in-pr-comment" src="../_images/codecov-pr.png" />
+<p>To do so, the repository maintainer needs to provide a <code class="docutils literal notranslate"><span class="pre">CODECOV_TOKEN</span></code>.  Please follow the step-by-step guide below.</p>
 <ol class="arabic">
-<li><p>Ensure you have <code class="docutils literal notranslate"><span class="pre">conda</span></code> installed and the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel added to your conda configuration. If you haven’t, check <a class="reference internal" href="../tutorials/level-1-2-3-tutorials.html#conda-env-setup-simple"><span class="std std-ref">here</span></a> for instructions on how to install and include the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel.</p></li>
-<li><p>Create a new environment named <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;-env</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code>. Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> simultaneously by running the following command:</p>
+<li><p>Ensure your GitHub repository is public.</p></li>
+<li><p>Visit <a class="reference external" href="https://app.codecov.io/">https://app.codecov.io/</a></p></li>
+<li><p>Connect your repository or organization with Codecov by clicking <code class="docutils literal notranslate"><span class="pre">Configure</span> <span class="pre">Codecov's</span> <span class="pre">GitHub</span> <span class="pre">app</span></code>, shown below:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>skpkg-env<span class="w"> </span>scikit-package<span class="w"> </span>pre-commit
-</pre></div>
-</div>
+<div><img alt="codecov-configure-github-project-button" src="../_images/codecov-configure.png" />
 </div></blockquote>
 </li>
-<li><p>Activate the environment:</p>
+<li><p>Scroll down, find your repository of interest, and click <code class="docutils literal notranslate"><span class="pre">Configure</span></code>, shown below:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>skpkg-env
-</pre></div>
-</div>
+<div><img alt="codecov-list-github-projects" src="../_images/codecov-projects.png" />
 </div></blockquote>
 </li>
-<li><p>Confirm that you have the latest version of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> available on GitHub:</p>
+<li><p>Scroll down again, copy <code class="docutils literal notranslate"><span class="pre">CODECOV_TOKEN</span></code>, shown below:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>show<span class="w"> </span>scikit-package
-</pre></div>
-</div>
+<div><img alt="codecov-list-github-projects" src="../_images/codecov-token.png" />
 </div></blockquote>
 </li>
+<li><p>In your GitHub repository, go to <code class="docutils literal notranslate"><span class="pre">Settings</span></code>, then click <code class="docutils literal notranslate"><span class="pre">Actions</span></code> under the <code class="docutils literal notranslate"><span class="pre">Secrets</span> <span class="pre">and</span> <span class="pre">Variables</span></code> tab.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">repository</span> <span class="pre">secret</span></code>.</p></li>
+<li><p>Paste the token value and name it as <code class="docutils literal notranslate"><span class="pre">CODECOV_TOKEN</span></code> secret as shown below:</p>
+<blockquote>
+<div><img alt="codecov-list-github-projects" src="../_images/codecov-github.png" />
+</div></blockquote>
+</li>
+<li><p>Done. The <strong>Codecov token</strong> is now set up for the repository. From now on, a new comment will be generated on each PR with the Codecov status automatically.</p></li>
 </ol>
-</section>
 
 
            </div>

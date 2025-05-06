@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billinge Group standards &mdash; scikit-package 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f539c95a"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Migrate your existing package with scikit-package" href="examples/migration.html" />
+    <link rel="prev" title="Create conda package with conda-forge" href="release-guides/conda-forge.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            scikit-package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">TUTORIALS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/level-1-2-3-tutorials.html">(Level 1-3) Reuse code within a file, across files and folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/level-4-tutorial.html">(Level 4) Share code as a locally installable Python package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/level-5-tutorial.html">(Level 5) Share code as a publicly installable Python package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-guides/pypi-github.html">Publish on GitHub and to PyPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-guides/conda-forge.html">Create conda package with conda-forge</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Billinge Group standards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#github-workflow">GitHub workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#commit-messages-and-issue-titles">Commit messages and issue titles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pull-request-practices">Pull request practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-do-i-need-a-news-file-for-each-pr">Why do I need a news file for each PR?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-write-good-a-news-item">How do I write good a news item?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#where-to-place-the-news-item-in-branch-name-rst">Where to place the news item in <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#unit-tests">Unit tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-do-we-write-unit-tests">Why do we write unit tests?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#group-and-organize-test-cases">Group and organize test cases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#docstrings">Docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#naming-conventions">Naming conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#when-should-we-use-hyphens-or-underscores-in-file-and-folder-names">When should we use hyphens <code class="docutils literal notranslate"><span class="pre">-</span></code> or underscores <code class="docutils literal notranslate"><span class="pre">_</span></code> in file and folder names?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#error-message">Error message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-considerations-for-maintaining-group-infrastructure">Other considerations for maintaining group infrastructure</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">SUPPORT</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">scikit-package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Billinge Group standards</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/billinge-group-standards.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="billinge-group-standards">
+<span id="index-0"></span><span id="id1"></span><h1>Billinge Group standards<a class="headerlink" href="#billinge-group-standards" title="Link to this heading"></a></h1>
+<p>We present here standards of coding and coding workflows that have been adopted in the Billinge research group over multiple years to make our code more uniform and maintainable by a diverse and shifting team of students and post-docs. They are mostly adopting what we have learned to be standards in the Python community, with some lessons learned along the way. This is not the only way to do things, but since it has taken us lots of trial and error to develop them over time, we share them here in case they are useful to you.</p>
+<section id="github-workflow">
+<span id="github-commit-issue-practice"></span><h2>GitHub workflow<a class="headerlink" href="#github-workflow" title="Link to this heading"></a></h2>
+<section id="commit-messages-and-issue-titles">
+<h3>Commit messages and issue titles<a class="headerlink" href="#commit-messages-and-issue-titles" title="Link to this heading"></a></h3>
+<p>For commit messages and issue titles, we add prefixes adopted from <a class="reference external" href="https://www.conventionalcommits.org">https://www.conventionalcommits.org</a>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>feat: A new feature has been added.
+fix: A bug has been fixed.
+docs: Documentation changes only.
+style: Changes that don&#39;t affect code functionality (e.g., formatting, whitespace).
+refactor: Code changes that neither fix a bug nor add a feature.
+perf: Performance improvements.
+test: Adding missing tests or correcting existing ones.
+chore: Updates to the build process or auxiliary tools.
+build: Changes that affect the build artifact or external dependencies.
+ci: Updates to CI configuration files and scripts.
+revert: Reverts a previous commit.
+release: A new package version is being prepared.
+skpkg: Using scikit-package to create a new package or maintain an existing package.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Example 1: “feat: create a <code class="docutils literal notranslate"><span class="pre">DiffractionObject.morph_to()</span></code> method”</p></li>
+<li><p>Example 2: “bug: handle divide by zero error in <code class="docutils literal notranslate"><span class="pre">DiffractionObject.scale_to</span></code>”</p></li>
+</ul>
+<p>Please see an example here: <a class="reference external" href="https://github.com/Billingegroup/scikit-package/issues">https://github.com/Billingegroup/scikit-package/issues</a>. There are a few benefits to adding prefixes to GitHub issue titles. First, it helps us prioritize tasks from the GitHub notifications. Second, it helps reference issues in a comment within an issue or pull request and organize tasks.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>How do I write a good Git commit message?</p>
+<p>A commit message is written for PR reviewers and for debuggers. Avoid verbosity for a quick overview. An ideal commit message communicates file(s) of interest, the reason for the modification, and what modifications were made. e.g., “chore: move all files from docs to doc for scikit-packaging.”</p>
+</div>
+</section>
+<section id="pull-request-practices">
+<h3>Pull request practices<a class="headerlink" href="#pull-request-practices" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Have a theme for each PR to reduce cognitive overload for the reviewer.</p></li>
+<li><p>Make PRs small with the possibility of rejection.</p></li>
+<li><p>Write <code class="docutils literal notranslate"><span class="pre">closes</span> <span class="pre">#&lt;issue-number&gt;</span></code> in the PR comment to automatically close the issue when the PR is merged. See <a class="reference external" href="https://github.com/Billingegroup/scikit-package/pull/350">https://github.com/Billingegroup/scikit-package/pull/350</a>.</p></li>
+<li><p>A PR should close an issue on GitHub. If there is no issue, make one. If the issue is big, consider breaking it down into smaller issues.</p></li>
+<li><p>Review your own PR. Start as a draft PR, visit “Files changed”, add comments, and then request a review. In-line comments are needed if the changes are not obvious for the reviewer. See <a class="reference external" href="https://github.com/Billingegroup/scikit-package/pull/310">https://github.com/Billingegroup/scikit-package/pull/310</a>.</p></li>
+<li><p>If another commit was pushed after “ready for review”, write another comment “ready for review after fixing ____” so that the reviewer is directed to the PR, not the file changes by the new commit.</p></li>
+<li><p>PR from a new branch if it contains a meaningless commit history.</p></li>
+<li><p>Do not force push. Use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">revert</span></code> to unwind the previous commit.</p></li>
+<li><p>If you’ve made a mistake but have not used <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code>, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span> <span class="pre">&lt;file-name&gt;</span></code>.</p></li>
+<li><p>Before CI is integrated, include local test passing results in each PR to save time for the reviewer.</p></li>
+<li><p>For migrating files from one folder to another folder, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">mv</span></code>.</p></li>
+<li><p>For deleting files generated by the OS such as <code class="docutils literal notranslate"><span class="pre">.DS_Store</span></code> use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rm</span></code> instead of <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> to also remove from the Git index (staging area).</p></li>
+<li><p>When a PR is closed for any reason, add a single sentence in the comment explaining why the PR is being closed. If a new PR is created, add the new PR link in the comment.</p></li>
+</ol>
+</section>
+<section id="why-do-i-need-a-news-file-for-each-pr">
+<span id="news-file-guide"></span><span id="news-item-practice"></span><h3>Why do I need a news file for each PR?<a class="headerlink" href="#why-do-i-need-a-news-file-for-each-pr" title="Link to this heading"></a></h3>
+<p>We want to write good <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> for each release version. These news items are of interest to both developers and technical users looking for specific keywords.</p>
+<p>We can streamline the process of writing <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> for each release by compiling the news items from the <code class="docutils literal notranslate"><span class="pre">news</span></code> directory.</p>
+<p>Here an example <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> <a class="reference external" href="https://github.com/Billingegroup/scikit-package/blob/main/CHANGELOG.rst">https://github.com/Billingegroup/scikit-package/blob/main/CHANGELOG.rst</a></p>
+</section>
+<section id="how-do-i-write-good-a-news-item">
+<h3>How do I write good a news item?<a class="headerlink" href="#how-do-i-write-good-a-news-item" title="Link to this heading"></a></h3>
+<ul>
+<li><p>Do not remove <code class="docutils literal notranslate"><span class="pre">news/TEMPLATE.rst</span></code>. Make a copy called <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>.</p></li>
+<li><p>Do not modify other section headers in the rst file. Replace <code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">&lt;news</span> <span class="pre">item&gt;</span></code></p></li>
+<li><p>Begin with “No news”, “no news”, or “no news added” for trivial changes with the following format:</p></li>
+<li><p>For consistency, start with a capital letter and a verb. End with a period. Ex) <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">automatic</span> <span class="pre">linting</span> <span class="pre">of</span> <span class="pre">.md,</span> <span class="pre">.yml,</span> <span class="pre">.rst</span> <span class="pre">files</span> <span class="pre">via</span> <span class="pre">prettier</span> <span class="pre">hook</span> <span class="pre">in</span> <span class="pre">pre-commit.</span></code></p></li>
+<li><p>If you do not need to write a news item, still write the following format so that the CI can pass while it’s not later merged to the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> file.</p>
+<blockquote>
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>**Added:**
+
+* No news: &lt;brief reason&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="where-to-place-the-news-item-in-branch-name-rst">
+<h3>Where to place the news item in <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>?<a class="headerlink" href="#where-to-place-the-news-item-in-branch-name-rst" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">**Added:**</span></code> includes features or functionality of interest to users and developers, such as support for a new Python version or the addition of a useful feature.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Changed:**</span></code> includes modifications that affect end-users or developers, such as API changes or dependencies replaced.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Fixed:**</span></code> includes bug fixes or refactoring.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Deprecated:**</span></code> includes methods, classes, or workflows that are no longer supported in the future release.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Removed:**</span></code> includes the opposite of the “Added” section, referring to features or functionality that have been removed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Security:**</span></code>: include fixes or improvements related to vulnerabilities, authentication, or access control.</p></li>
+</ul>
+</section>
+</section>
+<section id="unit-tests">
+<h2>Unit tests<a class="headerlink" href="#unit-tests" title="Link to this heading"></a></h2>
+<section id="why-do-we-write-unit-tests">
+<h3>Why do we write unit tests?<a class="headerlink" href="#why-do-we-write-unit-tests" title="Link to this heading"></a></h3>
+<p>We write tests to document the intended behavior of the code. When refactoring tests, consider what we “want” to happen, rather writing tweaking the existing test functions to pass.</p>
+</section>
+<section id="group-and-organize-test-cases">
+<h3>Group and organize test cases<a class="headerlink" href="#group-and-organize-test-cases" title="Link to this heading"></a></h3>
+<p>The following practices have been developed to ensure consistency in writing tests:</p>
+<ol class="arabic simple">
+<li><p>Comment starts with a uppercase letter (PEP8 standard) unless it’s a name starting with a lowercase letter like a function name.</p></li>
+<li><p>Include a high-level test function comment e.g., <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Test</span> <span class="pre">conversion</span> <span class="pre">of</span> <span class="pre">q</span> <span class="pre">to</span> <span class="pre">tth</span> <span class="pre">with</span> <span class="pre">q</span> <span class="pre">and</span> <span class="pre">wavelength</span></code></p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">C1:</span> <span class="pre">Start</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">capital</span> <span class="pre">letter...</span></code> or <code class="docutils literal notranslate"><span class="pre">Case</span> <span class="pre">1:</span> <span class="pre">Start...</span></code> for each condition under <code class="docutils literal notranslate"><span class="pre">&#64;pytest.mark.parametrize</span></code>.</p></li>
+<li><p>If applicable, group similar test conditions under a single case. Numerate each test condition.</p></li>
+<li><p>Divide a test case comment into two parts: <code class="docutils literal notranslate"><span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">z</span> <span class="pre">(conditions),</span> <span class="pre">expect...</span></code>. Ensure there is a <code class="docutils literal notranslate"><span class="pre">expect</span></code> keyword after the test conditions provided.</p></li>
+<li><p>Use descriptive yet concise variable names for expected values (e.g., <code class="docutils literal notranslate"><span class="pre">expected_xarrays</span></code> instead of <code class="docutils literal notranslate"><span class="pre">expected</span></code>)</p></li>
+<li><p>Order test cases from the most general to edge cases. This helps readers understand the basic function behavior first before utilizing or encountering unusual features or behaviors.</p></li>
+<li><p>Consider moving reusable code objects to <code class="docutils literal notranslate"><span class="pre">conftest.py</span></code>. See warning messages and objects defined in <a class="reference external" href="https://github.com/diffpy/diffpy.utils/blob/main/tests/conftest.py">https://github.com/diffpy/diffpy.utils/blob/main/tests/conftest.py</a> available in each test function in <a class="reference external" href="https://github.com/diffpy/diffpy.utils/blob/main/tests/test_diffraction_objects.py/">https://github.com/diffpy/diffpy.utils/blob/main/tests/test_diffraction_objects.py/</a></p></li>
+</ol>
+<p>Pytest example 1</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;xtype, expected_xarray&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="c1"># Test whether on_xtype returns the correct xarray values</span>
+        <span class="c1"># C1: tth to tth, expect no change in xarray value</span>
+        <span class="c1"># 1. &quot;tth&quot; provided, expect tth</span>
+        <span class="c1"># 2. &quot;2theta&quot; provided, expect tth</span>
+        <span class="p">(</span><span class="s2">&quot;tth&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">])),</span>
+        <span class="p">(</span><span class="s2">&quot;2theta&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">])),</span>
+        <span class="c1"># C2: &quot;q&quot; provided, expect q converted from tth</span>
+        <span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.51764</span><span class="p">,</span> <span class="mi">1</span><span class="p">])),</span>
+        <span class="c1"># C3: &quot;d&quot; provided, expect d converted from tth</span>
+        <span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">12.13818</span><span class="p">,</span> <span class="mf">6.28319</span><span class="p">])),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_on_xtype</span><span class="p">(</span><span class="n">xtype</span><span class="p">,</span> <span class="n">expected_xarray</span><span class="p">,</span> <span class="n">do_minimal_tth</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Pytest example 2 - multi-line arguments</p>
+<ul class="simple">
+<li><p>Add <cite># C1:</cite> inside within <cite>( … )</cite>. More examples <a class="reference external" href="https://github.com/diffpy/diffpy.utils/pull/277">here</a>.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;do_args_1, do_args_2, expected_equality, wavelength_warning_expected&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="c1"># Test when __eq__ returns True and False</span>
+        <span class="p">(</span>  <span class="c1"># C1: Identical args, expect equality</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;same&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;scat_quantity&quot;</span><span class="p">:</span> <span class="s2">&quot;x-ray&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;wavelength&quot;</span><span class="p">:</span> <span class="mf">0.71</span><span class="p">,</span>
+                <span class="s2">&quot;xtype&quot;</span><span class="p">:</span> <span class="s2">&quot;q&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;xarray&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]),</span>
+                <span class="s2">&quot;yarray&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">200.0</span><span class="p">]),</span>
+                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;thing1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;same&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;scat_quantity&quot;</span><span class="p">:</span> <span class="s2">&quot;x-ray&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;wavelength&quot;</span><span class="p">:</span> <span class="mf">0.71</span><span class="p">,</span>
+                <span class="s2">&quot;xtype&quot;</span><span class="p">:</span> <span class="s2">&quot;q&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;xarray&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]),</span>
+                <span class="s2">&quot;yarray&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">200.0</span><span class="p">]),</span>
+                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;thing1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+            <span class="p">},</span>
+            <span class="kc">True</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="p">(</span>  <span class="c1"># C2: Different names, expect inequality</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;something&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;xtype&quot;</span><span class="p">:</span> <span class="s2">&quot;tth&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;xarray&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                <span class="s2">&quot;yarray&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;thing1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;thing2&quot;</span><span class="p">:</span> <span class="s2">&quot;thing2&quot;</span><span class="p">},</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;something else&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;xtype&quot;</span><span class="p">:</span> <span class="s2">&quot;tth&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;xarray&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                <span class="s2">&quot;yarray&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;thing1&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;thing2&quot;</span><span class="p">:</span> <span class="s2">&quot;thing2&quot;</span><span class="p">},</span>
+            <span class="p">},</span>
+            <span class="kc">False</span><span class="p">,</span>
+            <span class="kc">True</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_equality</span><span class="p">(</span><span class="n">do_args_1</span><span class="p">,</span> <span class="n">do_args_2</span><span class="p">,</span> <span class="n">expected_equality</span><span class="p">,</span> <span class="n">wavelength_warning_expected</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Comment starts with a uppercase letter (PEP8 standard) unless it’s a name starting with a lowercase letter like a function name.</p>
+</section>
+</section>
+<section id="docstrings">
+<h2>Docstrings<a class="headerlink" href="#docstrings" title="Link to this heading"></a></h2>
+<p>Please bookmark the following:</p>
+<blockquote>
+<div><p>PEP257: <a class="reference external" href="https://peps.python.org/pep-0257">https://peps.python.org/pep-0257</a></p>
+<p>PEP8: <a class="reference external" href="https://peps.python.org/pep-0008/">https://peps.python.org/pep-0008/</a></p>
+<p>NumPy document style guide: <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">https://numpydoc.readthedocs.io/en/latest/format.html</a></p>
+</div></blockquote>
+<p>In the group, we follow the NumPy standard:</p>
+<ol class="arabic simple">
+<li><p>A one-line summary that does not use variable names or the function name is added before a full description.</p></li>
+<li><p>Use “Return a dict” instead of “Returns a dict”. Comments are instructions.</p></li>
+<li><p>“The” is used for the starting description of attribute/parameter/return.</p></li>
+<li><p>Full docstrings are not required for private functions.</p></li>
+</ol>
+<p>For examples, please refer to <a class="reference external" href="https://github.com/diffpy/diffpy.utils/blob/main/src/diffpy/utils/diffraction_objects.py">https://github.com/diffpy/diffpy.utils/blob/main/src/diffpy/utils/diffraction_objects.py</a>.</p>
+</section>
+<section id="naming-conventions">
+<span id="file-folder-naming-convention"></span><h2>Naming conventions<a class="headerlink" href="#naming-conventions" title="Link to this heading"></a></h2>
+<section id="when-should-we-use-hyphens-or-underscores-in-file-and-folder-names">
+<h3>When should we use hyphens <code class="docutils literal notranslate"><span class="pre">-</span></code> or underscores <code class="docutils literal notranslate"><span class="pre">_</span></code> in file and folder names?<a class="headerlink" href="#when-should-we-use-hyphens-or-underscores-in-file-and-folder-names" title="Link to this heading"></a></h3>
+<p>Use hyphens <code class="docutils literal notranslate"><span class="pre">-</span></code> for project names, package names, GitHub repositories, folder names, branch names, and static files like <code class="docutils literal notranslate"><span class="pre">.rst</span></code>, <code class="docutils literal notranslate"><span class="pre">.md</span></code>, <code class="docutils literal notranslate"><span class="pre">.yml</span></code>, and <code class="docutils literal notranslate"><span class="pre">.png</span></code>. For CLI, also use minus signs <code class="docutils literal notranslate"><span class="pre">-</span></code> for args  like <code class="docutils literal notranslate"><span class="pre">gh</span> <span class="pre">pr</span> <span class="pre">list</span> <span class="pre">--author</span> <span class="pre">&quot;&#64;sbillinge&quot;</span></code> Check an example documentation of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> here: <a class="reference external" href="https://github.com/Billingegroup/scikit-package/tree/main/doc/source">https://github.com/Billingegroup/scikit-package/tree/main/doc/source</a>.</p>
+<p>Use underscores <code class="docutils literal notranslate"><span class="pre">_</span></code> in the following two cases:</p>
+<ol class="arabic simple">
+<li><p>Python files, e.g., <code class="docutils literal notranslate"><span class="pre">tests/test_diffraction_objects.py</span></code>.</p></li>
+<li><p>Project directory names, e.g., <code class="docutils literal notranslate"><span class="pre">src/&lt;project_directory_name&gt;</span></code>. Modules and packages are imported with spaces replaced by underscores, like <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">bg_mpl_stylesheets</span></code>. Here is an example project: <a class="reference external" href="https://github.com/Billingegroup/bg-mpl-stylesheets/tree/main/src/bg_mpl_stylesheets">https://github.com/Billingegroup/bg-mpl-stylesheets/tree/main/src/bg_mpl_stylesheets</a>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> automatically creates a folder with underscores <code class="docutils literal notranslate"><span class="pre">_</span></code> for the project directory name and <code class="docutils literal notranslate"><span class="pre">.py</span></code> files.</p>
+<p>We recommend using a single word for folder names that contain Python scripts, e.g., <code class="docutils literal notranslate"><span class="pre">src/example_package/parsers</span></code>, so that it can be imported as <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">example_package.parsers</span> <span class="pre">import</span> <span class="pre">&lt;module&gt;</span></code>. This follows Python conventions.</p>
+</div>
+</section>
+</section>
+<section id="error-message">
+<h2>Error message<a class="headerlink" href="#error-message" title="Link to this heading"></a></h2>
+<p>Divide an error message into two sections: (1) reason for error, (2) what to do to fix it. Ex) “Both release and pre-release specified. Please re-run the command specifying either release or pre_release.” Error messages are for users. Consider users without programming knowledge.</p>
+</section>
+<section id="other-considerations-for-maintaining-group-infrastructure">
+<h2>Other considerations for maintaining group infrastructure<a class="headerlink" href="#other-considerations-for-maintaining-group-infrastructure" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Be extremely careful with changes that are visible to users.</p></li>
+<li><p>Try not to pass down technical debt to future members. Do the extra work so that others can save time. Ex) making a PR to the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> repo once an issue has been identified in a project standardlized with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>.</p></li>
+<li><p>Design code to save developer time in the long run rather than focusing solely on reducing compute time, especially when computing resources are not the primary constraint.</p></li>
+<li><p>It is easier to remove things (e.g., dependencies) we don’t want than to add things that are needed in certain circumstances.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="release-guides/conda-forge.html" class="btn btn-neutral float-left" title="Create conda package with conda-forge" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples/migration.html" class="btn btn-neutral float-right" title="Migrate your existing package with scikit-package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

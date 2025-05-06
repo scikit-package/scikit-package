@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Install scikit-package with conda &mdash; scikit-package 0.0.1 documentation</title>
+  <title>(Required) Use conda environment to install packages and run Python code &mdash; scikit-package 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -87,9 +87,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda</li>
+      <li class="breadcrumb-item active">(Required) Use conda environment to install packages and run Python code</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/snippets/scikit-installation.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/snippets/conda-env-setup-simple.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -97,31 +97,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="install-scikit-package-with-conda">
-<span id="scikit-package-installation"></span><h1>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda<a class="headerlink" href="#install-scikit-package-with-conda" title="Link to this heading"></a></h1>
+  <section id="required-use-conda-environment-to-install-packages-and-run-python-code">
+<h1>(Required) Use conda environment to install packages and run Python code<a class="headerlink" href="#required-use-conda-environment-to-install-packages-and-run-python-code" title="Link to this heading"></a></h1>
+<p>Virtual environments allow you to create isolated environments, each with their own software package versions installed. This is especially helpful when working with multiple different software programs that require conflicting versions of the same packages and is overall a good practice.</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span></code> is an open-source package and environment management software that allows you to create isolated environments to install software, including Python and its packages.</p>
 <ol class="arabic">
-<li><p>Ensure you have <code class="docutils literal notranslate"><span class="pre">conda</span></code> installed and the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel added to your conda configuration. If you haven’t, check <a class="reference internal" href="../tutorials/level-1-2-3-tutorials.html#conda-env-setup-simple"><span class="std std-ref">here</span></a> for instructions on how to install and include the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel.</p></li>
-<li><p>Create a new environment named <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;-env</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code>. Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> simultaneously by running the following command:</p>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">conda</span></code> by following the installation guide of <code class="docutils literal notranslate"><span class="pre">miniconda</span></code> found at <a class="reference external" href="https://www.anaconda.com/docs/getting-started/miniconda/main">https://www.anaconda.com/docs/getting-started/miniconda/main</a>.</p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel to your conda configuration by running the following command:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>skpkg-env<span class="w"> </span>scikit-package<span class="w"> </span>pre-commit
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>config<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p>Activate the environment:</p>
+<li><p>Now, let’s create a new environment and install <code class="docutils literal notranslate"><span class="pre">numpy</span></code> in it. <code class="docutils literal notranslate"><span class="pre">numpy</span></code> will be sourced from the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel. Replace <code class="docutils literal notranslate"><span class="pre">&lt;project-name&gt;</span></code> with the name of your project.</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>skpkg-env
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new environment and install numpy in the environment</span>
+$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>&lt;project-name&gt;-env<span class="w"> </span>numpy
+
+<span class="c1"># Activate the environment</span>
+$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>&lt;project-name&gt;-env
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p>Confirm that you have the latest version of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> available on GitHub:</p>
+<li><p>Let’s check if the installation was successful. You can do this by running the following command:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>show<span class="w"> </span>scikit-package
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check Python version</span>
+$<span class="w"> </span>python<span class="w"> </span>--version
+
+<span class="c1"># Run the script</span>
+$<span class="w"> </span>python<span class="w"> </span>&lt;python_file_name&gt;.py
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are a Windows PowerShell user and Python is not found after activating the environment, you can run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Windows (PowerShell)</span>
+$<span class="w"> </span>conda<span class="w"> </span>init<span class="w"> </span>powershell
+</pre></div>
+</div>
 </div>
 </div></blockquote>
 </li>
+<li><p>Done!</p></li>
 </ol>
 </section>
 
