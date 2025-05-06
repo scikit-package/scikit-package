@@ -11,7 +11,7 @@ jobs:
     uses: Billingegroup/release-scripts/.github/workflows/_build-wheel-release-upload.yml@v0
     with:
       project: scikit-package
-      github_admin_username: sbillinge
+      maintainer_github_username: sbillinge
 
     secrets:
       PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
