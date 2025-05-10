@@ -1,6 +1,6 @@
 **Added:**
 
-* let user to use default config file to overwrites options from repo templates.
+* Allow user to set config file to overwrite entires defined in the templates.
 
 **Changed:**
 
