@@ -1,6 +1,6 @@
 **Added:**
 
-* Allow user to set config file to overwrite entires defined in the templates.
+* Allow user to set config file to overwrite entries defined in the templates.
 
 **Changed:**
 
