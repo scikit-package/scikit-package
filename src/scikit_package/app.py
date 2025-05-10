@@ -1,7 +1,9 @@
+import os
 import subprocess
 from argparse import ArgumentParser
 
 SKPKG_GITHUB_URL = "https://github.com/Billingegroup/scikit-package"
+USER_CONFIG_FILE = "~/.skpkgrc"
 
 
 def create(package_type):
@@ -23,15 +25,39 @@ def update():
 
 def run_cookiecutter(repo_url):
     try:
-        subprocess.run(
-            [
-                "cookiecutter",
-                repo_url,
-            ],
-            check=True,
-        )
-    except subprocess.CalledProcessError as e:
-        print(f"Failed to run scikit-package for the following reason: {e}")
+        config_file = os.environ["SKPKG_CONFIG_FILE"]
+    except KeyError:
+        config_file = USER_CONFIG_FILE
+    config_file = os.path.expandvars(config_file)
+    config_file = os.path.expanduser(config_file)
+    if os.path.exists(path):
+        try:
+            subprocess.run(
+                [
+                    "cookiecutter",
+                    repo_url,
+                    "--config-file",
+                    config_file,
+                ],
+                check=True,
+            )
+        except subprocess.CalledProcessError as e:
+            print(
+                f"Failed to run scikit-package for the following reason: {e}"
+            )
+    else:
+        try:
+            subprocess.run(
+                [
+                    "cookiecutter",
+                    repo_url,
+                ],
+                check=True,
+            )
+        except subprocess.CalledProcessError as e:
+            print(
+                f"Failed to run scikit-package for the following reason: {e}"
+            )
 
 
 def setup_subparsers(parser):
