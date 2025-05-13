@@ -132,6 +132,25 @@ Migration code from Level 4 to Level 5
 
         In Level 5, we provide a rich template for ``README.rst`` instead of using ``README.md``. If you already had a rich ``README.md`` in Level 4, you can use a tool to convert ``.md`` to ``.rst``. For example, you may use this free `CloudConvert <https://cloudconvert.com/md-to-rst/>`_ tool.
 
+#. (Optional but recommended) To maintain clean and efficient code, consider using the ``vulture`` tool to identify and remove unused or dead code. This tool helps detect unused variables, functions, and other parts of your code that are no longer in use. While not mandatory, it is a good practice to periodically clean up your codebase. You can install and run ``vulture`` on code in ``src`` and ``tests`` as follows:
+
+    .. code-block:: bash
+        $ pip install vulture
+        $ vulture src/ tests/
+
+  This will generate a report of unused code in the ``src`` and ``tests`` directories as shown in the below example. You can then review the report and decide whether to remove the identified unused code.
+
+    .. code-block:: bash::
+
+       ### Example usage of vulture ###
+       $ vulture src/ tests/
+       src/module1.py:10: unused function 'helper_function' (60% confidence)
+       src/module2.py:45: unused variable 'temp_var' (80% confidence)
+       tests/test_module1.py:22: unused import 'os' (100% confidence)
+
+  For more details on how ``vulture`` works, visit the `vulture GitHub repository <https://github.com/jendrikseipp/vulture>`_.
+
+
 #. Done!
 
 Build documentation locally
