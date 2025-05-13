@@ -132,7 +132,7 @@ Migration code from Level 4 to Level 5
 
         In Level 5, we provide a rich template for ``README.rst`` instead of using ``README.md``. If you already had a rich ``README.md`` in Level 4, you can use a tool to convert ``.md`` to ``.rst``. For example, you may use this free `CloudConvert <https://cloudconvert.com/md-to-rst/>`_ tool.
 
-#. (optional) To maintain clean and efficient code, consider using the ``vulture`` tool to identify and remove unused or dead code. This tool helps detect unused variables, functions, and other parts of your code that are no longer in use. While not mandatory, it is a good practice to periodically clean up your codebase. You can install and run ``vulture`` on code in ``src`` and ``tests`` as follows:
+#. (Optional but recommended) To maintain clean and efficient code, consider using the ``vulture`` tool to identify and remove unused or dead code. This tool helps detect unused variables, functions, and other parts of your code that are no longer in use. While not mandatory, it is a good practice to periodically clean up your codebase. You can install and run ``vulture`` on code in ``src`` and ``tests`` as follows:
 
     .. code-block:: bash
 

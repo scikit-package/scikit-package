@@ -45,6 +45,15 @@ Start pre-release
 
 #. In your terminal, run ``git checkout main && git pull upstream main`` to sync with the main branch.
 
+#. (Optional but recommended) Install and run the ``vulture`` tool to identify and remove unused or dead code before tagging a release:
+
+   .. code-block:: bash
+
+      $ pip install vulture
+      $ vulture src/ tests/
+
+   Review the output and remove or suppress unused code to keep the release clean and maintainable.
+
 #. Run the following:
 
    .. code-block:: bash
