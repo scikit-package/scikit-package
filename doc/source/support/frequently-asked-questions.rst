@@ -447,6 +447,12 @@ The workflow ``.github/workflows/matrix-and-codecov-on-merge-to-main.yml`` is tr
 
 .. note:: These workflow files call scripts located at https://github.com/Billingegroup/release-scripts, which are centrally managed by the ``scikit-package`` development team. This centralized approach ensures that individual packages do not need to be updated separately when adding support for new Python versions or operating systems.
 
+I am encountering a 'build' is requesting 'pull-requests: write' error. How do I fix it?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. include:: ../snippets/github-ci-permission.rst
+
+It is an essential step to set up the news CI. For more, please read :ref:`github-news-ci-permission` section in the Level 5 tutorial.
 
 What is the difference between ``pull_request`` and ``pull_request_target``?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
