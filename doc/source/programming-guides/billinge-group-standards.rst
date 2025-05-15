@@ -222,7 +222,7 @@ Naming conventions
 When should we use hyphens ``-`` or underscores ``_`` in file and folder names?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use hyphens ``-`` for project names, package names, GitHub repositories, folder names, branch names, and static files like ``.rst``, ``.md``, ``.yml``, and ``.png``. For CLI, also use minus signs ``-`` for args  like ``gh pr list --author "@sbillinge"`` Check an example documentation of ``scikit-package`` here: https://github.com/Billingegroup/scikit-package/tree/main/doc/source.
+Use hyphens ``-`` for project names, package names, GitHub repositories, folder names, branch names, and static files like ``.rst``, ``.md``, ``.yml``, and ``.png``. For CLI, also use hyphens ``-`` for args like ``gh pr list --author "@sbillinge"`` Check an example documentation of ``scikit-package`` here: https://github.com/Billingegroup/scikit-package/tree/main/doc/source.
 
 Use underscores ``_`` in the following two cases:
 
