@@ -142,7 +142,7 @@ Migration code from Level 4 to Level 5
 
   This will generate a report of unused code in the ``src`` and ``tests`` directories. Below is an example of what these outputs might look like. You can then review the report and decide whether to remove the identified unused code.
 
-    .. code-block:: bash::
+    .. code-block:: bash
 
        #### Example outputs after running vulture ####
        $ vulture src/ tests/

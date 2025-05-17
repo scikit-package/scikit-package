@@ -144,6 +144,28 @@ How can I change who is authorized to release a package?
 
 In ``.github/workflows/build-wheel-release-upload.yml``, modify ``maintainer_github_username`` to the desired GitHub username. This username will be able to authorize the release by pushing the tag as instructed in :ref:`release-pypi-github`.
 
+.. _faq-release-ci-failed:
+
+Release CI failed. What should I do?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pre-release:
+
+- Did you encounter an error under the ``privilege-check`` section in the workflow? Ensure the user performing the release has the GitHub username specified in ``maintainer_github_username`` under ``.github/workflows/build-wheel-release-upload.yml``.
+- Did you encounter an error related to ``PYPI``? Ensure you have ``PAT_TOKEN`` configured at the organization or repository level. Please read :ref:`pypi-token-setup`. Even if ``PYPI_TOKEN`` is already configured, ensure it is the latest token and has not been revoked or expired.
+
+  .. note::
+    
+    As the next step, if you created and pushed ``*.*.*-rc.0``, you may simply bump and create a new version tag of ``*.*.*-rc.1`` and push it to the remote repository.
+
+Release:
+
+- Did you encounter an error related to ``fatal: could not read Username``? Ensure you have ``PAT_TOKEN`` configured at the organization or repository level. Please read :ref:`pat-token-setup`. Even if ``PAT_TOKEN`` is already configured, ensure it is the latest token and has not been revoked or expired.
+- Did you encounter any error from ``Rulesets``? In your repository, visit :menuselection:`Settings -> Rules -> Rulesets`. Then click one or more of the rulesets. For each ruleset, under the :guilabel:`Bypass list`, click :guilabel:`Add bypass` and :guilabel:`Organization admin` to the ruleset. The GitHub workflow will use the ``PAT_TOKEN`` to bypass the ruleset.
+
+  .. note:: 
+    Here, we don't want to bump a new version. As the next step, delete the Git tag in the local by running ``git tag -d <tagname>`` and visit ``https://github.com/<org-or-username>/<package-name>/tags`` to delete it in the remote. Then, follow the same process for a full release by creating a new tag and pushing it to the remote.
+
 How is the package version set and retrieved?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
