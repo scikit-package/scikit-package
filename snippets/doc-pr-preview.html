@@ -94,7 +94,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">&lt;no title&gt;</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/snippets/github-pre-commit-setup.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/snippets/doc-pr-preview.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -103,19 +103,42 @@
            <div itemprop="articleBody">
              
   <ol class="arabic">
-<li><p>Visit <a class="reference external" href="https://github.com/apps/pre-commit-ci">https://github.com/apps/pre-commit-ci</a> and click <span class="guilabel">Configure</span>.</p></li>
-<li><p>Select the repository(s).</p></li>
-<li><p>Done!</p></li>
-<li><p>Let’s attempt to activate the <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">CI</span></code> by sending an empty commit to the remote branch by running</p>
+<li><p>Visit <a class="reference external" href="https://app.readthedocs.org/">https://app.readthedocs.org/</a>.</p></li>
+<li><p>Click <span class="guilabel">Log in using GitHub</span>.</p></li>
+<li><p>If your repository is under a GitHub organization, follow the extra steps below:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>--allow-empty<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;ci: empty commit to test pre-commit CI setup&quot;</span>
-$<span class="w"> </span>git<span class="w"> </span>push
-</pre></div>
-</div>
+<div><ol class="arabic simple">
+<li><p>Visit <a class="reference external" href="https://github.com/settings/applications">https://github.com/settings/applications</a></p></li>
+<li><p>Click the <span class="guilabel">Read the Docs Community</span> application.</p></li>
+<li><p>Click the <span class="guilabel">Request</span> button for the organization under <span class="guilabel">Organization Access</span>,</p></li>
+<li><p>Done. Now, Read the Docs can import repositories in the GitHub organization.</p></li>
+</ol>
 </div></blockquote>
 </li>
-<li><p>Notice you have an additional check in the pull request!</p></li>
+<li><p>Visit <a class="reference external" href="https://app.readthedocs.org/dashboard/import/">https://app.readthedocs.org/dashboard/import/</a>.</p></li>
+<li><p>Enter the <span class="guilabel">Repository name</span>.</p></li>
+<li><p>Click <span class="guilabel">Continue</span>.</p></li>
+<li><p>Visit your project page, e.g., <a class="reference external" href="https://app.readthedocs.org/projects/bobleesjrelease/">https://app.readthedocs.org/projects/bobleesjrelease/</a>.</p></li>
+<li><p>Click <span class="guilabel">Settings</span>.</p></li>
+<li><p>Click <span class="guilabel">Pull request builds</span> under <span class="guilabel">Building</span> on the left menu.</p></li>
+<li><p>Enable <span class="guilabel">Build pull requests for this project</span>.</p></li>
+<li><p>Click <span class="guilabel">Update</span>.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/doc-pr-preview-setup.png"><img alt="doc-pr-preview-setup" src="../_images/doc-pr-preview-setup.png" style="width: 600px;" />
+</a>
+</div></blockquote>
+</li>
+<li><p>Done! Now, in each PR, you will see the following workflow triggered. You can click on the workflow to view its rendered documentation online.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/doc-pr-preview-setup-ci.png"><img alt="doc-pr-preview-setup-ci" src="../_images/doc-pr-preview-setup-ci.png" style="width: 600px;" />
+</a>
+</div></blockquote>
+</li>
 </ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Press the <span class="guilabel">d</span> key on your keyboard to view the changes! e.g., <a class="reference external" href="https://bobleesjrelease--1.org.readthedocs.build/en/1/">https://bobleesjrelease–1.org.readthedocs.build/en/1/</a></p>
+</div>
 
 
            </div>

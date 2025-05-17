@@ -1,7 +1,7 @@
-| Software version |release|.
+| Software version |release|
 | Last updated |today|.
 
-Welcome to Billinge Group's ``scikit-package`` documentation!
+Welcome to the ``scikit-package`` official documentation!
 
 ``scikit-package`` offers tools and practices for the scientific community to make better and more reusable Scientific Python packages and applications.
 
@@ -17,7 +17,7 @@ Here are the 3 goals of ``scikit-package`` for the scientific community:
 
 #. We help scientists save time, allowing them to **focus on writing scientific code**.
 
-#. We offer **best practices** from the group's experience in developing scientific software.
+#. We offer **best practices** from the Billinge group's experience in developing scientific software.
 
 Here is an overview of the five levels of reusing and sharing code and the key features of ``scikit-package``:
 
@@ -79,13 +79,13 @@ For technical users, here are some of the advanced features:
 - Generate conda-package ``meta.yaml`` with ``package create conda-forge``.
 - Support headless GitHub CI testing for GUI applications.
 - Support non-pure Python package releases with ``cibuildwheel``.
-- Reusable GitHub Actions workflows located in `Billingegroup/release-scripts <https://github.com/Billingegroup/release-scripts/tree/main/.github/workflows>`_.
+- Reusable GitHub Actions workflows located in `scikit-package/release-scripts <https://github.com/scikit-package/release-scripts/tree/main/.github/workflows>`_.
 
 
 How do I receive support?
 -------------------------
 
-If you have any questions or have trouble, please read the :ref:`Frequently asked questions (FAQ) <frequently-asked-questions>` section to see if your questions have already been answered. If there aren't answers available, please create `GitHub Issues <https://github.com/Billingegroup/scikit-package/issues>`_.
+If you have any questions or have trouble, please read the :ref:`Frequently asked questions (FAQ) <frequently-asked-questions>` section to see if your questions have already been answered. If there aren't answers available, please create `GitHub Issues <https://github.com/scikit-package/scikit-package/issues>`_.
 
 How can I contribute to ``scikit-package``?
 -------------------------------------------
@@ -104,7 +104,7 @@ Authors
 ``scikit-package`` is developed by Billinge Group and its community contributors.
 
 For a detailed list of contributors, see
-https://github.com/Billingegroup/scikit-package/graphs/contributors.
+https://github.com/scikit-package/scikit-package/graphs/contributors.
 
 ================
 Acknowledgements
@@ -142,7 +142,7 @@ The Billinge Group's ``scikit-package`` has been modified from the NSLS-II scien
    :hidden:
    :caption: PROGRAMMING GUIDES
 
-   billinge-group-standards
+   programming-guides/billinge-group-standards
 
 .. toctree::
    :maxdepth: 2
@@ -156,7 +156,7 @@ The Billinge Group's ``scikit-package`` has been modified from the NSLS-II scien
    :hidden:
    :caption: SUPPORT
 
-   frequently-asked-questions
+   support/frequently-asked-questions
 
 .. toctree::
    :maxdepth: 2

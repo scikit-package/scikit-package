@@ -20,7 +20,7 @@ Initiate a release process with GitHub issue
 
 .. important::  Make sure you have your project is standarlized with ``scikit-package`` up to Level 5. Otherwise, please start from the Overview page :ref:`here <overview>`.
 
-#. In the repository, create an issue on GitHub with the "Release" option as shown below:
+#. In the repository, create an issue on GitHub with the :guilabel:`Release` option as shown below:
 
    .. image:: ../img/release-issue.png
       :alt: add-personal-access-token
@@ -33,17 +33,27 @@ Initiate a release process with GitHub issue
 Start pre-release
 ~~~~~~~~~~~~~~~~~
 
-.. _release-instructions-project-maintainer:
+.. _release-instructions-maintainer:
 
 #. Review the release GitHub issue created in the previous step.
 
 #. Set ``PYPI_TOKEN`` and ``PAT_TOKEN`` are configured at the organization or repository level by following the instructions in Appendix :ref:`1 <pypi-token-setup>`, :ref:`2 <pat-token-setup>`, respectively.
 
-#. Setup GitHub pages at the repository level by following the instructions in Appendix :ref:`3 <gh-pages-setup>`.
+#. Setup GitHub Pages at the repository level by following the instructions in Appendix :ref:`3 <gh-pages-setup>`.
 
 #. Confirm the ``maintainer_github_username`` section in ``.github/workflows/build-wheel-release-upload.yml`` is that of the project maintainer.
 
 #. In your terminal, run ``git checkout main && git pull upstream main`` to sync with the main branch.
+
+#. (Optional but recommended) Install and run the ``vulture`` tool to identify and manually remove unused or dead code before tagging a release:
+
+   .. code-block:: bash
+
+      $ conda install vulture
+      $ vulture src/ tests/
+
+   Review the output and remove or suppress unused code when it is not needed to keep the release clean and maintainable.
+
 
 #. Run the following:
 
@@ -77,10 +87,10 @@ Full release after pre-release
 
 #. Now that you have your source code uploaded to ``PyPI``, we will then now provide a conda package as well.
 
-Release conda-forge package
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+What's next? Create conda package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To support ``conda install <package-name>``, for your package, follow the instructions :ref:`here<conda-forge-release-guide>`.
+To install your package using ``conda install <package-name>``, you can now start with the :ref:`release-conda-forge` guide!
 
 .. _pypi-token-setup:
 

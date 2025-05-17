@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(Level 4) Share code as a locally installable Python package &mdash; scikit-package 0.0.3rc1 documentation</title>
+  <title>(Level 4) Share code as a locally installable Python package &mdash; scikit-package 0.0.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=544a501d"></script>
+      <script src="../_static/documentation_options.js?v=7cc827d7"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -81,7 +81,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../billinge-group-standards.html">Billinge Group standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programming-guides/billinge-group-standards.html">Billinge Group standards</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
 <ul>
@@ -89,7 +89,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">SUPPORT</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support/frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
 <ul>
@@ -113,7 +113,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">(Level 4) Share code as a locally installable Python package</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/tutorials/level-4-tutorial.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/tutorials/level-4-tutorial.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -131,16 +131,27 @@
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
-<p>For Level 4, we assume you have prior experience in developing scientific code in Python. Additionally, we assume you have hosted at least one project on GitHub. If you are new to GitHub, please refer to the FAQ guide on the GitHub workflow <a class="reference internal" href="../frequently-asked-questions.html#faq-github-workflow"><span class="std std-ref">here</span></a>.</p>
+<p>For Level 4, we assume you have prior experience in developing scientific code in Python. Additionally, we assume you have hosted at least one project on GitHub. If you are new to GitHub, please refer to the FAQ guide on the GitHub workflow <a class="reference internal" href="../support/frequently-asked-questions.html#faq-github-workflow"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="install-scikit-package-with-conda">
-<span id="scikit-package-installation"></span><h2>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda<a class="headerlink" href="#install-scikit-package-with-conda" title="Link to this heading"></a></h2>
+<h2>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda<a class="headerlink" href="#install-scikit-package-with-conda" title="Link to this heading"></a></h2>
 <ol class="arabic">
-<li><p>Ensure you have <code class="docutils literal notranslate"><span class="pre">conda</span></code> installed and the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel added to your conda configuration. If you haven’t, check <a class="reference internal" href="level-1-2-3-tutorials.html#conda-env-setup-simple"><span class="std std-ref">here</span></a> for instructions on how to install and include the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel.</p></li>
-<li><p>Create a new environment named <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;-env</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code>. Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> simultaneously by running the following command:</p>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">conda</span></code> is installed on your local computer as instructed in <a class="reference internal" href="level-1-2-3-tutorials.html#conda-env-setup-simple"><span class="std std-ref">(Required) Use conda environment to install packages and run Python code</span></a>.</p></li>
+<li><p>Ensure that you have added the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel to your <code class="docutils literal notranslate"><span class="pre">conda</span></code> configuration.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>config<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Create a new conda environment <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code> and install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> simultaneously by running the following command:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>skpkg-env<span class="w"> </span>scikit-package<span class="w"> </span>pre-commit
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the above command does not work, ensure you have added the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel to your <code class="docutils literal notranslate"><span class="pre">conda</span></code> configuration in Step 2.</p>
 </div>
 </div></blockquote>
 </li>
@@ -289,7 +300,7 @@
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Why is it required to list dependencies both under <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code>? Please refer to the FAQ section <a class="reference internal" href="../frequently-asked-questions.html#faq-dependency-management"><span class="std std-ref">here</span></a>.</p>
+<p>Why is it required to list dependencies both under <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code>? Please refer to the FAQ section <a class="reference internal" href="../support/frequently-asked-questions.html#faq-dependency-management"><span class="std std-ref">here</span></a>.</p>
 </div>
 </section>
 <section id="create-a-new-project-on-github">
@@ -381,7 +392,7 @@ docformatter.............................................................Passed
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Did you see any failed <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> hooks? If so, no commit will be made. Simply re-run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">&lt;file&gt;</span></code> on the files that have been modified by <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> and re-enter the same commit message again, such as <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;skpkg:</span> <span class="pre">start</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">project</span> <span class="pre">with</span> <span class="pre">skpkg</span> <span class="pre">system</span> <span class="pre">template&quot;</span></code>. If you are having trouble getting a commit to be accepted, please refer to the FAQ section <a class="reference internal" href="../frequently-asked-questions.html#faq-pre-commit-error"><span class="std std-ref">here</span></a>.</p>
+<p>Did you see any failed <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> hooks? If so, no commit will be made. Simply re-run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">&lt;file&gt;</span></code> on the files that have been modified by <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> and re-enter the same commit message again, such as <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;skpkg:</span> <span class="pre">start</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">project</span> <span class="pre">with</span> <span class="pre">skpkg</span> <span class="pre">system</span> <span class="pre">template&quot;</span></code>. If you are having trouble getting a commit to be accepted, please refer to the FAQ section <a class="reference internal" href="../support/frequently-asked-questions.html#faq-pre-commit-error"><span class="std std-ref">here</span></a>.</p>
 </div>
 </div></blockquote>
 </li>
@@ -526,7 +537,7 @@ $<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </spa
 <h2>What’s next?<a class="headerlink" href="#what-s-next" title="Link to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Make sure you check out the best practices and Billinge group’s guidelines for communications and examples in the FAQ section <a class="reference internal" href="../frequently-asked-questions.html#frequently-asked-questions"><span class="std std-ref">here</span></a>.</p>
+<p>Make sure you check out the best practices and Billinge group’s guidelines for communications and examples in the FAQ section <a class="reference internal" href="../support/frequently-asked-questions.html#frequently-asked-questions"><span class="std std-ref">here</span></a>.</p>
 </div>
 <p>Once you are ready to release your package to the wider world, let’s proceed to <a class="reference internal" href="level-5-tutorial.html#level-5-tutorial"><span class="std std-ref">Level 5</span></a> where you will learn to release your package to PyPI and conda-forge so that your package can be installed by anyone in the world.</p>
 </section>

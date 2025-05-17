@@ -26,7 +26,7 @@ We understand that your migration journey can be challenging. We offer the follo
 
 #. If you have any questions, first read the :ref:`FAQ <frequently-asked-questions>` for how to customize your package and certain design decisions in the scikit-package template.
 
-#. After you've cross-checked and searched through the FAQ, please feel free to ask questions by creating an issue on the scikit-package repository `here <https://github.com/Billingegroup/scikit-package/issues>`_.
+#. After you've cross-checked and searched through the FAQ, please feel free to ask questions by creating an issue on the scikit-package repository `here <https://github.com/scikig-package/scikit-package/issues>`_.
 
 Migration overview and expected outcome
 ---------------------------------------
@@ -116,7 +116,7 @@ We will setup ``pre-commit`` locally and also via GitHub CI.
 
 #. Type ``git checkout main && git pull upstream main`` and ``git branch -b pre-commit`` to create a new branch called ``pre-commit``.
 
-#. Copy and paste three files of ``.flake8``, ``.isort.cfg``, ``.pre-commit-config.yaml`` from https://github.com/Billingegroup/scikit-package/tree/main/%7B%7B%20cookiecutter.github_repo_name%20%7D%7D to your project directory.
+#. Copy and paste three files of ``.flake8``, ``.isort.cfg``, ``.pre-commit-config.yaml`` from https://github.com/scikig-package/scikit-package/tree/main/%7B%7B%20cookiecutter.github_repo_name%20%7D%7D to your project directory.
 
 #. Type ``git add .flake8 .isort.cfg .pre-commit-config.yaml``
 
@@ -126,7 +126,7 @@ We will setup ``pre-commit`` locally and also via GitHub CI.
 
 #. If you do not want the new changes, you can run ``git restore <file-or-directory-path>`` to revert the changes done by ``pre-commit``.
 
-#. If you want to prevent ``prettier`` from applying on specific files, create ``.`prettierignore`` file at the top project like shown here: https://github.com/Billingegroup/scikit-package/blob/main/.prettierignore
+#. If you want to prevent ``prettier`` from applying on specific files, create ``.`prettierignore`` file at the top project like shown here: https://github.com/scikig-package/scikit-package/blob/main/.prettierignore
 
 #. If you are satisfied with the automatic changes by ``pre-commit run --all-files``, run ``pytest``, type ``git add <file-path(s)>`` and ``git commit -m "style: apply pre-commit hooks with no manual edits"``.
 

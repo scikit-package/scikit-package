@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(Level 5) Share code as a publicly installable Python package &mdash; scikit-package 0.0.3rc1 documentation</title>
+  <title>(Level 5) Share code as a publicly installable Python package &mdash; scikit-package 0.0.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=544a501d"></script>
+      <script src="../_static/documentation_options.js?v=7cc827d7"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -69,6 +69,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#setup-codecov-token-for-github-repository">Setup Codecov token for GitHub repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#allow-github-actions-to-write-comments-in-prs">Allow GitHub Actions to write comments in PRs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#add-news-items-in-the-github-pull-request">Add news items in the GitHub pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-preview-documentation-in-each-pull-request">(Optional) Preview documentation in each pull request</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#optional-build-api-reference-documentation">(Optional) Build API reference documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ready-for-public-release">Ready for public release?</a></li>
 </ul>
@@ -81,7 +82,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../billinge-group-standards.html">Billinge Group standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programming-guides/billinge-group-standards.html">Billinge Group standards</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
 <ul>
@@ -89,7 +90,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">SUPPORT</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support/frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
 <ul>
@@ -113,7 +114,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">(Level 5) Share code as a publicly installable Python package</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/tutorials/level-5-tutorial.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/tutorials/level-5-tutorial.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -146,13 +147,24 @@
 <p>Make sure you have the latest version of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> installed as shown in Level 4.</p>
 </section>
 <section id="install-scikit-package-with-conda">
-<span id="scikit-package-installation"></span><h2>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda<a class="headerlink" href="#install-scikit-package-with-conda" title="Link to this heading"></a></h2>
+<h2>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda<a class="headerlink" href="#install-scikit-package-with-conda" title="Link to this heading"></a></h2>
 <ol class="arabic">
-<li><p>Ensure you have <code class="docutils literal notranslate"><span class="pre">conda</span></code> installed and the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel added to your conda configuration. If you haven’t, check <a class="reference internal" href="level-1-2-3-tutorials.html#conda-env-setup-simple"><span class="std std-ref">here</span></a> for instructions on how to install and include the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel.</p></li>
-<li><p>Create a new environment named <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;-env</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code>. Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> simultaneously by running the following command:</p>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">conda</span></code> is installed on your local computer as instructed in <a class="reference internal" href="level-1-2-3-tutorials.html#conda-env-setup-simple"><span class="std std-ref">(Required) Use conda environment to install packages and run Python code</span></a>.</p></li>
+<li><p>Ensure that you have added the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel to your <code class="docutils literal notranslate"><span class="pre">conda</span></code> configuration.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>config<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Create a new conda environment <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code> and install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> simultaneously by running the following command:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>skpkg-env<span class="w"> </span>scikit-package<span class="w"> </span>pre-commit
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the above command does not work, ensure you have added the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel to your <code class="docutils literal notranslate"><span class="pre">conda</span></code> configuration in Step 2.</p>
 </div>
 </div></blockquote>
 </li>
@@ -235,7 +247,7 @@ e.g., The Trustees of Columbia University in the City of New York</p></td>
 <tr class="row-odd"><td><p>project_name</p></td>
 <td><p>The name displayed in the <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> and documentation.
 Use <code class="docutils literal notranslate"><span class="pre">name-with-hyphens</span></code> e.g., <code class="docutils literal notranslate"><span class="pre">my-package</span></code>.
-To support namespace imports, see <a class="reference internal" href="../frequently-asked-questions.html#faq-project-setup-namespace"><span class="std std-ref">FAQ</span></a></p></td>
+To support namespace imports, see <a class="reference internal" href="../support/frequently-asked-questions.html#faq-project-setup-namespace"><span class="std std-ref">FAQ</span></a></p></td>
 </tr>
 <tr class="row-even"><td><p>github_username_or_orgname</p></td>
 <td><p>The GitHub username or organization name.
@@ -362,12 +374,63 @@ $<span class="w"> </span>pytest
 </div>
 </div></blockquote>
 </li>
-<li><p>Done!</p></li>
+<li><p>(Optional but recommended) To maintain clean and efficient code, consider using the <code class="docutils literal notranslate"><span class="pre">vulture</span></code> tool to identify and manually remove unused or dead code. This tool helps detect unused variables, functions, and other parts of your code that are no longer in use. While not mandatory, it is a good practice to periodically clean up your codebase. You can install and run <code class="docutils literal notranslate"><span class="pre">vulture</span></code> on code in <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">tests</span></code> as follows:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>vulture
+$<span class="w"> </span>vulture<span class="w"> </span>src/<span class="w"> </span>tests/
+</pre></div>
+</div>
+</div></blockquote>
+</li>
 </ol>
+<blockquote>
+<div><p>This will generate a report of unused code in the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">tests</span></code> directories. Below is an example of what these outputs might look like. You can then review the report and decide whether to remove the identified unused code.</p>
+<blockquote>
+<div><div class="highlight-bash:: notranslate"><div class="highlight"><pre><span></span>#### Example outputs after running vulture ####
+$ vulture src/ tests/
+src/module1.py:10: unused function &#39;helper_function&#39; (60% confidence)
+src/module2.py:45: unused variable &#39;temp_var&#39; (80% confidence)
+tests/test_module1.py:22: unused import &#39;os&#39; (100% confidence)
+</pre></div>
+</div>
+</div></blockquote>
+<p>For more details on how <code class="docutils literal notranslate"><span class="pre">vulture</span></code> works, visit the <a class="reference external" href="https://github.com/jendrikseipp/vulture">vulture GitHub repository</a>.</p>
+</div></blockquote>
 </section>
 <section id="build-documentation-locally">
 <h2>Build documentation locally<a class="headerlink" href="#build-documentation-locally" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">/doc</span></code> is the the Sphinx documentation folder. The documentation will be built locally first and then automatically built and hosted on GitHub Pages when a new release is created.</p>
+<ol class="arabic">
+<li><p>Install the requirements for building the documentation.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>--file<span class="w"> </span>requirements/docs.txt
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Then we will use an external tool called <code class="docutils literal notranslate"><span class="pre">sphinx-reload</span></code> to automatically reload the documentation when you make changes to <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>sphinx-reload
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">sphinx-reload</span></code> is only available via pip install.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>A HTML will appear automatically in your browser by running the following command:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sphinx-reload<span class="w"> </span>doc
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you see the error “No module named” (e.g., <code class="docutils literal notranslate"><span class="pre">WARNING:</span> <span class="pre">autodoc:</span> <span class="pre">failed</span> <span class="pre">to</span> <span class="pre">import</span> <span class="pre">module</span> <span class="pre">'tools'</span> <span class="pre">from</span> <span class="pre">module</span> <span class="pre">'diffpy.pdfmorph';</span> <span class="pre">the</span> <span class="pre">following</span> <span class="pre">exception</span> <span class="pre">was</span> <span class="pre">raised:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'diffpy.utils'</span></code>), it can be resolved by adding <code class="docutils literal notranslate"><span class="pre">autodoc_mock_imports</span> <span class="pre">=</span> <span class="pre">[&lt;pkg&gt;]</span></code> to your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> right under imports. This file is located in <code class="docutils literal notranslate"><span class="pre">/doc/source/conf.py</span></code>.</p>
+</div>
 </section>
 <section id="upload-your-code-to-github">
 <h2>Upload your code to GitHub<a class="headerlink" href="#upload-your-code-to-github" title="Link to this heading"></a></h2>
@@ -433,7 +496,7 @@ $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>
 </ol>
 </section>
 <section id="allow-github-actions-to-write-comments-in-prs">
-<h2>Allow GitHub Actions to write comments in PRs<a class="headerlink" href="#allow-github-actions-to-write-comments-in-prs" title="Link to this heading"></a></h2>
+<span id="github-news-ci-permission"></span><h2>Allow GitHub Actions to write comments in PRs<a class="headerlink" href="#allow-github-actions-to-write-comments-in-prs" title="Link to this heading"></a></h2>
 <p>As you will see in the next section, we’d like to have GitHub Actions write comments such as warnings. Let’s specify the permissions in the GitHub repository settings by following the steps below.</p>
 <ol class="arabic simple">
 <li><p>Visit the <span class="guilabel">Settings</span> page of the GitHub repository.</p></li>
@@ -446,7 +509,7 @@ $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>
 </section>
 <section id="add-news-items-in-the-github-pull-request">
 <span id="news-keyboard-shortcut"></span><h2>Add news items in the GitHub pull request<a class="headerlink" href="#add-news-items-in-the-github-pull-request" title="Link to this heading"></a></h2>
-<p>Before merging to <code class="docutils literal notranslate"><span class="pre">main</span></code>, we require that each PR includes a file documenting the changes under <code class="docutils literal notranslate"><span class="pre">\news</span></code>. This ensures that the changes are documented in the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> when you create a new release, as shown in <a class="reference external" href="https://billingegroup.github.io/scikit-package/release.html">https://billingegroup.github.io/scikit-package/release.html</a>, for example.</p>
+<p>Before merging to <code class="docutils literal notranslate"><span class="pre">main</span></code>, we require that each PR includes a file documenting the changes under <code class="docutils literal notranslate"><span class="pre">\news</span></code>. This ensures that the changes are documented in the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> when you create a new release, as shown in <a class="reference external" href="https://scikit-package.github.io/scikit-package/release.html">https://scikit-package.github.io/scikit-package/release.html</a>, for example.</p>
 <blockquote>
 <div><div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -487,7 +550,7 @@ $<span class="w"> </span><span class="nb">source</span><span class="w"> </span>~
 <p>Add a description of the edits made in this PR. This should be a user-facing high-level summary of the edits made in this PR and will be automatically converted into the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> when the code is released.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>How do I write good news items? What if the changes in the PR are trivial and no news is needed? Please check out the news guide in the FAQ <a class="reference internal" href="../billinge-group-standards.html#news-item-practice"><span class="std std-ref">here</span></a>.</p>
+<p>How do I write good news items? What if the changes in the PR are trivial and no news is needed? Please check out the news guide in the FAQ <a class="reference internal" href="../programming-guides/billinge-group-standards.html#news-item-practice"><span class="std std-ref">here</span></a>.</p>
 </div>
 </div></blockquote>
 </li>
@@ -515,21 +578,25 @@ $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>
 <blockquote>
 <div><div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>For writing great news items, Python docstrings, tests, and commit messages, check the Billinge research group’s guidelines <a class="reference internal" href="../billinge-group-standards.html#billinge-group-standards"><span class="std std-ref">here</span></a>.</p>
+<p>For writing great news items, Python docstrings, tests, and commit messages, check the Billinge research group’s guidelines <a class="reference internal" href="../programming-guides/billinge-group-standards.html#billinge-group-standards"><span class="std std-ref">here</span></a>.</p>
 </div>
 </div></blockquote>
+</section>
+<section id="optional-preview-documentation-in-each-pull-request">
+<h2>(Optional) Preview documentation in each pull request<a class="headerlink" href="#optional-preview-documentation-in-each-pull-request" title="Link to this heading"></a></h2>
+<p>Please refer to <a class="reference internal" href="../support/frequently-asked-questions.html#faq-doc-pr-preview"><span class="std std-ref">How can I preview the documentation in each pull request?</span></a></p>
 </section>
 <section id="optional-build-api-reference-documentation">
 <h2>(Optional) Build API reference documentation<a class="headerlink" href="#optional-build-api-reference-documentation" title="Link to this heading"></a></h2>
 <p>If you want to build the API documentation for your package, like <a class="reference external" href="https://www.diffpy.org/diffpy.utils/api/diffpy.utils.html">https://www.diffpy.org/diffpy.utils/api/diffpy.utils.html</a>, here is a quick guide for you.</p>
 <p>First, check whether your package is a standard package or a package that supports namespace imports.</p>
 <ul class="simple">
-<li><p>If your package can be imported as <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&lt;package_name&gt;</span></code>, you can use <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> to generate the API <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files each time your documentation is re-rendered. Follow the instructions <a class="reference internal" href="../frequently-asked-questions.html#faq-doc-api-standard"><span class="std std-ref">here</span></a>.</p></li>
-<li><p>If your package supports <strong>namespace import</strong>, like <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&lt;namespace_name&gt;.&lt;package_name&gt;</span></code>, you can use our script called <code class="docutils literal notranslate"><span class="pre">auto_api.py</span></code> to generate the API documentation. Follow the instructions <a class="reference internal" href="../frequently-asked-questions.html#faq-doc-api-namespace"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>If your package can be imported as <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&lt;package_name&gt;</span></code>, you can use <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> to generate the API <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files each time your documentation is re-rendered. Follow the instructions <a class="reference internal" href="../support/frequently-asked-questions.html#faq-doc-api-standard"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>If your package supports <strong>namespace import</strong>, like <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&lt;namespace_name&gt;.&lt;package_name&gt;</span></code>, you can use our script called <code class="docutils literal notranslate"><span class="pre">auto_api.py</span></code> to generate the API documentation. Follow the instructions <a class="reference internal" href="../support/frequently-asked-questions.html#faq-doc-api-namespace"><span class="std std-ref">here</span></a>.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Do you want to know the difference in folder structure between a package that uses regular imports vs. namespace imports? Please check the FAQ section on <a class="reference internal" href="../frequently-asked-questions.html#faq-project-setup-namespace"><span class="std std-ref">package structure</span></a>.</p>
+<p>Do you want to know the difference in folder structure between a package that uses regular imports vs. namespace imports? Please check the FAQ section on <a class="reference internal" href="../support/frequently-asked-questions.html#faq-project-setup-namespace"><span class="std std-ref">package structure</span></a>.</p>
 </div>
 </section>
 <section id="ready-for-public-release">

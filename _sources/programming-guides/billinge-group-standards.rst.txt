@@ -40,7 +40,7 @@ For commit messages and issue titles, we add prefixes adopted from https://www.c
 - Example 1: "feat: create a ``DiffractionObject.morph_to()`` method"
 - Example 2: "bug: handle divide by zero error in ``DiffractionObject.scale_to``"
 
-Please see an example here: https://github.com/Billingegroup/scikit-package/issues. There are a few benefits to adding prefixes to GitHub issue titles. First, it helps us prioritize tasks from the GitHub notifications. Second, it helps reference issues in a comment within an issue or pull request and organize tasks.
+Please see an example here: https://github.com/scikit-package/scikit-package/issues. There are a few benefits to adding prefixes to GitHub issue titles. First, it helps us prioritize tasks from the GitHub notifications. Second, it helps reference issues in a comment within an issue or pull request and organize tasks.
 
 .. attention::
 
@@ -55,13 +55,13 @@ Pull request practices
 
 #. Make PRs small with the possibility of rejection.
 
-#. Write ``closes #<issue-number>`` in the PR comment to automatically close the issue when the PR is merged. See https://github.com/Billingegroup/scikit-package/pull/350.
+#. Write ``closes #<issue-number>`` in the PR comment to automatically close the issue when the PR is merged. See https://github.com/scikit-package/scikit-package/pull/350.
 
 #. A PR should close an issue on GitHub. If there is no issue, make one. If the issue is big, consider breaking it down into smaller issues.
 
-#. Review your own PR. Start as a draft PR, visit “Files changed”, add comments, and then request a review. In-line comments are needed if the changes are not obvious for the reviewer. See https://github.com/Billingegroup/scikit-package/pull/310.
+#. Review your own PR. Start as a draft PR, click :guilabel:`Files changed`, add comments, and then request a review. In-line comments are needed if the changes are not obvious for the reviewer. See https://github.com/scikit-package/scikit-package/pull/310.
 
-#. If another commit was pushed after “ready for review”, write another comment “ready for review after fixing ____” so that the reviewer is directed to the PR, not the file changes by the new commit.
+#. If *another commit* was pushed after “@username ready for review”, write another comment *“@username ready for review after fixing ____”* so that the reviewer is directed to the PR, not the file changes by the new commit.
 
 #. PR from a new branch if it contains a meaningless commit history.
 
@@ -80,7 +80,7 @@ Pull request practices
 .. _news-item-practice:
 
 
-.. include:: snippets/news-file-format.rst
+.. include:: ../snippets/news-file-format.rst
 
 Unit tests
 ----------
@@ -222,13 +222,13 @@ Naming conventions
 When should we use hyphens ``-`` or underscores ``_`` in file and folder names?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Use hyphens ``-`` for project names, package names, GitHub repositories, folder names, branch names, and static files like ``.rst``, ``.md``, ``.yml``, and ``.png``. For CLI, also use minus signs ``-`` for args  like ``gh pr list --author "@sbillinge"`` Check an example documentation of ``scikit-package`` here: https://github.com/Billingegroup/scikit-package/tree/main/doc/source.
+Use hyphens ``-`` for project names, package names, GitHub repositories, folder names, branch names, and static files like ``.rst``, ``.md``, ``.yml``, and ``.png``. For CLI, also use minus signs ``-`` for args  like ``gh pr list --author "@sbillinge"`` Check an example documentation of ``scikit-package`` here: https://github.com/scikit-package/scikit-package/tree/main/doc/source.
 
 Use underscores ``_`` in the following two cases:
 
 #. Python files, e.g., ``tests/test_diffraction_objects.py``.
 
-#. Project directory names, e.g., ``src/<project_directory_name>``. Modules and packages are imported with spaces replaced by underscores, like ``import bg_mpl_stylesheets``. Here is an example project: https://github.com/Billingegroup/bg-mpl-stylesheets/tree/main/src/bg_mpl_stylesheets.
+#. Project directory names, e.g., ``src/<project_directory_name>``. Modules and packages are imported with spaces replaced by underscores, like ``import bg_mpl_stylesheets``. Here is an example project: https://github.com/scikit-package/bg-mpl-stylesheets/tree/main/src/bg_mpl_stylesheets.
 
 .. note::
 

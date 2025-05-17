@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Migrate your existing package with scikit-package &mdash; scikit-package 0.0.3rc1 documentation</title>
+  <title>Migrate your existing package with scikit-package &mdash; scikit-package 0.0.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=544a501d"></script>
+      <script src="../_static/documentation_options.js?v=7cc827d7"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -23,8 +23,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Frequently asked questions (FAQ)" href="../frequently-asked-questions.html" />
-    <link rel="prev" title="Billinge Group standards" href="../billinge-group-standards.html" /> 
+    <link rel="next" title="Frequently asked questions (FAQ)" href="../support/frequently-asked-questions.html" />
+    <link rel="prev" title="Billinge Group standards" href="../programming-guides/billinge-group-standards.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -64,7 +64,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../billinge-group-standards.html">Billinge Group standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programming-guides/billinge-group-standards.html">Billinge Group standards</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
 <ul class="current">
@@ -108,7 +108,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">SUPPORT</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support/frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
 <ul>
@@ -132,7 +132,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/examples/migration.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/examples/migration.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -145,7 +145,7 @@
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <p>This guide is for developers who have an existing Python package and want to migrate it to the Billinge group’s project structure using the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> library up to Level 5.</p>
-<p>Hence, we assume you have a basic understanding of Python, Git, and GitHub workflows, and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> and <code class="docutils literal notranslate"><span class="pre">pytest</span></code>. If you are not familiar with GitHub workflows, please refer our brief guide provided <a class="reference internal" href="../frequently-asked-questions.html#github-workflow-overview"><span class="std std-ref">here</span></a>.</p>
+<p>Hence, we assume you have a basic understanding of Python, Git, and GitHub workflows, and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> and <code class="docutils literal notranslate"><span class="pre">pytest</span></code>. If you are not familiar with GitHub workflows, please refer our brief guide provided <a class="reference internal" href="../support/frequently-asked-questions.html#github-workflow-overview"><span class="std std-ref">here</span></a>.</p>
 <p>We also assume you have already used <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> at least up to the Level 4 level and also at least have read through the guide provided for Level 5.</p>
 </section>
 <section id="tips-and-how-to-receive-support">
@@ -153,8 +153,8 @@
 <p>We understand that your migration journey can be challenging. We offer the following ways to help guide migrate your package to scikit-package:</p>
 <ol class="arabic simple">
 <li><p>You may cross-check with the Billinge group’s up-to-date package, <code class="docutils literal notranslate"><span class="pre">diffpy.utils</span></code>: <a class="reference external" href="https://github.com/diffpy/diffpy.utils">https://github.com/diffpy/diffpy.utils</a>.</p></li>
-<li><p>If you have any questions, first read the <a class="reference internal" href="../frequently-asked-questions.html#frequently-asked-questions"><span class="std std-ref">FAQ</span></a> for how to customize your package and certain design decisions in the scikit-package template.</p></li>
-<li><p>After you’ve cross-checked and searched through the FAQ, please feel free to ask questions by creating an issue on the scikit-package repository <a class="reference external" href="https://github.com/Billingegroup/scikit-package/issues">here</a>.</p></li>
+<li><p>If you have any questions, first read the <a class="reference internal" href="../support/frequently-asked-questions.html#frequently-asked-questions"><span class="std std-ref">FAQ</span></a> for how to customize your package and certain design decisions in the scikit-package template.</p></li>
+<li><p>After you’ve cross-checked and searched through the FAQ, please feel free to ask questions by creating an issue on the scikit-package repository <a class="reference external" href="https://github.com/scikig-package/scikit-package/issues">here</a>.</p></li>
 </ol>
 </section>
 <section id="migration-overview-and-expected-outcome">
@@ -167,13 +167,24 @@
 <li><p>In the final <a class="reference internal" href="#scikit-package-workflow-cleanup"><span class="std std-ref">clean-up workflow</span></a>, you will host your package documentation online. Your package will be in good shape for PyPI, GitHub, and conda-forge release!</p></li>
 </ol>
 <section id="install-scikit-package-with-conda">
-<span id="scikit-package-installation"></span><span id="migration-pre-commit"></span><h3>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda<a class="headerlink" href="#install-scikit-package-with-conda" title="Link to this heading"></a></h3>
+<span id="migration-pre-commit"></span><h3>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda<a class="headerlink" href="#install-scikit-package-with-conda" title="Link to this heading"></a></h3>
 <ol class="arabic">
-<li><p>Ensure you have <code class="docutils literal notranslate"><span class="pre">conda</span></code> installed and the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel added to your conda configuration. If you haven’t, check <a class="reference internal" href="../tutorials/level-1-2-3-tutorials.html#conda-env-setup-simple"><span class="std std-ref">here</span></a> for instructions on how to install and include the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel.</p></li>
-<li><p>Create a new environment named <code class="docutils literal notranslate"><span class="pre">&lt;project&gt;-env</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code>. Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> simultaneously by running the following command:</p>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">conda</span></code> is installed on your local computer as instructed in <a class="reference internal" href="../tutorials/level-1-2-3-tutorials.html#conda-env-setup-simple"><span class="std std-ref">(Required) Use conda environment to install packages and run Python code</span></a>.</p></li>
+<li><p>Ensure that you have added the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel to your <code class="docutils literal notranslate"><span class="pre">conda</span></code> configuration.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>config<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Create a new conda environment <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code> and install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> simultaneously by running the following command:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>skpkg-env<span class="w"> </span>scikit-package<span class="w"> </span>pre-commit
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the above command does not work, ensure you have added the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel to your <code class="docutils literal notranslate"><span class="pre">conda</span></code> configuration in Step 2.</p>
 </div>
 </div></blockquote>
 </li>
@@ -255,12 +266,12 @@
 <p>We will setup <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> locally and also via GitHub CI.</p>
 <ol class="arabic">
 <li><p>Type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">main</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-b</span> <span class="pre">pre-commit</span></code> to create a new branch called <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code>.</p></li>
-<li><p>Copy and paste three files of <code class="docutils literal notranslate"><span class="pre">.flake8</span></code>, <code class="docutils literal notranslate"><span class="pre">.isort.cfg</span></code>, <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code> from <a class="reference external" href="https://github.com/Billingegroup/scikit-package/tree/main/%7B%7B%20cookiecutter.github_repo_name%20%7D%7D">https://github.com/Billingegroup/scikit-package/tree/main/%7B%7B%20cookiecutter.github_repo_name%20%7D%7D</a> to your project directory.</p></li>
+<li><p>Copy and paste three files of <code class="docutils literal notranslate"><span class="pre">.flake8</span></code>, <code class="docutils literal notranslate"><span class="pre">.isort.cfg</span></code>, <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code> from <a class="reference external" href="https://github.com/scikig-package/scikit-package/tree/main/%7B%7B%20cookiecutter.github_repo_name%20%7D%7D">https://github.com/scikig-package/scikit-package/tree/main/%7B%7B%20cookiecutter.github_repo_name%20%7D%7D</a> to your project directory.</p></li>
 <li><p>Type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.flake8</span> <span class="pre">.isort.cfg</span> <span class="pre">.pre-commit-config.yaml</span></code></p></li>
 <li><p>Type <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">run</span> <span class="pre">--all-files</span></code>. It will attempt to lint your code such as docstrings, extra spaces, across all file types such as <code class="docutils literal notranslate"><span class="pre">.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">.md</span></code>, <code class="docutils literal notranslate"><span class="pre">.rst</span></code>, etc.</p></li>
 <li><p>Type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> to get an overview of the files modified and then by running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">&lt;file-or-directory-path&gt;</span></code> to see the specific changes.</p></li>
 <li><p>If you do not want the new changes, you can run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">restore</span> <span class="pre">&lt;file-or-directory-path&gt;</span></code> to revert the changes done by <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code>.</p></li>
-<li><p>If you want to prevent <code class="docutils literal notranslate"><span class="pre">prettier</span></code> from applying on specific files, create <code class="docutils literal notranslate"><span class="pre">.`prettierignore</span></code> file at the top project like shown here: <a class="reference external" href="https://github.com/Billingegroup/scikit-package/blob/main/.prettierignore">https://github.com/Billingegroup/scikit-package/blob/main/.prettierignore</a></p></li>
+<li><p>If you want to prevent <code class="docutils literal notranslate"><span class="pre">prettier</span></code> from applying on specific files, create <code class="docutils literal notranslate"><span class="pre">.`prettierignore</span></code> file at the top project like shown here: <a class="reference external" href="https://github.com/scikig-package/scikit-package/blob/main/.prettierignore">https://github.com/scikig-package/scikit-package/blob/main/.prettierignore</a></p></li>
 <li><p>If you are satisfied with the automatic changes by <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">run</span> <span class="pre">--all-files</span></code>, run <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">&lt;file-path(s)&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;style:</span> <span class="pre">apply</span> <span class="pre">pre-commit</span> <span class="pre">hooks</span> <span class="pre">with</span> <span class="pre">no</span> <span class="pre">manual</span> <span class="pre">edits&quot;</span></code>.</p>
 <blockquote>
 <div><div class="admonition attention">
@@ -281,7 +292,7 @@
 <li><p>Type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">upstream</span> <span class="pre">package</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">package</span></code> to sync with the <code class="docutils literal notranslate"><span class="pre">package</span></code> branch.</p></li>
 <li><p>Type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">flake8-length</span></code> to create a new branch. In this branch you will fix flake8 errors. In this branch, fix all of <code class="docutils literal notranslate"><span class="pre">flake8</span></code> errors related to line-lenghts if there are any. If you want to ignore certain files from flake8 errors include filepaths to <code class="docutils literal notranslate"><span class="pre">exclude</span></code> section in the <code class="docutils literal notranslate"><span class="pre">.flake8</span></code> files.</p></li>
 <li><p>Create a PR to <code class="docutils literal notranslate"><span class="pre">package</span></code>. Since you are fixing flake8 errors, the commit message can be <code class="docutils literal notranslate"><span class="pre">skpkg:</span> <span class="pre">fix</span> <span class="pre">flake8</span> <span class="pre">line-length</span> <span class="pre">errors</span></code> and the pull request title can be <code class="docutils literal notranslate"><span class="pre">skpkg:</span> <span class="pre">Fix</span> <span class="pre">flake8</span> <span class="pre">line-length</span> <span class="pre">errors</span></code>.</p></li>
-<li><p>If you have <code class="docutils literal notranslate"><span class="pre">codespell</span></code> errors, create a new branch called <code class="docutils literal notranslate"><span class="pre">codespell</span></code> and fix all of the spelling errors. You can ignore specific words or lines by following the instructions provided here in the FAQ section <a class="reference internal" href="../frequently-asked-questions.html#faq-codespell-ignore"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>If you have <code class="docutils literal notranslate"><span class="pre">codespell</span></code> errors, create a new branch called <code class="docutils literal notranslate"><span class="pre">codespell</span></code> and fix all of the spelling errors. You can ignore specific words or lines by following the instructions provided here in the FAQ section <a class="reference internal" href="../support/frequently-asked-questions.html#faq-codespell-ignore"><span class="std std-ref">here</span></a>.</p></li>
 <li><p>If you want to suppress the <code class="docutils literal notranslate"><span class="pre">flake8</span></code> error, add <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">noqa:</span> <span class="pre">&lt;error-code&gt;</span></code> at the end of the line. For example, <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span> <span class="pre">#</span> <span class="pre">noqa:</span> <span class="pre">E000</span></code> but make sure you create an issue for this so that you can revisit them.</p></li>
 <li><p>For each <cite>flake8</cite> branch, create a PR request to <code class="docutils literal notranslate"><span class="pre">package</span></code>. Since you are fixing flake8 errors, the commit message can be <code class="docutils literal notranslate"><span class="pre">skpkg:</span> <span class="pre">Fix</span> <span class="pre">flake8</span> <span class="pre">&lt;readable-error-type&gt;</span> <span class="pre">errors</span></code> and the pull request title can be <code class="docutils literal notranslate"><span class="pre">skpkg:</span> <span class="pre">Fix</span> <span class="pre">flake8</span> <span class="pre">&lt;readable-error-type&gt;</span> <span class="pre">errors</span></code>.</p></li>
 <li><p>For each PR, the project maintainer will review the PR and merge it to <code class="docutils literal notranslate"><span class="pre">package</span></code>. If you are the project maintainer, you can merge the PR yourself.</p></li>
@@ -395,7 +406,7 @@ $<span class="w"> </span>git<span class="w"> </span>push
 </div></blockquote>
 </li>
 <li><p>Type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">setup-CI</span></code> to create a new branch.</p></li>
-<li><p>Notice there is a <code class="docutils literal notranslate"><span class="pre">requirements</span></code> folder containing <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">tests.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">docs.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code>. List dependencies. For <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code>, you will most likely have the same dependencies listed. Please check the FAQ section on why we provide both <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code> files <a class="reference internal" href="../frequently-asked-questions.html#faq-dependency-files"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>Notice there is a <code class="docutils literal notranslate"><span class="pre">requirements</span></code> folder containing <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">tests.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">docs.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code>. List dependencies. For <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code>, you will most likely have the same dependencies listed. Please check the FAQ section on why we provide both <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code> files <a class="reference internal" href="../support/frequently-asked-questions.html#faq-dependency-files"><span class="std std-ref">here</span></a>.</p></li>
 <li><p>Type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">requirements</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;skpkg:</span> <span class="pre">create</span> <span class="pre">requirements</span> <span class="pre">folder&quot;</span></code>.</p></li>
 <li><p>Now you will move <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">tests</span></code> folders in the following steps.</p></li>
 <li><p>Type <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-n</span> <span class="pre">-r</span> <span class="pre">../src</span> <span class="pre">.</span></code> to copy the source code from the <code class="docutils literal notranslate"><span class="pre">main</span></code> to the sk-packaged directory, without overwriting existing files in the destination.</p></li>
@@ -408,7 +419,7 @@ $<span class="w"> </span>git<span class="w"> </span>push
 <blockquote>
 <div><div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>If your package does not support Python 3.13, you will need to specify the Python version supported by your package. Follow the instructions here to set the Python version under <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> <a class="reference internal" href="../frequently-asked-questions.html#github-actions-python-versions"><span class="std std-ref">here</span></a></p>
+<p>If your package does not support Python 3.13, you will need to specify the Python version supported by your package. Follow the instructions here to set the Python version under <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> <a class="reference internal" href="../support/frequently-asked-questions.html#github-actions-python-versions"><span class="std std-ref">here</span></a></p>
 </div>
 </div></blockquote>
 </li>
@@ -448,12 +459,12 @@ $<span class="w"> </span>git<span class="w"> </span>push
 <p>If you want to build the API documentation for your package, like <a class="reference external" href="https://www.diffpy.org/diffpy.utils/api/diffpy.utils.html">https://www.diffpy.org/diffpy.utils/api/diffpy.utils.html</a>, here is a quick guide for you.</p>
 <p>First, check whether your package is a standard package or a package that supports namespace imports.</p>
 <ul class="simple">
-<li><p>If your package can be imported as <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&lt;package_name&gt;</span></code>, you can use <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> to generate the API <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files each time your documentation is re-rendered. Follow the instructions <a class="reference internal" href="../frequently-asked-questions.html#faq-doc-api-standard"><span class="std std-ref">here</span></a>.</p></li>
-<li><p>If your package supports <strong>namespace import</strong>, like <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&lt;namespace_name&gt;.&lt;package_name&gt;</span></code>, you can use our script called <code class="docutils literal notranslate"><span class="pre">auto_api.py</span></code> to generate the API documentation. Follow the instructions <a class="reference internal" href="../frequently-asked-questions.html#faq-doc-api-namespace"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>If your package can be imported as <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&lt;package_name&gt;</span></code>, you can use <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> to generate the API <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files each time your documentation is re-rendered. Follow the instructions <a class="reference internal" href="../support/frequently-asked-questions.html#faq-doc-api-standard"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>If your package supports <strong>namespace import</strong>, like <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&lt;namespace_name&gt;.&lt;package_name&gt;</span></code>, you can use our script called <code class="docutils literal notranslate"><span class="pre">auto_api.py</span></code> to generate the API documentation. Follow the instructions <a class="reference internal" href="../support/frequently-asked-questions.html#faq-doc-api-namespace"><span class="std std-ref">here</span></a>.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Do you want to know the difference in folder structure between a package that uses regular imports vs. namespace imports? Please check the FAQ section on <a class="reference internal" href="../frequently-asked-questions.html#faq-project-setup-namespace"><span class="std std-ref">package structure</span></a>.</p>
+<p>Do you want to know the difference in folder structure between a package that uses regular imports vs. namespace imports? Please check the FAQ section on <a class="reference internal" href="../support/frequently-asked-questions.html#faq-project-setup-namespace"><span class="std std-ref">package structure</span></a>.</p>
 </div>
 </section>
 <section id="build-documentation-locally">
@@ -550,8 +561,8 @@ $<span class="w"> </span>pytest
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../billinge-group-standards.html" class="btn btn-neutral float-left" title="Billinge Group standards" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../frequently-asked-questions.html" class="btn btn-neutral float-right" title="Frequently asked questions (FAQ)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../programming-guides/billinge-group-standards.html" class="btn btn-neutral float-left" title="Billinge Group standards" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../support/frequently-asked-questions.html" class="btn btn-neutral float-right" title="Frequently asked questions (FAQ)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

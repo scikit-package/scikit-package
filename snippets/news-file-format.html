@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why do I need a news file for each PR? &mdash; scikit-package 0.0.3rc1 documentation</title>
+  <title>Why do I need a news file for each PR? &mdash; scikit-package 0.0.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=544a501d"></script>
+      <script src="../_static/documentation_options.js?v=7cc827d7"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -62,7 +62,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../billinge-group-standards.html">Billinge Group standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programming-guides/billinge-group-standards.html">Billinge Group standards</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
 <ul>
@@ -70,7 +70,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">SUPPORT</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support/frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
 <ul>
@@ -94,7 +94,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Why do I need a news file for each PR?</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/snippets/news-file-format.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/snippets/news-file-format.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -103,19 +103,18 @@
            <div itemprop="articleBody">
              
   <section id="why-do-i-need-a-news-file-for-each-pr">
-<span id="news-file-guide"></span><h1>Why do I need a news file for each PR?<a class="headerlink" href="#why-do-i-need-a-news-file-for-each-pr" title="Link to this heading"></a></h1>
+<h1>Why do I need a news file for each PR?<a class="headerlink" href="#why-do-i-need-a-news-file-for-each-pr" title="Link to this heading"></a></h1>
 <p>We want to write good <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> for each release version. These news items are of interest to both developers and technical users looking for specific keywords.</p>
 <p>We can streamline the process of writing <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> for each release by compiling the news items from the <code class="docutils literal notranslate"><span class="pre">news</span></code> directory.</p>
-<p>Here an example <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> <a class="reference external" href="https://github.com/Billingegroup/scikit-package/blob/main/CHANGELOG.rst">https://github.com/Billingegroup/scikit-package/blob/main/CHANGELOG.rst</a></p>
+<p>Here is an example <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> <a class="reference external" href="https://github.com/scikit-package/scikit-package/blob/main/CHANGELOG.rst">https://github.com/scikit-package/scikit-package/blob/main/CHANGELOG.rst</a></p>
 </section>
 <section id="how-do-i-write-good-a-news-item">
 <h1>How do I write good a news item?<a class="headerlink" href="#how-do-i-write-good-a-news-item" title="Link to this heading"></a></h1>
 <ul>
 <li><p>Do not remove <code class="docutils literal notranslate"><span class="pre">news/TEMPLATE.rst</span></code>. Make a copy called <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>.</p></li>
-<li><p>Do not modify other section headers in the rst file. Replace <code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">&lt;news</span> <span class="pre">item&gt;</span></code></p></li>
-<li><p>Begin with “No news”, “no news”, or “no news added” for trivial changes with the following format:</p></li>
-<li><p>For consistency, start with a capital letter and a verb. End with a period. Ex) <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">automatic</span> <span class="pre">linting</span> <span class="pre">of</span> <span class="pre">.md,</span> <span class="pre">.yml,</span> <span class="pre">.rst</span> <span class="pre">files</span> <span class="pre">via</span> <span class="pre">prettier</span> <span class="pre">hook</span> <span class="pre">in</span> <span class="pre">pre-commit.</span></code></p></li>
-<li><p>If you do not need to write a news item, still write the following format so that the CI can pass while it’s not later merged to the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> file.</p>
+<li><p>Do not modify other section headers in the rst file. Replace <code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">&lt;news</span> <span class="pre">item&gt;</span></code> only.</p></li>
+<li><p>Start with a capital letter and a verb. End with a period, e.g., <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">automatic</span> <span class="pre">linting</span> <span class="pre">of</span> <span class="pre">.md,</span> <span class="pre">.yml,</span> <span class="pre">.rst</span> <span class="pre">files</span> <span class="pre">via</span> <span class="pre">a</span> <span class="pre">prettier</span> <span class="pre">hook</span> <span class="pre">in</span> <span class="pre">pre-commit.</span></code></p></li>
+<li><p>For trivial changes, still create <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>, but the news item should start with <code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">No</span> <span class="pre">news:</span></code> so that the news item is not compiled into the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> file during the release process. Here is an example below:</p>
 <blockquote>
 <div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>**Added:**
 
@@ -124,6 +123,7 @@
 </div>
 </div></blockquote>
 </li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">rst</span></code> style of backquotes instead of the markdown style of backquotes. For example, use <code class="docutils literal notranslate"><span class="pre">``scikit-package``</span></code> instead of <code class="docutils literal notranslate"><span class="pre">`scikit-package`</span></code>.</p></li>
 </ul>
 </section>
 <section id="where-to-place-the-news-item-in-branch-name-rst">

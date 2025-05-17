@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create conda package with conda-forge &mdash; scikit-package 0.0.3rc1 documentation</title>
+  <title>Create conda package with conda-forge &mdash; scikit-package 0.0.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=544a501d"></script>
+      <script src="../_static/documentation_options.js?v=7cc827d7"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -23,7 +23,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Billinge Group standards" href="../billinge-group-standards.html" />
+    <link rel="next" title="Billinge Group standards" href="../programming-guides/billinge-group-standards.html" />
     <link rel="prev" title="Publish on GitHub and to PyPI" href="pypi-github.html" /> 
 </head>
 
@@ -78,7 +78,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../billinge-group-standards.html">Billinge Group standards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programming-guides/billinge-group-standards.html">Billinge Group standards</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
 <ul>
@@ -86,7 +86,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">SUPPORT</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support/frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
 <ul>
@@ -110,7 +110,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Create conda package with conda-forge</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/Billingegroup/scikit-package/blob/main/doc/source/release-guides/conda-forge.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/release-guides/conda-forge.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -136,7 +136,7 @@
 </div></blockquote>
 <p><a class="reference internal" href="#conda-forge-recipe-upload"><span class="std std-ref">Step 2. Upload the recipe</span></a></p>
 <blockquote>
-<div><p>Once you have the <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> generated, you will create a pull request the staged-recipe repository in the conda-forge repository <a class="reference external" href="https://github.com/conda-forge/staged-recipes">here</a></p>
+<div><p>Once you have the <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> generated, you will create a pull request to the the <a class="reference external" href="https://github.com/conda-forge/staged-recipes">staged-recipes repository</a> from your forked repository. The staged-recipes repository is a temporary location for the recipe until it is approved by the conda-forge community.</p>
 </div></blockquote>
 <p><a class="reference internal" href="#conda-forge-recipe-review"><span class="std std-ref">Step 3. Recipe review</span></a></p>
 <blockquote>
@@ -151,53 +151,52 @@
 <p>Do you want to learn more about <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code>? Please read <a class="reference internal" href="#meta-yaml-info"><span class="std std-ref">Appendix 1</span></a>.</p>
 </div>
 <p>Hence, in Step 1, we will generate <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> using the Billinge group’s template. See <a class="reference external" href="https://github.com/conda-forge/diffpy.utils-feedstock/blob/main/recipe/meta.yaml">https://github.com/conda-forge/diffpy.utils-feedstock/blob/main/recipe/meta.yaml</a> as an example of a <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> used in production.</p>
-<ol class="arabic">
+<ol class="arabic simple">
 <li><p>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> via <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scikit-package</span></code> and run <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">conda-forge</span></code></p></li>
-<li><p>Answer the following questions. Default values in parentheses are used if no value is provided.</p>
-<blockquote>
-<div><dl class="field-list simple">
-<dt class="field-odd">github_org<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The GitHub organization name. For example, <code class="docutils literal notranslate"><span class="pre">diffpy</span></code>.</p>
+<li><p>Answer the following questions:</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">github_username_or_orgname<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The GitHub username or organization name.</p>
 </dd>
-<dt class="field-even">repo_name<span class="colon">:</span></dt>
-<dd class="field-even"><p>The name of the repository.</p>
+<dt class="field-even">package_import_name<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the module.</p>
 </dd>
-<dt class="field-odd">module_name<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The name of the module.</p>
+<dt class="field-odd">github_repo_name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The name of the repository.</p>
 </dd>
 <dt class="field-even">version<span class="colon">:</span></dt>
 <dd class="field-even"><p>The version of the package.</p>
 </dd>
-<dt class="field-odd">source<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Choose PyPI.</p>
+<dt class="field-odd">min_python_version<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The minimum version of Python required. i.e., 3.11</p>
 </dd>
-<dt class="field-even">short_description<span class="colon">:</span></dt>
+<dt class="field-even">project_short_description<span class="colon">:</span></dt>
 <dd class="field-even"><p>The short description of the project.</p>
 </dd>
-<dt class="field-odd">full_description<span class="colon">:</span></dt>
+<dt class="field-odd">project_full_description<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The full description of the project.</p>
 </dd>
 <dt class="field-even">license_file<span class="colon">:</span></dt>
-<dd class="field-even"><p>The license file that is located in your project repository. i.e., <code class="docutils literal notranslate"><span class="pre">LICENSE.rst</span></code>.</p>
+<dd class="field-even"><p>The license file located in the package repository. i.e., <code class="docutils literal notranslate"><span class="pre">LICENSE.rst</span></code>.</p>
 </dd>
-<dt class="field-odd">maintainers<span class="colon">:</span></dt>
-<dd class="field-odd"><p>You may have multiple maintainers <code class="docutils literal notranslate"><span class="pre">sbillinge,</span> <span class="pre">bobleesj</span></code> or just <code class="docutils literal notranslate"><span class="pre">sbillinge</span></code>.</p>
+<dt class="field-odd">recipe_maintainers<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The GH usernames who can merge PRs in the feedstock.</p>
 </dd>
 <dt class="field-even">build_requirements<span class="colon">:</span></dt>
-<dd class="field-even"><p>copy <code class="docutils literal notranslate"><span class="pre">requirements/build.txt</span></code> from the project repo. It should be empty for pure Python packages.</p>
+<dd class="field-even"><p>Copy <code class="docutils literal notranslate"><span class="pre">requirements/build.txt</span></code> from the project repo.</p>
 </dd>
 <dt class="field-odd">host_requirements<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Type <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">{{</span> <span class="pre">python_min</span> <span class="pre">}},</span> <span class="pre">setuptools,</span> <span class="pre">setuptools-git-versioning</span> <span class="pre">&gt;=2.0,</span> <span class="pre">pip</span></code>.</p>
+<dd class="field-odd"><p>Use the default values provided for pure Python packages.</p>
 </dd>
 <dt class="field-even">runtime_requirements<span class="colon">:</span></dt>
-<dd class="field-even"><p>Type the runtime dependencies from  <code class="docutils literal notranslate"><span class="pre">requirements/conda.txt</span></code>.</p>
+<dd class="field-even"><p>Copy from  <code class="docutils literal notranslate"><span class="pre">requirements/conda.txt</span></code>.</p>
 </dd>
 <dt class="field-odd">testing_requirements<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Type the testing dependencies from <code class="docutils literal notranslate"><span class="pre">requirements/test.txt</span></code>.</p>
+<dd class="field-odd"><p>Copy from <code class="docutils literal notranslate"><span class="pre">requirements/test.txt</span></code>.</p>
 </dd>
 </dl>
-</div></blockquote>
-</li>
+<ol class="arabic simple">
 <li><p>Now, you have <code class="docutils literal notranslate"><span class="pre">recipes/&lt;package-name&gt;/meta.yaml</span></code> generated.</p></li>
 </ol>
 <div class="admonition important">
@@ -239,9 +238,9 @@
 <p>First, we will copy the <code class="docutils literal notranslate"><span class="pre">SHA256</span></code> value from <a class="reference external" href="http://pypi.org">pypi.org</a>:</p>
 <ol class="arabic simple">
 <li><p>Visit the project on PyPI at <code class="docutils literal notranslate"><span class="pre">https://pypi.org/project/&lt;package-name&gt;</span></code></p></li>
-<li><p>Click <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">files</span></code> under <code class="docutils literal notranslate"><span class="pre">Navigation</span></code></p></li>
-<li><p>Click <code class="docutils literal notranslate"><span class="pre">view</span> <span class="pre">hashes</span></code> under <code class="docutils literal notranslate"><span class="pre">Source</span> <span class="pre">Distribution</span></code></p></li>
-<li><p>Copy the <code class="docutils literal notranslate"><span class="pre">SHA256</span></code> value</p></li>
+<li><p>Click <span class="guilabel">Download files</span> under <span class="guilabel">Navigation</span></p></li>
+<li><p>Click <span class="guilabel">view hashes</span> under <span class="guilabel">Source Distribution</span></p></li>
+<li><p>Copy the <span class="guilabel">SHA256</span> value</p></li>
 <li><p>Create a PR to the feedstock repository.</p></li>
 <li><p>If you haven’t, fork and clone the forked feedstock repository.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">main</span></code> to sync with the main branch.</p></li>
@@ -259,12 +258,15 @@
 <span id="conda-forge-pre-release"></span><h2>Appendix 1. How do I do pre-release?<a class="headerlink" href="#appendix-1-how-do-i-do-pre-release" title="Link to this heading"></a></h2>
 <p>Generate <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> by following <code class="docutils literal notranslate"><span class="pre">Step</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">Step</span> <span class="pre">2</span></code> under <code class="docutils literal notranslate"><span class="pre">conda-forge:</span> <span class="pre">release</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">first</span> <span class="pre">time</span></code> above. Here are two differences required for pre-release:</p>
 <ol class="arabic">
-<li><p>Create <code class="docutils literal notranslate"><span class="pre">recipe/conda_build_config.yaml</span></code> containing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">channel_targets</span><span class="p">:</span>
-   <span class="o">-</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="o">&lt;</span><span class="n">package</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="n">_rc</span>
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">recipe/conda_build_config.yaml</span></code> containing</p>
+<blockquote>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">channel_targets</span><span class="p">:</span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge &lt;package-name&gt;_rc</span>
 </pre></div>
 </div>
+</div></blockquote>
 </li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">version</span></code> of <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code>, enter <code class="docutils literal notranslate"><span class="pre">&lt;version&gt;rc&lt;rc-number&gt;</span></code> (e.g., enter <code class="docutils literal notranslate"><span class="pre">0.0.3rc1</span></code> instead of <code class="docutils literal notranslate"><span class="pre">0.0.3-rc.1</span></code>). This is because PyPI uses the <code class="docutils literal notranslate"><span class="pre">&lt;version&gt;rc&lt;rc-number&gt;</span></code> format for pre-releases.</p></li>
 <li><p>See an example here: <a class="reference external" href="https://github.com/conda-forge/diffpy.pdffit2-feedstock/blob/rc/recipe/conda_build_config.yaml">https://github.com/conda-forge/diffpy.pdffit2-feedstock/blob/rc/recipe/conda_build_config.yaml</a></p></li>
 <li><p>Make a PR into <code class="docutils literal notranslate"><span class="pre">rc</span></code> instead of <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
 <li><p>Re-render once the PR is created.</p></li>
@@ -301,7 +303,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="pypi-github.html" class="btn btn-neutral float-left" title="Publish on GitHub and to PyPI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../billinge-group-standards.html" class="btn btn-neutral float-right" title="Billinge Group standards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../programming-guides/billinge-group-standards.html" class="btn btn-neutral float-right" title="Billinge Group standards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
