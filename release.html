@@ -77,8 +77,9 @@
 <p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">0.0.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">0.0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">0.0.1</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -111,14 +112,85 @@
   <section id="release-notes">
 <span id="index-0"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading"></a></h1>
 <section id="id1">
-<h2>0.0.2<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2>0.0.3<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p><strong>Added:</strong></p>
+<ul class="simple">
+<li><p>Added new logo</p></li>
+<li><p>Add a one-liner in README and index that the package is built and maintained using scikit-package.</p></li>
+<li><p>Add package create conda-forge command to create a conda-forge recipe meta.yml file.</p></li>
+<li><p>Add instruction when to use hyphens or underscores for file and folder names under FAQ.</p></li>
+<li><p>Start implementing guilabel in Sphinx for clickable items in tutorials.</p></li>
+<li><p>Add tutorial for migrating Level 4 to Level 5 of sharing code.</p></li>
+<li><p>Add logo for Github social preview.</p></li>
+<li><p>Add reasons we have adopted README.rst in Level 5 under FAQ section.</p></li>
+<li><p>Add Billinge group coding standards and workflows as a standalone section in the official scikit-package documentation.</p></li>
+<li><p>Add PR template to save maintainer’s time and to help contributors generate and update public facing documentations.</p></li>
+<li><p>Add .readthedocs.yaml under the template folder to allow preview documentation on each PR.</p></li>
+<li><p>Add instructions on how to use alias shortcut for creating news file in Level 5.</p></li>
+<li><p>Implement package create workspace, package create system, and package create public CLI commands.</p></li>
+<li><p>Add descriptions on conda-forge, conda, and installers like miniconda, miniforge in the FAQ section.</p></li>
+<li><p>Include an example section in the official documentation.</p></li>
+<li><p>Allow preview rendered documentation in each pull request.</p></li>
+<li><p>Provide a starting template for Sphinx on how to reuse .rst file, attach images, and write code snippets in the documentation.</p></li>
+<li><p>Add a figure on pre-commit local and remote setup across Level 3 to 5 under FAQ.</p></li>
+<li><p>Support for copying code-blocks in documentation using sphinx_copybutton extension.</p></li>
+<li><p>Define clear roles for the owner and maintainer. The maintainer has merge and release rights, while the owner oversees the project, similar to a Principal Investigator (PI) in a research group.</p></li>
+<li><p>Add an example piece of code under the src directory to show how to develop new lines of code.</p></li>
+<li><p>Add section dividers in the nav of the scikit-package documentation into getting started, tutorials, release guides, programming guides, examples, support, and reference.</p></li>
+<li><p>Add a guide to use <code class="docutils literal notranslate"><span class="pre">.rst</span></code> backquotes for writing news items.</p></li>
+<li><p>Add instructions on how to render API .rst files without forking for standard and include a keyboard shortcut for using auto_api.py to generate API .rst files for package with namespace.</p></li>
+<li><p>Add descriptions for each workflow in Level 5 in a PR.</p></li>
+<li><p>Add an explicit instruction to configure conda-forge channel in Level 4, 5 tutorial instructions.</p></li>
+<li><p>Add instruction on how to avoid pre-commit auto-fix stash problem in the FAQ section.</p></li>
+<li><p>Add instruction on how to migrate .md to .rst file using a tool during Level 4 to 5 migration.</p></li>
+<li><p>Indicate the correction software version will be available in documentation built by readthedoc in each PR.</p></li>
+<li><p>Add “Edit on GitHub” link for each page in the documentation.</p></li>
+<li><p>Add docstrings to the dot_product function used for the demo code within src/calculator.py.</p></li>
+<li><p>Add how to solve CI error encountered with news GitHub CI under FAQ.</p></li>
+<li><p>Add logo to documentation header.</p></li>
+<li><p>Add instructions to use <code class="docutils literal notranslate"><span class="pre">vulture</span></code> in Level 5 and before PyPI release.</p></li>
+<li><p>Add a FAQ section on which workflow files to update when there is a new stable Python version.</p></li>
+<li><p>Add ‘$’ for shell script commands in the documentation.</p></li>
+<li><p>Add instrunctions on how to setup write permission in GitHub workflows at the org and repository level.</p></li>
+<li><p>Add instructions on how to set logo and favicon in the documentation.</p></li>
+<li><p>Add step-by-step guides for Level 1 through Level 4 of sharing code.</p></li>
+</ul>
+<p><strong>Changed:</strong></p>
+<ul class="simple">
+<li><p>Modified Development Status from 5 to 3 in pyproject.toml.</p></li>
+<li><p>Adopt Semantic Versioning 2.0.0 for pre-release GitHub tag name.</p></li>
+<li><p>Change cookiecuter user input value from github_org to github_username_or_orgname.</p></li>
+<li><p>Transfer repository from billingegroup org to scikit-package org.</p></li>
+<li><p>Change github_admin_username to maintainer_github_username in release workflow to be compatible with skpkg.</p></li>
+<li><p>Change proj_owner to maintainer in Level 5 user inputs in cookiecutter to reflect that any developer including the project owner can help with package maintenance.</p></li>
+</ul>
+<p><strong>Fixed:</strong></p>
+<ul class="simple">
+<li><p>Use the latest user prompts from <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span> <span class="pre">conda-forge</span></code> for meta.yml creation.</p></li>
+<li><p>Lowercase package directory name under src directory for namespace package.</p></li>
+<li><p>Clarified instructions for the src directory name</p></li>
+<li><p>Update GITHUB_ADMIN_USERNAME to MAINTAINER_GITHUB_USERNAME in post_gen_hook.py to dynamically generate GitHub workflow files.</p></li>
+<li><p>Fixed the problem of a directory folder not being initialized with underscore.</p></li>
+</ul>
+<p><strong>Removed:</strong></p>
+<ul class="simple">
+<li><p>CI: Prevent running additional tests-on-PR CI when a PR is merged.</p></li>
+<li><p>Remove hard-coded <code class="docutils literal notranslate"><span class="pre">diffpy</span></code> in README.</p></li>
+<li><p>Remove environment.yml in the cookiecutter and skpkg repos since the centralized scripts no longer require it as the conda-forge channel is set in those scripts by default.</p></li>
+</ul>
+<p><em>Fixed:*</em>
+* Remove the import of extend_path from pkgutil in diffpy/__init__.py in post_gen_hook.py when creating a new project with with the project name of &lt;org-name&gt;.&lt;project-name&gt;.
+* Remove requirements/README.txt containing instructions for listing dependencies for the package. The instruction is already provided in the official documentation.</p>
+</section>
+<section id="id2">
+<h2>0.0.2<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p><strong>Changed:</strong></p>
 <ul class="simple">
 <li><p>Provide separate documentation instructions for starting a new project vs. migrating an existing package.</p></li>
 </ul>
 </section>
-<section id="id2">
-<h2>0.0.1<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id3">
+<h2>0.0.1<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p><strong>Added:</strong></p>
 <ul class="simple">
 <li><p>Add full description of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p></li>
