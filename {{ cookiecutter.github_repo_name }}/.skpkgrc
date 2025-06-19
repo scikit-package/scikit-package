@@ -14,6 +14,5 @@
   "minimum_supported_python_version": "{{ cookiecutter.minimum_supported_python_version }}",
   "maximum_supported_python_version": "{{ cookiecutter.maximum_supported_python_version }}",
   "project_needs_c_code_compiled": "{{ cookiecutter.project_needs_c_code_compiled }}",
-  "project_has_gui_tests": "{{ cookiecutter.project_has_gui_tests }}",
-  "_copy_without_render": "{{ cookiecutter._copy_without_render }}"
+  "project_has_gui_tests": "{{ cookiecutter.project_has_gui_tests }}"
 }
