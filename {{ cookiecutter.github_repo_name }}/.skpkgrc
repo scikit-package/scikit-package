@@ -1,0 +1,19 @@
+{
+  "maintainer_name": "{{ cookiecutter.maintainer_name }}",
+  "maintainer_email": "{{ cookiecutter.maintainer_email }}",
+  "maintainer_github_username": "{{ cookiecutter.maintainer_github_username }}",
+  "contributors": "{{ cookiecutter.contributors }}",
+  "license_holders": "{{ cookiecutter.license_holders }}",
+  "project_name": "{{ cookiecutter.project_name }}",
+  "github_username_or_orgname": "{{ cookiecutter.github_username_or_orgname }}",
+  "github_repo_name": "{{ cookiecutter.github_repo_name }}",
+  "conda_pypi_package_dist_name": "{{ cookiecutter.conda_pypi_package_dist_name }}",
+  "package_dir_name": "{{ cookiecutter.package_dir_name }}",
+  "project_short_description": "{{ cookiecutter.project_short_description }}",
+  "project_keywords": "{{ cookiecutter.project_keywords }}",
+  "minimum_supported_python_version": "{{ cookiecutter.minimum_supported_python_version }}",
+  "maximum_supported_python_version": "{{ cookiecutter.maximum_supported_python_version }}",
+  "project_needs_c_code_compiled": "{{ cookiecutter.project_needs_c_code_compiled }}",
+  "project_has_gui_tests": "{{ cookiecutter.project_has_gui_tests }}",
+  "_copy_without_render": "{{ cookiecutter._copy_without_render }}"
+}
