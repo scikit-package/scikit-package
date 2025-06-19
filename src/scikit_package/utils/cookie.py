@@ -5,9 +5,9 @@ from pathlib import Path
 
 SKPKG_USER_CONFIG_FILE = "~/.skpkgrc"
 try:
-    USER_CONFIG_FILE = os.environ["SKPKG_CONFIG_FILE"]
+    SKPKG_USER_CONFIG_FILE = os.environ["SKPKG_CONFIG_FILE"]
 except KeyError:
-    USER_CONFIG_FILE = SKPKG_USER_CONFIG_FILE
+    SKPKG_USER_CONFIG_FILE = SKPKG_USER_CONFIG_FILE
 
 SKPKG_PROJ_CONFIG_FILE = ".skpkgrc"
 
