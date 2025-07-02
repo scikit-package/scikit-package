@@ -1,10 +1,12 @@
 **Added:**
 
+* Use tests.txt, modify folder name from doc to docs.
 * Implement new feature for Emil.
 
 **Changed:**
 
-* <news item>
+* Implement new feature for Emil 2
+* Implement new feature for Emil.
 
 **Deprecated:**
 
