@@ -1,4 +1,4 @@
-import re
+import itertools
 
 import pytest
 
@@ -94,12 +94,18 @@ def test_copy_all_files_bad(user_filesystem):
     # a file with the same name found in both dirs and exists_ok=False.
     source_dir = user_filesystem / "package-dir"
     target_dir = source_dir / "target-dir-inside-package-dir"
-    duplicate_names = sorted(["COMMIT_EDITMSG", "tutorial.rst"])
+    duplicate_names = ["COMMIT_EDITMSG", "tutorial.rst"]
+    duplicate_names_perm = list(itertools.permutations(duplicate_names))
     with pytest.raises(
         FileExistsError,
-        match=re.escape(
+    ) as error:
+        copy_all_files(source_dir, target_dir, exists_ok=False)
+        expected_error_messages = [
             f"{duplicate_names} already exists in target dir "
             f"{str(target_dir)}."
-        ),
-    ):
-        copy_all_files(source_dir, target_dir, exists_ok=False)
+            for duplicate_names in duplicate_names_perm
+        ]
+        actual_error_message = str(error.value)
+        assert any(
+            [actual_error_message == msg for msg in expected_error_messages]
+        )

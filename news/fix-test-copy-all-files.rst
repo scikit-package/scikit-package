@@ -16,7 +16,7 @@
 
 **Fixed:**
 
-* Sort the file names before matching the strings to fix ``test_copy_all_files_bad``.
+* Match all possible file name permutations in the string to fix ``test_copy_all_files_bad``.
 
 **Security:**
 

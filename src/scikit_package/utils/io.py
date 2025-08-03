@@ -100,7 +100,7 @@ def copy_all_files(source_dir, target_dir, exists_ok=False):
         if dest.exists():
             duplicate_files.append(item)
     if not exists_ok and len(duplicate_files) != 0:
-        duplicate_names = sorted([file.name for file in duplicate_files])
+        duplicate_names = [file.name for file in duplicate_files]
         raise FileExistsError(
             f"{duplicate_names} already exists in target dir "
             f"{str(target_dir)}."
