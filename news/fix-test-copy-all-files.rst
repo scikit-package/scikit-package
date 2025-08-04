@@ -16,7 +16,7 @@
 
 **Fixed:**
 
-* Match all possible file name permutations in the string to fix ``test_copy_all_files_bad``.
+* Use simpler assertions in ``test_copy_all_files_bad``.
 
 **Security:**
 

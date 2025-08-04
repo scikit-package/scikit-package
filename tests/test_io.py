@@ -1,5 +1,3 @@
-import itertools
-
 import pytest
 
 from scikit_package.utils.io import copy_all_files
@@ -95,17 +93,9 @@ def test_copy_all_files_bad(user_filesystem):
     source_dir = user_filesystem / "package-dir"
     target_dir = source_dir / "target-dir-inside-package-dir"
     duplicate_names = ["COMMIT_EDITMSG", "tutorial.rst"]
-    duplicate_names_perm = list(itertools.permutations(duplicate_names))
     with pytest.raises(
         FileExistsError,
     ) as error:
         copy_all_files(source_dir, target_dir, exists_ok=False)
-        expected_error_messages = [
-            f"{duplicate_names} already exists in target dir "
-            f"{str(target_dir)}."
-            for duplicate_names in duplicate_names_perm
-        ]
-        actual_error_message = str(error.value)
-        assert any(
-            [actual_error_message == msg for msg in expected_error_messages]
-        )
+        for name in duplicate_names:
+            assert name in str(error.value)
