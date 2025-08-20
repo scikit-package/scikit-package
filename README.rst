@@ -4,7 +4,7 @@
 .. |title| replace:: scikit-package
 .. _title: https://scikit-package.github.io/scikit-package
 
-.. |Icon| image:: img/logos/scikit-package-logo-text.png
+.. |Icon| image::  https://raw.githubusercontent.com/scikit-pacakge/scikit-package/main/img/logos/scikit-package-logo-text.png
         :target: https://scikit-package.github.io/scikit-package
         :height: 150px
 
@@ -50,7 +50,7 @@ Overview
 
 Here is an overview of the 5 levels of sharing code and the key features of ``scikit-package``:
 
-.. image:: img/figures/scikit-package-overview-qr-code.png
+.. image:: https://raw.githubusercontent.com/scikit-pacakge/scikit-package/main/img/figures/scikit-package-overview-qr-code.png
     :alt: Diagram of 5 levels of sharing code with key features and scikit-package commands
     :width: 800px
     :align: center
@@ -61,7 +61,7 @@ Demo
 
 Here is how you can use the ``package create public`` command to create a new Level 5 Python package called ``diffpy.my-project`` in just 1–2 minutes:
 
-.. image:: img/gif/demo.gif
+.. image:: https://raw.githubusercontent.com/scikit-pacakge/scikit-package/main/img/gif/demo.gif
     :alt: Demonstration of creating a new Level 5 package with scikit-package
     :width: 800px
     :align: center
