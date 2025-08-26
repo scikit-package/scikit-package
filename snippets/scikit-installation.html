@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Install scikit-package with conda &mdash; scikit-package 0.1.0 documentation</title>
+  <title>Install scikit-package with conda &mdash; scikit-package 0.2.0rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../_static/documentation_options.js?v=4ee4825d"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -48,6 +48,7 @@
               <p class="caption" role="heading"><span class="caption-text">GETTING STARTED</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#where-do-i-begin">Where do I begin?</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">TUTORIALS</span></p>
 <ul>
@@ -56,11 +57,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-guides/pypi-github.html">Publish on GitHub and to PyPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-guides/conda-forge.html">Create conda package with conda-forge</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-4.html">Example 1. Create your first Level 4 package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5.html">Example 2. Create your first Level 5 public package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-namespace.html">Example 3. Create a package with branded namespace import at Level 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-migration.html">Example 4. Migrate an existing package to Level 5</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
@@ -92,7 +102,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/snippets/scikit-installation.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/snippets/scikit-installation.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -106,14 +116,14 @@
 <li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">conda</span></code> is installed on your local computer as instructed in <a class="reference internal" href="../tutorials/tutorial-level-1-2-3.html#conda-env-setup-simple"><span class="std std-ref">(Required) Use conda environment to install packages and run Python code</span></a>.</p></li>
 <li><p>Ensure that you have added the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel to your <code class="docutils literal notranslate"><span class="pre">conda</span></code> configuration.</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>config<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>config<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Create a new conda environment <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code> and install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> simultaneously by running the following command:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>skpkg-env<span class="w"> </span>scikit-package<span class="w"> </span>pre-commit
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>skpkg-env<span class="w"> </span>scikit-package<span class="w"> </span>pre-commit
 </pre></div>
 </div>
 <div class="admonition note">
@@ -124,14 +134,14 @@
 </li>
 <li><p>Activate the environment:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>skpkg-env
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>skpkg-env
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Confirm that you have the latest version of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> available on GitHub:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>show<span class="w"> </span>scikit-package
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>show<span class="w"> </span>scikit-package
 </pre></div>
 </div>
 </div></blockquote>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Publish on GitHub and to PyPI &mdash; scikit-package 0.1.0 documentation</title>
+  <title>Publish on GitHub and to PyPI &mdash; scikit-package 0.2.0rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../_static/documentation_options.js?v=4ee4825d"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Create conda package with conda-forge" href="conda-forge.html" />
-    <link rel="prev" title="Migrate your existing package with scikit-package" href="../tutorials/tutorial-level-5-migration.html" /> 
+    <link rel="prev" title="Create a configured LaTeX manuscript folder with scikit-package" href="../tutorials/tutorial-manuscript.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,6 +50,7 @@
               <p class="caption" role="heading"><span class="caption-text">GETTING STARTED</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#where-do-i-begin">Where do I begin?</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">TUTORIALS</span></p>
 <ul>
@@ -58,6 +59,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul class="current">
@@ -73,6 +75,14 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="conda-forge.html">Create conda package with conda-forge</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-4.html">Example 1. Create your first Level 4 package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5.html">Example 2. Create your first Level 5 public package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-namespace.html">Example 3. Create a package with branded namespace import at Level 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-migration.html">Example 4. Migrate an existing package to Level 5</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
@@ -104,7 +114,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Publish on GitHub and to PyPI</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/release-guides/pypi-github.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/release-guides/pypi-github.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -142,9 +152,9 @@
 <li><p>Confirm the <code class="docutils literal notranslate"><span class="pre">maintainer_github_username</span></code> section in <code class="docutils literal notranslate"><span class="pre">.github/workflows/build-wheel-release-upload.yml</span></code> is that of the project maintainer.</p></li>
 <li><p>In your terminal, run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">main</span></code> to sync with the main branch.</p></li>
 <li><p>(Optional but recommended) Install and run the <code class="docutils literal notranslate"><span class="pre">vulture</span></code> tool to identify and manually remove unused or dead code before tagging a release:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>vulture
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>vulture
 <span class="c1">#### Example outputs after running vulture ####</span>
-$<span class="w"> </span>vulture<span class="w"> </span>src/<span class="w"> </span>tests/
+vulture<span class="w"> </span>src/<span class="w"> </span>tests/
 tests/test_module1.py:22:<span class="w"> </span>unused<span class="w"> </span>import<span class="w"> </span><span class="s1">&#39;os&#39;</span><span class="w"> </span><span class="o">(</span><span class="m">100</span>%<span class="w"> </span>confidence<span class="o">)</span>
 </pre></div>
 </div>
@@ -153,8 +163,8 @@ tests/test_module1.py:22:<span class="w"> </span>unused<span class="w"> </span>i
 <li><p>Run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For pre-release, use *.*.*-rc.* e.g., 1.0.0-rc.0</span>
 <span class="c1"># rc stands for release candidate</span>
-$<span class="w"> </span>git<span class="w"> </span>tag<span class="w"> </span>&lt;version&gt;-rc.&lt;rc-number&gt;
-$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>&lt;version&gt;-rc.&lt;rc-number&gt;
+git<span class="w"> </span>tag<span class="w"> </span>&lt;version&gt;-rc.&lt;rc-number&gt;
+git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>&lt;version&gt;-rc.&lt;rc-number&gt;
 </pre></div>
 </div>
 </li>
@@ -173,8 +183,8 @@ $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>
 <li><p>In your terminal, run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">main</span></code> to sync with the main branch.</p></li>
 <li><p>Run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For release, use *.*.* e.g., 1.0.0</span>
-$<span class="w"> </span>git<span class="w"> </span>tag<span class="w"> </span>&lt;version&gt;
-$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>&lt;version&gt;
+git<span class="w"> </span>tag<span class="w"> </span>&lt;version&gt;
+git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>&lt;version&gt;
 </pre></div>
 </div>
 </li>
@@ -250,7 +260,7 @@ $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../tutorials/tutorial-level-5-migration.html" class="btn btn-neutral float-left" title="Migrate your existing package with scikit-package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tutorials/tutorial-manuscript.html" class="btn btn-neutral float-left" title="Create a configured LaTeX manuscript folder with scikit-package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="conda-forge.html" class="btn btn-neutral float-right" title="Create conda package with conda-forge" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

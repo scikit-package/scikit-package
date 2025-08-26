@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example 4. Migrate an existing package to Level 5 &mdash; scikit-package 0.2.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=4ee4825d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=cca77546"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Billinge Group standards" href="../programming-guides/billinge-group-standards.html" />
+    <link rel="prev" title="Example 3. Create a package with branded namespace import at Level 5" href="example-level-5-namespace.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/scikit-package-logo-docs.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#where-do-i-begin">Where do I begin?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">TUTORIALS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-1-2-3.html">(Level 1-3) Reuse code within a file, across files and folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4.html">(Level 4) Share your code as a locally installable Python package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-guides/pypi-github.html">Publish on GitHub and to PyPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-guides/conda-forge.html">Create conda package with conda-forge</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-level-4.html">Example 1. Create your first Level 4 package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-level-5.html">Example 2. Create your first Level 5 public package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-level-5-namespace.html">Example 3. Create a package with branded namespace import at Level 5</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example 4. Migrate an existing package to Level 5</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lint-code-with-black">Lint code with black</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-pre-commit-to-format-code">Setup pre-commit to format code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-local-ci-after-migrating-essential-files">Setup local CI after migrating essential files</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../programming-guides/billinge-group-standards.html">Billinge Group standards</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">SUPPORT</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support/frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scikit-package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Example 4. Migrate an existing package to Level 5</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/examples/example-level-5-migration.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-4-migrate-an-existing-package-to-level-5">
+<span id="example-4"></span><h1>Example 4. Migrate an existing package to Level 5<a class="headerlink" href="#example-4-migrate-an-existing-package-to-level-5" title="Link to this heading"></a></h1>
+<p>In the final example, we demonstrate how you can migrate an existing legacy Python package to the Level 5 public standard. As in <a class="reference internal" href="example-level-5.html#example-2"><span class="std std-ref">Example 2. Create your first Level 5 public package</span></a>, we adopt the forking GitHub workflow where <strong>Sir Lancelot</strong> is the maintainer and <strong>Sir Robin</strong> is the contributor**. The migration process is divided into two parts. The first involves fixing legacy issues that allow the existing code to pass pre-commit. Second, a new package directory structure is created and files from the old package are migrated over into the new package directory tree. The files fall into three categories, whether they are present just in the new package, just in the old package or in both. scikit-package has instructions for how to use Git to help with this transition.</p>
+<p>Here we assume the legacy project is called <code class="docutils literal notranslate"><span class="pre">flying-circus</span></code> and it exists on GitHub under the <code class="docutils literal notranslate"><span class="pre">kot-roundtable</span></code> organization. In the past, <strong>Sir Robin</strong> has forked the <code class="docutils literal notranslate"><span class="pre">flying-circus</span></code> remote repository and cloned it onto his local computer in the <code class="docutils literal notranslate"><span class="pre">∼/somewhere/on/my/computer</span></code> folder using the forking workflow that was described in Example 2. As a result, <strong>Sir Robin</strong>’s file system has the following structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/somewhere/
+<span class="w">    </span><span class="p">|</span>--<span class="w"> </span>on/
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>my/
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>computer/
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>flying-circus
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>.gitignore
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>.git/
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>README.md
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>setup.py
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>requirements.txt
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>flying_circus
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>__init__.py
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>surreal.py
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>tests
+<span class="w">                            </span><span class="p">|</span>--<span class="w"> </span>test_surreal.py
+</pre></div>
+</div>
+<p>It is a legitimate package that has been released to the public, but it is not to the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> Level 5 standards. For example, it uses the not-recommended <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> rather than the preferred <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> to handle the package build.</p>
+<section id="lint-code-with-black">
+<h2>Lint code with black<a class="headerlink" href="#lint-code-with-black" title="Link to this heading"></a></h2>
+<p>The first step of bring it to standard involves autolinting the existing code with <code class="docutils literal notranslate"><span class="pre">black</span></code> to <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> syntax standards. As usual, <strong>Sir Robin</strong> starts by making sure his local repository is properly synchronized, then creates a new branch called <code class="docutils literal notranslate"><span class="pre">black-edits</span></code> for this work:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/somewhere/on/my/computer/flying-circus
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>main
+$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>main
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>black-edits
+</pre></div>
+</div>
+<p>He then activates the <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code> Conda environment for doing the work and installs <code class="docutils literal notranslate"><span class="pre">black</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>skpkg-env
+$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>black
+</pre></div>
+</div>
+<p>The configuration information for the black tool is held in a <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file at the top level of the repository. Because <strong>Sir Robin</strong> doesn’t have a <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file, he will need to create one with the desired configuration. Following the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> instructions,
+he creates a <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file (using <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">pyproject.toml</span></code>) and adds this code block:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[tool.black]
+line-length = 79
+include = &#39;\.pyi?$&#39;
+exclude = &#39;&#39;&#39;
+/(
+\.git
+| \.hg
+| \.mypy_cache
+IUCr macros version 2.1.17: 2023/10/19
+45
+| \.tox
+| \.venv
+| \.rst
+| \.txt
+| _build
+| buck-out
+| build
+| dist
+| blib2to3
+| tests/data
+)/
+&#39;&#39;&#39;
+</pre></div>
+</div>
+<p>If he wants he can modify the configuration to conform to the standards of the project he is working on, but for <strong>flying-circus</strong> he is happy to take the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> defaults.</p>
+<p>To run the auto-linter on the code, <strong>Sir Robin</strong> types the command <code class="docutils literal notranslate"><span class="pre">black</span> <span class="pre">.</span></code>, where the dot means current directory and all subdirectories. This makes (generally) safe, automatic updates to all the code files it finds in the project. He can then commit the changes and make a PR so that <strong>Sir Lancelot</strong>, the project maintainer, can review and merge. He is careful not to make any manual edits in this PR so he tells <strong>Sir Lancelot</strong> that all the edits are from black, which makes it easy for <strong>Sir Lancelot</strong> to merge it.</p>
+</section>
+<section id="setup-pre-commit-to-format-code">
+<h2>Setup pre-commit to format code<a class="headerlink" href="#setup-pre-commit-to-format-code" title="Link to this heading"></a></h2>
+<p>Next we continue with more linting activities beyond autolinting so that all the checks in pre-commit pass. At this point, following the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> instructions, <strong>Sir Robin</strong> creates an empty Level 5 public project in the current directory by typing the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/somewhere/on/my/computer/flying-circus<span class="w">  </span><span class="c1"># he should already be here</span>
+$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>skpkg-env
+$<span class="w"> </span>package<span class="w"> </span>create<span class="w"> </span>public
+</pre></div>
+</div>
+<p>He answers the questions as in Example 2, giving <code class="docutils literal notranslate"><span class="pre">flying-circus</span></code> as the package name. This results in a new subdirectory in <code class="docutils literal notranslate"><span class="pre">flying-circus</span></code> called <code class="docutils literal notranslate"><span class="pre">flying-circus</span></code> (the same name). The steps are a bit involved and are discussed in detail in the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> documentation. His directory structure now looks like the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>somewhere/
+<span class="w">    </span><span class="p">|</span>--<span class="w"> </span>on/
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>my/
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>computer/
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>flying-circus
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>.gitignore
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>.git/
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>pyproject.toml
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>README.md
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>setup.py
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>requirements.txt
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>flying_circus
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>__init__.py
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>surreal.py
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>tests
+<span class="w">                            </span><span class="p">|</span>--<span class="w"> </span>test_surreal.py
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>flying-circus<span class="w">  </span><span class="c1"># Level 5 empty folder</span>
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.codecov.yml
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.codespell
+<span class="w">                            </span><span class="p">|</span>--<span class="w"> </span>ignore_lines.txt
+<span class="w">                            </span><span class="p">|</span>--<span class="w"> </span>ignore_words.txt
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.flake8
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.github/
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.gitignore
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.isort.cfg
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.pre-commit-config.yaml
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.readthedocs.yaml
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>src/
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>tests/
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>requirements/
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>pyproject.toml
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>...
+</pre></div>
+</div>
+<p>To begin with we need to take the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> configuration files from the new package created by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and place them in the old package. These include the <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code>, <code class="docutils literal notranslate"><span class="pre">.isort.cfg</span></code>, <code class="docutils literal notranslate"><span class="pre">.flake8</span></code>, and so on. After doing this, <strong>Sir Robin</strong>’s directory structure looks like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>somewhere/
+<span class="w">    </span><span class="p">|</span>--<span class="w"> </span>on/
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>my/
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>computer/
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>flying-circus
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>.codespell
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>ignore_lines.txt
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>ignore_words.txt
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>.flake8
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>.isort.cfg
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>.pre-commit-config.yaml
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>.gitignore
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>.git/
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>pyproject.toml
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>README.md
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>setup.py
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>requirements.txt
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>flying_circus
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>__init__.py
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>surreal.py
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>tests
+<span class="w">                            </span><span class="p">|</span>--<span class="w"> </span>test_surreal.py
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>flying-circus<span class="w">  </span><span class="c1"># Level 5 empty folder</span>
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.codecov.yml
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.codespell
+<span class="w">                            </span><span class="p">|</span>--<span class="w"> </span>ignore_lines.txt
+<span class="w">                            </span><span class="p">|</span>--<span class="w"> </span>ignore_words.txt
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.flake8
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.github/
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.gitignore
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.isort.cfg
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.pre-commit-config.yaml
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.readthedocs.yaml
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>.gitignore
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>src/
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>tests/
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>requirements/
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>pyproject.toml
+<span class="w">                        </span><span class="p">|</span>--<span class="w"> </span>...
+</pre></div>
+</div>
+<p>With this done, Sir Robin installs <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> in his environment and then runs it with this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files
+</pre></div>
+</div>
+<p>He sees many errors raised by <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code>. He will fix them and get the cleaned code reviewed and merged by <strong>Sir Lancelot</strong> on a bunch of different branches and PRs, but to avoid these changes inadvertently breaking the code at the upstream repository, <strong>Sir Lancelot</strong> creates a new branch on the <code class="docutils literal notranslate"><span class="pre">kot-roundtable/flying-circus</span></code> repository at GitHub, calling it migration. All PRs that <strong>Sir Robin</strong> creates now he will request to have them merged into the migration branch, which he will use the same way he was using <code class="docutils literal notranslate"><span class="pre">upstream/main</span></code>, keeping it synchronized and building new branches off the his local migration branch that is synchronized with <code class="docutils literal notranslate"><span class="pre">upstream/migration</span></code>. Only at the end, when everything tested and working, will <strong>Sir Lancelot</strong> merge <code class="docutils literal notranslate"><span class="pre">flying-circus/migration</span></code> into <code class="docutils literal notranslate"><span class="pre">flying-circus/main</span></code>.</p>
+<p><strong>Sir Robin</strong> continues his work to fix errors raised by <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code>. For each category of errors, <strong>Sir Robin</strong> creates a dedicated branch, grouping similar fixes together, with the commands,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>migration
+$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>migration
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>pre-commit-&lt;theme&gt;
+</pre></div>
+</div>
+<p>For example, a branch called <code class="docutils literal notranslate"><span class="pre">pre-commit-spelling</span></code> contained spelling fixes, while another branch, <code class="docutils literal notranslate"><span class="pre">pre-commit-flake8-line</span></code> contained fixes of line length errors raised by <code class="docutils literal notranslate"><span class="pre">flake8</span></code>. These were pushed to <strong>Sir Robin</strong>’s fork and PRs created into <code class="docutils literal notranslate"><span class="pre">flying-circus/migration</span></code> branch for review and merge by <strong>Sir Lancelot</strong>, as we have described. More granular branches make <strong>Sir Lancelot</strong>’s job to review and merge changes much easier.</p>
+</section>
+<section id="setup-local-ci-after-migrating-essential-files">
+<h2>Setup local CI after migrating essential files<a class="headerlink" href="#setup-local-ci-after-migrating-essential-files" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>With the package now passing all <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> checks and local tests, it is time to start migrating it to the new package structure created by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>. We do this by copying files from the old package into the directory structure created by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>.</p>
+<p>The old package was under git control. We have found that the best way to do the migration is to first move the Git database from the existing project directory to the new Level 5 package. This retains the entire git history of the old project, but places it in the new package structure created by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>. After we do this, the git controlled <code class="docutils literal notranslate"><span class="pre">flying-circus</span></code> package is now the new package and the files in the old package are no longer under git control, until we move them over.</p>
+<blockquote>
+<div><p>To move the Git database over, <strong>Sir Robin</strong> executes the below commands:</p>
+</div></blockquote>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>flying-circus<span class="w">  </span><span class="c1"># Enter Level 5 directory</span>
+$<span class="w"> </span>mv<span class="w"> </span>../.git<span class="w"> </span>.<span class="w">      </span><span class="c1"># Move Git database from old to new directory</span>
+</pre></div>
+</div>
+<p>When <strong>Sir Robin</strong> types <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, he sees files listed as <strong>deleted</strong>, <strong>added</strong>, and <strong>modified</strong>. This is from the point of view of the Git database rather than actual reality.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>deleted</strong>: These are files that exist in the Git database but are no longer present in the new package structure (e.g. project source code).</p></li>
+<li><p><strong>Untracked files</strong>: These are files that Git finds in the new package structure that do not yet exist in the Git database (i.e. new files introduced by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>).</p></li>
+<li><p><strong>modified</strong>: These files exist in both the Git database and the new package structure, but their contents differ.</p></li>
+<li><p>(not listed): Files that exist in both locations and are identical will not appear in the git status output. As an example, the code in the old package (<code class="docutils literal notranslate"><span class="pre">surreal.py</span></code> and <code class="docutils literal notranslate"><span class="pre">test_surreal.py</span></code>) hasn’t been moved over so will show in the list as deleted. The requirements and src directory trees don’t exist in the old package and will be listed as untracked. pyproject.toml is in both places but with different content, so will show as modified. And, assuming that <strong>Sir Robin</strong> didn’t modify any of the flake8 defaults, the .flake8 will not appear in the list at all as, from the point of view of the git database, it has not changed.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>Sir Robin</strong> can then start the work of removing all the issues from the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> list bit by bit. He first copies over the code files with,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cp<span class="w"> </span>-n<span class="w"> </span>../flying_circus/surreal.py<span class="w"> </span>./src/flying_circus/
+$<span class="w"> </span>cp<span class="w"> </span>-n<span class="w"> </span>../flying_circus/tests/test_surreal.py<span class="w"> </span>./tests
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-n</span></code> modifier in the cp command stands for “no clobber” and ensures that, if there is a file in the destination of the same name, the cp command will fail and the destination file will not be overwritten. Clearly this is not needed here, but it does no harm, and is a good habit to avoid errors in this migration process. When copying over entire directories, you would use the command <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-n</span> <span class="pre">-r</span></code> where the <code class="docutils literal notranslate"><span class="pre">-r</span></code> means recursively and the copy command will copy all the subdirectories and their contents. Here the <code class="docutils literal notranslate"><span class="pre">-n</span></code> can be very important. However, pay attention to outputs from the cp command and make notes of any clashes that need to be manually resolved.</p>
+<p>After the code is moved over, it should be possible to build the code in the new package and have the tests pass. <strong>Sir Robin</strong> updates the files in the requirements directory, <code class="docutils literal notranslate"><span class="pre">docs.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">conda.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">pip.txt</span></code>, and <code class="docutils literal notranslate"><span class="pre">tests.txt</span></code>, adding any dependencies that are needed for the code to run. <strong>Sir Robin</strong> can then confirm everything works with the code in the new package by creating a new environment and running the tests with the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>flying-circus-env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.13
+$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>--file<span class="w"> </span>requirements/conda.txt
+$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>--file<span class="w"> </span>requirements/tests.txt
+$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span>--no-deps
+$<span class="w"> </span>pytest
+</pre></div>
+</div>
+<p>These changes can be committed, pushed and turned into a PR into the <code class="docutils literal notranslate"><span class="pre">upstream/migration</span></code> branch. Now, the tests are passing locally, but for them to pass in the CI on GitHub some more files need to be added to the Git database. In particular, add and commit the <code class="docutils literal notranslate"><span class="pre">.github``directory,</span> <span class="pre">as</span> <span class="pre">well</span> <span class="pre">as</span> <span class="pre">the</span> <span class="pre">``src/</span></code>, <code class="docutils literal notranslate"><span class="pre">tests/</span></code>, and <code class="docutils literal notranslate"><span class="pre">requirements/</span></code>, directories. If these are added to the PR, the unit tests should now also pass in the CI.</p>
+<p>After the GitHub automated workflows pass, <strong>Sir Lancelot</strong> can review and merge th**e <code class="docutils literal notranslate"><span class="pre">sirrobinbrave/setup-CI</span></code> branch to the <code class="docutils literal notranslate"><span class="pre">upstream/migration</span></code> branch. <strong>Sir Robin</strong> can now move handwritten documentation files, such as tutorials under the doc directory and the <code class="docutils literal notranslate"><span class="pre">README</span></code>. First, <strong>Sir Robin</strong> synchronizes his local <code class="docutils literal notranslate"><span class="pre">migration</span></code> branch and creates a new branch called doc.</p>
+<p>Files that show as <code class="docutils literal notranslate"><span class="pre">updated</span></code> need to be handled carefully. They exist in the old package and the new package but with different contents and need to be manually merged by <strong>Sir Robin</strong>.</p>
+<p>Some other files also need careful merging when they contain similar content but have a different name between the packages. For example, in this case the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file in the old package is renamed to <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> in the new one. <code class="docutils literal notranslate"><span class="pre">README.md</span></code> therefore shows up as deleted and <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> as untracked in the git status list. In this case <strong>Sir Robin</strong> will add and commit <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> but then open them both in a text editor and copy any text over from the old <code class="docutils literal notranslate"><span class="pre">README.md</span></code> to the new <code class="docutils literal notranslate"><span class="pre">README.rst</span></code>, before finally removing the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> from the Git database using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rm</span> <span class="pre">README.md</span></code>. In this example, setup.py receives a similar treatment as its functionality is replaced by <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> in the new project, though some of the information in the old <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> may still be needed in the new <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> and so is manually merged in an editor/IDE by <strong>Sir Robin</strong>.</p>
+<p>The work is considered finished when:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>All files showing as <code class="docutils literal notranslate"><span class="pre">deleted</span></code> that need to be preserved have been moved from the old to the new structure directory structure.</p></li>
+<li><p>All files showing as <code class="docutils literal notranslate"><span class="pre">deleted</span></code> that are unwanted in the new package have been removed from the Git database using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rm</span> <span class="pre">&lt;filename&gt;</span></code>.</p></li>
+<li><p>All untracked files created by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> have been git added and git committed.</p></li>
+<li><p>All modified files that exist in both the old and new locations have been reviewed and the contents merged.</p></li>
+<li><p>All resulting pull requests have been reviewed and merged by <strong>Sir Lancelot</strong>.</p></li>
+</ol>
+</div></blockquote>
+<p>Finally, assuming all tests are passing and he is happy, <strong>Sir Lancelot</strong>, can merge the <code class="docutils literal notranslate"><span class="pre">upstream/migration</span></code> branch into the <code class="docutils literal notranslate"><span class="pre">upstream/main</span></code> default branch. In his computer, <strong>Sir Robin</strong> can then clean and organize things. He updates his local main from <code class="docutils literal notranslate"><span class="pre">upstream/main</span></code> and moves the new Level 5 package directory to his global <code class="docutils literal notranslate"><span class="pre">dev</span></code> folder using,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Move Level 5 directory to ~/dev</span>
+$<span class="w"> </span>mv<span class="w"> </span>somewhere/on/my/computer/flying-circus/flying-circus<span class="w"> </span>~/dev
+</pre></div>
+</div>
+<p>As a result <strong>Sir Robin</strong> sees that his package has been moved to the appropriate place with
+all his code, resulting in the directory structure,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~dev/
+<span class="w">    </span><span class="p">|</span>--<span class="w"> </span>flying-circus
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.codecov.yml
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.codespell/
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.flake8
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.github/
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.gitignore
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.isort.cfg
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.pre-commit-config.yaml
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.readthedocs.yaml
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>AUTHORS.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>CHANGELOG.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>CODE-OF-CONDUCT.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>LICENSE.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>MANIFEST.in
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>README.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>docs/
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>news/
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>pyproject.toml
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>requirements/
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>src
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>flying_circus
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>__init__.py
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>surreal.py
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>tests
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>test_surreal.py
+</pre></div>
+</div>
+<p>and he is ready to continue to maintain and develop <code class="docutils literal notranslate"><span class="pre">flying-circus</span></code> as a community open source project.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example-level-5-namespace.html" class="btn btn-neutral float-left" title="Example 3. Create a package with branded namespace import at Level 5" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../programming-guides/billinge-group-standards.html" class="btn btn-neutral float-right" title="Billinge Group standards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

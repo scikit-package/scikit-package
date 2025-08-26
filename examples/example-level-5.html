@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example 2. Create your first Level 5 public package &mdash; scikit-package 0.2.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+    <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=4ee4825d"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=cca77546"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example 3. Create a package with branded namespace import at Level 5" href="example-level-5-namespace.html" />
+    <link rel="prev" title="Example 1. Create your first Level 4 package" href="example-level-4.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/scikit-package-logo-docs.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">GETTING STARTED</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#where-do-i-begin">Where do I begin?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">TUTORIALS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-1-2-3.html">(Level 1-3) Reuse code within a file, across files and folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4.html">(Level 4) Share your code as a locally installable Python package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-guides/pypi-github.html">Publish on GitHub and to PyPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-guides/conda-forge.html">Create conda package with conda-forge</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-level-4.html">Example 1. Create your first Level 4 package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example 2. Create your first Level 5 public package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#recommended-github-workflow-for-larger-teams">Recommended GitHub workflow for larger teams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-integration-ci-automated-github-workflows">Continuous Integration (CI): automated GitHub workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#public-package-release">Public Package Release</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example-level-5-namespace.html">Example 3. Create a package with branded namespace import at Level 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-level-5-migration.html">Example 4. Migrate an existing package to Level 5</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../programming-guides/billinge-group-standards.html">Billinge Group standards</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">SUPPORT</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../support/frequently-asked-questions.html">Frequently asked questions (FAQ)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scikit-package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Example 2. Create your first Level 5 public package</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/examples/example-level-5.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-2-create-your-first-level-5-public-package">
+<span id="example-2"></span><h1>Example 2. Create your first Level 5 public package<a class="headerlink" href="#example-2-create-your-first-level-5-public-package" title="Link to this heading"></a></h1>
+<p>In this example, we demonstrate how to create a new Level 5 public package from scratch. In this example the <strong>maintainer</strong> of the repository, who will have merge-rights, will be <strong>Sir Lancelot</strong>. To create the structure for the full featured public package he enters the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/dev
+$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>skpkg-env
+$<span class="w"> </span>package<span class="w"> </span>create<span class="w"> </span>public
+</pre></div>
+</div>
+<p>We show the responses of <strong>Sir Lancelot</strong> to the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> prompts below. As described in Example 1, he followed group practice and located the empty project under <code class="docutils literal notranslate"><span class="pre">∼/dev</span></code>. The text in parentheses are the default values supplied by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>. These can be user-configured but in the example we show the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> defaults. Where there is no response <strong>Sir Lancelot</strong> simply hit the “Enter” key to accept the default value:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">1</span>/16<span class="o">]</span><span class="w"> </span>maintainer_name<span class="w"> </span><span class="o">(</span>Simon<span class="w"> </span>Billinge<span class="o">)</span>:<span class="w"> </span>Sir<span class="w"> </span>Lancelot
+<span class="o">[</span><span class="m">2</span>/16<span class="o">]</span><span class="w"> </span>maintainer_email<span class="w"> </span><span class="o">(</span>sb2896@columbia.edu<span class="o">)</span>:<span class="w"> </span>sirlancelotbrave@montypy.com
+<span class="o">[</span><span class="m">3</span>/16<span class="o">]</span><span class="w"> </span>maintainer_github_username<span class="w"> </span><span class="o">(</span>sbillinge<span class="o">)</span>:<span class="w"> </span>sirlancelotbrave
+<span class="o">[</span><span class="m">4</span>/16<span class="o">]</span><span class="w"> </span>contributors<span class="w"> </span><span class="o">(</span>Sangjoon<span class="w"> </span>Lee,<span class="w"> </span>Simon<span class="w"> </span>Billinge,<span class="w"> </span>Billinge<span class="w"> </span>Group<span class="w"> </span>members<span class="o">)</span>:
+<span class="w">    </span>Sir<span class="w"> </span>Lancelot,<span class="w"> </span>Sir<span class="w"> </span>Robin,<span class="w"> </span>King<span class="w"> </span>Arthur
+<span class="o">[</span><span class="m">5</span>/16<span class="o">]</span><span class="w"> </span>license_holders<span class="w"> </span><span class="o">(</span>The<span class="w"> </span>Trustees<span class="w"> </span>of<span class="w"> </span>Columbia<span class="w"> </span>University<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>City<span class="w"> </span>of<span class="w"> </span>New
+<span class="w">    </span>York<span class="o">)</span>:<span class="w"> </span>The<span class="w"> </span>Knights<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Round<span class="w"> </span>Table
+<span class="o">[</span><span class="m">6</span>/16<span class="o">]</span><span class="w"> </span>project_name<span class="w"> </span><span class="o">(</span>diffpy.my-project<span class="o">)</span>:<span class="w"> </span>montypy
+<span class="o">[</span><span class="m">7</span>/16<span class="o">]</span><span class="w"> </span>github_username_or_orgname<span class="w"> </span><span class="o">(</span>diffpy<span class="o">)</span>:<span class="w"> </span>kot-roundtable
+<span class="o">[</span><span class="m">8</span>/16<span class="o">]</span><span class="w"> </span>github_repo_name<span class="w"> </span><span class="o">(</span>montypy<span class="o">)</span>:
+<span class="o">[</span><span class="m">9</span>/16<span class="o">]</span><span class="w"> </span>conda_pypi_package_dist_name<span class="w"> </span><span class="o">(</span>montypy<span class="o">)</span>:
+<span class="o">[</span><span class="m">10</span>/16<span class="o">]</span><span class="w"> </span>package_dir_name<span class="w"> </span><span class="o">(</span>montypy<span class="o">)</span>:
+<span class="o">[</span><span class="m">11</span>/16<span class="o">]</span><span class="w"> </span>project_short_description<span class="w"> </span><span class="o">(</span>Python<span class="w"> </span>package<span class="w"> </span><span class="k">for</span><span class="w"> </span>doing<span class="w"> </span>science.<span class="o">)</span>:<span class="w"> </span>A
+<span class="w">    </span>Python<span class="w"> </span>package<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>the<span class="w"> </span>Knights<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Round<span class="w"> </span>Table.
+<span class="o">[</span><span class="m">12</span>/16<span class="o">]</span><span class="w"> </span>project_keywords<span class="w"> </span><span class="o">(</span>diffraction,<span class="w"> </span>PDF,<span class="w"> </span>X-ray,<span class="w"> </span>neutron<span class="o">)</span>:<span class="w"> </span>knights,<span class="w"> </span>castle,<span class="w"> </span>Monty,<span class="w"> </span>Python
+<span class="o">[</span><span class="m">13</span>/16<span class="o">]</span><span class="w"> </span>minimum_supported_python_version<span class="w"> </span><span class="o">(</span><span class="m">3</span>.11<span class="o">)</span>:
+<span class="o">[</span><span class="m">14</span>/16<span class="o">]</span><span class="w"> </span>maximum_supported_python_version<span class="w"> </span><span class="o">(</span><span class="m">3</span>.13<span class="o">)</span>:
+<span class="o">[</span><span class="m">15</span>/16<span class="o">]</span><span class="w"> </span>Select<span class="w"> </span>project_needs_c_code_compiled
+<span class="m">1</span><span class="w"> </span>-<span class="w"> </span>No
+<span class="m">2</span><span class="w"> </span>-<span class="w"> </span>Yes
+Choose<span class="w"> </span>from<span class="w"> </span><span class="o">[</span><span class="m">1</span>/2<span class="o">]</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>:
+<span class="o">[</span><span class="m">16</span>/16<span class="o">]</span><span class="w"> </span>Select<span class="w"> </span>project_has_gui_tests
+<span class="m">1</span><span class="w"> </span>-<span class="w"> </span>No
+<span class="m">2</span><span class="w"> </span>-<span class="w"> </span>Yes
+Choose<span class="w"> </span>from<span class="w"> </span><span class="o">[</span><span class="m">1</span>/2<span class="o">]</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>:
+</pre></div>
+</div>
+<p>The questions are designed to be somewhat self-describing, but what they mean and how they are used is described in detail <a class="reference internal" href="../tutorials/tutorial-level-5.html#level-5-tutorial"><span class="std std-ref">(Level 5) Share your code as a publicly installable package</span></a>.</p>
+<p>Given the answers to the questions in the example, <strong>Sir Lancelot</strong> sees the following folder structure created by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/dev
+<span class="w">    </span><span class="p">|</span>--<span class="w"> </span>montypy
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.codecov.yml
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.codespell
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>ignore_lines.txt
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>ignore_words.txt
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.flake8
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.github
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>ISSUE_TEMPLATE
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>bug_feature.md
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>release_checklist.md
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>PULL_REQUEST_TEMPLATE
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>pull_request_template.md
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>workflows
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>build-wheel-release-upload.yml
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>check-news-item.yml
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>matrix-and-codecov-on-merge-to-main.yml
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>publish-docs-on-release.yml
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>tests-on-pr.yml
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.gitignore
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.isort.cfg
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.pre-commit-config.yaml
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>.readthedocs.yaml
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>AUTHORS.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>CHANGELOG.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>CODE-OF-CONDUCT.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>LICENSE.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>MANIFEST.in
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>README.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>docs
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>Makefile
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>make.bat
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span><span class="nb">source</span>
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>_static
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>.placeholder
+<span class="w">            </span><span class="p">|</span>--<span class="w">  </span>api
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>montypy.example_package.rst
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>montypy.rst
+<span class="w">            </span><span class="p">|</span>--<span class="w">  </span>conf.py
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>getting-started.rst
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>img
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>scikit-package-logo-text.png
+<span class="w">            </span><span class="p">|</span>--<span class="w">  </span>index.rst
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>license.rst
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>release.rst
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>snippets
+<span class="w">                </span><span class="p">|</span>--<span class="w">  </span>example-table.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>news
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>TEMPLATE.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>pyproject.toml
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>requirements
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>build.txt
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>conda.txt
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>pip.txt
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>tests.txt
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>docs.txt
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>src
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>montypy
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>__init__.py
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>functions.py
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>version.py
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>tests
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>conftest.py
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>test_functions.py
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>test_version.py
+</pre></div>
+</div>
+<p>After setting up the repository structure, <strong>Sir Lancelot</strong> adds code to the empty package by creating files in the <code class="docutils literal notranslate"><span class="pre">./src/montpy</span></code> directory. Any unit tests he adds in the tests directory. Previously written files can also be copied over from wherever they were on his hard drive, as in Example 1. Below we show the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">tests</span></code> part of the directory tree after <strong>Sir Lancelot</strong> completed these steps:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/dev
+<span class="w">    </span><span class="p">|</span>--<span class="w"> </span>montypy
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>...
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>src
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>montypy
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>__init__.py
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>utils.py
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>grail
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>__init__.py
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>bridge_of_death.py
+<span class="w">                    </span><span class="p">|</span>--<span class="w"> </span>black_knight.py
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>version.py
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>tests
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>conftest.py
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>test_utils.py
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>test_bridge_of_death.py
+<span class="w">            </span><span class="p">|</span>--<span class="w"> </span>test_black_knight.py
+</pre></div>
+</div>
+<p><strong>Sir Lancelot</strong> made some choices about the structure of his package by choosing the directory structure within <code class="docutils literal notranslate"><span class="pre">.../src/montypy</span></code>. This affects what the importing syntax looks like and <strong>Sir Lancelot</strong> made the choices so his code will be more organized and readable. His choices resulted in import statements exemplified below,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from<span class="w"> </span>montypy.utils<span class="w"> </span>import<span class="w"> </span>sword
+from<span class="w"> </span>montypy.grail.bridge_of_death<span class="w"> </span>import<span class="w"> </span>questions_three
+</pre></div>
+</div>
+<p>assuming functions <code class="docutils literal notranslate"><span class="pre">sword()</span></code> and <code class="docutils literal notranslate"><span class="pre">questions</span> <span class="pre">three()</span></code> are defined in the modules <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> and <code class="docutils literal notranslate"><span class="pre">bridge_of_death.py</span></code>, respectively.</p>
+<p>Once created, the package can be put under Git control and pushed to a repository with the name <code class="docutils literal notranslate"><span class="pre">montypy</span></code> that <strong>Sir Lancelot</strong> creates at GitHub, following the approach in Example 1. In the example, <strong>Sir Lancelot</strong> chose to create the new GitHub repository called <strong>montypy</strong>, under the <strong>kot-roundtable</strong> GitHub organization. The step-by-step tutorial for doing this is provided in <a class="reference internal" href="../tutorials/tutorial-level-5.html#level-5-tutorial"><span class="std std-ref">(Level 5) Share your code as a publicly installable package</span></a> In this example the code could then be found at <a class="reference external" href="https://github.com/kot-roundtable/montypy">https://github.com/kot-roundtable/montypy</a>.</p>
+<section id="recommended-github-workflow-for-larger-teams">
+<h2>Recommended GitHub workflow for larger teams<a class="headerlink" href="#recommended-github-workflow-for-larger-teams" title="Link to this heading"></a></h2>
+<p>Unlike Example 1, we here introduce a forking workflow to maintain the package. The following workflow appears initially as somewhat complicated and unnecessarily pedantic, but for group coding, following these steps quickly pays huge dividends and is worth the extra up-front effort to set up and learn in a group setting.</p>
+<p>In our example, let’s assume that <strong>Sir Lancelot</strong> wants a new code feature under the <code class="docutils literal notranslate"><span class="pre">grail</span></code> sub-package. He first creates an issue on the GitHub repository where he clicks “New Issue” and selects the <strong>“Bug Report / Feature Request”</strong> template provided by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>. He sets the title to <strong>feat: add bucket to utils</strong>.</p>
+<p>On the issue page, he describes the problem, “made a spill, need a bucket” and proposes a solution “implement a bucket in utils.py”. GitHub provides a number for the issue, for example #24, which will be used later.</p>
+<p>In the issue title, <strong>Sir Lancelot</strong> added the prefix <code class="docutils literal notranslate"><span class="pre">feat:</span></code>. Common prefixes like bug: and doc: are used in issue titles and commit messages to help track and organize them.</p>
+<p>A contributor to the <strong>kot-roundtable</strong> org, <strong>Sir Robin</strong>, agreed to take the issue. <strong>Sir Lancelot</strong> and <strong>Sir Robin</strong> can discuss how to proceed in the comments thread of the issue, which results in a consensus to proceed. The issue can then be assigned by <strong>Sir Lancelot</strong> to <strong>Sir Robin</strong> so other contributors know it is under development.</p>
+<p>In the forking workflow, <strong>Sir Robin</strong> will make a linked copy of the montypy repo under his own GitHub user namespace. This is called a Fork. He does this by visiting <a class="reference external" href="https://github.com/kot-roundtable/montypy">https://github.com/kot-roundtable/montypy</a> and clicking the Fork button, which results in a new linked repository at <a class="reference external" href="https://github.com/sirrobinbrave/montypy">https://github.com/sirrobinbrave/montypy</a>.</p>
+<p><strong>Sir Robin</strong> then clones this fork to his local computer with these commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/dev
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sirrobinbrave/montypy.git
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>montypy
+</pre></div>
+</div>
+<p>On <strong>Sir Robin</strong>’s local computer he has a clone of the repository that is linked to his fork, but it doesn’t automatically know that the fork is linked to a repository upstream of the fork in the <strong>kot-roundtable</strong> org. <strong>Sir Robin</strong> then runs this command to link his local repository to the upstream one:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/kot-roundtable/montypy.git
+</pre></div>
+</div>
+<p><strong>Sir Robin</strong> can now keep his local repository synchronized with all changes that are merged into the upstream repository by typing the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>main
+$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>main
+</pre></div>
+</div>
+<p><strong>Sir Robin</strong> is then ready to check out a new branch to make some edits. He can give it any name but chooses one that he can recognize in the future:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>bucket
+</pre></div>
+</div>
+<p>This bucket branch was branched from the current, most up-to-date, version of the main branch from the upstream GitHub repository under <strong>kot-roundtable</strong>. This maximizes the probability that his edits can be merged without conflict when they are done. Not remembering to create new branches from a fully synchronized upstream main is one of the most common errors we see for people new to the forking workflow.</p>
+<p>The alias (name) for remote repositories can be anything, but by convention, and in our example, the repository called <code class="docutils literal notranslate"><span class="pre">origin</span></code> links to the remote repository under username <code class="docutils literal notranslate"><span class="pre">sirrobinbrave</span></code> and the one called <code class="docutils literal notranslate"><span class="pre">upstream</span></code> is linked to the remote repository in the <strong>kot-roundtable</strong> org.</p>
+<p>We recommend a workflow where branches are very granular and only contain one, or a very few, features/fixes. This makes it much easier to merge branches and keep the development flowing. To the extent possible, we also recommend making branches independent of each other by creating each branch off the fully synchronized main branch. These are also common mistakes of people new to the forking workflow.</p>
+<p>In <strong>Sir Robin</strong>’s branch he starts by defining a <code class="docutils literal notranslate"><span class="pre">test_bucket()</span></code> test function in test <code class="docutils literal notranslate"><span class="pre">utils.py</span></code>, and defining an empty function <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">bucket()</span></code>: in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> module. <strong>Sir Robin</strong> then stages and commits the changes using the commands below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>tests
+$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>src/montypy/
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: tests and function signature for bucket()&quot;</span>
+</pre></div>
+</div>
+<p>We recommend that contributors share code with maintainers as early as possible in the process, allowing for rapid, early feedback. In the example, <strong>Sir Robin</strong> does this by creating a “Pull request”, or PR, on the upstream repository in order to solicit the feedback. To accomplish this <strong>Sir Robin</strong> first must push the new branch with the local changes to his GitHub repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>bucket
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--set-upstream</span></code> modifier, which can be shortened to <code class="docutils literal notranslate"><span class="pre">-u</span></code>, creates a permanent link between the local checked out branch (called <code class="docutils literal notranslate"><span class="pre">bucket</span></code>) with a branch of the same name on <strong>Sir Robin</strong>’s fork, <code class="docutils literal notranslate"><span class="pre">sirrobinbrave/montypy</span></code>. Then, finally, to create the PR <strong>Sir Robin</strong> uses his browser to visit the upstream repository (<code class="docutils literal notranslate"><span class="pre">kot-roundtable/montypy</span></code>) on GitHub and clicks the ”Pull Request” button. There are many other ways to create the PR including integrations in IDEs such as PyCharm or Visual Studio, using the GitHub Desktop GUI application or the GitHub CLI.</p>
+<p>In the body of the top-level comment box of the pull request, <strong>Sir Robin</strong> typed instructions that he wanted the maintainer, <strong>Sir Lancelot</strong>, to know to help in the review. He also included the text, <strong>closes #24</strong>, where 24 is the issue number of <strong>Sir Robin</strong>’s bucket issue. Using this syntax tells GitHub to automatically close the linked issue when the pull request is approved and merged into the main branch. This is a very useful feature in GitHub.</p>
+<p>This “PR” requests the maintainer of the upstream repository to “pull” the changes in branch bucket in <strong>Sir Robin</strong>’s fork into the main branch on the upstream repository. Before doing that, <strong>Sir Lancelot</strong> wants to ensure that everything is just so with the code and so provides a code review on GitHub giving feedback to <strong>Sir Robin</strong>. If there are multiple maintainers or contributors, others can also review the code and suggest improvements before the changes are merged.</p>
+<p>Next, <strong>Sir Robin</strong> added a “news” file by copying <code class="docutils literal notranslate"><span class="pre">news/TEMPLATE.rst</span></code> to <code class="docutils literal notranslate"><span class="pre">news/bucket.rst</span></code> and editing it such that under the <strong>Added</strong> section he replaced <code class="docutils literal notranslate"><span class="pre">&lt;news-item&gt;</span></code> with Bucket in utils for cleaning up spills. Later, at the next release, this will appear in <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0.1.0
+=====
+
+**Added: **
+
+* Bucket in utils for cleaning up spills
+</pre></div>
+</div>
+<p>News items are mostly user-facing information so at each release users can see what has been added, fixed and so on, and can be written with this in mind.</p>
+<p><strong>Sir Robin</strong> then adds and commits the news file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>news/meaning.rst
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;chore: news&quot;</span>
+</pre></div>
+</div>
+<p>We note that it is possible to tag a PR as being a draft to let the maintainer know that the PR is there for feedback but is not finished and not ready to be merged.</p>
+<p>In our example the maintainer, <strong>Sir Lancelot</strong>, suggests some changes in the desired behavior of <code class="docutils literal notranslate"><span class="pre">bucket()</span></code> that will allow it to be generalized and more widely usable. He recognizes that bucket could be used for fetching water as well as cleaning spills. <strong>Sir Lancelot</strong> suggests that <strong>Sir Robin</strong> add a second test to capture this new behavior. <strong>Sir Robin</strong> makes these edits and can add them to the same PR simply committing them and then pushing the updated branch to his fork:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>push
+</pre></div>
+</div>
+<p>The updates automatically appear in the PR and <strong>Sir Lancelot</strong> is notified by GitHub of the updates and can further comment on them.</p>
+<p>With the tests written and capturing the desired behavior for the function, <strong>Sir Robin</strong> can start coding up the <code class="docutils literal notranslate"><span class="pre">bucket()</span></code> function, running the tests by typing <code class="docutils literal notranslate"><span class="pre">pytest</span></code>. This “test-forward” coding approach is called “test driven development” and often results in better designed and executed code because more thought is given to desired behavior before any coding is done on the function itself. It is rarely done by individual programmers and is therefore not intuitive to them, but we have found that in a group context, it is a very powerful approach.</p>
+<p><strong>Sir Robin</strong> keeps coding and running tests until the tests all pass, committing and pushing to the same PR at reasonable intervals (the commits can be more frequent than the pushes). If there is new functionality it is generally recommended to also update user documentation on the same PR to avoid forgetting it. Anything that comes up that it doesn’t make sense to fix on this PR can be captured in a new issue.</p>
+<p>Finally, <strong>Sir Lancelot</strong> and <strong>Sir Robin</strong> agree that everything about the edits are good, all the CI is passing at GitHub, at which point <strong>Sir Lancelot</strong> merges the PR into main on the upstream repository.</p>
+<p>The final step is then for <strong>Sir Robin</strong> to synchronize his local main with the updated upstream main. All subsequent branches, built off a synchronized <code class="docutils literal notranslate"><span class="pre">upstream/main</span></code>, will therefore include this new feature. Along with <strong>Sir Robin</strong>’s bucket feature, the synchronization will also fetch any edits that were merged from other contributors.</p>
+<p>Because his edits are merged into main <strong>Sir Robin</strong> can now delete the bucket branch from his local computer with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">bucket</span></code>.</p>
+<p><strong>Sir Robin</strong> followed best practice and wrote a good docstring in the function definition. As a result, when the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> continuous integration (described below) builds the documentation, the API will be automatically documented with the new function and its docstring appearing in the online docs, another nice feature of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>.</p>
+</section>
+<section id="continuous-integration-ci-automated-github-workflows">
+<h2>Continuous Integration (CI): automated GitHub workflows<a class="headerlink" href="#continuous-integration-ci-automated-github-workflows" title="Link to this heading"></a></h2>
+<p>When <strong>Sir Robin</strong> created the PR, several separate GitHub workflows were automatically triggered. These workflows are controlled by workflow files, located in the .github/workflows directory, that were created when <strong>Sir Lancelot</strong> started a new Level 5 project using <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>. Here are the workflows that both <strong>Sir Robin</strong> and <strong>Sir Lancelot</strong> would see:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>The first CI workflow, Tests on PR, runs pytest on all the unit tests the user wrote in the project.</p></li>
+<li><p>The second CI workflow runs pre-commit to check the code quality similar to when pre-commit is run locally. To ensure that this CI test passes, get in the habit of running pre-commit locally before committing and installing pre-commit as a commit hook.</p></li>
+<li><p>The third CI workflow uses the Codecov app, which adds a comment to the PRsummarizing which lines of code are not covered by unit tests. This workflow checks every new line of code to see if it is covered by a test and fails if insufficient tests are provided for the new code in the PR.</p></li>
+<li><p>The fourth CI workflow checks for a news file in the PR and is there as a reminder for this important task.</p></li>
+</ol>
+</div></blockquote>
+<p>These workflows will run on GitHub without charge for any open-source software repository that is public. GitHub provides some free CI credits for private repositories, and it is also possible to use CI through paid plans.</p>
+<p>For future development through this PR workflow, <strong>Sir Robin</strong> always waits for all CI checks to complete, either passing (green) or failing (red). For any failing tests, <strong>Sir Robin</strong> makes local edits on the branch, then commits and pushes those changes. When a PR is merged into main, another CI workflow is triggered to ensure that the final version of the code is tested not only on Linux but also across multiple operating systems and all Python versions specified when the package was created using <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>. To modify the behavior of the CI, a maintainer such as <strong>Sir Robin</strong> can modify relevant files in the <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> directory, as described in <a class="reference internal" href="../support/frequently-asked-questions.html#faq-github-actions"><span class="std std-ref">GitHub Actions</span></a>.</p>
+</section>
+<section id="public-package-release">
+<h2>Public Package Release<a class="headerlink" href="#public-package-release" title="Link to this heading"></a></h2>
+<p>We describe here what happens when <strong>King Arthur</strong> the codeowner, and <strong>Sir Lancelot</strong> the maintainer, are ready to publish the <code class="docutils literal notranslate"><span class="pre">montypy</span></code> package online and share it with the wider community. The goal is to make the package installable via the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">montypy</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">montypy</span></code> commands.</p>
+<p>At this point, all pull requests and issues relevant to the release must be merged and closed. To facilitate this process <strong>Sir Robin</strong> created a new GitHub issue using the Release template provided by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>. This issue provides a complete checklist of tasks, including testing the code, reviewing the documentation, and closing any remaining issues or pull requests, that the developer should follow to ensure a successful release.</p>
+<p>After the checklist items are completed by <strong>Sir Robin</strong>, <strong>Sir Lancelot</strong> proceeds with the release. <strong>Sir Lancelot</strong> begins by checking out the main branch and pulling the latest code from upstream/main, i.e.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/dev/montypy
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>main
+$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>main<span class="w"> </span><span class="c1"># Assume forking workflow</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> automates the rather complex process of running releases, attempting to minimize the overhead by using reasonable defaults (which can be modified). The release is triggered by the maintainer, who must have the required privileges on the GitHub repository, by simply creating a Git tag with a name with a particular pattern. The pattern is that the tag-name follows the the semantic versioning syntax.</p>
+<p>Semantic versioning involves three numbers separated by two periods, where the three numbers indicate MAJOR, MINOR and PATCH release numbers. In this example, it is an initial release so <strong>Sir Lancelot</strong> chooses the lowest non-patch release number, <code class="docutils literal notranslate"><span class="pre">0.1.0</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>tag<span class="w"> </span><span class="m">0</span>.1.0
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span><span class="m">0</span>.1.0
+</pre></div>
+</div>
+<p>The automated release, up to and including the step of submitting to PyPI, is triggered on the push.</p>
+<p>We strongly recommend doing a less public pre-release, or release-candidate (rc) before each public release. The release can then be tested and any issues fixed before the community becomes aware of it. This release-candidate is a public release in the sense that the release is deployed to GitHub and to PyPI but is tagged as a pre-release. It can be pip installed but only by specifying the full version number and can only be found on PyPI and GitHub by some digging.</p>
+<p>In our example, <strong>Sir Lancelot</strong> could make a pre-release of the 0.1.0 release by running,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>tag<span class="w"> </span><span class="m">0</span>.1.0-rc.0
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span><span class="m">0</span>.1.0-rc.0
+</pre></div>
+</div>
+<p>with exactly this format (included dashes and dots).</p>
+<p>The default release obtained by typing pip install montypy remains as the existing release, but the pre-release can be installed in a test environment by explicitly specifying the release number, <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">montypy==0.1.0-rc.0</span></code> If needed, a second rc release with some problems fixed would be numbered <code class="docutils literal notranslate"><span class="pre">0.1.0-rc.1</span></code>, and so on.</p>
+<p>Whether it is a release-candidate or a full release, the GitHub tag pushed to the upstream repository triggers a series of GitHub workflows, including a check to verify whether the user executing the tag is authorized. When the package was created, <strong>Sir Lancelot</strong> entered sirlancelotbrave in response to the <code class="docutils literal notranslate"><span class="pre">maintainer_github_username</span></code> prompt. The <code class="docutils literal notranslate"><span class="pre">maintainer_github_username</span></code> specified person (this can be updated manually in the workflows) is the only GitHub user authorized to run this release workflow. Otherwise, the workflow will fail and the release process will not proceed. This ensures that only an authorized person can release the code. Once the workflow succeeds, it will then create a new pre-release/release on GitHub and publish the package to PyPI.</p>
+<p>We recommend to also make packages available on conda-forge which can host not just python and has powerful methods for checking the dependency tree of all packages. For hints for how to do this please visit <a class="reference internal" href="../release-guides/pypi-github.html#release-pypi-github"><span class="std std-ref">Publish on GitHub and to PyPI</span></a>.</p>
+<p>After verifying the package is available and functional, <strong>Sir Robin</strong> who created the GitHub Release issue, can close it which then completes the release lifecycle for the version.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example-level-4.html" class="btn btn-neutral float-left" title="Example 1. Create your first Level 4 package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example-level-5-namespace.html" class="btn btn-neutral float-right" title="Example 3. Create a package with branded namespace import at Level 5" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

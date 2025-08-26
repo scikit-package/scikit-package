@@ -5,8 +5,8 @@ Assume that you have successfully followed the previous steps. Now, you want to 
 
     .. code-block:: bash
 
-        $ git checkout main
-        $ git pull origin main
+        git checkout main
+        git pull origin main
 
     .. note::
 
@@ -16,26 +16,26 @@ Assume that you have successfully followed the previous steps. Now, you want to 
 
     .. code-block:: bash
 
-        $ git log
+        git log
 
 #. Create a new local branch from the ``main`` branch. Let's call this branch ``skpkg``:
 
     .. code-block:: bash
 
-        $ git checkout -b <branch-name>
+        git checkout -b <branch-name>
 
 #. Modify any file that you want. Then, stage and commit the changes:
 
     .. code-block:: bash
 
-        $ git add <file-modified-added-deleted>
-        $ git commit -m "feat: <your commit message>"
+        git add <file-modified-added-deleted>
+        git commit -m "feat: <your commit message>"
 
 #. Push your code from ``<branch-name>`` to the remote ``<branch-name>`` branch:
 
     .. code-block:: bash
 
-        $ git push --set-upstream origin <branch-name>
+        git push --set-upstream origin <branch-name>
 
 #. Visit your GitHub repository.
 

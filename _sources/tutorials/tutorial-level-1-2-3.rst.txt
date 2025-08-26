@@ -44,11 +44,11 @@ Example
      .. code-block:: bash
 
           # Create a new directory
-          $ mkdir skpkg-tutorials
+          mkdir skpkg-tutorials
           # Navigate into the directory
-          $ cd skpkg-tutorials
+          cd skpkg-tutorials
           # Create a new file
-          $ touch shared_functions.py
+          touch shared_functions.py
 
 #. Copy and paste the code block below into ``shared_functions.py``:
 
@@ -74,8 +74,8 @@ Example
 
      .. code-block:: bash
 
-          $ conda activate <env-name>
-          $ python shared_functions.py
+          conda activate <env-name>
+          python shared_functions.py
 
 #. You should see the outputs of 11 and 83 printed.
 
@@ -113,8 +113,8 @@ Example code
 
      .. code-block:: bash
 
-          $ cd skpkg-tutorials
-          $ touch file_one.py file_two.py
+          cd skpkg-tutorials
+          touch file_one.py file_two.py
 
 #. Copy and paste the following to ``file_one.py``:
 
@@ -153,9 +153,9 @@ Example code
 
      .. code-block:: bash
 
-          $ conda activate <env-name>
-          $ python file_one.py
-          $ python file_two.py
+          conda activate <env-name>
+          python file_one.py
+          python file_two.py
 
 What's next?
 ^^^^^^^^^^^^
@@ -183,14 +183,14 @@ Initiate a new project with ``scikit-package``
 
      .. code-block:: bash
 
-          $ conda activate <env-name>
-          $ conda install scikit-package
+          conda activate <env-name>
+          conda install scikit-package
 
 #. Create a new project by running the following command:
 
      .. code-block:: bash
 
-          $ package create workspace
+          package create workspace
 
      .. note::
 
@@ -206,7 +206,7 @@ Initiate a new project with ``scikit-package``
 
      .. code-block:: bash
 
-          $ cd data-analysis-project
+          cd data-analysis-project
 
 #. Confirm you have the following folder structure generated:
 
@@ -246,7 +246,7 @@ Before running code, you need to set the ``PYTHONPATH`` environment variable to 
 
      .. code-block:: bash
 
-          $ pwd
+          pwd
 
      For a macOS user, it will print something like ``/Users/imac/dev/data-analysis-projects``.
 
@@ -255,17 +255,17 @@ Before running code, you need to set the ``PYTHONPATH`` environment variable to 
      .. code-block:: bash
 
           # For macOS/Linux/Git for Windows user
-          $ export PYTHONPATH="${PYTHONPATH}:<path-to-your-workspace-folder>"
+          export PYTHONPATH="${PYTHONPATH}:<path-to-your-workspace-folder>"
 
           # For Windows (Powershell) user
-          $ env:PYTHONPATH = "$env:PYTHONPATH;<path-to-your-workspace-folder>"
+          env:PYTHONPATH = "$env:PYTHONPATH;<path-to-your-workspace-folder>"
 
 #. Install the dependencies:
 
      .. code-block:: bash
 
-          $ conda activate <env-name>
-          $ conda install --file requirements.txt
+          conda activate <env-name>
+          conda install --file requirements.txt
 
      .. note::
 
@@ -275,15 +275,15 @@ Before running code, you need to set the ``PYTHONPATH`` environment variable to 
 
      .. code-block:: bash
 
-          $ cd proj-one
-          $ python proj_one_code.py
+          cd proj-one
+          python proj_one_code.py
 
 #. Also run the tests:
 
      .. code-block:: bash
 
-          $ cd ..        # go back to the parent directory to run pytest
-          $ pytest
+          cd ..        # go back to the parent directory to run pytest
+          pytest
 
      You should see the output similar to:
 
@@ -316,8 +316,8 @@ more readable. ``pre-commit`` is a tool that helps you with that.
 
      .. code-block:: bash
 
-          $ conda activate <env-name>
-          $ conda install pre-commit
+          conda activate <env-name>
+          conda install pre-commit
 
      .. note::
 
@@ -327,8 +327,8 @@ more readable. ``pre-commit`` is a tool that helps you with that.
 
      .. code-block:: bash
 
-          $ git init
-          $ git add .
+          git init
+          git add .
 
      .. note::
 
@@ -374,19 +374,19 @@ To avoid retyping this command every time you open a new terminal, you can add i
 
           # For macOS/Linux/Git for Windows:
           # bash shell
-          $ nano ~/.bashrc
+          nano ~/.bashrc
           # For Windows PowerShell:
-          $ notepad $PROFILE
+          notepad $PROFILE
 
 #. Add the command to set ``PYTHONPATH`` at the end of the file:
 
      .. code-block:: bash
 
           # For macOS/Linux/Git for Windows
-          $ echo 'export PYTHONPATH="${PYTHONPATH}:/path/to/your/workspace_folder"'
+          echo 'export PYTHONPATH="${PYTHONPATH}:/path/to/your/workspace_folder"'
 
           # For Windows (PowerShell)
-          $ echo '$env:PYTHONPATH = "$env:PYTHONPATH;/path/to/your/workspace_folder"'
+          echo '$env:PYTHONPATH = "$env:PYTHONPATH;/path/to/your/workspace_folder"'
 
 #. Save the file.
 
@@ -395,9 +395,9 @@ To avoid retyping this command every time you open a new terminal, you can add i
      .. code-block:: bash
 
           # For macOS/Linux/Git for Windows:
-          $ source ~/.bashrc
+          source ~/.bashrc
           # For Windows PowerShell:
-          $ . $PROFILE
+          . $PROFILE
 
 #. Restart your terminal.
 
@@ -412,15 +412,15 @@ Here is an example of how to create an additional project under the same workspa
 
      .. code-block:: bash
 
-          $ cd data-analysis-project
+          cd data-analysis-project
 
 #. Create a new directory and two files in it:
 
      .. code-block:: bash
 
-          $ mkdir proj-two
-          $ cd proj-two
-          $ touch __init__.py proj_two_code.py
+          mkdir proj-two
+          cd proj-two
+          touch __init__.py proj_two_code.py
 
 #. Add your code to ``proj_two_code.py``.
 
@@ -428,7 +428,7 @@ Here is an example of how to create an additional project under the same workspa
 
      .. code-block:: bash
 
-          $ cd proj-two
-          $ python proj_two_code.py
+          cd proj-two
+          python proj_two_code.py
 
 #. Done! You can also start writing tests for this new project in the ``tests`` folder by creating a new file named ``test_proj_two_code.py``.

@@ -4,23 +4,23 @@ Before we upload anything to the ``main`` branch, we want to check the incoming 
 
     .. code-block:: bash
 
-        $ git checkout main
-        $ git pull origin main
+        git checkout main
+        git pull origin main
 
 #. Setup pre-commit locally so that code is linted before a commit is made:
 
     .. code-block:: bash
 
-        $ pre-commit install
+        pre-commit install
 
 #. Checkout a new branch called ``skpkg-public`` from the ``main`` branch:
 
     .. code-block:: bash
 
-        $ git checkout -b skpkg-public
-        $ git add .
-        $ git commit -m "skpkg: start a new level 5 project with skpkg"
-        $ git push -u origin skpkg-public
+        git checkout -b skpkg-public
+        git add .
+        git commit -m "skpkg: start a new level 5 project with skpkg"
+        git push -u origin skpkg-public
 
     .. note::
 

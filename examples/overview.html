@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; scikit-package 0.2.0rc0 documentation</title>
+  <title>Overview &mdash; scikit-package 0.2.0rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -22,7 +22,9 @@
       <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example 1. Create your first Level 4 package" href="example-level-4.html" />
+    <link rel="prev" title="Create conda package with conda-forge" href="../release-guides/conda-forge.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,12 +67,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../release-guides/conda-forge.html">Create conda package with conda-forge</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../examples/overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-4.html">Example 1. Create your first Level 4 package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5.html">Example 2. Create your first Level 5 public package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-namespace.html">Example 3. Create a package with branded namespace import at Level 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-migration.html">Example 4. Migrate an existing package to Level 5</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-level-4.html">Example 1. Create your first Level 4 package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-level-5.html">Example 2. Create your first Level 5 public package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-level-5-namespace.html">Example 3. Create a package with branded namespace import at Level 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-level-5-migration.html">Example 4. Migrate an existing package to Level 5</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
@@ -100,9 +102,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">Overview</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/snippets/github-codecov-setup.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/examples/overview.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -110,37 +112,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p id="codecov-token-setup">We also want to ensure we report that tests are written for the incoming code and report in the incoming PR as shown below:</p>
-<img alt="codecov-in-pr-comment" src="../_images/codecov-pr.png" />
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>Is this NOT your first time setting up Codecov?</strong> Setting up the Codecov report can be done just once for all projects under your account or a GitHub organization with the “global token.” Please check whether you already have a Codecov token. If it exists, you may still follow the steps, but you don’t have to create a new token. Instead, you can use the existing token.</p>
-</div>
-<ol class="arabic">
-<li><p>Ensure your GitHub repository is public.</p></li>
-<li><p>Visit <code class="docutils literal notranslate"><span class="pre">https://app.codecov.io/account/gh/&lt;your_github_username_or_orgname&gt;/org-upload-token</span></code>, replacing <code class="docutils literal notranslate"><span class="pre">&lt;your_github_username_or_orgname&gt;</span></code> with your actual GitHub username or organization name.</p></li>
-<li><p>Under <span class="guilabel">Select an authentication option</span>, select <code class="docutils literal notranslate"><span class="pre">Required</span></code>.</p></li>
-<li><p>Click <span class="guilabel">Generate</span> or <span class="guilabel">Regenerate</span> to create a new token.</p></li>
-<li><p>Click on the clipboard symbol to copy <code class="docutils literal notranslate"><span class="pre">CODECOV_TOKEN</span></code>. Copy the one that starts with <code class="docutils literal notranslate"><span class="pre">CODECOV_TOKEN=</span></code>. Here is an example of what it looks like:</p>
-<blockquote>
-<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CODECOV_TOKEN=abcd1234-5678-1234-5678-b862619523bd
-</pre></div>
-</div>
-</div></blockquote>
-</li>
-<li><p>In your GitHub repository, visit <span class="menuselection">Settings ‣ Actions ‣ Secrets and Variables</span>.</p></li>
-<li><p>If the repository is under your personal account, click <span class="guilabel">New repository secret</span>.</p></li>
-<li><p>If the repository is under an organization, click <span class="menuselection">Manage organization secrets ‣ New organization secret</span>.</p></li>
-<li><p>Under the <span class="guilabel">Name</span> field, type <code class="docutils literal notranslate"><span class="pre">CODECOV_TOKEN</span></code>.</p></li>
-<li><p>Under the <span class="guilabel">Secret</span> field, paste the <code class="docutils literal notranslate"><span class="pre">CODECOV_TOKEN</span></code> value you copied earlier without any modification.</p></li>
-<li><p>Click <span class="guilabel">Add secret</span> to save the token.</p></li>
-<li><p>Done. From now on, a new Codecov comment will be generated on each PR!</p></li>
-</ol>
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<p>Here we provide 4 representative examples to illustrate how to use <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> for
+building shareable packages at Levels 4 and 5. We also include an example of how to use
+<code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> to migrate your existing packages to the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> standards.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="example-level-4.html#example-1"><span class="std std-ref">Example 1. Create your first Level 4 package</span></a></p></li>
+<li><p><a class="reference internal" href="example-level-5.html#example-2"><span class="std std-ref">Example 2. Create your first Level 5 public package</span></a></p></li>
+<li><p><a class="reference internal" href="example-level-5-namespace.html#example-3"><span class="std std-ref">Example 3. Create a package with branded namespace import at Level 5</span></a></p></li>
+<li><p><a class="reference internal" href="example-level-5-migration.html#example-4"><span class="std std-ref">Example 4. Migrate an existing package to Level 5</span></a></p></li>
+</ul>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../release-guides/conda-forge.html" class="btn btn-neutral float-left" title="Create conda package with conda-forge" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example-level-4.html" class="btn btn-neutral float-right" title="Example 1. Create your first Level 4 package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

@@ -1,34 +1,98 @@
 Why do I need a news file for each PR?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We want to write good ``CHANGELOG.rst`` for each release version. These news items are of interest to both developers and technical users looking for specific keywords.
+We want to write a good ``CHANGELOG.rst`` for each release version. These news items are of interest to both developers and technical users looking for specific keywords. We can streamline the process of writing ``CHANGELOG.rst`` for each release by compiling the news items from the ``news`` directory.
 
-We can streamline the process of writing ``CHANGELOG.rst`` for each release by compiling the news items from the ``news`` directory.
+Here is an example ``CHANGELOG.rst``: https://github.com/scikit-package/scikit-package/blob/main/CHANGELOG.rst
 
-Here is an example ``CHANGELOG.rst`` https://github.com/scikit-package/scikit-package/blob/main/CHANGELOG.rst
+How do I create a news file?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-How do I write good a news item?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#. In your repository, confirm that the ``news/TEMPLATE.rst`` file exists.
 
-- Do not remove ``news/TEMPLATE.rst``. Make a copy called ``<branch-name>.rst``.
-- Do not modify other section headers in the rst file. Replace ``* <news item>`` only.
-- Start with a capital letter and a verb. End with a period, e.g., ``Add automatic linting of .md, .yml, .rst files via a prettier hook in pre-commit.``
-- For trivial changes, still create ``<branch-name>.rst``, but the news item should start with ``* No news:`` so that the news item is not compiled into the ``CHANGELOG.rst`` file during the release process. Here is an example below:
+#. Make a copy of ``news/TEMPLATE.rst`` and name it ``news/<branch-name>.rst``. You can automate the process of creating the news file and adding new items by running the commands:
+
+    .. code-block:: bash
+
+        package add news --add -m "<Describe the main feature added in the PR.>"
+
+    .. note::
+
+        As shown above, you may use ``-a`` or ``--add``. The second flag, ``-m``, stands for ``message``.
+
+#. Confirm that your ``news/<branch-name>.rst`` has the following content:
 
     .. code-block:: text
 
         **Added:**
 
-        * No news: <brief reason>
+        * <Describe the main feature added in the PR.>
 
-- Use the ``rst`` style of backquotes instead of the markdown style of backquotes. For example, use ````scikit-package```` instead of ```scikit-package```.
+        **Changed:**
 
-Where to place the news item in ``<branch-name>.rst``?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        * <news item>
 
-- ``**Added:**`` includes features or functionality of interest to users and developers, such as support for a new Python version or the addition of a useful feature.
-- ``**Changed:**`` includes modifications that affect end-users or developers, such as API changes or dependencies replaced.
-- ``**Fixed:**`` includes bug fixes or refactoring.
-- ``**Deprecated:**`` includes methods, classes, or workflows that are no longer supported in the future release.
-- ``**Removed:**`` includes the opposite of the "Added" section, referring to features or functionality that have been removed.
-- ``Security:**``: include fixes or improvements related to vulnerabilities, authentication, or access control.
+        **Deprecated:**
+
+        * <news item>
+
+        **Removed:**
+
+        * <news item>
+
+        **Fixed:**
+
+        * <news item>
+
+        **Security:**
+
+        * <news item>
+
+    .. seealso::
+
+        Once you are happy with the news item(s) that you have added, you don't need to modify anything in ``news/<branch-name>.rst`` or ``news/TEMPLATE.rst``. ``scikit-package`` will automatically parse your news items and add them to the ``CHANGELOG.rst`` file when you initiate a release.
+
+    .. note::
+
+        Although it is generally not recommended, if two tasks were completed on the same branch, you can still add another news item by running the ``package add news`` command again.
+
+Where do I place my news item in ``<branch-name>.rst``?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- ``**Added:**`` (``-a``, ``--add``) includes features or functionality of interest to users and developers, such as support for a new Python version or the addition of a useful feature.
+- ``**Changed:**`` (``-c``, ``--change``) includes modifications that affect end users or developers, such as API changes or replaced dependencies.
+- ``**Fixed:**`` (``-f``, ``--fix``) includes bug fixes or refactoring.
+- ``**Deprecated:**`` (``-d``, ``--deprecated``) includes methods, classes, or workflows that will no longer be supported in a future release.
+- ``**Removed:**`` (``-r``, ``--remove``) is the opposite of the "Added" section, referring to features or functionality that have been removed.
+- ``**Security:**`` (``-s``, ``--security``) includes fixes or improvements related to vulnerabilities, authentication, or access control.
+
+What are good practices for writing news items?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Maintain consistency when a new release note is created and added to the ``CHANGELOG.rst`` file:
+
+    a. Start with an active verb.
+    b. Capitalize the first word.
+    c. End with a period.
+    d. Use the ``rst`` style of backquotes instead of the markdown style. For example, use ````scikit-package```` instead of ```scikit-package```.
+
+    e.g., Add automatic linting of ``.md``, ``.yml``, and ``.rst`` files via a prettier hook in pre-commit.
+
+My PR has trivial fixes that shouldn't be in ``CHANGELOG.rst``. Should I still create a news file?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Yes. In this case, we want to communicate to the reviewer(s) the reason it should not be in the ``CHANGELOG.rst``. You can simply run the following:
+
+    .. code-block:: bash
+
+        package add news -n -m "<brief-reason>."
+
+You will see a new file has been created: ``news/<branch-name>.rst``
+
+    .. code-block:: text
+
+        **Added:**
+
+        * No news: <brief-reason>
+
+        ...

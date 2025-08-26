@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How does scikit-package benefit scientists? &mdash; scikit-package 0.1.0 documentation</title>
+  <title>How to cite scikit-package &mdash; scikit-package 0.2.0rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/scikit-package-logo-blank.png"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=38b66d78"></script>
+      <script src="_static/documentation_options.js?v=4ee4825d"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -49,6 +49,7 @@
               <p class="caption" role="heading"><span class="caption-text">GETTING STARTED</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#where-do-i-begin">Where do I begin?</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">TUTORIALS</span></p>
 <ul>
@@ -57,11 +58,20 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorials/tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-guides/pypi-github.html">Publish on GitHub and to PyPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-guides/conda-forge.html">Create conda package with conda-forge</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/example-level-4.html">Example 1. Create your first Level 4 package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/example-level-5.html">Example 2. Create your first Level 5 public package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/example-level-5-namespace.html">Example 3. Create a package with branded namespace import at Level 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/example-level-5-migration.html">Example 4. Migrate an existing package to Level 5</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
@@ -91,9 +101,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">How does <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> benefit scientists?</li>
+      <li class="breadcrumb-item active">How to cite <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -102,11 +112,20 @@
            <div itemprop="articleBody">
              
   <div class="line-block">
-<div class="line">Software version 0.1.0</div>
-<div class="line">Last updated May 31, 2025.</div>
+<div class="line">Software version 0.2.0rc0</div>
+<div class="line">Last updated August 26, 2025.</div>
 </div>
 <p>Welcome to the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> official documentation!</p>
 <p><code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> offers tools and practices for the scientific community to make better and more reusable Scientific Python packages and applications.</p>
+<section id="how-to-cite-scikit-package">
+<h1>How to cite <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code><a class="headerlink" href="#how-to-cite-scikit-package" title="Link to this heading"></a></h1>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> to standardize your Python software, we would like you to cite scikit-package:</p>
+<blockquote>
+<div><ol class="upperalpha simple" start="19">
+<li><p>Lee and C. Myers and A. Yang and T. Zhang and S. J. L. Billinge, scikit-package - software packaging standards and roadmap for sharing reproducible scientific software (<a class="reference external" href="https://arxiv.org/abs/2507.03328">https://arxiv.org/abs/2507.03328</a>)</p></li>
+</ol>
+</div></blockquote>
+</section>
 <section id="how-does-scikit-package-benefit-scientists">
 <h1>How does <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> benefit scientists?<a class="headerlink" href="#how-does-scikit-package-benefit-scientists" title="Link to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> offers step-by-step instructions for reusing and sharing code, starting from something as simple as defining and using functions, all the way to maintaining and releasing a fully documented open-source package on PyPI and conda-forge.</p>
@@ -143,6 +162,10 @@
 <li><p><a class="reference external" href="https://github.com/diffpy/diffpy.srmise">diffpy.srmise</a></p></li>
 <li><p><a class="reference external" href="https://github.com/regro/regolith">regolith</a></p></li>
 <li><p><a class="reference external" href="https://github.com/Billingegroup/bg-mpl-stylesheets">bg-mpl-stylesheets</a></p></li>
+<li><p><a class="reference external" href="https://github.com/bobleesj/cifkit">cifkit</a></p></li>
+<li><p><a class="reference external" href="https://github.com/bobleesj/structure-analyzer-featurizer">SAF</a></p></li>
+<li><p><a class="reference external" href="https://github.com/bobleesj/composition-analyzer-featurizer">CAF</a></p></li>
+<li><p><a class="reference external" href="https://github.com/bobleesj/bobleesj.utils">bobleesej.utils</a></p></li>
 <li><p>…</p></li>
 </ul>
 </section>
@@ -159,16 +182,20 @@
 <section id="what-are-the-full-benefits-when-i-reach-level-5">
 <h1>What are the full benefits when I reach Level 5?<a class="headerlink" href="#what-are-the-full-benefits-when-i-reach-level-5" title="Link to this heading"></a></h1>
 <ul class="simple">
-<li><p>Streamline the release process by pushing a Git tag to trigger a sequence of actions: publishing to PyPI and GitHub, updating hosted documentation, and updating the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> file.</p></li>
-<li><p>Host documentation with a public URL using a <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code> template. Include live rendering, API documentation, and previews for each pull request.</p></li>
+<li><p><strong>Streamline the release process</strong> by pushing a Git tag to trigger a sequence of actions: publishing to PyPI and GitHub, updating hosted documentation, and updating the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> file. Visit <a class="reference internal" href="release-guides/pypi-github.html#release-pypi-github"><span class="std std-ref">Publish on GitHub and to PyPI</span></a> for more details.</p></li>
+<li><p><strong>Host documentation with a public URL</strong> using a <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code> template as part of the PyPI and GitHub release. Includes live rendering, API documentation, and previews for each pull request.</p></li>
+<li><p><strong>Set custom default metadata</strong> such as authors, project description, license holders, and keywords when creating a new package. Automatically store and reuse the entered metadata to update your package with the latest version of the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> standards. To learn more, read <a class="reference internal" href="support/frequently-asked-questions.html#faq-set-default-prompt-value"><span class="std std-ref">How can I change the default values that appear in the prompt when creating projects in Level 3,4,5?</span></a>.</p></li>
+<li><p><strong>Support namespace package imports</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&lt;org-name&gt;.&lt;package-name&gt;</span></code>) to maintain branding consistency and avoid name collisions. To learn more, read <a class="reference internal" href="support/frequently-asked-questions.html#faq-project-setup-namespace"><span class="std std-ref">I read scikit-package allows namespace support for importing packages. What is it, and how do I set it up?</span></a>.</p></li>
+</ul>
+<p>We have also adopted community software and standards in <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>:</p>
+<ul class="simple">
+<li><p>Set up both local and remote <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> hooks to automate linting of code. This includes checks for <a class="reference external" href="https://peps.python.org/pep-0008/">PEP8</a>, <a class="reference external" href="https://peps.python.org/pep-0256/">PEP 256</a>, and static files such as <code class="docutils literal notranslate"><span class="pre">.json</span></code>, <code class="docutils literal notranslate"><span class="pre">.yml</span></code>, and <code class="docutils literal notranslate"><span class="pre">.md</span></code>. Spelling checks are included as well. To learn more about the hooks provided at each level, read <a class="reference internal" href="support/frequently-asked-questions.html#faq-pre-commit-levels"><span class="std std-ref">How is pre-commit used in each Level?</span></a>.</p></li>
 <li><p>Provide a rich <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> template that includes badges, installation instructions, support contacts, and contribution guidelines for your GitHub repository.</p></li>
-<li><p>Set up both local and remote <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> hooks to automate linting of code. This includes checks for <a class="reference external" href="https://peps.python.org/pep-0008/">PEP8</a>, <a class="reference external" href="https://peps.python.org/pep-0256/">PEP 256</a>, and static files such as <code class="docutils literal notranslate"><span class="pre">.json</span></code>, <code class="docutils literal notranslate"><span class="pre">.yml</span></code>, and <code class="docutils literal notranslate"><span class="pre">.md</span></code>. Include spelling checks as well.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> with the latest Python versions, adhering to the <a class="reference external" href="https://scientific-python.org/specs/spec-0000/">SPEC0</a> specification, without requiring manual configuration.</p></li>
-<li><p>Support namespace package imports (e.g., <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&lt;org-name&gt;.&lt;package-name&gt;</span></code>) to maintain branding consistency and avoid name collisions.</p></li>
 </ul>
 <p>For technical users, here are some of the advanced features:</p>
 <ul class="simple">
-<li><p>Generate conda-package <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> with <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span> <span class="pre">conda-forge</span></code>.</p></li>
+<li><p>Streamline conda package release by updating <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> with <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span> <span class="pre">conda-forge</span></code> after the PyPI and GitHub release. To learn more, read <a class="reference internal" href="release-guides/conda-forge.html#release-conda-forge"><span class="std std-ref">Create conda package with conda-forge</span></a>.</p></li>
 <li><p>Support headless GitHub CI testing for GUI applications.</p></li>
 <li><p>Support non-pure Python package releases with <code class="docutils literal notranslate"><span class="pre">cibuildwheel</span></code>.</p></li>
 <li><p>Reusable GitHub Actions workflows located in <a class="reference external" href="https://github.com/scikit-package/release-scripts/tree/main/.github/workflows">scikit-package/release-scripts</a>.</p></li>
@@ -185,8 +212,8 @@
 <h2>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Sangjoon Lee (<a class="reference external" href="mailto:sl5400&#37;&#52;&#48;columbia&#46;edu">sl5400<span>&#64;</span>columbia<span>&#46;</span>edu</a>)</p></li>
-<li><p>Andrew Yang (<a class="reference external" href="mailto:ay2546&#37;&#52;&#48;columbia&#46;edu">ay2546<span>&#64;</span>columbia<span>&#46;</span>edu</a>)</p></li>
 <li><p>Caden Myers (<a class="reference external" href="mailto:cjm2304&#37;&#52;&#48;columbia&#46;edu">cjm2304<span>&#64;</span>columbia<span>&#46;</span>edu</a>)</p></li>
+<li><p>Andrew Yang (<a class="reference external" href="mailto:ay2546&#37;&#52;&#48;columbia&#46;edu">ay2546<span>&#64;</span>columbia<span>&#46;</span>edu</a>)</p></li>
 <li><p>Tieqiong Zhang (<a class="reference external" href="mailto:tz2600&#37;&#52;&#48;columbia&#46;edu">tz2600<span>&#64;</span>columbia<span>&#46;</span>edu</a>)</p></li>
 <li><p>Simon Billinge (<a class="reference external" href="mailto:sb2896&#37;&#52;&#48;columbia&#46;edu">sb2896<span>&#64;</span>columbia<span>&#46;</span>edu</a>)</p></li>
 </ul>
@@ -197,6 +224,8 @@
 <section id="acknowledgements">
 <h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading"></a></h2>
 <p>The Billinge Group’s <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> has been modified from the NSLS-II scientific cookiecutter: <a class="reference external" href="https://github.com/nsls-ii/scientific-python-cookiecutter">https://github.com/nsls-ii/scientific-python-cookiecutter</a></p>
+<div class="toctree-wrapper compound">
+</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">

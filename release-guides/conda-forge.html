@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create conda package with conda-forge &mdash; scikit-package 0.1.0 documentation</title>
+  <title>Create conda package with conda-forge &mdash; scikit-package 0.2.0rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../_static/documentation_options.js?v=4ee4825d"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -23,7 +23,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Billinge Group standards" href="../programming-guides/billinge-group-standards.html" />
+    <link rel="next" title="Overview" href="../examples/overview.html" />
     <link rel="prev" title="Publish on GitHub and to PyPI" href="pypi-github.html" /> 
 </head>
 
@@ -50,6 +50,7 @@
               <p class="caption" role="heading"><span class="caption-text">GETTING STARTED</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#where-do-i-begin">Where do I begin?</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">TUTORIALS</span></p>
 <ul>
@@ -58,25 +59,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="pypi-github.html">Publish on GitHub and to PyPI</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Create conda package with conda-forge</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#i-already-have-a-conda-forge-feedstock-i-want-to-release-a-new-package-version-how-do-i-do-that">I already have a conda-forge feedstock. I want to release a new package version. How do I do that?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#i-am-new-to-conda-forge-how-do-i-create-a-conda-package">I am new to conda-forge. How do I create a conda package?</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-conda-package-for-the-frst-time">Create conda package for the frst time</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#step-1-prepare-conda-package-recipe-in-meta-yaml">Step 1. Prepare conda package recipe in <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#step-2-upload-meta-yaml-to-conda-forge-for-initial-review">Step 2. Upload <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> to conda-forge for initial review</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#step-3-wait-for-recipe-review">Step 3. Wait for recipe review</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#how-do-i-release-a-new-version-i-have-the-conda-forge-feedstock">How do I release a new version? I have the conda-forge feedstock</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#appendix-1-how-do-i-do-pre-release">Appendix 1. How do I do pre-release?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#appendix-2-add-a-new-admin-to-the-conda-forge-feedstock">Appendix 2. Add a new admin to the conda-forge feedstock</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#appendix-3-background-info-on-meta-yml">Appendix 3. Background info on <code class="docutils literal notranslate"><span class="pre">meta.yml</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#can-i-automate-the-process-of-making-a-pr-to-the-feedstock-after-pypi-github-release">Can I automate the process of making a PR to the feedstock after PyPI/GitHub release?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appendices">Appendices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#appendix-1-how-do-i-do-pre-release">Appendix 1. How do I do pre-release?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#appendix-2-add-a-new-admin-to-the-conda-forge-feedstock">Appendix 2. Add a new admin to the conda-forge feedstock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#appendix-3-background-info-on-meta-yml">Appendix 3. Background info on <code class="docutils literal notranslate"><span class="pre">meta.yml</span></code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-4.html">Example 1. Create your first Level 4 package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5.html">Example 2. Create your first Level 5 public package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-namespace.html">Example 3. Create a package with branded namespace import at Level 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-migration.html">Example 4. Migrate an existing package to Level 5</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
@@ -108,7 +122,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Create conda package with conda-forge</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/release-guides/conda-forge.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/release-guides/conda-forge.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -118,15 +132,26 @@
              
   <section id="create-conda-package-with-conda-forge">
 <span id="release-conda-forge"></span><h1>Create conda package with conda-forge<a class="headerlink" href="#create-conda-package-with-conda-forge" title="Link to this heading"></a></h1>
-<section id="i-already-have-a-conda-forge-feedstock-i-want-to-release-a-new-package-version-how-do-i-do-that">
-<span id="conda-create-feedstock"></span><h2>I already have a conda-forge feedstock. I want to release a new package version. How do I do that?<a class="headerlink" href="#i-already-have-a-conda-forge-feedstock-i-want-to-release-a-new-package-version-how-do-i-do-that" title="Link to this heading"></a></h2>
-<p>Please skip to the <a class="reference internal" href="#conda-forge-feedstock-release"><span class="std std-ref">How do I release a new version? I have the conda-forge feedstock</span></a> section below.</p>
-</section>
-<section id="i-am-new-to-conda-forge-how-do-i-create-a-conda-package">
-<h2>I am new to conda-forge. How do I create a conda package?<a class="headerlink" href="#i-am-new-to-conda-forge-how-do-i-create-a-conda-package" title="Link to this heading"></a></h2>
-<p>Here, you will learn how to release a conda package distributed through the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel in 10 to 15 minutes so that you package can be installed using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&lt;package-name&gt;</span></code>. This guide assumes you are familiar with a basic clone, fork, and pull request workflow on GitHub.</p>
 <section id="overview">
-<h3>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h3>
+<span id="conda-create-feedstock"></span><h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>⏩️ I am new to conda-forge. I just released my package to PyPI/GitHub by following the instruction in <a class="reference internal" href="pypi-github.html#release-pypi-github"><span class="std std-ref">Publish on GitHub and to PyPI</span></a>.</p>
+<blockquote>
+<div><p>Please get started in <a class="reference internal" href="#conda-forge-release-tutorial"><span class="std std-ref">Create conda package for the frst time</span></a>.</p>
+</div></blockquote>
+<p>⏩️ I already have a conda-forge feedstock. It is my <strong>first</strong> time making a new conda package version.</p>
+<blockquote>
+<div><p>Please get started in <a class="reference internal" href="#conda-forge-feedstock-release"><span class="std std-ref">How do I release a new version? I have the conda-forge feedstock</span></a>.</p>
+</div></blockquote>
+<p>⏩️ I already have a conda-forge feedstock. It’s <strong>NOT</strong> my first time updating the package version. Can I automate this process?</p>
+<blockquote>
+<div><p>Yes! You can run the <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">update</span> <span class="pre">conda-forge</span></code> command to prepare a PR for you. Please get started in <a class="reference internal" href="#conda-forge-pr-automate"><span class="std std-ref">Can I automate the process of making a PR to the feedstock after PyPI/GitHub release?</span></a>.</p>
+</div></blockquote>
+</section>
+<section id="create-conda-package-for-the-frst-time">
+<span id="conda-forge-release-tutorial"></span><h2>Create conda package for the frst time<a class="headerlink" href="#create-conda-package-for-the-frst-time" title="Link to this heading"></a></h2>
+<p>Here, you will learn how to release a conda package distributed through the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel in 10 to 15 minutes so that you package can be installed using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&lt;package-name&gt;</span></code>. This guide assumes you are familiar with a basic clone, fork, and pull request workflow on GitHub.</p>
+<section id="id1">
+<h3>Overview<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>The process is divided into three steps:</p>
 <p><a class="reference internal" href="#conda-forge-recipe-prepare"><span class="std std-ref">Step 1. Prepare conda package recipe in meta.yaml</span></a></p>
 <blockquote>
@@ -148,12 +173,12 @@
 <p class="admonition-title">See also</p>
 <p>Do you want to learn more about <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code>? Please read <a class="reference internal" href="#meta-yaml-info"><span class="std std-ref">Appendix 3. Background info on meta.yml</span></a>.</p>
 </div>
-<p>Hence, in Step 1, we will generate <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> using the Billinge group’s template. See <a class="reference external" href="https://github.com/conda-forge/diffpy.utils-feedstock/blob/main/recipe/meta.yaml">https://github.com/conda-forge/diffpy.utils-feedstock/blob/main/recipe/meta.yaml</a> as an example of a <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> used in production.</p>
-<ol class="arabic simple">
-<li><p>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> via <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scikit-package</span></code> and run <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">conda-forge</span></code></p></li>
-<li><p>Answer the following questions:</p></li>
-</ol>
-<dl class="field-list simple">
+<p>Hence, in Step 1, we will generate <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> using the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> conda-forge template. See <a class="reference external" href="https://github.com/conda-forge/diffpy.utils-feedstock/blob/main/recipe/meta.yaml">https://github.com/conda-forge/diffpy.utils-feedstock/blob/main/recipe/meta.yaml</a> as an example of a <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> used in production.</p>
+<ol class="arabic">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span> <span class="pre">conda-forge</span></code></p></li>
+<li><p>Answer the following questions:</p>
+<blockquote>
+<div><dl class="field-list simple">
 <dt class="field-odd">github_username_or_orgname<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The GitHub username or organization name.</p>
 </dd>
@@ -191,19 +216,35 @@
 <dd class="field-even"><p>Copy from  <code class="docutils literal notranslate"><span class="pre">requirements/conda.txt</span></code>.</p>
 </dd>
 <dt class="field-odd">testing_requirements<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Copy from <code class="docutils literal notranslate"><span class="pre">requirements/test.txt</span></code>.</p>
+<dd class="field-odd"><p>Copy from <code class="docutils literal notranslate"><span class="pre">requirements/tests.txt</span></code>.</p>
 </dd>
 </dl>
-<ol class="arabic simple">
-<li><p>Now, you have <code class="docutils literal notranslate"><span class="pre">recipes/&lt;package-name&gt;/meta.yaml</span></code> generated.</p></li>
-</ol>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<ul class="simple">
-<li><p>For a pure python package, have you removed the <code class="docutils literal notranslate"><span class="pre">build</span></code> section under the <code class="docutils literal notranslate"><span class="pre">requirements</span></code>? You can find an example <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> here: <a class="reference external" href="https://github.com/conda-forge/diffpy.utils-feedstock/blob/main/recipe/meta.yaml">https://github.com/conda-forge/diffpy.utils-feedstock/blob/main/recipe/meta.yaml</a></p></li>
-<li><p>Have you double-checked the license file name in <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> against the license files in the project repository. If you are unsure, please confirm with the project owner.</p></li>
-</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code> into the new directory created by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>.</p></li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> exists.</p></li>
+<li><p>If your package contains only pure Python code, the <code class="docutils literal notranslate"><span class="pre">build:</span></code> section <strong>below</strong> the <code class="docutils literal notranslate"><span class="pre">requirements:</span></code> section should be empty.</p></li>
+<li><p>If it is empty, remove the <code class="docutils literal notranslate"><span class="pre">build:</span></code> under the <code class="docutils literal notranslate"><span class="pre">requirements:</span></code> section and confirm that the modified <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> looks as follows:</p>
+<blockquote>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">build</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">noarch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python</span>
+<span class="w">  </span><span class="nt">number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">PYTHON</span><span class="w"> </span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-m pip install --no-deps --ignore-installed .</span>
+
+<span class="nt">requirements</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python {{ python_min }}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">setuptools</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">setuptools-git-versioning &gt;=2.0</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+</pre></div>
 </div>
+<p>Ensure that the <code class="docutils literal notranslate"><span class="pre">build:</span></code> section <strong>above</strong> the <code class="docutils literal notranslate"><span class="pre">requirements:</span></code> section is not removed.</p>
+</div></blockquote>
+</li>
+<li><p>Double-check the license file name in <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> against the license files in the project repository. If you are unsure, please confirm with the project owner.</p></li>
+<li><p>Done!</p></li>
+</ol>
 </section>
 <section id="step-2-upload-meta-yaml-to-conda-forge-for-initial-review">
 <span id="conda-forge-recipe-upload"></span><h3>Step 2. Upload <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> to conda-forge for initial review<a class="headerlink" href="#step-2-upload-meta-yaml-to-conda-forge-for-initial-review" title="Link to this heading"></a></h3>
@@ -232,28 +273,69 @@
 </section>
 <section id="how-do-i-release-a-new-version-i-have-the-conda-forge-feedstock">
 <span id="conda-forge-feedstock-release"></span><h2>How do I release a new version? I have the conda-forge feedstock<a class="headerlink" href="#how-do-i-release-a-new-version-i-have-the-conda-forge-feedstock" title="Link to this heading"></a></h2>
-<p>We release a new package once we have the <code class="docutils literal notranslate"><span class="pre">version</span></code> and <code class="docutils literal notranslate"><span class="pre">SHA256</span></code> sections in <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> in <code class="docutils literal notranslate"><span class="pre">https://github.com/conda-forge/&lt;package-name&gt;-feedstock</span></code> located in the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch. The conda-forge team asks to only modify <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code>.</p>
-<p>First, we will copy the <code class="docutils literal notranslate"><span class="pre">SHA256</span></code> value from <a class="reference external" href="http://pypi.org">pypi.org</a>:</p>
+<p>We release a new package once we have updated the <code class="docutils literal notranslate"><span class="pre">version</span></code> and <code class="docutils literal notranslate"><span class="pre">SHA256</span></code> sections in <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> in <code class="docutils literal notranslate"><span class="pre">https://github.com/conda-forge/&lt;package-name&gt;-feedstock</span></code> on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch. The conda-forge team asks that you only modify <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code>.</p>
+<p>First, copy the <code class="docutils literal notranslate"><span class="pre">SHA256</span></code> value from <a class="reference external" href="http://pypi.org">pypi.org</a>:</p>
 <ol class="arabic simple">
 <li><p>Visit the project on PyPI at <code class="docutils literal notranslate"><span class="pre">https://pypi.org/project/&lt;package-name&gt;</span></code></p></li>
-<li><p>Click <span class="guilabel">Download files</span> under <span class="guilabel">Navigation</span></p></li>
-<li><p>Click <span class="guilabel">view hashes</span> under <span class="guilabel">Source Distribution</span></p></li>
-<li><p>Copy the <span class="guilabel">SHA256</span> value</p></li>
+<li><p>Click <span class="guilabel">Download files</span> under <span class="guilabel">Navigation</span>.</p></li>
+<li><p>Click <span class="guilabel">view hashes</span> under <span class="guilabel">Source Distribution</span>.</p></li>
+<li><p>Copy the <span class="guilabel">SHA256</span> value.</p></li>
 <li><p>Create a PR to the feedstock repository.</p></li>
-<li><p>If you haven’t, fork and clone the forked feedstock repository.</p></li>
+<li><p>If you haven’t already, fork and clone the feedstock repository.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">main</span></code> to sync with the main branch.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">&lt;version-number&gt;</span></code> to create a new branch.</p></li>
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">recipe/meta.yaml</span></code>, modify <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">version</span></code> and <code class="docutils literal notranslate"><span class="pre">sha256</span></code>.</p></li>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">recipe/meta.yaml</span></code> and modify the <code class="docutils literal notranslate"><span class="pre">version</span></code> and <code class="docutils literal notranslate"><span class="pre">sha256</span></code>.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">recipe/meta.yaml</span> <span class="pre">&amp;&amp;</span> <span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;release:</span> <span class="pre">ready</span> <span class="pre">for</span> <span class="pre">&lt;version-number&gt;&quot;</span></code>.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--set-upstream</span> <span class="pre">origin</span> <span class="pre">&lt;version-number&gt;</span></code>.</p></li>
-<li><p>Create a PR to <code class="docutils literal notranslate"><span class="pre">main</span></code>, complete the relevant checklists generated in the PR comment.</p></li>
-<li><p>Wait for the CI to pass and tag relevant maintainer(s) for review.</p></li>
-<li><p>Once the PR is merged, in 20 to 30 minutes, verify the latest conda-forge package version from the README badge or by visiting <code class="docutils literal notranslate"><span class="pre">https://anaconda.org/conda-forge/&lt;package-name&gt;</span></code>. i.e.g, <code class="docutils literal notranslate"><span class="pre">https://anaconda.org/conda-forge/diffpy.utils</span></code>.</p></li>
-<li><p>Done! Your package can be now installed using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&lt;package-name&gt;</span></code>.</p></li>
+<li><p>Create a PR to <code class="docutils literal notranslate"><span class="pre">upstream/main</span></code>.</p></li>
+<li><p>Complete the relevant checklists generated in the PR comment.</p></li>
+<li><p>Wait for the CI to pass and tag the relevant maintainer(s) for review.</p></li>
+<li><p>Once the PR is merged, in 20 to 30 minutes, verify the latest conda-forge package version from the README badge or by visiting <code class="docutils literal notranslate"><span class="pre">https://anaconda.org/conda-forge/&lt;package-name&gt;</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">https://anaconda.org/conda-forge/diffpy.utils</span></code>).</p></li>
+<li><p>Done! Your package can now be installed using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&lt;package-name&gt;</span></code>.</p></li>
+</ol>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For your next release, you can automate Steps 1 through 12 by running <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">update</span> <span class="pre">conda-forge</span></code> in your command line. Read the section below <a class="reference internal" href="#conda-forge-pr-automate"><span class="std std-ref">Can I automate the process of making a PR to the feedstock after PyPI/GitHub release?</span></a>.</p>
+</div>
+</section>
+<section id="can-i-automate-the-process-of-making-a-pr-to-the-feedstock-after-pypi-github-release">
+<span id="conda-forge-pr-automate"></span><h2>Can I automate the process of making a PR to the feedstock after PyPI/GitHub release?<a class="headerlink" href="#can-i-automate-the-process-of-making-a-pr-to-the-feedstock-after-pypi-github-release" title="Link to this heading"></a></h2>
+<p>Yes! We provide <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">update</span> <span class="pre">conda-forge</span></code> to streamline the conda-forge release process after a PyPI release.</p>
+<ol class="arabic">
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">~/.skpkgrc</span></code>.</p></li>
+<li><p>If you have not already, add <code class="docutils literal notranslate"><span class="pre">feedstock_path</span></code> where your cloned <code class="docutils literal notranslate"><span class="pre">&lt;package-name&gt;-feedstock</span></code> directories are located.</p>
+<blockquote>
+<div><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;default_context&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;maintainer_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;local-default-maintainer-name&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;maintainer_email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;local-default-maintainer-email&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;maintainer_github_username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;local-default-maintainer-github-username&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;github_username_or_orgname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;local-default-github-username-or-orgname&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;contributors&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;local-default-contributors-name&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;license_holders&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;local-default-license-holders-name&gt;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;project_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;local-default-project-name&gt;&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;feedstock_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;directory-path-containing-feedstocks&gt;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>What are the <code class="docutils literal notranslate"><span class="pre">&lt;local-default-...&gt;</span></code> values under <code class="docutils literal notranslate"><span class="pre">default_context</span></code>? You can override the existing default prompts when a new package is created. For more, please read <a class="reference internal" href="../support/frequently-asked-questions.html#faq-set-default-prompt-value"><span class="std std-ref">How can I change the default values that appear in the prompt when creating projects in Level 3,4,5?</span></a>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Save <code class="docutils literal notranslate"><span class="pre">~/.skpkgrc</span></code>.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">update</span> <span class="pre">conda-forge</span></code>.</p></li>
+<li><p>Enter the number corresponding to the package. It will create a PR from <code class="docutils literal notranslate"><span class="pre">origin/&lt;latest-version&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">upstream/main</span></code>.</p></li>
+<li><p>Done! Finish the rest of the steps provided in <a class="reference internal" href="#conda-forge-feedstock-release"><span class="std std-ref">How do I release a new version? I have the conda-forge feedstock</span></a>.</p></li>
 </ol>
 </section>
+<section id="appendices">
+<span id="conda-forge-pre-release"></span><h2>Appendices<a class="headerlink" href="#appendices" title="Link to this heading"></a></h2>
 <section id="appendix-1-how-do-i-do-pre-release">
-<span id="conda-forge-pre-release"></span><h2>Appendix 1. How do I do pre-release?<a class="headerlink" href="#appendix-1-how-do-i-do-pre-release" title="Link to this heading"></a></h2>
+<h3>Appendix 1. How do I do pre-release?<a class="headerlink" href="#appendix-1-how-do-i-do-pre-release" title="Link to this heading"></a></h3>
 <p>Generate <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> by following <code class="docutils literal notranslate"><span class="pre">Step</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">Step</span> <span class="pre">2</span></code> under <code class="docutils literal notranslate"><span class="pre">conda-forge:</span> <span class="pre">release</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">first</span> <span class="pre">time</span></code> above. Here are two differences required for pre-release:</p>
 <ol class="arabic">
 <li><p>Create <code class="docutils literal notranslate"><span class="pre">recipe/conda_build_config.yaml</span></code> containing</p>
@@ -270,7 +352,7 @@
 <li><p>Re-render once the PR is created.</p></li>
 <li><p>To install your <code class="docutils literal notranslate"><span class="pre">rc</span></code> version, use the command:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge/label/&lt;package-name&gt;_rc<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>&lt;package-name&gt;
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge/label/&lt;package-name&gt;_rc<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>&lt;package-name&gt;
 </pre></div>
 </div>
 </div></blockquote>
@@ -279,11 +361,11 @@
 <p>For more, read the conda-forge official documentation for pre-release: <a class="reference external" href="https://conda-forge.org/docs/maintainer/knowledge_base/#pre-release-builds">https://conda-forge.org/docs/maintainer/knowledge_base/#pre-release-builds</a></p>
 </section>
 <section id="appendix-2-add-a-new-admin-to-the-conda-forge-feedstock">
-<span id="conda-forge-add-admin"></span><h2>Appendix 2. Add a new admin to the conda-forge feedstock<a class="headerlink" href="#appendix-2-add-a-new-admin-to-the-conda-forge-feedstock" title="Link to this heading"></a></h2>
+<span id="conda-forge-add-admin"></span><h3>Appendix 2. Add a new admin to the conda-forge feedstock<a class="headerlink" href="#appendix-2-add-a-new-admin-to-the-conda-forge-feedstock" title="Link to this heading"></a></h3>
 <p>Check whether you are an admin listed in the <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> in the feedstock repository. Create an issue with the title/comment: <code class="docutils literal notranslate"><span class="pre">&#64;conda-forge-admin,</span> <span class="pre">please</span> <span class="pre">add</span> <span class="pre">user</span> <span class="pre">&#64;username</span></code>. Please see an example issue <a class="reference external" href="https://github.com/conda-forge/diffpy.pdffit2-feedstock/issues/21">here</a>.</p>
 </section>
 <section id="appendix-3-background-info-on-meta-yml">
-<span id="meta-yaml-info"></span><h2>Appendix 3. Background info on <code class="docutils literal notranslate"><span class="pre">meta.yml</span></code><a class="headerlink" href="#appendix-3-background-info-on-meta-yml" title="Link to this heading"></a></h2>
+<span id="meta-yaml-info"></span><h3>Appendix 3. Background info on <code class="docutils literal notranslate"><span class="pre">meta.yml</span></code><a class="headerlink" href="#appendix-3-background-info-on-meta-yml" title="Link to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> file contains information about dependencies, the package version, the license, the documentation link, and the maintainer(s) of the package. In <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code>, there are 3 important keywords under the <code class="docutils literal notranslate"><span class="pre">requirements</span></code> section: <code class="docutils literal notranslate"><span class="pre">build</span></code>, <code class="docutils literal notranslate"><span class="pre">host</span></code>, and <code class="docutils literal notranslate"><span class="pre">run</span></code> that are used to specify dependencies.</p>
 <blockquote>
 <div><ul class="simple">
@@ -295,13 +377,14 @@
 <p>To avoid any confusion, there is a separate YAML section called <code class="docutils literal notranslate"><span class="pre">build</span></code> above the <code class="docutils literal notranslate"><span class="pre">requirements</span></code> section. This section is for setting up the entire operating system. For more information, please refer to the official documentation: <a class="reference external" href="https://conda-forge.org/docs/maintainer/adding_pkgs/#build-host-and-run">https://conda-forge.org/docs/maintainer/adding_pkgs/#build-host-and-run</a></p>
 </section>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="pypi-github.html" class="btn btn-neutral float-left" title="Publish on GitHub and to PyPI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../programming-guides/billinge-group-standards.html" class="btn btn-neutral float-right" title="Billinge Group standards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../examples/overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

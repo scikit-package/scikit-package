@@ -35,6 +35,8 @@ For Level 4, we assume you have prior experience in developing scientific code i
 Step 1. Create a new package with ``scikit-package``
 ----------------------------------------------------
 
+.. _create-new-github-repo:
+
 Create a new GitHub repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -51,7 +53,7 @@ Create a new project with ``scikit-package``
 
     .. code-block:: bash
 
-        $ package create system
+        package create system
 
 #. Respond to the following prompts:
 
@@ -82,7 +84,7 @@ Create a new project with ``scikit-package``
 
     .. code-block:: bash
 
-        $ cd my-package
+        cd my-package
 
 #. Confirm that you have the following folder structure shown below:
 
@@ -95,7 +97,7 @@ Create a new project with ``scikit-package``
         ├── requirements
         │   ├── conda.txt
         │   ├── pip.txt
-        │   └── test.txt
+        │   └── tests.txt
         ├── src
         │   └── my_package
         │   ├── __init__.py

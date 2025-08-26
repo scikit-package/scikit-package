@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why do I need a news file for each PR? &mdash; scikit-package 0.1.0 documentation</title>
+  <title>Why do I need a news file for each PR? &mdash; scikit-package 0.2.0rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../_static/documentation_options.js?v=4ee4825d"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -48,6 +48,7 @@
               <p class="caption" role="heading"><span class="caption-text">GETTING STARTED</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#where-do-i-begin">Where do I begin?</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">TUTORIALS</span></p>
 <ul>
@@ -56,11 +57,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-guides/pypi-github.html">Publish on GitHub and to PyPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-guides/conda-forge.html">Create conda package with conda-forge</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-4.html">Example 1. Create your first Level 4 package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5.html">Example 2. Create your first Level 5 public package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-namespace.html">Example 3. Create a package with branded namespace import at Level 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-migration.html">Example 4. Migrate an existing package to Level 5</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
@@ -92,7 +102,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Why do I need a news file for each PR?</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/snippets/news-file-format.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/snippets/news-file-format.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -102,38 +112,108 @@
              
   <section id="why-do-i-need-a-news-file-for-each-pr">
 <h1>Why do I need a news file for each PR?<a class="headerlink" href="#why-do-i-need-a-news-file-for-each-pr" title="Link to this heading"></a></h1>
-<p>We want to write good <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> for each release version. These news items are of interest to both developers and technical users looking for specific keywords.</p>
-<p>We can streamline the process of writing <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> for each release by compiling the news items from the <code class="docutils literal notranslate"><span class="pre">news</span></code> directory.</p>
-<p>Here is an example <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> <a class="reference external" href="https://github.com/scikit-package/scikit-package/blob/main/CHANGELOG.rst">https://github.com/scikit-package/scikit-package/blob/main/CHANGELOG.rst</a></p>
+<p>We want to write a good <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> for each release version. These news items are of interest to both developers and technical users looking for specific keywords. We can streamline the process of writing <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> for each release by compiling the news items from the <code class="docutils literal notranslate"><span class="pre">news</span></code> directory.</p>
+<p>Here is an example <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code>: <a class="reference external" href="https://github.com/scikit-package/scikit-package/blob/main/CHANGELOG.rst">https://github.com/scikit-package/scikit-package/blob/main/CHANGELOG.rst</a></p>
 </section>
-<section id="how-do-i-write-good-a-news-item">
-<h1>How do I write good a news item?<a class="headerlink" href="#how-do-i-write-good-a-news-item" title="Link to this heading"></a></h1>
-<ul>
-<li><p>Do not remove <code class="docutils literal notranslate"><span class="pre">news/TEMPLATE.rst</span></code>. Make a copy called <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>.</p></li>
-<li><p>Do not modify other section headers in the rst file. Replace <code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">&lt;news</span> <span class="pre">item&gt;</span></code> only.</p></li>
-<li><p>Start with a capital letter and a verb. End with a period, e.g., <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">automatic</span> <span class="pre">linting</span> <span class="pre">of</span> <span class="pre">.md,</span> <span class="pre">.yml,</span> <span class="pre">.rst</span> <span class="pre">files</span> <span class="pre">via</span> <span class="pre">a</span> <span class="pre">prettier</span> <span class="pre">hook</span> <span class="pre">in</span> <span class="pre">pre-commit.</span></code></p></li>
-<li><p>For trivial changes, still create <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>, but the news item should start with <code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">No</span> <span class="pre">news:</span></code> so that the news item is not compiled into the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> file during the release process. Here is an example below:</p>
+<section id="how-do-i-create-a-news-file">
+<h1>How do I create a news file?<a class="headerlink" href="#how-do-i-create-a-news-file" title="Link to this heading"></a></h1>
+<ol class="arabic">
+<li><p>In your repository, confirm that the <code class="docutils literal notranslate"><span class="pre">news/TEMPLATE.rst</span></code> file exists.</p></li>
+<li><p>Make a copy of <code class="docutils literal notranslate"><span class="pre">news/TEMPLATE.rst</span></code> and name it <code class="docutils literal notranslate"><span class="pre">news/&lt;branch-name&gt;.rst</span></code>. You can automate the process of creating the news file and adding new items by running the commands:</p>
 <blockquote>
-<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>**Added:**
-
-* No news: &lt;brief reason&gt;
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>package<span class="w"> </span>add<span class="w"> </span>news<span class="w"> </span>--add<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;&lt;Describe the main feature added in the PR.&gt;&quot;</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As shown above, you may use <code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">--add</span></code>. The second flag, <code class="docutils literal notranslate"><span class="pre">-m</span></code>, stands for <code class="docutils literal notranslate"><span class="pre">message</span></code>.</p>
 </div>
 </div></blockquote>
 </li>
-<li><p>Use the <code class="docutils literal notranslate"><span class="pre">rst</span></code> style of backquotes instead of the markdown style of backquotes. For example, use <code class="docutils literal notranslate"><span class="pre">``scikit-package``</span></code> instead of <code class="docutils literal notranslate"><span class="pre">`scikit-package`</span></code>.</p></li>
+<li><p>Confirm that your <code class="docutils literal notranslate"><span class="pre">news/&lt;branch-name&gt;.rst</span></code> has the following content:</p>
+<blockquote>
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>**Added:**
+
+* &lt;Describe the main feature added in the PR.&gt;
+
+**Changed:**
+
+* &lt;news item&gt;
+
+**Deprecated:**
+
+* &lt;news item&gt;
+
+**Removed:**
+
+* &lt;news item&gt;
+
+**Fixed:**
+
+* &lt;news item&gt;
+
+**Security:**
+
+* &lt;news item&gt;
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Once you are happy with the news item(s) that you have added, you don’t need to modify anything in <code class="docutils literal notranslate"><span class="pre">news/&lt;branch-name&gt;.rst</span></code> or <code class="docutils literal notranslate"><span class="pre">news/TEMPLATE.rst</span></code>. <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> will automatically parse your news items and add them to the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> file when you initiate a release.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although it is generally not recommended, if two tasks were completed on the same branch, you can still add another news item by running the <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">add</span> <span class="pre">news</span></code> command again.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="where-do-i-place-my-news-item-in-branch-name-rst">
+<h1>Where do I place my news item in <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>?<a class="headerlink" href="#where-do-i-place-my-news-item-in-branch-name-rst" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">**Added:**</span></code> (<code class="docutils literal notranslate"><span class="pre">-a</span></code>, <code class="docutils literal notranslate"><span class="pre">--add</span></code>) includes features or functionality of interest to users and developers, such as support for a new Python version or the addition of a useful feature.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Changed:**</span></code> (<code class="docutils literal notranslate"><span class="pre">-c</span></code>, <code class="docutils literal notranslate"><span class="pre">--change</span></code>) includes modifications that affect end users or developers, such as API changes or replaced dependencies.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Fixed:**</span></code> (<code class="docutils literal notranslate"><span class="pre">-f</span></code>, <code class="docutils literal notranslate"><span class="pre">--fix</span></code>) includes bug fixes or refactoring.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Deprecated:**</span></code> (<code class="docutils literal notranslate"><span class="pre">-d</span></code>, <code class="docutils literal notranslate"><span class="pre">--deprecated</span></code>) includes methods, classes, or workflows that will no longer be supported in a future release.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Removed:**</span></code> (<code class="docutils literal notranslate"><span class="pre">-r</span></code>, <code class="docutils literal notranslate"><span class="pre">--remove</span></code>) is the opposite of the “Added” section, referring to features or functionality that have been removed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**Security:**</span></code> (<code class="docutils literal notranslate"><span class="pre">-s</span></code>, <code class="docutils literal notranslate"><span class="pre">--security</span></code>) includes fixes or improvements related to vulnerabilities, authentication, or access control.</p></li>
 </ul>
 </section>
-<section id="where-to-place-the-news-item-in-branch-name-rst">
-<h1>Where to place the news item in <code class="docutils literal notranslate"><span class="pre">&lt;branch-name&gt;.rst</span></code>?<a class="headerlink" href="#where-to-place-the-news-item-in-branch-name-rst" title="Link to this heading"></a></h1>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">**Added:**</span></code> includes features or functionality of interest to users and developers, such as support for a new Python version or the addition of a useful feature.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">**Changed:**</span></code> includes modifications that affect end-users or developers, such as API changes or dependencies replaced.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">**Fixed:**</span></code> includes bug fixes or refactoring.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">**Deprecated:**</span></code> includes methods, classes, or workflows that are no longer supported in the future release.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">**Removed:**</span></code> includes the opposite of the “Added” section, referring to features or functionality that have been removed.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Security:**</span></code>: include fixes or improvements related to vulnerabilities, authentication, or access control.</p></li>
+<section id="what-are-good-practices-for-writing-news-items">
+<h1>What are good practices for writing news items?<a class="headerlink" href="#what-are-good-practices-for-writing-news-items" title="Link to this heading"></a></h1>
+<ul>
+<li><p>Maintain consistency when a new release note is created and added to the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code> file:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>Start with an active verb.</p></li>
+<li><p>Capitalize the first word.</p></li>
+<li><p>End with a period.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">rst</span></code> style of backquotes instead of the markdown style. For example, use <code class="docutils literal notranslate"><span class="pre">``scikit-package``</span></code> instead of <code class="docutils literal notranslate"><span class="pre">`scikit-package`</span></code>.</p></li>
+</ol>
+<p>e.g., Add automatic linting of <code class="docutils literal notranslate"><span class="pre">.md</span></code>, <code class="docutils literal notranslate"><span class="pre">.yml</span></code>, and <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files via a prettier hook in pre-commit.</p>
+</div></blockquote>
+</li>
 </ul>
+</section>
+<section id="my-pr-has-trivial-fixes-that-shouldn-t-be-in-changelog-rst-should-i-still-create-a-news-file">
+<h1>My PR has trivial fixes that shouldn’t be in <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code>. Should I still create a news file?<a class="headerlink" href="#my-pr-has-trivial-fixes-that-shouldn-t-be-in-changelog-rst-should-i-still-create-a-news-file" title="Link to this heading"></a></h1>
+<p>Yes. In this case, we want to communicate to the reviewer(s) the reason it should not be in the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.rst</span></code>. You can simply run the following:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>package<span class="w"> </span>add<span class="w"> </span>news<span class="w"> </span>-n<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;&lt;brief-reason&gt;.&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>You will see a new file has been created: <code class="docutils literal notranslate"><span class="pre">news/&lt;branch-name&gt;.rst</span></code></p>
+<blockquote>
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>**Added:**
+
+* No news: &lt;brief-reason&gt;
+
+...
+</pre></div>
+</div>
+</div></blockquote>
 </section>
 
 

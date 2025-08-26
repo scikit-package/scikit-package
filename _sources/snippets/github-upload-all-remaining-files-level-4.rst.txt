@@ -5,17 +5,17 @@ While we previously uploaded the ``README`` file to the remote GitHub ``main`` r
 
     .. code-block:: bash
 
-        $ git checkout main
-        $ git pull origin main
+        git checkout main
+        git pull origin main
 
 #. Checkout a new branch called ``skpkg-system`` from the ``main`` branch:
 
     .. code-block:: bash
 
-        $ git checkout -b skpkg-system
-        $ git add .
-        $ git commit -m "skpkg: start a new project with skpkg"
-        $ git push -u origin skpkg-system
+        git checkout -b skpkg-system
+        git add .
+        git commit -m "skpkg: start a new project with skpkg"
+        git push -u origin skpkg-system
 
 #. Visit your GitHub repository online.
 
@@ -37,10 +37,10 @@ While we previously uploaded the ``README`` file to the remote GitHub ``main`` r
 
         .. code-block:: bash
 
-         $ git pull origin skpkg-system
-         $ git add <file-modified-that-fixes-pre-commit-error>
-         $ git commit -m "chore: <your commit message>"
-         $ git push
+         git pull origin skpkg-system
+         git add <file-modified-that-fixes-pre-commit-error>
+         git commit -m "chore: <your commit message>"
+         git push
 
 #. Click :guilabel:`Files changed` in the PR to to review the new files added to the repository.
 

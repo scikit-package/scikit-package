@@ -49,9 +49,9 @@ Start pre-release
 
    .. code-block:: bash
 
-      $ conda install vulture
+      conda install vulture
       #### Example outputs after running vulture ####
-      $ vulture src/ tests/
+      vulture src/ tests/
       tests/test_module1.py:22: unused import 'os' (100% confidence)
 
    Review the output and remove or suppress unused code when it is not needed to keep the release clean and maintainable.
@@ -62,8 +62,8 @@ Start pre-release
 
       # For pre-release, use *.*.*-rc.* e.g., 1.0.0-rc.0
       # rc stands for release candidate
-      $ git tag <version>-rc.<rc-number>
-      $ git push upstream <version>-rc.<rc-number>
+      git tag <version>-rc.<rc-number>
+      git push upstream <version>-rc.<rc-number>
 
 #. Done! Once the tag is pushed, visit the :guilabel:`Actions` tab in the repository to monitor the CI progress.
 
@@ -85,8 +85,8 @@ Full release after pre-release
    .. code-block:: bash
 
       # For release, use *.*.* e.g., 1.0.0
-      $ git tag <version>
-      $ git push upstream <version>
+      git tag <version>
+      git push upstream <version>
 
 #. Notice that ``CHANGELOG.rst`` is also updated with the new release version and the documentation is built under the ``gh-pages`` branch.
 

@@ -36,9 +36,9 @@ Step 1. Pre-commit workflow
 
     .. code-block::
 
-        $ git clone <URL-of-the-forked-repo>
-        $ cd <package-name>
-        $ git remote add upstream <URL-of-the-original-repo>
+        git clone <URL-of-the-forked-repo>
+        cd <package-name>
+        git remote add upstream <URL-of-the-original-repo>
 
     .. note::
 
@@ -53,23 +53,28 @@ Run ``black`` in your codebase
 
     .. code-block:: bash
 
-        $ git checkout main
-        $ git pull upstream main
+        git checkout main
+        git pull upstream main
 
 
 #. Activate the conda environment and install ``black``:
 
     .. code-block:: bash
 
-        $ conda activate skpkg-env
-        $ conda install black
+        conda activate skpkg-env
+        conda install black
 
 #. Create a new branch called ``black-edits`` and create a new file called ``pyproject.toml``:
 
     .. code-block:: bash
 
-        $ git checkout -b black-edits
-        $ touch pyproject.toml
+        git checkout -b black-edits
+
+#. If you do not have a ``pyproject.toml`` file, you can create one by running the following command:
+
+    .. code-block:: bash
+
+        touch pyproject.toml
 
 #. Copy and paste the following content at the bottom of ``pyproject.toml``:
 
@@ -94,12 +99,13 @@ Run ``black`` in your codebase
         | blib2to3
         | tests/data
         )/
+        '''
 
 #. Lint the code:
 
     .. code-block:: bash
 
-        $ black .
+        black .
 
     .. seealso:: To skip certain files, add them under the ``exclude`` section in the ``pyproject.toml``.
 
@@ -107,9 +113,9 @@ Run ``black`` in your codebase
 
     .. code-block:: bash
 
-        $ git add .
-        $ git commit -m "skpkg: apply black to all files in the project directory"
-        $ git push origin black-edits
+        git add .
+        git commit -m "skpkg: apply black to all files in the project directory"
+        git push origin black-edits
 
 #. Create a PR from ``username/black-edits`` to ``upstream/main``.
 
@@ -126,45 +132,52 @@ Apply pre-commit auto-fixes without manual edits
 
     .. code-block:: bash
 
-        $ git checkout main && git pull upstream main
+        git checkout main && git pull upstream main
 
 #. Create a new branch called ``pre-commit-auto``:
 
     .. code-block:: bash
 
-        $ git checkout -b pre-commit-auto
+        git checkout -b pre-commit-auto
 
 #. Create a new package using ``scikit-package``:
 
     .. code-block:: bash
 
-        $ package create public
+        package create public
 
 #. Copy the ``pre-commit`` configuration files from the new to the old directory:
 
     .. code-block:: bash
 
-        $ cp <package-name>/.pre-commit-config.yaml .
-        $ cp <package-name>/.isort.cfg .
-        $ cp <package-name>/.flake8 .
+        cp <package-name>/.pre-commit-config.yaml .
+        cp <package-name>/.isort.cfg .
+        cp <package-name>/.flake8 .
 
 #. Trigger hooks and auto-fixes without manual edits:
 
     .. code-block:: bash
 
-        $ pre-commit run --all-files
+        pre-commit run --all-files
 
-#. Add the changes to the ``pre-commit-auto`` branch:
+#. Run ``git status`` to see all the files that have been modified by ``pre-commit`` hooks:
+
+      .. code-block:: bash
+
+          git status
+
+#. When you run ``git status``, you will see the package you created under ``Untracked files`` with the package name you gave. At this step, you want to add and commit everything **except** this package. To do so, run the following commands and replace ``<package-name>`` with the name of your package:
 
     .. code-block:: bash
 
-        $ git add . && git commit -m "style: apply pre-commit hooks with no manual edits"``
+        git add -- . ':!<package-name>'
+        git commit -m "style: apply pre-commit hooks with no manual edits"
 
 #. Push the changes to the remote repository:
 
     .. code-block:: bash
 
-        $ git push origin pre-commit-auto
+        git push origin pre-commit-auto
 
 #. Create a PR from ``username/pre-commit-auto`` to ``upstream/migration``. The PR title can be ``skpkg: apply pre-commit to project directory with no manual edits``.
 
@@ -185,18 +198,24 @@ The package will most likely have failed ``pre-commit`` hooks. We will manually 
 
 Here, instead of fixing all errors at once, we will address each type of error one at a time.  For example, a branch called ``pre-commit-spelling`` may contain spelling fixes, while another branch, ``pre-commit-flake8-line`` fixes of line length errors raised by flake8.
 
-#. Sync with the ``upstream/migration`` branch:
+#. To get the ``migration`` branch from ``upstream/migration`` and track it, run the following commands:
 
     .. code-block:: bash
 
-        $ git checkout migration
-        $ git pull upstream migration
+        git fetch upstream migration
+        git checkout --track upstream/migration
 
-#. Create a new branch that will be used to fix the type of errors:
+#. Make sure everything is sync'd with the ``upstream/migration`` branch:
 
     .. code-block:: bash
 
-        $ git checkout -b pre-commit-<theme>
+        git pull upstream migration
+
+#. Create a new branch that will be used to fix the type of errors like flake8 or codespell:
+
+    .. code-block:: bash
+
+        git checkout -b pre-commit-<theme>
 
 #. Run ``pre-commit run --all-files`` to see the errors:
 
@@ -212,9 +231,9 @@ Here, instead of fixing all errors at once, we will address each type of error o
 
     .. code-block:: bash
 
-        $ git add <files-modified-to-fix-error>
-        $ git commit -m "skpkg: fix <theme> errors"
-        $ git push origin pre-commit-<theme>
+        git add <files-modified-to-fix-error>
+        git commit -m "skpkg: fix <theme> errors"
+        git push origin pre-commit-<theme>
 
 #. Create a PR from ``username/pre-commit-<theme>`` to ``upstream/migration``. The PR title can be ``skpkg: fix <theme> errors``.
 
@@ -224,15 +243,15 @@ Here, instead of fixing all errors at once, we will address each type of error o
 
     .. code-block:: bash
 
-        $ git checkout migration
-        $ git pull upstream migration
-        $ git checkout -b pre-commit-<another-theme>
+        git checkout migration
+        git pull upstream migration
+        git checkout -b pre-commit-<another-theme>
 
 #. Are all the PRs merged and do all ``pre-commit`` hooks pass? If so, you are ready for the next section! Before that, let's automatically trigger ``pre-commit`` hooks going forward:
 
     .. code-block:: bash
 
-        $ pre-commit install
+        pre-commit install
 
 Setup pre-commit CI
 ^^^^^^^^^^^^^^^^^^^
@@ -259,25 +278,25 @@ Move essential files to run local tests
 
     .. code-block::
 
-        $ git checkout migration && git pull upstream migration
+        git checkout migration && git pull upstream migration
 
 #. Move into the new directory created by ``scikit-package``:
 
     .. code-block::
 
-        $ cd <package-name>
+        cd <package-name>
 
 #. Move ``.git`` from the old (``..``) to the new directory (``.``):
 
     .. code-block::
 
-        $ mv ../<package-name>/.git .
+        mv ../.git .
 
 #. See a list of files that have been (1) untracked, (2) deleted, (3) modified:
 
     .. code-block::
 
-        $ git status
+        git status
 
     .. seealso::
 
@@ -285,11 +304,11 @@ Move essential files to run local tests
         - ``deleted`` are files in the old directory but the files that are not in the new directory. At the moment, most of the ``src`` and ``tests`` and ``doc`` files will be in this category. We will move them from the old to the new directory in the next few steps.
         - ``modified`` are files that that exist both in the old and the new directory, while the scikig-package has made changes to them.
 
-#. Create a new branch called called ``setup-CI``:
+#. Create a new branch called ``setup-CI``:
 
     .. code-block:: bash
 
-        git checkout -b setup-CI
+        $ git checkout -b setup-CI
 
 #. Now you will move ``src`` and ``tests`` folders in the following steps.
 
@@ -297,8 +316,8 @@ Move essential files to run local tests
 
     .. code-block:: bash
 
-        $ cp -n -r ../src .
-        $ cp -n -r ../tests .
+        cp -n -r ../src/* src/
+        cp -n -r ../tests/* tests/
 
     .. seealso::
 
@@ -308,40 +327,65 @@ Move essential files to run local tests
 
     .. code-block:: bash
 
-        $ git status
+        git status
 
-#. Commit the changes:
+    .. attention::
+        If you see any files under ``src`` or ``tests`` that are modified, **manually check these files** and decide whether you want to keep the changes made by ``scikit-package`` or not.
+
+#. By default, ``scikit-package`` generates an example source file, test file, and documentation file. If you do not need these files, you can delete them:
 
     .. code-block:: bash
 
-        $ git add src && git commit -m "skpkg: mirate src folder"
-        $ git add tests && git commit -m "skpkg: migrate tests folder"
+        rm src/<package-name>/functions.py
+        rm tests/test_functions.py
+        rm docs/source/api/<package-name>.example_package.rst
 
-#. Manually list the dependencies under ``requirements/pip.txt``, ``requirements/tests.txt``, ``requirements/docs.txt``, ``requirements/conda.txt``.
+#. If any files have been added or modified in the way you like, you can add and commit the changes. Otherwise, you can skip this step:
+
+    .. code-block:: bash
+
+        git add src && git commit -m "skpkg: migrate src folder"
+        git add tests && git commit -m "skpkg: migrate tests folder"
+
+#. Manually list the dependencies under ``requirements/pip.txt``, ``requirements/tests.txt``, ``requirements/docs.txt``, ``requirements/conda.txt``, and ``requirements/build.txt`` (see below for more details on this file).
+
+   - ``pip.txt``
+     Core runtime dependencies needed to use the package.
+
+   - ``tests.txt``
+     Packages required for running tests and checking coverage.
+
+   - ``docs.txt``
+     Dependencies for building documentation.
+
+   - ``conda.txt``
+     Base environment packages best installed via ``conda``.
+   - ``build.txt`` *(optional)*
+     Build tools needed for non-Python components (e.g., C/C++ libraries, compilers). Only include if your package requires compilation.
 
 #. Delete ``requirements/build.txt`` if your package only contains Python code.
 
     .. code-block:: bash
 
-        $ rm requirements/build.txt
+        rm requirements/build.txt
 
 #. Add and commit the changes in the  ``requirements`` folder:
 
     .. code-block:: bash
 
-        $ git add requirements
-        $ git commit -m "skpkg: list dependencies in requirements folder"
+        git add requirements
+        git commit -m "skpkg: list dependencies in requirements folder"
 
 #. Test your package from a new conda environment:
 
     .. code-block:: bash
 
-        $ conda create -n <package-name>-env python=3.13 \
+        conda create -n <package-name>-env python=3.13 \
             --file requirements/conda.txt \
-            --file requirements/test.txt
-        $ conda activate <package-name>-env
-        $ pip install -e . --no-deps
-        $ pytest
+            --file requirements/tests.txt
+        conda activate <package-name>-env
+        pip install -e . --no-deps
+        pytest
 
     .. note::
 
@@ -365,31 +409,35 @@ Setup GitHub Actions
 
     .. code-block:: bash
 
-        $ git add .github/workflows/tests-on-pr.yml .gitignore
-        $ git commit -m "skpkg: add CI and issue/PR templates"
+        git add .github/workflows/tests-on-pr.yml .gitignore
+        git commit -m "skpkg: add CI and issue/PR templates"
 
     .. Attention::
-        If your package does not support the latest Python version of |PYTHON_MAX_VERSION|, you will need to specify the Python version supported by your package. Follow the instructions here to set the Python version under ``.github/workflows`` in :ref:`github-actions-python-versions`.
+        If your package does not support the latest Python version of |PYTHON_MAX_VERSION|, you will need to specify the Python version supported by your package. Follow the instructions here to set the Python version under ``.github/workflows`` in :ref:`faq-github-actions-python-versions`.
+
+
+    .. seealso::
+        If you need to run **extra CLI commands in the GitHub workflow** for running tests, you can refer to :ref:`faq-github-actions-extra-cli-commands`. For example, you may want to run ``pip install <package-name>`` because the package is not available on conda-forge yet available on PyPI only.
 
 #. Add and commit the ``requirements`` folder:
 
     .. code-block:: bash
 
-        git add requirements
-        git commit -m "skpkg: list dependencies in requirements folder"
+        $ git add requirements
+        $ git commit -m "skpkg: list dependencies in requirements folder"
 
 #. Add and commit ``pyproject.toml``:
 
     .. code-block:: bash
 
-        git add pyproject.toml
-        git commit -m "skpkg: add pyproject.toml"
+        $ git add pyproject.toml
+        $ git commit -m "skpkg: add pyproject.toml"
 
 #. Push the changes to the ``setup-CI`` branch:
 
     .. code-block:: bash
 
-        git push origin setup-CI
+        $ git push origin setup-CI
 
 #. Create a PR from ``username/setup-CI`` to ``upstream/migration``.
 
@@ -406,18 +454,18 @@ Add configuration files
 
     .. code-block:: bash
 
-        $ git checkout migration
-        $ git pull upstream migration
-        $ git checkout -b config
+        git checkout migration
+        git pull upstream migration
+        git checkout -b config
 
 #. Add and commit configuration files:
 
     .. code-block:: bash
 
-        $ git add .pre-commit-config.yaml .codespell .flake8 .isort.cfg
-        $ git commit -m "skpkg: add config files for pre-commit "
-        $ git add .readthedocs.yaml .codecov.yml .github
-        $ git commit -m "skpkg: add config files readthedocs, codecov, GitHub"
+        git add .pre-commit-config.yaml .codespell .flake8 .isort.cfg
+        git commit -m "skpkg: add config files for pre-commit "
+        git add .readthedocs.yaml .codecov.yml .github
+        git commit -m "skpkg: add config files readthedocs, codecov, GitHub"
 
 #. Create a PR from ``username/config`` to ``upstream/migration``.
 
@@ -432,34 +480,49 @@ Move documentation files
 
     .. code-block:: bash
 
-        $ git checkout migration
-        $ git pull upstream migration
-        $ git checkout -b doc
+        git checkout migration
+        git pull upstream migration
+        git checkout -b doc
 
 #. Copy documentation from the old to the new repository:
 
     .. code-block:: bash
 
-        $ cp -n -r ../doc/source/* ./doc/source.
+        cp -n -r ../docs/source/* ./docs/source
 
     .. note::
 
-        If files are moved to a different path like ``doc/manual/source`` (old) to ``doc/source`` (new), open the project in IDE and do a global search (ctrl + shift + f) for ``../`` or ``..`` and modify all relative path instances.
+        If files are moved to a different path like ``docs/manual/source`` (old) to ``docs/source`` (new), open the project in IDE and do a global search (ctrl + shift + f) for ``../`` or ``..`` and modify all relative path instances.
+
+#. Once again, ``scikit-package`` creates template files in the ``docs/source`` folder. If you do not need these files, you can delete them:
+
+    .. code-block:: bash
+
+        rm docs/source/getting-started.rst
+        rm -r docs/source/img/
+        rm -r docs/source/snippets/
+
+#. Some files in ``docs/source`` may have been modified by ``scikit-package``. Manually check these files and decide whether you want to keep the changes made by ``scikit-package`` or not. After doing this, you can add and commit changes (if applicable):
+
+    .. code-block:: bash
+
+        git add docs/source
+        git commit -m "skpkg: migrate docs/source files"
 
 #. Ensure the documentation can be built locally:
 
     .. code-block:: bash
 
-        $ conda install --file requirements/docs.txt
-        $ cd doc && make html
-        & open _build/html/index.html
+        conda install --file requirements/docs.txt
+        cd docs && make html && open build/html/index.html
+
 
 #. Add and commit the changes:
 
     .. code-block:: bash
 
-        $ git add doc
-        $ git commit -m "skpkg: migrate documentation"
+        git add docs
+        git commit -m "skpkg: migrate documentation"
 
 #. By hand, migrate content over to ``README.rst``.
 
@@ -471,18 +534,18 @@ Move documentation files
 
     .. code-block:: bash
 
-        $ git add AUTHORS.rst CHANGELOG.rst CODE_OF_CONDUCT.rst LICENSE.rst
-        $ git commit -m "skpkg: add config files for authors, changelog, code of conduct, license"
-        $ git add MANIFEST.in
-        $ git commit -m "skpkg: add MANIFEST.in"
-        $ git add README.rst
-        $ git commit -m "skpkg: add README.rst"
+        git add AUTHORS.rst CHANGELOG.rst CODE-OF-CONDUCT.rst LICENSE.rst
+        git commit -m "skpkg: add config files for authors, changelog, code of conduct, license"
+        git add MANIFEST.in
+        git commit -m "skpkg: add MANIFEST.in"
+        git add README.rst
+        git commit -m "skpkg: add README.rst"
 
 #. Create a news file:
 
     .. code-block:: bash
 
-        $ cp news/TEMPLATE.rst news/doc.rst
+        cp news/TEMPLATE.rst news/doc.rst
 
 #. In ``news/docs..rst``, add the following content under ``Fixed:``:
 
@@ -496,14 +559,18 @@ Move documentation files
 
         * Support ``scikit-package`` Level 5 standard (https://scikit-package.github.io/scikit-package/).
 
+    .. seealso::
+
+        To streamline the above steps, you may instead run ``package add news --fix -m "Support scikit-package Level 5 standard."``. For more, please refer to :ref:`news-item-practice`.
+
 #. Add the news files:
 
     .. code-block:: bash
 
-        $ git add news
-        $ git commit -m "skpkg: add news files"
+        git add news
+        git commit -m "skpkg: add news files"
 
-#. Create a PR from ``usernmae/doc`` to ``upstream/migration``.
+#. Create a PR from ``username/doc`` to ``upstream/migration``.
 
     The PR title can be ``skpkg: migrate documentation, README, and public static files``.
 
@@ -523,28 +590,29 @@ Step 3. Final check
 
 #. Ask the project maintainer to create a PR from ``upstream/migration`` to ``upstream/main``
 
-#. After the PR is merged to ``upstream/main``, archive the old repository by naming it:
+#. After the PR is merged to ``upstream/main``, archive the old repository by changing its name:
 
     .. code-block:: bash
 
-        $ mv <package-name> <package-name>-archive
+        cd ..
+        mv <package-name> <package-name>-archive
 
 #. Clone the latest version of the package from the remote:
 
     .. code-block:: bash
 
-        $ cd ~/dev
-        $ git clone <URL-of-the-forked-repo>
-        $ git remote add upstream <URL-of-the-original-repo>
-        $ git pull upstream main
+        cd ~/dev
+        git clone <URL-of-the-forked-repo>
+        git remote add upstream <URL-of-the-original-repo>
+        git pull upstream main
 
 #. Now, you should be able to run the following to test your package!
 
     .. code-block:: bash
 
-        $ conda activate <package-name>-env
-        $ pytest
-        $ pre-commit run --all-files
+        conda activate <package-name>-env
+        pytest
+        pre-commit run --all-files
 
 #. Congratulations! You are done with migration!
 

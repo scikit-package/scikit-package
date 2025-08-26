@@ -102,7 +102,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">&lt;no title&gt;</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/snippets/github-codecov-setup.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/snippets/user-input-manuscript.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -110,32 +110,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p id="codecov-token-setup">We also want to ensure we report that tests are written for the incoming code and report in the incoming PR as shown below:</p>
-<img alt="codecov-in-pr-comment" src="../_images/codecov-pr.png" />
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>Is this NOT your first time setting up Codecov?</strong> Setting up the Codecov report can be done just once for all projects under your account or a GitHub organization with the “global token.” Please check whether you already have a Codecov token. If it exists, you may still follow the steps, but you don’t have to create a new token. Instead, you can use the existing token.</p>
-</div>
-<ol class="arabic">
-<li><p>Ensure your GitHub repository is public.</p></li>
-<li><p>Visit <code class="docutils literal notranslate"><span class="pre">https://app.codecov.io/account/gh/&lt;your_github_username_or_orgname&gt;/org-upload-token</span></code>, replacing <code class="docutils literal notranslate"><span class="pre">&lt;your_github_username_or_orgname&gt;</span></code> with your actual GitHub username or organization name.</p></li>
-<li><p>Under <span class="guilabel">Select an authentication option</span>, select <code class="docutils literal notranslate"><span class="pre">Required</span></code>.</p></li>
-<li><p>Click <span class="guilabel">Generate</span> or <span class="guilabel">Regenerate</span> to create a new token.</p></li>
-<li><p>Click on the clipboard symbol to copy <code class="docutils literal notranslate"><span class="pre">CODECOV_TOKEN</span></code>. Copy the one that starts with <code class="docutils literal notranslate"><span class="pre">CODECOV_TOKEN=</span></code>. Here is an example of what it looks like:</p>
-<blockquote>
-<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CODECOV_TOKEN=abcd1234-5678-1234-5678-b862619523bd
-</pre></div>
-</div>
+  <blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Prompt</p></th>
+<th class="head"><p>Description and example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>project_name</p></td>
+<td><p>The name displayed in the <code class="docutils literal notranslate"><span class="pre">README.rst</span></code>.
+Use <code class="docutils literal notranslate"><span class="pre">name-with-hyphens</span></code> e.g., <code class="docutils literal notranslate"><span class="pre">my-manuscript</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>journal_template</p></td>
+<td><p>Specifies which journal template to use to create the manuscript.
+The default value is <code class="docutils literal notranslate"><span class="pre">[1]</span></code>, which corresponds to the <code class="docutils literal notranslate"><span class="pre">article</span></code> template.</p></td>
+</tr>
+<tr class="row-even"><td><p>user_latex_repo_url</p></td>
+<td><p>The URL to the GitHub repository where the LaTeX files are located. Files with the specified names will be parsed, and the other files will be copied directly into the manuscript folder.
+e.g., <code class="docutils literal notranslate"><span class="pre">https://github.com/scikit-package/default-latex-headers.git</span></code></p></td>
+</tr>
+</tbody>
+</table>
 </div></blockquote>
-</li>
-<li><p>In your GitHub repository, visit <span class="menuselection">Settings ‣ Actions ‣ Secrets and Variables</span>.</p></li>
-<li><p>If the repository is under your personal account, click <span class="guilabel">New repository secret</span>.</p></li>
-<li><p>If the repository is under an organization, click <span class="menuselection">Manage organization secrets ‣ New organization secret</span>.</p></li>
-<li><p>Under the <span class="guilabel">Name</span> field, type <code class="docutils literal notranslate"><span class="pre">CODECOV_TOKEN</span></code>.</p></li>
-<li><p>Under the <span class="guilabel">Secret</span> field, paste the <code class="docutils literal notranslate"><span class="pre">CODECOV_TOKEN</span></code> value you copied earlier without any modification.</p></li>
-<li><p>Click <span class="guilabel">Add secret</span> to save the token.</p></li>
-<li><p>Done. From now on, a new Codecov comment will be generated on each PR!</p></li>
-</ol>
 
 
            </div>

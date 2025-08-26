@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Migrate your package from Level 4 to Level 5 &mdash; scikit-package 0.1.0 documentation</title>
+  <title>Migrate your package from Level 4 to Level 5 &mdash; scikit-package 0.2.0rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../_static/documentation_options.js?v=4ee4825d"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -50,6 +50,7 @@
               <p class="caption" role="heading"><span class="caption-text">GETTING STARTED</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#where-do-i-begin">Where do I begin?</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">TUTORIALS</span></p>
 <ul class="current">
@@ -60,6 +61,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-s-the-difference-between-level-4-and-level-5">What’s the difference between Level 4 and Level 5?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-scikit-package-with-conda">Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-new-level-5-project-and-migrate-files">Create a new Level 5 project and migrate files</a><ul>
@@ -72,11 +74,20 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-guides/pypi-github.html">Publish on GitHub and to PyPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-guides/conda-forge.html">Create conda package with conda-forge</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-4.html">Example 1. Create your first Level 4 package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5.html">Example 2. Create your first Level 5 public package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-namespace.html">Example 3. Create a package with branded namespace import at Level 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/example-level-5-migration.html">Example 4. Migrate an existing package to Level 5</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PROGRAMMING GUIDES</span></p>
 <ul>
@@ -108,7 +119,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Migrate your package from Level 4 to Level 5</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/scikit-package/scikit-package/blob/main/doc/source/tutorials/tutorial-level-4-to-5.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/tutorials/tutorial-level-4-to-5.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -133,8 +144,45 @@
 </section>
 <section id="prerequisites">
 <h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
-<p>We assume you have already completed and created your scientific code in Level 4, where you have a lightweight Python package that can be installed locally and have your project hosted on GitHub.
-.. include:: ../snippets/scikit-installation.rst</p>
+<p>We assume you have already completed and created your scientific code in Level 4, where you have a lightweight Python package that can be installed locally and have your project hosted on GitHub.</p>
+</section>
+<section id="install-scikit-package-with-conda">
+<h3>Install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with conda<a class="headerlink" href="#install-scikit-package-with-conda" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">conda</span></code> is installed on your local computer as instructed in <a class="reference internal" href="tutorial-level-1-2-3.html#conda-env-setup-simple"><span class="std std-ref">(Required) Use conda environment to install packages and run Python code</span></a>.</p></li>
+<li><p>Ensure that you have added the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel to your <code class="docutils literal notranslate"><span class="pre">conda</span></code> configuration.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>config<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Create a new conda environment <code class="docutils literal notranslate"><span class="pre">skpkg-env</span></code> and install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> and <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> simultaneously by running the following command:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>skpkg-env<span class="w"> </span>scikit-package<span class="w"> </span>pre-commit
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the above command does not work, ensure you have added the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel to your <code class="docutils literal notranslate"><span class="pre">conda</span></code> configuration in Step 2.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Activate the environment:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>skpkg-env
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Confirm that you have the latest version of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> available on GitHub:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>show<span class="w"> </span>scikit-package
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
 </section>
 </section>
 <section id="create-a-new-level-5-project-and-migrate-files">
@@ -145,16 +193,16 @@
 <ol class="arabic">
 <li><p>Visit your project directory and sync with the latest version of the main branch:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>&lt;project-name&gt;
-$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>main
-$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;project-name&gt;
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Create a new project with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> using the Level 5 <code class="docutils literal notranslate"><span class="pre">public</span></code> template:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>package<span class="w"> </span>create<span class="w"> </span>public
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>package<span class="w"> </span>create<span class="w"> </span>public
 </pre></div>
 </div>
 <div class="admonition important">
@@ -252,7 +300,7 @@ yes if your app has a gui and there are tests that run the GUI.</p></td>
 </li>
 <li><p>Enter into the Level 5 project directory:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>&lt;package-name&gt;
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;package-name&gt;
 </pre></div>
 </div>
 </div></blockquote>
@@ -263,11 +311,11 @@ yes if your app has a gui and there are tests that run the GUI.</p></td>
 └── &lt;package-name&gt; # (Level 5)
     ├── AUTHORS.rst
     ├── CHANGELOG.rst
-    ├── CODE_OF_CONDUCT.rst
+    ├── CODE-OF-CONDUCT.rst
     ├── LICENSE.rst
     ├── MANIFEST.in
     ├── README.rst
-    ├── doc
+    ├── docs
     ├── news
     ├── pyproject.toml
     ├── requirements
@@ -290,39 +338,39 @@ yes if your app has a gui and there are tests that run the GUI.</p></td>
 <ol class="arabic">
 <li><p>Enter into the nested Level 5 project directory:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>&lt;package-name&gt;
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;package-name&gt;
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Move the local <code class="docutils literal notranslate"><span class="pre">git</span></code> repository from the Level 4 (<code class="docutils literal notranslate"><span class="pre">..</span></code>) to the Level 5 folder (<code class="docutils literal notranslate"><span class="pre">.</span></code>):</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mv<span class="w"> </span>../.git<span class="w"> </span>.
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>../.git<span class="w"> </span>.
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Move the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">tests</span></code> folders from Level 4 to Level 5:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cp<span class="w"> </span>-n<span class="w"> </span>-r<span class="w"> </span>../src<span class="w"> </span>.
-$<span class="w"> </span>cp<span class="w"> </span>-n<span class="w"> </span>-r<span class="w"> </span>../tests<span class="w"> </span>.
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>-n<span class="w"> </span>-r<span class="w"> </span>../src<span class="w"> </span>.
+cp<span class="w"> </span>-n<span class="w"> </span>-r<span class="w"> </span>../tests<span class="w"> </span>.
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Copy the requirements files from Level 4 to Level 5:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cp<span class="w"> </span>../requirements/conda.txt<span class="w"> </span>./requirements/conda.txt
-$<span class="w"> </span>cp<span class="w"> </span>../requirements/pip.txt<span class="w"> </span>./requirements/pip.txt
-$<span class="w"> </span>cp<span class="w"> </span>../requirements/test.txt<span class="w"> </span>./requirements/test.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>../requirements/conda.txt<span class="w"> </span>./requirements/conda.txt
+cp<span class="w"> </span>../requirements/pip.txt<span class="w"> </span>./requirements/pip.txt
+cp<span class="w"> </span>../requirements/tests.txt<span class="w"> </span>./requirements/tests.txt
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>At this point, you should be able to install the package locally and test it using your existing conda environment:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w">  </span>&lt;package-name&gt;-env
-$<span class="w"> </span>pytest<span class="w"> </span>tests
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w">  </span>&lt;package-name&gt;-env
+pytest<span class="w"> </span>tests
 </pre></div>
 </div>
 </div></blockquote>
@@ -339,47 +387,47 @@ $<span class="w"> </span>pytest<span class="w"> </span>tests
 </section>
 <section id="build-documentation-locally">
 <h3>Build documentation locally<a class="headerlink" href="#build-documentation-locally" title="Link to this heading"></a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">/doc</span></code> is the the Sphinx documentation folder. The documentation will be built locally first and then automatically built and hosted on GitHub Pages when a new release is created.</p>
+<p><code class="docutils literal notranslate"><span class="pre">/docs</span></code> is the the Sphinx documentation folder. The documentation will be built locally first and then automatically built and hosted on GitHub Pages when a new release is created.</p>
 <ol class="arabic">
 <li><p>Install documentation related dependencies:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>--file<span class="w"> </span>requirements/docs.txt
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>--file<span class="w"> </span>requirements/docs.txt
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p>Enter into the <code class="docutils literal notranslate"><span class="pre">doc</span></code> project directory and render documentation:</p>
+<li><p>Enter into the <code class="docutils literal notranslate"><span class="pre">docs</span></code> project directory and render documentation:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>doc
-$<span class="w"> </span>make<span class="w"> </span>html
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
+make<span class="w"> </span>html
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Open the rendered documentation via web browser:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>open<span class="w"> </span>_build/html/index.html
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>open<span class="w"> </span>_build/html/index.html
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Here is a shortcut if you want to use it from the root directory of the project:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>doc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>open<span class="w"> </span>_build/html/index.html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>dosc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>open<span class="w"> </span>_build/html/index.html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p>You can use a <code class="docutils literal notranslate"><span class="pre">alias</span></code> shortcut. Open <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> in your text editor and add the following line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">doc</span><span class="o">=</span><span class="s1">&#39;cd doc &amp;&amp; make html &amp;&amp; open _build/html/index.html &amp;&amp; cd ..&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">doc</span><span class="o">=</span><span class="s1">&#39;cd docs &amp;&amp; make html &amp;&amp; open _build/html/index.html &amp;&amp; cd ..&#39;</span>
 </pre></div>
 </div>
 <p>Apply the changes to your current terminal session:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
 </pre></div>
 </div>
-<p>Now, you can simply enter the <code class="docutils literal notranslate"><span class="pre">doc</span></code> command in your terminal to build and open the documentation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>doc
+<p>Now, you can simply enter the <code class="docutils literal notranslate"><span class="pre">docs</span></code> command in your terminal to build and open the documentation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>doc
 </pre></div>
 </div>
 </div>
@@ -391,15 +439,15 @@ $<span class="w"> </span>make<span class="w"> </span>html
 <div><ol class="arabic">
 <li><p>Install the dependencies including <code class="docutils literal notranslate"><span class="pre">sphinx-reload</span></code> sourced from <code class="docutils literal notranslate"><span class="pre">PyPI</span></code>:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>--file<span class="w"> </span>requirements/docs.txt
-$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>sphinx-reload
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>--file<span class="w"> </span>requirements/docs.txt
+pip<span class="w"> </span>install<span class="w"> </span>sphinx-reload
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Run the following command to start live-reloading:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sphinx-reload<span class="w"> </span>doc
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-reload<span class="w"> </span>docs
 </pre></div>
 </div>
 </div></blockquote>

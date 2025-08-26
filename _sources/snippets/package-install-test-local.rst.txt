@@ -2,21 +2,21 @@
 
     .. code-block:: bash
 
-        $ conda create -n my-package-env python=3.13 \
+        conda create -n my-package-env python=3.13 \
             --file requirements/conda.txt \
-            --file requirements/test.txt
+            --file requirements/tests.txt
 
 #. Activate the conda environment:
 
     .. code-block:: bash
 
-        $ conda activate my-package-env
+        conda activate my-package-env
 
 #. Build and install the package locally:
 
     .. code-block:: bash
 
-        $ pip install -e . --no-deps
+        pip install -e . --no-deps
 
     .. note:: What is the ``-e`` flag?
 
@@ -34,7 +34,7 @@
 
     .. code-block:: bash
 
-        $ pytest
+        pytest
 
 #. Ensure tests all pass with green checkmarks. Notice that in ``tests/test_functions.py``, we are importing the locally installed package.
 

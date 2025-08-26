@@ -4,18 +4,18 @@ At the moment, the GitHub repository is empty. Let's create a local branch calle
 
     .. code-block:: bash
 
-        $ git init
-        $ git remote add origin <your-github-repo-url>
-        $ git branch -M main
+        git init
+        git remote add origin <your-github-repo-url>
+        git branch -M main
 
 #. Commit the README file to the Git database and push it to the remote GitHub repository:
 
     .. code-block:: bash
 
-        $ git add README.md   # If you are using Level 4
-        $ git add README.rst  # If you are using Level 5
-        $ git commit -m "docs: add README"
-        $ git push -u origin main
+        git add README.md   # If you are using Level 4
+        git add README.rst  # If you are using Level 5
+        git commit -m "docs: add README"
+        git push -u origin main
 
     .. note:: What's ``origin``?
 

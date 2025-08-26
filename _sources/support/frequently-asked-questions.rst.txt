@@ -15,6 +15,8 @@ Pre-commit
 
 ``Pre-commit`` attempts to automatically fix code style issues. The following questions are used to customize the ``pre-commit`` configuration for your project's needs.
 
+.. _faq-pre-commit-levels:
+
 How is pre-commit used in each Level?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -44,12 +46,15 @@ Here is a recommended setup and hooks for ``pre-commit`` for each level:
 How do I modify line-width limits?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Three files need to be modified:
+The following files need to be modified:
 
-1. In ``.isort.cfg``, modify ``line_length``.
-2. In ``.flake8``, modify ``max-line-length``.
-3. In ``pyproject.toml``, modify ``line-length`` under ``[tool.black]``.
+#. In ``.isort.cfg``, modify ``line_length``.
+#. In ``.flake8``, modify ``max-line-length``.
+#. In ``pyproject.toml``, modify ``line-length`` under ``[tool.black]``.
 
+.. seealso::
+
+  As recommended by PEP 8, comments and docstrings should be wrapped at 72 characters, as defined under ``[tool.docformatter]`` in ``pyproject.toml``.
 
 How do I skip a specific file for ``flake8`` and ``black``?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -154,13 +159,13 @@ Here are the steps you can follow to override the default values for Level 5 usa
 
   .. code-block:: bash
 
-    $ cd ~
+    cd ~
 
 2. Create ``.skpkgrc``.
 
   .. code-block:: bash
 
-    $ touch .skpkgrc
+    touch .skpkgrc
 
 3. Edit ``.skpkgrc``. Copy and paste the following snippets to ``.skpkgrc``.
 
@@ -192,7 +197,7 @@ The scikit-package configuration file is located in ``~/.skpkgrc`` by default. Y
 
 .. code-block:: bash
 
-   $ export SKPKG_CONFIG_FILE=/path/to/config
+   export SKPKG_CONFIG_FILE=/path/to/config
 
 
 Release
@@ -279,7 +284,7 @@ How can I preview the documentation in real-time?
 How do I build API .rst files automatically for a standard Python package?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Here is how you can **automate** the process of generating API documentation for a standard Python package located in the ``doc/source/api`` folder.
+Here is how you can **automate** the process of generating API documentation for a standard Python package located in the ``docs/source/api`` folder.
 
 .. note::
 
@@ -297,7 +302,7 @@ Here is how you can **automate** the process of generating API documentation for
 
 #. Run ``conda install --file requirements/docs.txt`` to install the new dependency.
 
-#. Replace the following code block in your ``doc/source/conf.py`` file from
+#. Replace the following code block in your ``docs/source/conf.py`` file from
 
     .. code-block:: python
 
@@ -327,7 +332,6 @@ Here is how you can **automate** the process of generating API documentation for
             "m2r",
         ]
 
-
         # Configure where to find the source code and write API .rst files
         apidoc_module_dir = '../../src/<package_dir_name>'
         apidoc_output_dir = 'api'
@@ -338,9 +342,9 @@ Here is how you can **automate** the process of generating API documentation for
 
 #. Run ``sphinx-reload doc`` to build and host the documentation.
 
-    Notice that the ``.rst`` files under ``doc/source/api`` are generated whenever the documentation is re-rendered.
+    Notice that the ``.rst`` files under ``docs/source/api`` are generated whenever the documentation is re-rendered.
 
-#. Add the following block to your ``doc/source/index.rst`` file:
+#. Add the following block to your ``docs/source/index.rst`` file:
 
     .. code-block:: text
 
@@ -359,77 +363,35 @@ Here is how you can **automate** the process of generating API documentation for
 How do I build API .rst files for a Python package with a namespace import?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you are using a namespace import, ``sphinx-apidoc`` will not work. We have develoepd our own script called ``auto_api.py`` to generate the API documentation.
+#. Install ``scikit-package`` if you haven't already:
 
-#. Run ``git clone https://github.com/scikit-package/release-scripts.git`` into a folder outside of the project directory. Here is the folder structure:
+    .. code-block:: bash
+
+        conda install scikit-package
+
+#. ``cd`` into your project directory:
+
+    .. code-block:: bash
+
+        cd <path-to-your-project>
+
+#. Ensure you have the ``API`` section in ``docs/source/index.rst``:
 
     .. code-block:: text
 
-      dev/
-      ├── <namespace_name>.<package_name>
-      │   ├── pyproject.toml
-      │   └── doc/source/api/
-      │   └── src
-      │       └── <namespace_name>
-      │           ├── __init__.py
-      │           └── <pakcage_name>
-      │               ├── __init__.py
-      │               └── file_one.py
-      └── release-scripts
-          └── auto_api.py
+      .. toctree::
+         :maxdepth: 2
+         :caption: API Reference
 
-#. Run ``cd <namespace_name>.<package_name>`` to enter the package directory.
+          Package API <api/package_dir_name>
 
-#. Run ``python -m build`` to build the package. You may have to install ``python-build`` first.
-
-#. Run the ``auto_api.py`` script. This is done by running ``python <path_to_auto_api_script> <package_name> <path_to_package_name> <path_to_api_directory>``. Here is an example below:
+#. Run the following CLI command to generate ``.rst`` files in ``docs/source/api``:
 
     .. code-block:: bash
 
-        cd ~/dev/<namespace_name>.<package_name>
-        python ../release-scripts/auto_api.py <namespace_name>.<package_name> ./src/<namespace_name>/<package_name> ./doc/source/api
+        package build api-doc
 
-    .. note:: Here is an example of how ``diffpy.utils`` uses the ``auto_api.py`` script. The folder structure is as follows:
-
-      .. code-block:: text
-
-          dev/
-          ├── diffpy.utils
-          │   ├── pyproject.toml
-          │   └── doc/source/api/
-          │   └── src
-          │       └── diffpy
-          │           ├── __init__.py
-          │           └── utils
-          │               ├── __init__.py
-          │               └── file_one.py
-          └── release-scripts
-              └── auto_api.py
-
-      Then you would run the following command:
-
-      .. code-block:: bash
-
-            cd ~/dev/diffpy.utils
-            python ../release-scripts/auto_api.py diffpy.utils ./src/diffpy/utils ./doc/source/api/
-
-#. Done! You will see that the ``.rst`` files under ``doc/source/api`` are generated.
-
-
-#. (Optional) Feel free to use the following shortcut. Add the following function to your ``~/.bashrc`` or ``~/.zshrc`` file and activate it by running ``source ~/.bashrc`` or ``source ~/.zshrc``:
-
-    .. code-block:: bash
-
-        api() {
-            IMPORT_NAME=$(basename "$(pwd)")  # e.g., "diffpy.utils"
-            IMPORT_PATH=$(echo "$IMPORT_NAME" | tr '.' '/')  # e.g., "diffpy/utils"
-            MODULE_PATH="src/$IMPORT_PATH"  # e.g., "src/diffpy/utils"
-            DOC_PATH="doc/source/api"
-
-            python "../release-scripts/auto_api.py" "$IMPORT_NAME" "$MODULE_PATH" "$DOC_PATH"
-        }
-
-    Once you enter the project directory, run ``api`` in the terminal to generate the API documentation automatically so that you don't have to type the full command every time!
+#. Done!
 
 .. _faq-doc-pr-preview:
 
@@ -450,14 +412,14 @@ Click ``Run workflow`` and select the ``main`` branch. Your online documentation
 How do I fix the "No module named" error when I render documentation?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-(e.g., ``WARNING: autodoc: failed to import module 'tools' from module 'diffpy.pdfmorph'; the following exception was raised: No module named 'diffpy.utils'``), it can be resolved by adding ``autodoc_mock_imports = [<pkg>]`` to your ``conf.py`` right under imports. This file is located in ``/doc/source/conf.py``.
+(e.g., ``WARNING: autodoc: failed to import module 'tools' from module 'diffpy.pdfmorph'; the following exception was raised: No module named 'diffpy.utils'``), it can be resolved by adding ``autodoc_mock_imports = [<pkg>]`` to your ``conf.py`` right under imports. This file is located in ``/docs/source/conf.py``.
 
 .. _faq-doc-favicon-logo:
 
 How do I add a favicon and logo to the documentation?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In ``doc/source/conf.py``, add the following lines:
+In ``docs/source/conf.py``, add the following lines:
 
 .. code-block:: python
 
@@ -484,10 +446,12 @@ How do I do pre-release for conda-forge?
 
 Please refer to the :ref:`How do I do pre-release? <conda-forge-pre-release>` section.
 
+.. _faq-github-actions:
+
 GitHub Actions
 --------------
 
-.. _github-actions-python-versions:
+.. _faq-github-actions-python-versions:
 
 In Level 5, How do I set different Python versions for GitHub CI?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -540,14 +504,14 @@ In Level 5, what are the workflows running in each pull request?
 
 #. The second workflow uses ``pre-commit CI``. This workflow checks the incoming code in the PR using ``pre-commit`` hooks and automatically applies fixes when possible. If any fixes are made, an additional commit is created by the ``pre-commit`` app. However, some hooks, such as spell checkers, may still fail even after auto-fixes. In such cases, the CI fails. The user first needs to pull the additional commit made by the ``pre-commit CI``, fix the error manually, and then push a commit to the working branch.
 
-#. The third workflow uses the ``Codecov`` app, which adds a comment to the PR summarizing the changes in code coverage as part of the ``.github/workflows/tests-on-pr.yml`` workflow. This workflow fails if no tests are provided for the new code or if the test coverage percentage decreases below the acceptable threshold. The threshold can be adjusted in the ``.codecov.yml`` file located in the project root directory.
+#. The third workflow uses the ``Codecov`` app, which adds a comment to the PR summarizing the changes in code coverage as part of the ``.github/workflows/tests-on-pr.yml`` workflow. This workflow fails if no tests are provided for the new code or if the test coverage percentage decreases below the acceptable threshold. The threshold can be adjusted in the ``.codecov.yml`` file located in the project root directory. If you have a private repository and Codecov cannot be run, refer to :ref:`faq-private-repo-no-codecov`.
 
 #. The fourth workflow checks for a news file in the PR using ``.github/workflows/check-news-item.yml``. If no news item is included for the proposed changes, this workflow fails and leaves a comment prompting the contributor to submit a new PR with the appropriate news file. Please refer to the best practices section on :ref:`news items <news-item-practice>`.
 
 In Level 5, I see that another workflow is running once a PR is merged to ``main``. What is it?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The workflow ``.github/workflows/matrix-and-codecov-on-merge-to-main.yml`` is triggered. The goal is to ensure the latest code is tested not only on Linux but also across multiple operating systems and Python versions. This workflow runs tests on macOS (both Apple Silicon and Intel chips), Linux, and Windows and against three different Python versions, including the latest configured version. To modify the Python versions used in the workflows, refer to :ref:`github-actions-python-versions`.
+The workflow ``.github/workflows/matrix-and-codecov-on-merge-to-main.yml`` is triggered. The goal is to ensure the latest code is tested not only on Linux but also across multiple operating systems and Python versions. This workflow runs tests on macOS (both Apple Silicon and Intel chips), Linux, and Windows and against three different Python versions, including the latest configured version. To modify the Python versions used in the workflows, refer to :ref:`faq-github-actions-python-versions`.
 
 .. note:: These workflow files call scripts located at https://github.com/scikit-package/release-scripts, which are centrally managed by the ``scikit-package`` development team. This centralized approach ensures that individual packages do not need to be updated separately when adding support for new Python versions or operating systems.
 
@@ -575,6 +539,85 @@ For the current GitHub CI for checking a news item, ``pull_request_target`` is u
 
 Another key difference is that with ``pull_request_target``, the ``.yml`` file **must already be merged** in the base branch at the time the pull request is opened or updated. For more, please refer to `GitHub docs <https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#pull_request_target>`_.
 
+.. _faq-github-actions-extra-cli-commands:
+
+How can I add extra CLI commands in the GitHub workflow for running tests?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In the GitHub workflow files for testing, you might want to add extra CLI commands **before** running ``pytest``. For example, you may want to install dependencies that are not available on ``conda-forge`` but are only available from PyPI to test your package.
+
+To do so, you can enter the ``run:`` command under the ``with:`` section in the workflow file.
+
+.. code-block:: yaml
+
+  with:
+    project: <package-name>
+    run: |
+      pip install <package-name>
+      echo "Done installing <package-name>"
+    ...
+
+- In Level 5, the relevant workflow files are ``.github/workflows/matrix-and-codecov-on-merge-to-main.yml`` and ``.github/workflows/tests-on-pr.yml``.
+- In Level 4, the relevant workflow file is ``.github/workflows/_tests-on-pr-no-codecov-no-headless.yml``.
+
+Here we provide a bit more context on how the ``run:`` commands are used. The extra CLI commands are inserted into the reusable GitHub workflow under the ``Run extra user-defined CLI commands`` section of the reusable workflow file:
+
+.. code-block:: yaml
+
+      - name: Install ${{ inputs.project }} and requirements
+        run: |
+          conda install --file requirements/conda.txt
+          conda install --file requirements/tests.txt
+          if ${{ inputs.c_extension }}; then
+            conda install --file requirements/build.txt
+          fi
+          python -m pip install . --no-deps
+
+      - name: Run extra user-defined CLI commands
+        run: |
+          echo "${{ inputs.run }}" > user-commands.sh
+          bash user-commands.sh
+
+After this step, the reusable workflow then runs the ``pytest`` command. To see the full reusable workflow file, please visit https://github.com/scikit-package/release-scripts/blob/main/.github/workflows/_tests-on-pr.yml.
+
+.. _faq-private-repo-no-codecov:
+
+I have a private repo and don't have a Codecov paid plan.  Can I modify the CI workflows for this situation?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default, the workflows in ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml`` will have a section that uploads the code coverage to Codecov, and CI will fail if unsuccessful. Codecov is available for free on public repositories but requires a paid plan to run on private repositories. In the latter case, if you would like to turn off Codecov, we offer an alternative CI workflow that runs the tests without it.
+
+In addition to being able to customize additional commands to be run in the ``run:`` section (see :ref:`faq-github-actions-extra-cli-commands` above), you can also change the workflows that you want your repository to run. By default, ``scikit-package`` will run the ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml`` workflows in the ``scikit-package/release-scripts`` repository. It is possible to override this default and run a different workflow for your CI if it is available in ``scikit-package/release-scripts``. For example, for the situation above we offer we offer ``tests-on-pr-no-codecov.yml`` and ``matrix-no-codecov-on-merge-to-main.yml`` which run the tests without Codecov.
+
+To do so, you can modify the script that your workflow files are calling in the ``uses:`` section. Normally, you'd be calling the following in ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml``, respectively.
+
+.. code-block:: yaml
+
+  uses: scikit-package/release-scripts/.github/workflows/_tests-on-pr.yml@v0
+
+.. code-block:: yaml
+
+  uses: scikit-package/release-scripts/.github/workflows/_matrix-and-codecov-on-merge-to-main.yml@v0
+
+Instead, call the following in ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml``, respectively.
+
+.. code-block:: yaml
+
+  uses: scikit-package/release-scripts/.github/workflows/_tests-on-pr-no-codecov.yml@v0
+
+.. code-block:: yaml
+
+  uses: scikit-package/release-scripts/.github/workflows/_matrix-no-codecov-on-merge-to-main.yml@v0
+
+Don't forget to also delete the following section from your workflow files now that we are not uploading to Codecov in the workflows anymore.
+
+.. code-block:: yaml
+
+  secrets:
+    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+Done! If you have a different situation that our current workflows have not accounted for, please feel free to contribute a new workflow file by making a PR.
+
 .. _faq-dependency-management:
 
 Dependency management
@@ -582,14 +625,14 @@ Dependency management
 
 .. _faq-dependency-files:
 
-What are ``docs.txt``, ``test.txt``, ``build.txt``, and ``conda.txt`` files under ``\requirements`` in Level 4 and Level 5?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+What are ``docs.txt``, ``tests.txt``, ``build.txt``, and ``conda.txt`` files under ``\requirements`` in Level 4 and Level 5?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 :pip.txt: list all PyPI packages required to install the package via `pip install <package-name>`.
 
 :conda.txt: list all Conda packages required for running the package in GitHub CI. It should be typically identcal as the ``pip.txt`` file.
 
-:test.txt: packages required for the testing suite to ensure all tests pass.
+:tests.txt: packages required for the testing suite to ensure all tests pass.
 
 :docs.txt: packages required for building the package documentation page.
 
@@ -610,8 +653,8 @@ Here is how you can add the conda-forge channel to your conda configuration and 
 
 .. code-block:: bash
 
-  $ conda config --add channels conda-forge
-  $ conda install scikit-package
+  conda config --add channels conda-forge
+  conda install scikit-package
 
 The first command adds the ``conda-forge`` channel to the conda configuration, allowing users to install packages from this channel. The second command installs the ``scikit-package`` package from the ``conda-forge`` channel. https://anaconda.org/conda-forge/scikit-package
 
@@ -804,19 +847,19 @@ Add the following line to ``~/.bashrc`` or ``~/.zshrc`` file:
 
 .. code-block:: bash
 
-    $ alias cpnews="cp news/TEMPLATE.rst news/$(git rev-parse --abbrev-ref HEAD).rst"
+    alias cpnews="cp news/TEMPLATE.rst news/$(git rev-parse --abbrev-ref HEAD).rst"
 
 Optionally, if you also want to apply ``git add`` for the ``news/<branch-name>.rst`` created, you can use the following command instead:
 
 .. code-block:: bash
 
-    $ alias cpnews='cp news/TEMPLATE.rst news/$(git rev-parse --abbrev-ref HEAD).rst && git add news/$(git rev-parse --abbrev-ref HEAD).rst'
+    alias cpnews='cp news/TEMPLATE.rst news/$(git rev-parse --abbrev-ref HEAD).rst && git add news/$(git rev-parse --abbrev-ref HEAD).rst'
 
 Run the following command to apply the shell configuration:
 
 .. code-block:: bash
 
-    $ source ~/.bashrc
+    source ~/.bashrc
 
 Now, whenever you want to create a news file for the PR, simply navigate to the top-level directory in the project and type ``cpnews`` on the command line.
 
@@ -827,7 +870,6 @@ Add a description of the edits made in this PR. This should be a user-facing hig
 .. seealso::
 
       How do I write good news items? What if the changes in the PR are trivial and no news is needed? Please read our guide provided in :ref:`news-item-practice`.
-
 
 
 Maintaining ``scikit-package``
@@ -850,7 +892,7 @@ In https://github.com/scikit-package/scikit-package:
 
    * - File
      - Variables to update
-   * - ``doc/source/conf.py``
+   * - ``docs/source/conf.py``
      - ``PYTHON_DEFAULT_MAX_VERSION`` and ``PYTHON_DEFAULT_MIN_VERSION``
 
 In https://github.com/scikit-package/release-scripts:
@@ -862,6 +904,8 @@ In https://github.com/scikit-package/release-scripts:
      - Key to update
    * - ``.github/workflows/_matrix-and-codecov-on-merge-to-main.yml``
      - ``python_versions``
+   * - ``.github/workflows/_matrix-no-codecov-on-merge-to-main.yml``
+     - ``python_versions``
    * - ``.github/workflows/_publish-docs-on-release.yml``
      - ``python_version``
    * - ``.github/workflows/_check-news-item.yml``
@@ -869,6 +913,8 @@ In https://github.com/scikit-package/release-scripts:
    * - ``.github/workflows/_build-pure-python-package.yml``
      - ``python-version``
    * - ``.github/workflows/_tests-on-pr.yml``
+     - ``python_version``
+   * - ``.github/workflows/_tests-on-pr-no-codecov.yml``
      - ``python_version``
    * - ``.github/workflows/_tests-on-pr-no-codecov-no-headless.yml``
      - ``python-version``

@@ -5,6 +5,13 @@ Welcome to the ``scikit-package`` official documentation!
 
 ``scikit-package`` offers tools and practices for the scientific community to make better and more reusable Scientific Python packages and applications.
 
+How to cite ``scikit-package``
+------------------------------
+
+If you use ``scikit-package`` to standardize your Python software, we would like you to cite scikit-package:
+
+  S. Lee and C. Myers and A. Yang and T. Zhang and S. J. L. Billinge, scikit-package - software packaging standards and roadmap for sharing reproducible scientific software (https://arxiv.org/abs/2507.03328)
+
 How does ``scikit-package`` benefit scientists?
 -----------------------------------------------
 
@@ -53,6 +60,10 @@ The full list of packages is as follows:
 - `diffpy.srmise <https://github.com/diffpy/diffpy.srmise>`_
 - `regolith <https://github.com/regro/regolith>`_
 - `bg-mpl-stylesheets <https://github.com/Billingegroup/bg-mpl-stylesheets>`_
+- `cifkit <https://github.com/bobleesj/cifkit>`_
+- `SAF <https://github.com/bobleesj/structure-analyzer-featurizer>`_
+- `CAF <https://github.com/bobleesj/composition-analyzer-featurizer>`_
+- `bobleesej.utils <https://github.com/bobleesj/bobleesj.utils>`_
 - ...
 
 How do I get started?
@@ -74,21 +85,23 @@ Of course, you can start a lightweight package (Level 4) using the ``package cre
 What are the full benefits when I reach Level 5?
 -------------------------------------------------
 
+- **Streamline the release process** by pushing a Git tag to trigger a sequence of actions: publishing to PyPI and GitHub, updating hosted documentation, and updating the ``CHANGELOG.rst`` file. Visit :ref:`release-pypi-github` for more details.
+- **Host documentation with a public URL** using a ``Sphinx`` template as part of the PyPI and GitHub release. Includes live rendering, API documentation, and previews for each pull request.
+- **Set custom default metadata** such as authors, project description, license holders, and keywords when creating a new package. Automatically store and reuse the entered metadata to update your package with the latest version of the ``scikit-package`` standards. To learn more, read :ref:`faq-set-default-prompt-value`.
+- **Support namespace package imports** (e.g., ``import <org-name>.<package-name>``) to maintain branding consistency and avoid name collisions. To learn more, read :ref:`faq-project-setup-namespace`.
 
-- Streamline the release process by pushing a Git tag to trigger a sequence of actions: publishing to PyPI and GitHub, updating hosted documentation, and updating the ``CHANGELOG.rst`` file.
-- Host documentation with a public URL using a ``Sphinx`` template. Include live rendering, API documentation, and previews for each pull request.
+We have also adopted community software and standards in ``scikit-package``:
+
+- Set up both local and remote ``pre-commit`` hooks to automate linting of code. This includes checks for `PEP8 <https://peps.python.org/pep-0008/>`_, `PEP 256 <https://peps.python.org/pep-0256/>`_, and static files such as ``.json``, ``.yml``, and ``.md``. Spelling checks are included as well. To learn more about the hooks provided at each level, read :ref:`faq-pre-commit-levels`.
 - Provide a rich ``README.rst`` template that includes badges, installation instructions, support contacts, and contribution guidelines for your GitHub repository.
-- Set up both local and remote ``pre-commit`` hooks to automate linting of code. This includes checks for `PEP8 <https://peps.python.org/pep-0008/>`_, `PEP 256 <https://peps.python.org/pep-0256/>`_, and static files such as ``.json``, ``.yml``, and ``.md``. Include spelling checks as well.
 - Run ``pytest`` with the latest Python versions, adhering to the `SPEC0 <https://scientific-python.org/specs/spec-0000/>`_ specification, without requiring manual configuration.
-- Support namespace package imports (e.g., ``import <org-name>.<package-name>``) to maintain branding consistency and avoid name collisions.
 
 For technical users, here are some of the advanced features:
 
-- Generate conda-package ``meta.yaml`` with ``package create conda-forge``.
+- Streamline conda package release by updating ``meta.yaml`` with ``package create conda-forge`` after the PyPI and GitHub release. To learn more, read :ref:`release-conda-forge`.
 - Support headless GitHub CI testing for GUI applications.
 - Support non-pure Python package releases with ``cibuildwheel``.
 - Reusable GitHub Actions workflows located in `scikit-package/release-scripts <https://github.com/scikit-package/release-scripts/tree/main/.github/workflows>`_.
-
 
 How do I receive support?
 -------------------------
@@ -105,8 +118,8 @@ Authors
 =======
 
 - Sangjoon Lee (sl5400@columbia.edu)
-- Andrew Yang (ay2546@columbia.edu)
 - Caden Myers (cjm2304@columbia.edu)
+- Andrew Yang (ay2546@columbia.edu)
 - Tieqiong Zhang (tz2600@columbia.edu)
 - Simon Billinge (sb2896@columbia.edu)
 
@@ -139,6 +152,7 @@ The Billinge Group's ``scikit-package`` has been modified from the NSLS-II scien
    tutorials/tutorial-level-5
    tutorials/tutorial-level-4-to-5
    tutorials/tutorial-level-5-migration
+   tutorials/tutorial-manuscript
 
 .. toctree::
    :maxdepth: 2
@@ -147,6 +161,17 @@ The Billinge Group's ``scikit-package`` has been modified from the NSLS-II scien
 
    release-guides/pypi-github
    release-guides/conda-forge
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: EXAMPLES
+
+   examples/overview
+   examples/example-level-4
+   examples/example-level-5
+   examples/example-level-5-namespace
+   examples/example-level-5-migration
 
 .. toctree::
    :maxdepth: 2

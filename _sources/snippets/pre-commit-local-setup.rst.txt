@@ -4,14 +4,14 @@ First, let's ensure that before we upload any of our code to the remote reposito
 
     .. code-block:: bash
 
-        $ pre-commit install
+        pre-commit install
 
 #. Let's now stage and commit the code:
 
     .. code-block:: bash
 
-        $ git add .
-        $ git commit -m "skpkg: initial commit of a new project"
+        git add .
+        git commit -m "skpkg: initial commit of a new project"
 
 #. Ensure that all of the ``pre-commit`` hooks pass:
 
@@ -29,7 +29,7 @@ First, let's ensure that before we upload any of our code to the remote reposito
 
     .. code-block:: bash
 
-        $ git log
+        git log
 
     .. note::
 

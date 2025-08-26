@@ -7,13 +7,13 @@ Install ``scikit-package`` with conda
 
     .. code-block:: bash
 
-        $ conda config --add channels conda-forge
+        conda config --add channels conda-forge
 
 #. Create a new conda environment ``skpkg-env`` and install ``scikit-package`` and ``pre-commit`` simultaneously by running the following command:
 
     .. code-block:: bash
 
-        $ conda create -n skpkg-env scikit-package pre-commit
+        conda create -n skpkg-env scikit-package pre-commit
 
     .. note::
 
@@ -22,10 +22,10 @@ Install ``scikit-package`` with conda
 
     .. code-block:: bash
 
-        $ conda activate skpkg-env
+        conda activate skpkg-env
 
 #. Confirm that you have the latest version of ``scikit-package`` available on GitHub:
 
     .. code-block:: bash
 
-        $ pip show scikit-package
+        pip show scikit-package
