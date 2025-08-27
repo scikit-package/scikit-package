@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Release notes &mdash; scikit-package 0.2.0rc0 documentation</title>
+  <title>Release notes &mdash; scikit-package 0.2.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/scikit-package-logo-blank.png"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=4ee4825d"></script>
+      <script src="_static/documentation_options.js?v=95e61db4"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -85,10 +85,11 @@
 <p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">0.1.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">0.0.3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">0.0.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">0.0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">0.0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">0.0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">0.0.1</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -121,7 +122,43 @@
   <section id="release-notes">
 <span id="index-0"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading"></a></h1>
 <section id="id1">
-<h2>0.1.0<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2>0.2.0<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p><strong>Added:</strong></p>
+<ul class="simple">
+<li><p>Let <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span> <span class="pre">&lt;subcommand&gt;</span> <span class="pre">-h</span></code> display help text.</p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">update</span></code> command to update existing <code class="docutils literal notranslate"><span class="pre">sckit-package</span></code> standard packages.</p></li>
+<li><p>Include package build api-doc instruction for namespace import.</p></li>
+<li><p>Use the latest release tag for all entry points of running cookiecutter.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file for basic CLI and add <code class="docutils literal notranslate"><span class="pre">--version</span></code> command for <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>.</p></li>
+<li><p>Add tutorial for <code class="docutils literal notranslate"><span class="pre">scikit-package-manuscript</span></code>.</p></li>
+<li><p>Add an instruction how to run extra custom CLI commands in test-on-pr and matrix CI.</p></li>
+<li><p>Add instructions for creating a news item by running <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">add</span> <span class="pre">news</span> <span class="pre">--&lt;news-type&gt;</span> <span class="pre">-m</span> <span class="pre">&quot;&lt;message&gt;&quot;</span></code> in the documentation.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">docformatter</span></code> configuration in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p></li>
+<li><p>Add unit tests for updating meta.yaml for package update conda-forge and news item for package add news.</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">add</span> <span class="pre">news</span> <span class="pre">-a</span> <span class="pre">-m</span> <span class="pre">&quot;&lt;message&gt;&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">add</span> <span class="pre">no</span> <span class="pre">news</span> <span class="pre">-m</span> <span class="pre">&quot;&lt;message&gt;&quot;</span></code> to streamline news item creation process</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">build</span> <span class="pre">api-doc</span></code> CLI to generate API .rst files for namespace support packages.</p></li>
+<li><p>Check the package is available on PyPI right after running package create conda-forge.</p></li>
+<li><p>Allow user to reuse the input in the prompts through project-level config file.</p></li>
+<li><p>Include introductory code snippets under the Getting Started page for first-time users.</p></li>
+<li><p>Correct typos and mistakes in migration portion of documentation.</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">update</span> <span class="pre">feedstock</span></code> to streamline making a conda-forge feedstock version update PR after PyPI release.</p></li>
+<li><p>Add instruction on how to use package update conda-forge in the conda-forge release guide</p></li>
+<li><p>Add tutorial in docs for how to call workflow files that don’t upload to Codecov.</p></li>
+<li><p>Provide a better help description for <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">add</span> <span class="pre">news</span></code> command.</p></li>
+</ul>
+<p><strong>Fixed:</strong></p>
+<ul class="simple">
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> errors in PR template, init file generator, and <code class="docutils literal notranslate"><span class="pre">test_functions.py</span></code></p></li>
+<li><p>Use plural names from /doc to /docs and requirements/test.txt to requirements/tests.txt.</p></li>
+<li><p>Use simpler assertions in <code class="docutils literal notranslate"><span class="pre">test_copy_all_files_bad</span></code>.</p></li>
+</ul>
+<p><strong>Removed:</strong></p>
+<ul class="simple">
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">$</span></code> from codeblock in documentation.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>0.1.0<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p><strong>Added:</strong></p>
 <ul class="simple">
 <li><p>Describe the difference between public and private functions in level 2 of the documentation.</p></li>
@@ -201,8 +238,8 @@
 <li><p>Remove environment.yml in the cookiecutter and skpkg repos since the centralized scripts no longer require it as the conda-forge channel is set in those scripts by default.</p></li>
 </ul>
 </section>
-<section id="id2">
-<h2>0.0.3<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id3">
+<h2>0.0.3<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p><strong>Added:</strong></p>
 <ul class="simple">
 <li><p>Added new logo</p></li>
@@ -210,15 +247,15 @@
 <li><p>Add logo for Github social preview.</p></li>
 </ul>
 </section>
-<section id="id3">
-<h2>0.0.2<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id4">
+<h2>0.0.2<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p><strong>Changed:</strong></p>
 <ul class="simple">
 <li><p>Provide separate documentation instructions for starting a new project vs. migrating an existing package.</p></li>
 </ul>
 </section>
-<section id="id4">
-<h2>0.0.1<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="id5">
+<h2>0.0.1<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <p><strong>Added:</strong></p>
 <ul class="simple">
 <li><p>Add full description of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p></li>
