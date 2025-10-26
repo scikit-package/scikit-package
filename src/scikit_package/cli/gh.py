@@ -1,27 +1,78 @@
-def _get_broadcast_repos_dict(url_file_path=None):
-    """Load the recognizable broadcast repository information from files
-    in the given path or GitHub repo.
+from urllib.parse import urlparse
 
-    If ``url_file_path`` is not None, first try to treat it as an URL, and if
-    that fails, treat it as a directory path. If both fail, raise
-    ``ValueError``. If ``url_file_path`` is None, the broadcast_url_file_path
-    set in ``~/.skpkgrc`` will be used. If it is not found, use the current
-    working directory as the ``url_file_path``.
+import requests
 
-    If the file ``groups.json`` and ``repos.json`` don't exist in
-    ``url_file_path``, raise ``ValueError``.
+
+def _get_issue_content(issue_url):
+    """Fetch the contents of the issue that will be broadcast.
 
     Parameters
     ----------
-    url_file_path : str
-        The file path or URL recognizable broadcast repository information.
-        If it is None, the ``broadcast_url_file_path`` set in
-        ``~/.skpkgrc`` will be used. If it is not found, use the current
-        working directory as the ``url_file_path``.
+    issue_url: str
+      url to the issue to be broadcast. Currently it takes the form:
+      https://github.com/{user-or-org-name}/{repo-name}/issues/{issue-number}
 
     Returns
     -------
-    broadcast_info_dict : dict
+    source_repo_url: str
+        used to exclude source repo from the broadcasting target list.
+    issue_content: dict
+        issue-title and issue-body to be broadcast.
+    """
+    parsed = urlparse(issue_url)
+    path_parts = parsed.path.strip("/").split("/")
+    try:
+        owner = path_parts[0]
+        repo = path_parts[1]
+        issue_number = int(path_parts[3])
+    except (IndexError, ValueError):
+        raise ValueError(
+            f"{issue_url} is not a valid url to be parsed. "
+            "Please input the url of the issue to be broadcasted. "
+            "Its format should be https://"
+            "github.com/username/reponame/issues/issue-number"
+        )
+    api_url = (
+        f"https://api.github.com/repos/{owner}/{repo}/issues/{issue_number}"
+    )
+    source_repo_url = f"https://github.com/{owner}/{repo}"
+    try:
+        response = requests.get(api_url)
+        assert response.status_code == 200
+        issue_content = response.json()
+    except (AssertionError, requests.JSONDecodeError):
+        raise ValueError(
+            f"Can not find the corresponding issue from {issue_url}. "
+            "Please ensure the input url is correct. "
+            "Its format should be https://"
+            "github.com/username/reponame/issues/issue-number"
+        )
+    return source_repo_url, issue_content
+
+
+def _get_broadcast_repos_dict(url_dir_path=None):
+    """Load the recognizable broadcast repository names and URLs from
+    files in the given directory or GitHub repo.
+
+    If ``url_dir_path`` is not None, first try to treat it as an URL, and if
+    that fails, treat it as a directory. If both fail, raise
+    ``ValueError``. If ``url_dir_path`` is None, the broadcast_url_dir_path
+    set in ``~/.skpkgrc`` will be used. If it is not found, use the current
+    working directory as the ``url_dir_path``.
+    If the file ``groups.json`` and ``repos.json`` don't exist in
+    ``url_dir_path``, raise ``ValueError``.
+
+    Parameters
+    ----------
+    url_dir_path : str
+        The directory path or URL recognizable broadcast repository
+        information. If it is None, the ``broadcast_url_dir_path`` set in
+        ``~/.skpkgrc`` will be used. If it is not found, use the current
+        working directory as the ``url_dir_path``.
+
+    Returns
+    -------
+    broadcast_repos_dict : dict
         The dict containing recognizable broadcast repo URLs.
     """
     broadcast_repos_dict = {}
@@ -29,27 +80,27 @@ def _get_broadcast_repos_dict(url_file_path=None):
 
 
 def _print_recognized_broadcast_repos(broadcast_repos_dict):
-    """Print the recognized broadcast repository URLs from the dict.
+    """Print the recognized broadcast repository names and group names
+    from the dict.
 
     Parameters
     ----------
     broadcast_repos_dict : dict
-        The dict containing recognizable broadcast repo URLs.
+        The dict containing recognized broadcast repo URLs.
     """
     return None
 
 
-def _get_broadcast_urls(selected_names, broadcast_repos_dict):
-    """Get the urls and package names of all repositories to broadcast
-    to.
+def _get_broadcast_urls(input_names, broadcast_repos_dict):
+    """Get the urls and repo names of all repositories to broadcast to.
 
     Parameters
     ----------
-    selected_names : str
-        The input string for selected_names. It takes the form:
-        "repo1,repo2,group1"
+    input_names : str
+        The input string of the names of repos and groups to broadcast to.
+        It takes the form: "repo1,repo2,group1"
     broadcast_repos_dict : dict
-        The dict containing recognizable broadcast repo URLs.
+        The dict containing recognized broadcast repo URLs.
 
     Returns
     -------
