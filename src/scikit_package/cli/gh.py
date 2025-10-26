@@ -1,4 +1,4 @@
-def _get_broadcast_info_dict(url_file_path=None):
+def _get_broadcast_repos_dict(url_file_path=None):
     """Load the recognizable broadcast repository information from files
     in the given path or GitHub repo.
 
