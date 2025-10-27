@@ -81,14 +81,14 @@ def test_get_broadcast_repos_dict():
 def test_get_broadcast_repos_dict_bad():
     # C1: an invalid URL input. Expect ValueError.
     # C2: a directory input but JSON files do not exist in the directory.
-    #   Expect ValueError.
+    #   Expect FileNotFoundError.
     # C3: no input, cwd does not have `repos.json` and `groups.json`,
     #   `~/skpkgrc` does not have `broadcast_url_dir_path`.
-    #   Expect ValueError.
+    #   raise KeyError.
     assert False
 
 
 def test_get_broadcast_urls_bad():
-    # C1: group name or repo name does not exist in `broadcast_repos_dict`.
-    #   Expect ValueError.
+    # C1: input names does not exist in `groups_dict` or `repos_dict`.
+    #   Expect KeyError.
     assert False

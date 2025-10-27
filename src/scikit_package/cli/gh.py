@@ -69,23 +69,54 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
     Parameters
     ----------
     url_to_repo_info : str
-        The directory path or URL recognizable broadcast repository
-        information. If it is None, the current working directory is
-        used. If JSON files are not found, the ``broadcast_url_dir_path``
-        set in ``~/.skpkgrc`` will be used. If it is not found, raise
-        ``ValueError``.
+        The pointer to the location where the database files may be found that
+        contain the lists of repository URLs (``repos.json`` or ``repos.yaml``)
+        and broadcast groups (``groups.json`` or ``groups.yaml``).
+        ``repos.json`` takes the form:
+        {
+            "repo-name": "https://github.com/user-or-org-name/repo-name",
+            ...
+        }
 
+        ``repos.yaml`` takes the form:
+        repo-name : "https://github.com/user-or-org-name/repo-name"
+        ...
+
+        ``groups.json`` takes the form:
+        {
+            "group1-name": ["repo1-name", "repo2-name", "repo3-name"],
+            ...
+        }
+
+        ``groups.yaml`` takes the form:
+        group1-name:
+          - repo1
+          - repo2
+          - repo3
+        ...
+
+        ``url_to_repo_info`` could point to a folder on the file-system that
+        contains the two files, or to a GitHub/GitLab repository that
+        contains the two files at the top level. ``url_to_repo_info`` is
+        optional. If it is not specified, package will look in the current
+        working directory for the files. If it doesn't find both there it will
+        look in the user's ``~/.skpkgrc`` configuration file.
 
     Returns
     -------
-    broadcast_repos_dict : dict
-        The dict containing recognizable broadcast repo URLs.
+    groups_dict : dict
+        The dictionary that maps group names to lists of repo names.
+        It looks like {"group1": ["repo1", "repo2"], "group2": ["repo3"]}.
+    repos_dict : dict
+        The dictionary that maps repo names to their URLs.
+        It looks like {"repo1": "https://github.com/user-or-org-name/repo1"}
     """
-    broadcast_repos_dict = {}
-    return broadcast_repos_dict
+    groups_dict = {}
+    repos_dict = {}
+    return groups_dict, repos_dict
 
 
-def _get_broadcast_urls(input_names, broadcast_repos_dict):
+def _get_broadcast_urls(input_names, groups_dict, repos_dict):
     """Get the urls and repo names of all repositories to broadcast to.
 
     Parameters
@@ -93,8 +124,12 @@ def _get_broadcast_urls(input_names, broadcast_repos_dict):
     input_names : list of str
         The input list of the names of repos and groups to broadcast to.
         It takes the form: ["repo1","repo2","group1"]
-    broadcast_repos_dict : dict
-        The dict containing recognized broadcast repo URLs.
+    groups_dict : dict
+        The dictionary that maps group names to lists of repo names.
+        It looks like {"group1": ["repo1", "repo2"], "group2": ["repo3"]}.
+    repos_dict : dict
+        The dictionary that maps repo names to their URLs.
+        It looks like {"repo1": "https://github.com/user-or-org-name/repo1"}
 
     Returns
     -------
