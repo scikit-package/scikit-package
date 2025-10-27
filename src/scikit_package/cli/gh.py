@@ -50,25 +50,29 @@ def _get_issue_content(issue_url):
     return source_repo_url, issue_content
 
 
-def _get_broadcast_repos_dict(url_dir_path=None):
+def _get_broadcast_repos_dict(url_to_repo_info=None):
     """Load the recognizable broadcast repository names and URLs from
     files in the given directory or GitHub repo.
 
-    If ``url_dir_path`` is not None, first try to treat it as an URL, and if
-    that fails, treat it as a directory. If both fail, raise
-    ``ValueError``. If ``url_dir_path`` is None, the broadcast_url_dir_path
-    set in ``~/.skpkgrc`` will be used. If it is not found, use the current
-    working directory as the ``url_dir_path``.
+    If ``url_to_repo_info`` is None, use the current working directory. If the
+    files are not found in the current working directory, use
+    the broadcast_url_dir_path set in ``~/.skpkgrc``. If it is not found,
+    raise ``ValueError``.
+
+    ``url_to_repo_info`` is first treated as an URL, and if that fails,
+    then it is treated as a directory. If both fail, raise
+    ``ValueError``.
+
     If the file ``groups.json`` and ``repos.json`` don't exist in
-    ``url_dir_path``, raise ``ValueError``.
+    ``url_to_repo_info``, raise ``FileNotFoundError``.
 
     Parameters
     ----------
-    url_dir_path : str
+    url_to_repo_info : str
         The directory path or URL recognizable broadcast repository
         information. If it is None, the ``broadcast_url_dir_path`` set in
         ``~/.skpkgrc`` will be used. If it is not found, use the current
-        working directory as the ``url_dir_path``.
+        working directory as the ``url_to_repo_info``.
 
     Returns
     -------
@@ -77,18 +81,6 @@ def _get_broadcast_repos_dict(url_dir_path=None):
     """
     broadcast_repos_dict = {}
     return broadcast_repos_dict
-
-
-def _print_recognized_broadcast_repos(broadcast_repos_dict):
-    """Print the recognized broadcast repository names and group names
-    from the dict.
-
-    Parameters
-    ----------
-    broadcast_repos_dict : dict
-        The dict containing recognized broadcast repo URLs.
-    """
-    return None
 
 
 def _get_broadcast_urls(input_names, broadcast_repos_dict):

@@ -2,7 +2,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from scikit_package.cli.gh import _get_issue_content  # noqa: F401
+from scikit_package.cli.gh import _get_issue_content
 
 
 def test_get_issue_content(mocker):
@@ -61,3 +61,34 @@ def test_get_issue_content_bad(mocker):
     ):
         source_repo_url, issue_content = _get_issue_content(issue_url)
     get_issue_fail_mocker.assert_called_once()
+
+
+def test_get_broadcast_repos_dict():
+    # C1: an URL input, and JSON files exist in the GH repo.
+    #   Expect the broadcast repos dict is returned.
+    # C2: a directory input and JSON files exist in the directory.
+    #   Expect the broadcast repos dict is returned.
+    # C3: no input, cwd have `repos.json` and `groups.json`,
+    #   `~/skpkgrc` have `broadcast_url_dir_path`.
+    #   Expect the broadcast repos dict specified in the cwd is returned.
+    # C4: no input, cwd does not have the files.
+    #   `~/skpkgrc` have `broadcast_url_dir_path`.
+    #   Expect the broadcast repos dict specified in the
+    #   `broadcast_url_dir_path` is returned.
+    assert False
+
+
+def test_get_broadcast_repos_dict_bad():
+    # C1: an invalid URL input. Expect ValueError.
+    # C2: a directory input but JSON files do not exist in the directory.
+    #   Expect ValueError.
+    # C3: no input, cwd does not have `repos.json` and `groups.json`,
+    #   `~/skpkgrc` does not have `broadcast_url_dir_path`.
+    #   Expect ValueError.
+    assert False
+
+
+def test_get_broadcast_urls_bad():
+    # C1: group name or repo name does not exist in `broadcast_repos_dict`.
+    #   Expect ValueError.
+    assert False
