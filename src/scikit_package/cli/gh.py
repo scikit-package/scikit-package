@@ -70,9 +70,11 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
     ----------
     url_to_repo_info : str
         The directory path or URL recognizable broadcast repository
-        information. If it is None, the ``broadcast_url_dir_path`` set in
-        ``~/.skpkgrc`` will be used. If it is not found, use the current
-        working directory as the ``url_to_repo_info``.
+        information. If it is None, the current working directory is
+        used. If JSON files are not found, the ``broadcast_url_dir_path``
+        set in ``~/.skpkgrc`` will be used. If it is not found, raise
+        ``ValueError``.
+
 
     Returns
     -------
