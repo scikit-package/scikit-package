@@ -63,7 +63,7 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
     then it is treated as a directory. If both fail, raise
     ``ValueError``.
 
-    If the file ``groups.json`` and ``repos.json`` don't exist in
+    If the files ``groups.json`` and ``repos.json`` don't exist in
     ``url_to_repo_info``, raise ``FileNotFoundError``.
 
     Parameters
@@ -88,16 +88,16 @@ def _get_broadcast_urls(input_names, broadcast_repos_dict):
 
     Parameters
     ----------
-    input_names : str
-        The input string of the names of repos and groups to broadcast to.
-        It takes the form: "repo1,repo2,group1"
+    input_names : list of str
+        The input list of the names of repos and groups to broadcast to.
+        It takes the form: ["repo1","repo2","group1"]
     broadcast_repos_dict : dict
         The dict containing recognized broadcast repo URLs.
 
     Returns
     -------
     broadcast_urls : list of str
-        a list of repo urls to broadcast the issue.
+        The list of repo urls to broadcast the issue.
     """
     broadcast_urls = []
     return broadcast_urls
