@@ -132,9 +132,9 @@ def _get_broadcast_urls(input_names, groups_dict, repos_dict):
 
     Parameters
     ----------
-    input_names : list of str
-        The input list of the names of repos and groups to broadcast to.
-        It takes the form: ["group1"]
+    input_names : str
+        The user-supplied group key.
+        For example, "even_repos".
     groups_dict : dict
         The dictionary that maps group names to lists of repo names.
         It looks like
