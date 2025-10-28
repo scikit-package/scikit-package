@@ -116,7 +116,7 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
         The dictionary that maps repo names to their URLs.
         It looks like
         {
-            "repo1": "https://github.com/user-or-org-name/repo1",
+            "repo1":  "https://github.com/myorg/myrepo1",
             "repo2":  "https://github.com/myorg/myrepo2",
             "repo3":  "https://github.com/myorg/myrepo3"
         }
