@@ -79,7 +79,7 @@ def test_get_broadcast_repos_dict():
 
 
 def test_get_broadcast_repos_dict_bad():
-    # C1: an invalid URL input. Expect ValueError.
+    # C1: a URL that does not point to a valid GH repo. Expect ValueError.
     # C2: a directory input but JSON files do not exist in the directory.
     #   Expect FileNotFoundError.
     # C3: no input, cwd does not have `repos.json` and `groups.json`,

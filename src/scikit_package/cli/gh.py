@@ -51,49 +51,53 @@ def _get_issue_content(issue_url):
 
 
 def _get_broadcast_repos_dict(url_to_repo_info=None):
-    """Load the recognizable broadcast repository names and URLs from
-    files in the given directory or GitHub repo.
+    """Load the repos database and the groups database and return them
+    as dictionaries.
 
-    If ``url_to_repo_info`` is None, use the current working directory. If the
-    files are not found in the current working directory, use
-    the broadcast_url_dir_path set in ``~/.skpkgrc``. If it is not found,
-    raise ``ValueError``.
+    Take ``url_to_repo_info`` as a pointer to the databases as input.
+    Currently supported is that this can point to a folder on the filesystem
+    or a URL to a GitHub repository.  If the former is passed, it is
+    expected to find ``repos.json`` or ``repos.yaml`` and ``groups.json`` or
+    ``groups.yaml`` in the folder.  If the latter, the two files should be
+    in the top level of the git repository.
 
-    ``url_to_repo_info`` is first treated as an URL, and if that fails,
-    then it is treated as a directory. If both fail, raise
-    ``ValueError``.
+    If ``url_to_repo_info`` is None, use the current working directory. If
+    the files are not found in the current working directory, look for a
+    valid the ``url_to_repo_info`` in the users scikit-package run-control
+    config file at ``~/.skpkgrc``.
 
-    If the files ``groups.json`` and ``repos.json`` don't exist in
-    ``url_to_repo_info``, raise ``FileNotFoundError``.
+    If ``url_to_repo_info`` is a valid URL it is assumed that it points to a
+    GitHub repository, otherwise it is assume it is a valid file-path
+    reference.
 
     Parameters
     ----------
-    url_to_repo_info : str
+    url_to_repo_info : str. Optional. Default is None.
         The pointer to the location where the database files may be found that
-        contain the lists of repository URLs (``repos.json`` or ``repos.yaml``)
-        and broadcast groups (``groups.json`` or ``groups.yaml``).
+        contain the lists of repository URLs (``repos.json``, ``repos.yaml``)
+        and broadcast groups (``groups.json``, ``groups.yaml``).
+
         ``repos.json`` takes the form:
         {
-            "repo-name": "https://github.com/user-or-org-name/repo-name",
-            ...
+            "repo1":  "https://github.com/myorg/myrepo1",
+            "repo2":  "https://github.com/myorg/myrepo2",
+            "repo3":  "https://github.com/myorg/myrepo3"
         }
-
         ``repos.yaml`` takes the form:
-        repo-name : "https://github.com/user-or-org-name/repo-name"
-        ...
-
+        "repo1":  "https://github.com/myorg/myrepo1",
+        "repo2":  "https://github.com/myorg/myrepo2",
+        "repo3":  "https://github.com/myorg/myrepo3"
         ``groups.json`` takes the form:
         {
-            "group1-name": ["repo1-name", "repo2-name", "repo3-name"],
-            ...
+            "odd_repos": ["repo1", "repo3"],
+            "even_repos": ["repo2]
         }
-
         ``groups.yaml`` takes the form:
-        group1-name:
+        odd_repos:
           - repo1
-          - repo2
           - repo3
-        ...
+        even_repos:
+          - repo2
 
         ``url_to_repo_info`` could point to a folder on the file-system that
         contains the two files, or to a GitHub/GitLab repository that
@@ -106,10 +110,16 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
     -------
     groups_dict : dict
         The dictionary that maps group names to lists of repo names.
-        It looks like {"group1": ["repo1", "repo2"], "group2": ["repo3"]}.
+        It looks like
+        {"odd_repos": ["repo1", "repo3"], "even_repos": ["repo2"]}.
     repos_dict : dict
         The dictionary that maps repo names to their URLs.
-        It looks like {"repo1": "https://github.com/user-or-org-name/repo1"}
+        It looks like
+        {
+            "repo1": "https://github.com/user-or-org-name/repo1",
+            "repo2":  "https://github.com/myorg/myrepo2",
+            "repo3":  "https://github.com/myorg/myrepo3"
+        }
     """
     groups_dict = {}
     repos_dict = {}
@@ -117,19 +127,26 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
 
 
 def _get_broadcast_urls(input_names, groups_dict, repos_dict):
-    """Get the urls and repo names of all repositories to broadcast to.
+    """Build the list of repository URLs from the repos and groups
+    databases and a user-supplied group key.
 
     Parameters
     ----------
     input_names : list of str
         The input list of the names of repos and groups to broadcast to.
-        It takes the form: ["repo1","repo2","group1"]
+        It takes the form: ["group1"]
     groups_dict : dict
         The dictionary that maps group names to lists of repo names.
-        It looks like {"group1": ["repo1", "repo2"], "group2": ["repo3"]}.
+        It looks like
+        {"odd_repos": ["repo1", "repo3"], "even_repos": ["repo2"]}.
     repos_dict : dict
         The dictionary that maps repo names to their URLs.
-        It looks like {"repo1": "https://github.com/user-or-org-name/repo1"}
+        It looks like
+        {
+            "repo1": "https://github.com/user-or-org-name/repo1",
+            "repo2":  "https://github.com/myorg/myrepo2",
+            "repo3":  "https://github.com/myorg/myrepo3"
+        }
 
     Returns
     -------
