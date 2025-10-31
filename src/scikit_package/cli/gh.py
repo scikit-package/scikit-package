@@ -75,28 +75,6 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
         contain the lists of repository URLs (``repos.json``, ``repos.yaml``)
         and broadcast groups (``groups.json``, ``groups.yaml``).
 
-        ``repos.json`` takes the form:
-        {
-            "repo1":  "https://github.com/myorg/myrepo1",
-            "repo2":  "https://github.com/myorg/myrepo2",
-            "repo3":  "https://github.com/myorg/myrepo3"
-        }
-        ``repos.yaml`` takes the form:
-        "repo1":  "https://github.com/myorg/myrepo1",
-        "repo2":  "https://github.com/myorg/myrepo2",
-        "repo3":  "https://github.com/myorg/myrepo3"
-        ``groups.json`` takes the form:
-        {
-            "odd_repos": ["repo1", "repo3"],
-            "even_repos": ["repo2]
-        }
-        ``groups.yaml`` takes the form:
-        odd_repos:
-          - repo1
-          - repo3
-        even_repos:
-          - repo2
-
         ``url_to_repo_info`` could point to a folder on the file-system that
         contains the two files, or to a GitHub/GitLab repository that
         contains the two files at the top level. ``url_to_repo_info`` is
