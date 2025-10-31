@@ -2,7 +2,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from scikit_package.cli.gh import _get_issue_content
+from scikit_package.cli.gh import _broadcast_issue_to_urls, _get_issue_content
 
 
 def test_get_issue_content(mocker):
@@ -33,9 +33,8 @@ def test_get_issue_content_bad(mocker):
         ValueError,
         match=(
             f"{issue_url} is not a valid url to be parsed. "
-            "Please input the url of the issue to be broadcasted. "
-            "Its format should be https://"
-            "github.com/username/reponame/issues/issue-number"
+            "Please ensure the input url is with a format like "
+            "https://github.com/username/reponame/issues/issue-number"
         ),
     ):
         source_repo_url, issue_content = _get_issue_content(issue_url)
@@ -54,9 +53,8 @@ def test_get_issue_content_bad(mocker):
         ValueError,
         match=(
             f"Can not find the corresponding issue from {issue_url}. "
-            "Please ensure the input url is correct. "
-            "Its format should be https://"
-            "github.com/username/reponame/issues/issue-number"
+            "Please ensure the input url is with a format like "
+            "https://github.com/username/reponame/issues/issue-number"
         ),
     ):
         source_repo_url, issue_content = _get_issue_content(issue_url)
@@ -92,3 +90,119 @@ def test_get_broadcast_urls_bad():
     # C1: input names does not exist in `groups_dict` or `repos_dict`.
     #   Expect KeyError.
     assert False
+
+
+@pytest.mark.parametrize(
+    (
+        "broadcast_urls,expected_non_gh_urls,expected_failed_urls,"
+        "dry_run, create_issue_return_value, called_mockers"
+    ),
+    [
+        # C1: a list of target repo urls and dry_run is True.
+        #   Expect non_gh_urls, failed_gh_urls to be empty, and only
+        #   dry_run_mocker is called.
+        (
+            [
+                "https://github.com/user-or-orgname/reponame1",
+                "https://github.com/user-or-orgname/reponame2",
+            ],
+            [],
+            [],
+            True,
+            SimpleNamespace(status_code=201),
+            [
+                "dry_run_mocker",
+            ],
+        ),
+        # C2: a list of target repo urls, and dry_run is False.
+        #   Expect non_gh_urls, failed_gh_urls to be empty, and only
+        #   create_issue_mocker is called.
+        (
+            [
+                "https://github.com/user-or-orgname/reponame1",
+                "https://github.com/user-or-orgname/reponame2",
+            ],
+            [],
+            [],
+            False,
+            SimpleNamespace(status_code=201),
+            [
+                "create_issue_mocker",
+            ],
+        ),
+        # C3: One URL is not with a format of GH repo, another URL is with
+        #   a format of GH repo but doesn't point to a valid GH repo,
+        #   dry_run is True.
+        #   Expect non empty non_gh_urls, empty failed_urls, and only
+        #   dry_run_mocker is called.
+        (
+            [
+                "https://not-github.com/user-or-orgname/reponame2",
+                "https://github.com/nonexisting/nonexisting",
+            ],
+            ["https://not-github.com/user-or-orgname/reponame2"],
+            [],
+            True,
+            SimpleNamespace(status_code=404),
+            [
+                "dry_run_mocker",
+            ],
+        ),
+        # C3: One URL is not with a format of GH repo, another URL is with
+        #   a format of GH repo but doesn't point to a valid GH repo,
+        #   dry_run is False.
+        #   Expect non empty non_gh_urls, empty failed_urls, and only
+        #   create_issue_mocker is called.
+        (
+            [
+                "https://not-github.com/user-or-orgname/reponame2",
+                "https://github.com/nonexisting/nonexisting",
+            ],
+            ["https://not-github.com/user-or-orgname/reponame2"],
+            ["https://github.com/nonexisting/nonexisting"],
+            False,
+            SimpleNamespace(status_code=404),
+            [
+                "create_issue_mocker",
+            ],
+        ),
+    ],
+)
+def test_broadcast_issue_to_urls(
+    mocker,
+    broadcast_urls,
+    expected_non_gh_urls,
+    expected_failed_urls,
+    dry_run,
+    create_issue_return_value,
+    called_mockers,
+):
+    create_issue_mocker = mocker.patch(
+        "requests.post",
+        return_value=create_issue_return_value,
+    )
+    dry_run_mocker = mocker.patch(
+        "scikit_package.cli.gh._print_dry_run_message",
+        return_value=None,
+    )
+    issue_content = {"title": "issue-title", "body": "issue-body"}
+    actual_non_gh_urls, actual_failed_urls, actual_dry_run = (
+        _broadcast_issue_to_urls(
+            issue_content,
+            broadcast_urls,
+            gh_token="dummy_token",
+            dry_run=dry_run,
+        )
+    )
+    mockers = {
+        "create_issue_mocker": create_issue_mocker,
+        "dry_run_mocker": dry_run_mocker,
+    }
+    for mocker_name, mocker_instance in mockers.items():
+        if mocker_name in called_mockers:
+            assert mocker_instance.call_count >= 1
+        else:
+            mocker_instance.assert_not_called()
+    assert set(actual_non_gh_urls) == set(expected_non_gh_urls)
+    assert set(actual_failed_urls) == set(expected_failed_urls)
+    assert actual_dry_run is dry_run
