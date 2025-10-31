@@ -102,13 +102,13 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
     return groups_dict, repos_dict
 
 
-def _get_broadcast_urls(input_names, groups_dict, repos_dict):
+def _get_broadcast_urls(input_name, groups_dict, repos_dict):
     """Build the list of repository URLs from the repos and groups
     databases and a user-supplied group key.
 
     Parameters
     ----------
-    input_names : str
+    input_name : str
         The user-supplied group key.
         For example, "even_repos".
     groups_dict : dict
