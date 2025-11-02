@@ -72,7 +72,7 @@ def user_filesystem(tmp_path):
     repo_info_dir_json = tmp_path / "repo_info_dir_json"
     repo_info_dir_yaml = tmp_path / "repo_info_dir_yaml"
     skpkg_file = home_dir / ".skpkgrc"
-    empty_skpkg_file = home_dir / "another_home_dir" / ".skpkgrc"
+    empty_skpkg_file = tmp_path / "another_home_dir" / ".skpkgrc"
     another_repo_info_dir_json = tmp_path / "another_repo_info_dir_json"
     groups_dict = {
         "odd_group": ["repo1", "repo3"],
