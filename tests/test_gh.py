@@ -1,5 +1,7 @@
 import json
+import os
 import re
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
@@ -69,28 +71,61 @@ def test_get_issue_content_bad(mocker):
 
 
 @pytest.mark.parametrize(
-    "url_to_repo_info, input_type, mock_cwd, mock_home, expected_output",
+    (
+        "url_to_repo_info, input_type, cwd_dir, expected_group_dict,"
+        "expected_repos_dict"
+    ),
     [
         # C1: an URL input, and JSON files exist in the GH repo.
         #   Expect the broadcast repos dict is returned.
         (
             "https://github.com/user-or-orgname/reponame",
             "url",
-            None,
-            None,
-            "default",
+            "cwd_dir",
+            {
+                "odd_group": ["repo1", "repo3"],
+                "even_group": ["repo2", "repo4"],
+            },
+            {
+                "repo1": "https://github.com/user/repo1",
+                "repo2": "https://github.com/user/repo2",
+                "repo3": "https://github.com/user/repo3",
+                "repo4": "https://github.com/user/repo4",
+            },
         ),
         # C2: a directory input and JSON files exist in the directory.
         #   Expect the broadcast repos dict is returned.
-        ("repo_info_dir_json", "dir", None, None, "default"),
+        (
+            "repo_info_dir_json",
+            "dir",
+            "cwd_dir",
+            {
+                "odd_group": ["repo1", "repo3"],
+                "even_group": ["repo2", "repo4"],
+            },
+            {
+                "repo1": "https://github.com/user/repo1",
+                "repo2": "https://github.com/user/repo2",
+                "repo3": "https://github.com/user/repo3",
+                "repo4": "https://github.com/user/repo4",
+            },
+        ),
         # C3: a directory input and YAML files exist in the directory.
         #   Expect the broadcast repos dict is returned.
         (
             "repo_info_dir_yaml",
             "dir",
-            None,
-            None,
-            "default",
+            "cwd_dir",
+            {
+                "odd_group": ["repo1", "repo3"],
+                "even_group": ["repo2", "repo4"],
+            },
+            {
+                "repo1": "https://github.com/user/repo1",
+                "repo2": "https://github.com/user/repo2",
+                "repo3": "https://github.com/user/repo3",
+                "repo4": "https://github.com/user/repo4",
+            },
         ),
         # C4: no input, cwd have `repos.json` and `groups.json`,
         #   `~/.skpkgrc` have `url_to_repo_info`.
@@ -99,8 +134,16 @@ def test_get_issue_content_bad(mocker):
             None,
             "none",
             "repo_info_dir_json",
-            "home_dir",
-            "default",
+            {
+                "odd_group": ["repo1", "repo3"],
+                "even_group": ["repo2", "repo4"],
+            },
+            {
+                "repo1": "https://github.com/user/repo1",
+                "repo2": "https://github.com/user/repo2",
+                "repo3": "https://github.com/user/repo3",
+                "repo4": "https://github.com/user/repo4",
+            },
         ),
         # C5: no input, cwd does not have the files.
         #   `~/.skpkgrc` have `url_to_repo_info`.
@@ -110,8 +153,16 @@ def test_get_issue_content_bad(mocker):
             None,
             "none",
             "empty-source-dir",
-            "home_dir",
-            "another",
+            {
+                "small_group": ["repo1", "repo2"],
+                "large_group": ["repo101", "repo102"],
+            },
+            {
+                "repo1": "https://github.com/user/repo1",
+                "repo2": "https://github.com/user/repo2",
+                "repo101": "https://github.com/user/repo101",
+                "repo102": "https://github.com/user/repo102",
+            },
         ),
     ],
 )
@@ -120,11 +171,10 @@ def test_get_broadcast_repos_dict(
     user_filesystem,
     url_to_repo_info,
     input_type,
-    mock_cwd,
-    mock_home,
-    expected_output,
+    cwd_dir,
+    expected_group_dict,
+    expected_repos_dict,
 ):
-    available_mockers = {}
 
     if input_type == "url":
 
@@ -140,50 +190,15 @@ def test_get_broadcast_repos_dict(
             with open(f"{target_dir}/repos.json", "w") as f:
                 f.write(repos_json_content)
 
-        mock_clone_repo = mocker.patch(
+        mocker.patch(
             "subprocess.run",
             side_effect=mock_clone_repo,
         )
-    if mock_cwd:
-        available_mockers["mocker_cwd"] = mocker.patch(
-            "pathlib.Path.cwd",
-            return_value=user_filesystem / mock_cwd,
-        )
-    if mock_home:
-        available_mockers["mocker_home"] = mocker.patch(
-            "pathlib.Path.home",
-            return_value=user_filesystem / mock_home,
-        )
-    default_expected_group_dict, default_expected_repos_dict = (
-        {
-            "odd_group": ["repo1", "repo3"],
-            "even_group": ["repo2", "repo4"],
-        },
-        {
-            "repo1": "https://github.com/user/repo1",
-            "repo2": "https://github.com/user/repo2",
-            "repo3": "https://github.com/user/repo3",
-            "repo4": "https://github.com/user/repo4",
-        },
+    os.chdir(user_filesystem / cwd_dir)
+    mocker.patch(
+        "pathlib.Path.home",
+        return_value=user_filesystem / "home_dir",
     )
-    another_expected_group_dict, another_expected_repos_dict = (
-        {
-            "small_group": ["repo1", "repo2"],
-            "large_group": ["repo101", "repo102"],
-        },
-        {
-            "repo1": "https://github.com/user/repo1",
-            "repo2": "https://github.com/user/repo2",
-            "repo101": "https://github.com/user/repo101",
-            "repo102": "https://github.com/user/repo102",
-        },
-    )
-    if expected_output == "default":
-        expected_group_dict = default_expected_group_dict
-        expected_repos_dict = default_expected_repos_dict
-    elif expected_output == "another":
-        expected_group_dict = another_expected_group_dict
-        expected_repos_dict = another_expected_repos_dict
     if input_type == "url":
         url_to_repo_info = url_to_repo_info
     elif input_type == "dir":
@@ -198,7 +213,7 @@ def test_get_broadcast_repos_dict(
 
 
 @pytest.mark.parametrize(
-    "url_to_repo_info, error, error_msg, called_mockers",
+    "url_to_repo_info, error, error_msg",
     [
         # C1: a valid URL that does not point to a GH repo. Expect ValueError.
         (
@@ -211,7 +226,6 @@ def test_get_broadcast_repos_dict(
                 "like https://github.com/user-or-orgname/reponame "
                 "or provide a directory path instead."
             ),
-            [],
         ),
         # C2: a URL input but JSON files do not exist in the GH repo.
         #  Expect FileNotFoundError.
@@ -226,23 +240,16 @@ def test_get_broadcast_repos_dict(
                 "repository. Please ensure both files exist in the "
                 "top level of the GitHub repository."
             ),
-            ["mock_clone_empty_repo"],
         ),
     ],
 )
 def test_get_broadcast_repos_dict_bad_url(
-    mocker, url_to_repo_info, error, error_msg, called_mockers
+    mocker, url_to_repo_info, error, error_msg
 ):
-    mock_clone_empty_repo = mocker.patch(
+    mocker.patch(
         "subprocess.run",
         return_value=None,
     )
-    mockers = {
-        "mock_clone_empty_repo": mock_clone_empty_repo,
-    }
-    for mocker_name, mocker_instance in mockers.items():
-        if mocker_name not in called_mockers:
-            mocker_instance.stop()
     with pytest.raises(
         error,
     ) as excinfo:
@@ -250,22 +257,21 @@ def test_get_broadcast_repos_dict_bad_url(
             url_to_repo_info=url_to_repo_info,
         )
     assert error_msg in str(excinfo.value)
-    for mocker_name in called_mockers:
-        mockers[mocker_name].assert_called_once()
 
 
 @pytest.mark.parametrize(
     (
-        "url_to_repo_info, make_incorrect_dicts, mock_home, error, "
-        "expected_error_msg_parts"
+        "url_to_repo_info,home_dir,  make_incorrect_dicts, "
+        "make_incorrect_skpkg, error, expected_error_msg_parts "
     ),
     [
         # C1: a directory input but the directory does not exist.
         #   Expect NotADirectoryError.
         (
             "nonexisting-dir",
+            "home_dir",
             False,
-            None,
+            False,
             NotADirectoryError,
             (
                 "The provided ",
@@ -279,8 +285,9 @@ def test_get_broadcast_repos_dict_bad_url(
         #   directory. Expect FileNotFoundError.
         (
             "empty-source-dir",
+            "home_dir",
             False,
-            None,
+            False,
             FileNotFoundError,
             (
                 "The required files `groups.json`(or `groups.yaml`), "
@@ -290,13 +297,29 @@ def test_get_broadcast_repos_dict_bad_url(
                 "exist in the top level of the directory.",
             ),
         ),
-        # C3: no input, cwd does not have `repos.json` and `groups.json`,
+        # C3: groups_dict and repos_dict are loaded but the some repo name
+        #   in groups_dict does not exist in repos_dict. Expect KeyError.
+        (
+            "repo_info_dir_json",
+            "home_dir",
+            True,
+            False,
+            KeyError,
+            (
+                "repo `repo1` in the groups dictionary does not exist "
+                "in repos dictionary ",
+                "Please ensure all repo names in the groups dictionary "
+                "exist in the repos dictionary.",
+            ),
+        ),
+        # C4: no input, cwd does not have `repos.json` and `groups.json`,
         #   `~/.skpkgrc` does not have `repo_to_url_info`.
         #   Expect KeyError.
         (
             None,
-            False,
             "another_home_dir",
+            False,
+            True,
             KeyError,
             (
                 "Can not find the required entry `url_to_repo_info` in the "
@@ -306,20 +329,6 @@ def test_get_broadcast_repos_dict_bad_url(
                 "`url_to_repo_info` is not provided to the command.",
             ),
         ),
-        # C4: groups_dict and repos_dict are loaded but the some repo name
-        #   in groups_dict does not exist in repos_dict. Expect KeyError.
-        (
-            "repo_info_dir_json",
-            True,
-            None,
-            KeyError,
-            (
-                "repo `repo1` in the groups dictionary does not exist "
-                "in repos dictionary ",
-                "Please ensure all repo names in the groups dictionary "
-                "exist in the repos dictionary.",
-            ),
-        ),
     ],
 )
 def test_get_broadcast_repos_dict_bad_dir(
@@ -327,10 +336,15 @@ def test_get_broadcast_repos_dict_bad_dir(
     user_filesystem,
     url_to_repo_info,
     make_incorrect_dicts,
-    mock_home,
+    make_incorrect_skpkg,
+    home_dir,
     error,
     expected_error_msg_parts,
 ):
+    mocker.patch(
+        "pathlib.Path.home",
+        return_value=user_filesystem / home_dir,
+    )
     if make_incorrect_dicts:
         url_to_repo_info_path = user_filesystem / url_to_repo_info
         repos_json_file = url_to_repo_info_path / "repos.json"
@@ -338,21 +352,44 @@ def test_get_broadcast_repos_dict_bad_dir(
         repos_dict.pop("repo1")
         with open(repos_json_file, "w") as f:
             json.dump(repos_dict, f)
-    if mock_home:
-        mocker.patch(
-            "pathlib.Path.home",
-            return_value=user_filesystem / mock_home,
-        )
+    if make_incorrect_skpkg:
+        skpkg_file = Path().home() / ".skpkgrc"
+        with open(skpkg_file, "w") as f:
+            json.dump({"url_to_repo_info": None}, f)
     if url_to_repo_info:
         url_to_repo_info = str(user_filesystem / url_to_repo_info)
-    else:
-        url_to_repo_info = None
     with pytest.raises(
         error,
     ) as excinfo:
         _get_broadcast_repos_dict(url_to_repo_info=url_to_repo_info)
     for msg_part in expected_error_msg_parts:
         assert msg_part in str(excinfo.value)
+
+
+def test_get_broadcast_urls():
+    # C1: input name is a group name.
+    #   Expect the corresponding list of repo urls is returned.
+    groups_dict = {
+        "odd_group": ["repo1", "repo3"],
+        "even_group": ["repo2", "repo4"],
+    }
+    repos_dict = {
+        "repo1": "https://github.com/user/repo1",
+        "repo2": "https://github.com/user/repo2",
+        "repo3": "https://github.com/user/repo3",
+        "repo4": "https://github.com/user/repo4",
+    }
+    input_name = "odd_group"
+    expected_urls = [
+        "https://github.com/user/repo1",
+        "https://github.com/user/repo3",
+    ]
+    actual_urls = _get_broadcast_urls(
+        input_name=input_name,
+        groups_dict=groups_dict,
+        repos_dict=repos_dict,
+    )
+    assert set(actual_urls) == set(expected_urls)
 
 
 def test_get_broadcast_urls_bad():

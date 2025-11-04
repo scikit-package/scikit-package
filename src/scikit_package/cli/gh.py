@@ -107,7 +107,7 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
     """
 
     def _load_json_or_yaml_from_dir(dir_path: Path, file_stems: list):
-        extensions = [".json", ".yaml"]
+        extensions = [".json", ".yaml", ".yml"]
         return_dict = {}
         find_all = []
         for file_stem in file_stems:
