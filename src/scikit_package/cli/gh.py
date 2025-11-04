@@ -157,23 +157,7 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
         if url_to_repo_info.startswith(
             "http://"
         ) or url_to_repo_info.startswith("https://"):
-            if is_github_repo_url(url_to_repo_info):
-                dicts, find_all = _load_json_or_yaml_from_repo(
-                    url_to_repo_info,
-                    ["groups", "repos"],
-                )
-                if find_all:
-                    return _check_dicts(dicts["groups"], dicts["repos"])
-                else:
-                    raise FileNotFoundError(
-                        f"{url_to_repo_info} "
-                        "is a valid GitHub repository URL but the required "
-                        "files `groups.json`(or `groups.yaml`), "
-                        "`repos.json`(or `repos.yaml`) do not exist in the "
-                        "repository. Please ensure both files exist in the "
-                        "top level of the GitHub repository."
-                    )
-            else:
+            if not is_github_repo_url(url_to_repo_info):
                 raise ValueError(
                     f"{url_to_repo_info} "
                     "is recognized as an url but it is not a valid url "
@@ -182,6 +166,20 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
                     "https://github.com/user-or-orgname/reponame "
                     "or provide a directory path instead."
                 )
+            dicts, find_all = _load_json_or_yaml_from_repo(
+                url_to_repo_info,
+                ["groups", "repos"],
+            )
+            if not find_all:
+                raise FileNotFoundError(
+                    f"{url_to_repo_info} "
+                    "is a valid GitHub repository URL but the required "
+                    "files `groups.json`(or `groups.yaml`), "
+                    "`repos.json`(or `repos.yaml`) do not exist in the "
+                    "repository. Please ensure both files exist in the "
+                    "top level of the GitHub repository."
+                )
+            return _check_dicts(dicts["groups"], dicts["repos"])
         else:  # url_to_repo_info is a directory path
             path = Path(url_to_repo_info)
             if not path.is_dir():
@@ -194,9 +192,7 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
             dicts, find_all = _load_json_or_yaml_from_dir(
                 path, ["groups", "repos"]
             )
-            if find_all:
-                return _check_dicts(dicts["groups"], dicts["repos"])
-            else:
+            if not find_all:
                 raise FileNotFoundError(
                     (
                         "The required files `groups.json`(or `groups.yaml`), "
@@ -205,13 +201,15 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
                         "files exist in the top level of the directory."
                     )
                 )
+            else:
+                return _check_dicts(dicts["groups"], dicts["repos"])
     else:  # url_to_repo_info is None
         url_to_repo_info = Path().cwd()
         dicts, find_all = _load_json_or_yaml_from_dir(
             url_to_repo_info, ["groups", "repos"]
         )
         if find_all:
-            return dicts["groups"], dicts["repos"]
+            return _check_dicts(dicts["groups"], dicts["repos"])
         else:
             try:
                 url_to_repo_info = get_config_value(
