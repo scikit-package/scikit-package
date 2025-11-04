@@ -126,11 +126,11 @@ def read_skpkg_config(config_path=config_file):
         return json.load(f)
 
 
-def get_config_value(key):
+def get_config_value(key, config_path=config_file):
     """Given the key, get the value from ~/.skpkgrc."""
-    value = io.read_skpkg_config().get(key, None)
+    value = io.read_skpkg_config(config_path).get(key, None)
     if not value:
-        raise ValueError(
+        raise KeyError(
             f"No '{key}' is found in your ~/.skpkgrc file. "
             f"Please set '{key}' as instructed in the documentation."
         )

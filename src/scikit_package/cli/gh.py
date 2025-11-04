@@ -1,6 +1,14 @@
+import json
+import re
+import subprocess
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from urllib.parse import urlparse
 
 import requests
+import yaml
+
+from scikit_package.utils.io import get_config_value
 
 
 def _get_issue_content(issue_url):
@@ -97,9 +105,128 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
             "repo3":  "https://github.com/myorg/myrepo3"
         }
     """
-    groups_dict = {}
-    repos_dict = {}
-    return groups_dict, repos_dict
+
+    def _load_json_or_yaml_from_dir(dir_path: Path, file_stems: list):
+        extensions = [".json", ".yaml"]
+        return_dict = {}
+        find_all = []
+        for file_stem in file_stems:
+            find_file = False
+            for ext in extensions:
+                file_path = dir_path / f"{file_stem}{ext}"
+                if file_path.is_file():
+                    find_file = True
+                    with open(file_path, "r") as f:
+                        if ext == ".json":
+                            return_dict[file_stem] = json.load(f)
+                        elif ext == ".yaml":
+                            return_dict[file_stem] = yaml.safe_load(f)
+                    break
+            find_all.append(find_file)
+        find_all = all(find_all)
+        return return_dict, find_all
+
+    def _load_json_or_yaml_from_repo(repo_url, file_stems):
+        with TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            subprocess.run(["git", "clone", repo_url, str(tmp_path)])
+            return _load_json_or_yaml_from_dir(tmp_path, file_stems)
+
+    def is_github_repo_url(url: str) -> bool:
+        pattern = re.compile(
+            r"^(https://github\.com/|git@github\.com:|git://github\.com/)"
+            r"([\w.-]+)/([\w.-]+)(\.git)?/?$"  # owner/repo
+        )
+        return bool(pattern.match(url))
+
+    def _check_dicts(groups_dict, repos_dict):
+        repos_mentioned = set(
+            [value for _, values in groups_dict.items() for value in values]
+        )
+        for repo_name in repos_mentioned:
+            if repo_name not in repos_dict:
+                raise KeyError(
+                    f"repo `{repo_name}` in the groups dictionary does not "
+                    f"exist in repos dictionary {repos_dict.keys()}. "
+                    "Please ensure all repo names in the groups dictionary "
+                    "exist in the repos dictionary."
+                )
+        return groups_dict, repos_dict
+
+    if url_to_repo_info:
+        if url_to_repo_info.startswith(
+            "http://"
+        ) or url_to_repo_info.startswith("https://"):
+            if is_github_repo_url(url_to_repo_info):
+                dicts, find_all = _load_json_or_yaml_from_repo(
+                    url_to_repo_info,
+                    ["groups", "repos"],
+                )
+                if find_all:
+                    return _check_dicts(dicts["groups"], dicts["repos"])
+                else:
+                    raise FileNotFoundError(
+                        f"{url_to_repo_info} "
+                        "is a valid GitHub repository URL but the required "
+                        "files `groups.json`(or `groups.yaml`), "
+                        "`repos.json`(or `repos.yaml`) do not exist in the "
+                        "repository. Please ensure both files exist in the "
+                        "top level of the GitHub repository."
+                    )
+            else:
+                raise ValueError(
+                    f"{url_to_repo_info} "
+                    "is recognized as an url but it is not a valid url "
+                    "to be parsed. Please ensure the input url is with a "
+                    "format like "
+                    "https://github.com/user-or-orgname/reponame "
+                    "or provide a directory path instead."
+                )
+        else:  # url_to_repo_info is a directory path
+            path = Path(url_to_repo_info)
+            if not path.is_dir():
+                raise NotADirectoryError(
+                    f"The provided {url_to_repo_info} is recognized as a "
+                    "local directory, but it doesn't exist. Please ensure it"
+                    "exists on your local file system or provide a GitHub "
+                    "repository URL instead."
+                )
+            dicts, find_all = _load_json_or_yaml_from_dir(
+                path, ["groups", "repos"]
+            )
+            if find_all:
+                return _check_dicts(dicts["groups"], dicts["repos"])
+            else:
+                raise FileNotFoundError(
+                    (
+                        "The required files `groups.json`(or `groups.yaml`), "
+                        "`repos.json`(or `repos.yaml`) do not exist in the "
+                        f"directory {url_to_repo_info}. Please ensure both "
+                        "files exist in the top level of the directory."
+                    )
+                )
+    else:  # url_to_repo_info is None
+        url_to_repo_info = Path().cwd()
+        dicts, find_all = _load_json_or_yaml_from_dir(
+            url_to_repo_info, ["groups", "repos"]
+        )
+        if find_all:
+            return dicts["groups"], dicts["repos"]
+        else:
+            try:
+                url_to_repo_info = get_config_value(
+                    "url_to_repo_info", Path().home() / ".skpkgrc"
+                )
+            except KeyError:
+                raise KeyError(
+                    "Can not find the required entry `url_to_repo_info` in "
+                    "the directory specified in `~/.skpkgrc`. Please ensure "
+                    "that either the current working directory or the "
+                    "directory specified in `~/.skpkgrc` contains the "
+                    "required files when `url_to_repo_info` is not provided "
+                    "to the command."
+                )
+            return _get_broadcast_repos_dict(url_to_repo_info)
 
 
 def _get_broadcast_urls(input_name, groups_dict, repos_dict):
@@ -129,7 +256,16 @@ def _get_broadcast_urls(input_name, groups_dict, repos_dict):
     broadcast_urls : list of str
         The list of repo urls to broadcast the issue.
     """
+    if input_name not in groups_dict:
+        raise KeyError(
+            f"The input name `{input_name}` does not exist in the "
+            f"groups dictionary {groups_dict.keys()}. "
+            "Please ensure the input name exists in the groups dictionary"
+        )
+    repo_names = groups_dict[input_name]
     broadcast_urls = []
+    for repo_name in repo_names:
+        broadcast_urls.append(repos_dict[repo_name])
     return broadcast_urls
 
 

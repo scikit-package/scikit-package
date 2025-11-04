@@ -112,7 +112,7 @@ def user_filesystem(tmp_path):
         json.dumps({"url_to_repo_info": str(another_repo_info_dir_json)})
     )
     empty_skpkg_file.parent.mkdir(parents=True, exist_ok=True)
-    empty_skpkg_file.write_text("")
+    empty_skpkg_file.write_text(json.dumps({"some_key": "some_value"}))
     another_repo_info_dir_json.mkdir()
     with (
         open(another_repo_info_dir_json / "groups.json", "w") as groups_file,

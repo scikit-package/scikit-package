@@ -1,5 +1,6 @@
 import json
 import re
+from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 
@@ -72,7 +73,7 @@ def test_get_issue_content_bad(mocker):
 def test_get_broadcast_repos_dict(mocker, user_filesystem):
     # C1: an URL input, and JSON files exist in the GH repo.
     #   Expect the broadcast repos dict is returned.
-    url_to_repo_info = "<url_to_repo_info>"
+    url_to_repo_info = "https://github.com/username/reponame"
     expected_group_dict = {
         "odd_group": ["repo1", "repo3"],
         "even_group": ["repo2", "repo4"],
@@ -109,14 +110,14 @@ def test_get_broadcast_repos_dict(mocker, user_filesystem):
     # C2: a directory input and JSON files exist in the directory.
     #   Expect the broadcast repos dict is returned.
     actual_group_dict, actual_repos_dict = _get_broadcast_repos_dict(
-        url_to_repo_info=user_filesystem / "repo_info_dir_json"
+        url_to_repo_info=str(user_filesystem / "repo_info_dir_json")
     )
     assert actual_group_dict == expected_group_dict
     assert actual_repos_dict == expected_repos_dict
     # C3: a directory input and YAML files exist in the directory.
     #   Expect the broadcast repos dict is returned.
     actual_group_dict, actual_repos_dict = _get_broadcast_repos_dict(
-        url_to_repo_info=user_filesystem / "repo_info_dir_yaml"
+        url_to_repo_info=str(user_filesystem / "repo_info_dir_yaml")
     )
     assert actual_group_dict == expected_group_dict
     assert actual_repos_dict == expected_repos_dict
@@ -133,7 +134,7 @@ def test_get_broadcast_repos_dict(mocker, user_filesystem):
     assert actual_group_dict == expected_group_dict
     assert actual_repos_dict == expected_repos_dict
     mocker_cwd.assert_called_once()
-    mocker_home.assert_called_once()
+    mocker_home.assert_not_called()
     # C5: no input, cwd does not have the files.
     #   `~/.skpkgrc` have `url_to_repo_info`.
     #   Expect the broadcast repos dict specified in the
@@ -151,7 +152,9 @@ def test_get_broadcast_repos_dict(mocker, user_filesystem):
         "repo102": "https://github.com/user/repo102",
     }
     with TemporaryDirectory() as temp_cwd:
-        mocker_cwd = mocker.patch("pathlib.Path.cwd", return_value=temp_cwd)
+        mocker_cwd = mocker.patch(
+            "pathlib.Path.cwd", return_value=Path(temp_cwd)
+        )
         actual_group_dict, actual_repos_dict = _get_broadcast_repos_dict()
 
     assert actual_group_dict == expected_group_dict
@@ -163,37 +166,31 @@ def test_get_broadcast_repos_dict(mocker, user_filesystem):
 @pytest.mark.parametrize(
     "url_to_repo_info, error, error_msg, called_mockers",
     [
-        # C1: a invalid URL input with wrong format. Expect ValueError.
-        (
-            "not-a-valid-url",
-            ValueError,
-            (
-                "no-a-valid-url is not a valid url to be parsed. "
-                "Please ensure the input url is with a format like "
-                "https://github.com/user-or-orgname/reponame"
-            ),
-            [],
-        ),
-        # C2: a valid URL that does not point to a GH repo. Expect ValueError.
+        # C1: a valid URL that does not point to a GH repo. Expect ValueError.
         (
             "https://not-github.com/user-or-orgname/reponame",
             ValueError,
             (
                 "https://not-github.com/user-or-orgname/reponame "
-                "is not a valid url to be parsed. "
-                "Please ensure the input url is with a format like "
-                "https://github.com/user-or-orgname/reponame"
+                "is recognized as an url but it is not a valid url "
+                "to be parsed. Please ensure the input url is with a format "
+                "like https://github.com/user-or-orgname/reponame "
+                "or provide a directory path instead."
             ),
             [],
         ),
-        # C3: a URL input but JSON files do not exist in the GH repo.
+        # C2: a URL input but JSON files do not exist in the GH repo.
         #  Expect FileNotFoundError.
         (
             "https://github.com/user-or-orgname/reponame",
             FileNotFoundError,
             (
-                "Can not find the required files `groups.json` or "
-                "`repos.json` in the directory"
+                "https://github.com/user-or-orgname/reponame "
+                "is a valid GitHub repository URL but the required files "
+                "`groups.json`(or `groups.yaml`), "
+                "`repos.json`(or `repos.yaml`) do not exist in the "
+                "repository. Please ensure both files exist in the "
+                "top level of the GitHub repository."
             ),
             ["mock_clone_empty_repo"],
         ),
@@ -224,15 +221,28 @@ def test_get_broadcast_repos_dict_bad_url(
 
 
 def test_get_broadcast_repos_dict_bad_dir(mocker, user_filesystem):
-    # C1: a directory input but JSON file(s) do not exist in the directory.
-    #   Expect FileNotFoundError.
-    url_to_repo_info = user_filesystem / "empty-source-dir"
+    # C1: a directory input but the directory does not exist.
+    #   Expect NotADirectoryError.
+    url_to_repo_info = str(user_filesystem / "nonexisting-dir")
     expected_error_msg = (
-        (
-            "Can not find the required files `groups.json` or "
-            f"`repos.json` in the directory {url_to_repo_info}. "
-            "Please ensure both files exist in the directory."
-        ),
+        f"The provided {url_to_repo_info} is recognized as a "
+        "local directory, but it doesn't exist. Please ensure it"
+        "exists on your local file system or provide a GitHub "
+        "repository URL instead."
+    )
+    with pytest.raises(
+        NotADirectoryError,
+        match=re.escape(expected_error_msg),
+    ):
+        _get_broadcast_repos_dict(url_to_repo_info=url_to_repo_info)
+    # C2: a directory input but groups.json does not exist in the directory.
+    #   Expect FileNotFoundError.
+    url_to_repo_info = str(user_filesystem / "empty-source-dir")
+    expected_error_msg = (
+        "The required files `groups.json`(or `groups.yaml`), "
+        "`repos.json`(or `repos.yaml`) do not exist in the "
+        f"directory {url_to_repo_info}. Please ensure both files "
+        "exist in the top level of the directory."
     )
     with pytest.raises(
         FileNotFoundError,
@@ -241,7 +251,7 @@ def test_get_broadcast_repos_dict_bad_dir(mocker, user_filesystem):
         _get_broadcast_repos_dict(
             url_to_repo_info=url_to_repo_info,
         )
-    # C2: no input, cwd does not have `repos.json` and `groups.json`,
+    # C3: no input, cwd does not have `repos.json` and `groups.json`,
     #   `~/.skpkgrc` does not have `repo_to_url_info`.
     #   raise KeyError.
     mock_home = mocker.patch(
@@ -257,7 +267,7 @@ def test_get_broadcast_repos_dict_bad_dir(mocker, user_filesystem):
     with pytest.raises(KeyError, match=re.escape(expected_error_msg)):
         _get_broadcast_repos_dict()
     mock_home.stop()
-    # C3: groups_dict and repos_dict are loaded but the some repo name
+    # C4: groups_dict and repos_dict are loaded but the some repo name
     #   in groups_dict does not exist in repos_dict. Expect KeyError.
     url_to_repo_info = user_filesystem / "repo_info_dir_json"
     repos_json_file = url_to_repo_info / "repos.json"
@@ -266,17 +276,17 @@ def test_get_broadcast_repos_dict_bad_dir(mocker, user_filesystem):
     with open(repos_json_file, "w") as f:
         json.dump(repos_dict, f)
     expected_error_msg = (
-        f"repo name `repo1` in the groups dictionary does not exist "
+        f"repo `repo1` in the groups dictionary does not exist "
         f"in repos dictionary {repos_dict.keys()}. "
         "Please ensure all repo names in the groups dictionary "
-        " exist in the repos dictionary."
+        "exist in the repos dictionary."
     )
     with pytest.raises(
         KeyError,
         match=re.escape(expected_error_msg),
     ):
         _get_broadcast_repos_dict(
-            url_to_repo_info=url_to_repo_info,
+            url_to_repo_info=str(url_to_repo_info),
         )
 
 
@@ -284,16 +294,14 @@ def test_get_broadcast_urls_bad():
     # C1: input name does not exist in `groups_dict` or `repos_dict`.
     #   Expect KeyError.
     input_name = "nonexisting_group"
-    groups_dict = ({"odd_group": ["repo1", "repo3"]},)
-    repos_dict = (
-        {
-            "repo1": "https://github.com/user-or-orgname/reponame1",
-            "repo3": "https://github.com/user-or-orgname/reponame3",
-        },
-    )
+    groups_dict = {"odd_group": ["repo1", "repo3"]}
+    repos_dict = {
+        "repo1": "https://github.com/user-or-orgname/reponame1",
+        "repo3": "https://github.com/user-or-orgname/reponame3",
+    }
     with pytest.raises(
         KeyError,
-        match=(
+        match=re.escape(
             f"The input name `{input_name}` does not exist in the "
             f"groups dictionary {groups_dict.keys()}. "
             "Please ensure the input name exists in the groups dictionary"
