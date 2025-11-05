@@ -71,6 +71,7 @@ def user_filesystem(tmp_path):
 
     repo_info_dir_json = tmp_path / "repo_info_dir_json"
     repo_info_dir_yaml = tmp_path / "repo_info_dir_yaml"
+    repo_info_dir_json_incomplete = tmp_path / "repo_info_dir_json_incomplete"
     skpkg_file = home_dir / ".skpkgrc"
     empty_skpkg_file = tmp_path / "another_home_dir" / ".skpkgrc"
     another_repo_info_dir_json = tmp_path / "another_repo_info_dir_json"
@@ -108,6 +109,16 @@ def user_filesystem(tmp_path):
     ):
         yaml.dump(groups_dict, groups_file)
         yaml.dump(repos_dict, repos_file)
+    repos_dict.pop("repo1")
+    repo_info_dir_json_incomplete.mkdir()
+    with (
+        open(
+            repo_info_dir_json_incomplete / "groups.json", "w"
+        ) as groups_file,
+        open(repo_info_dir_json_incomplete / "repos.json", "w") as repos_file,
+    ):
+        json.dump(groups_dict, groups_file)
+        json.dump(repos_dict, repos_file)
     skpkg_file.write_text(
         json.dumps({"url_to_repo_info": str(another_repo_info_dir_json)})
     )
