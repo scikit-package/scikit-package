@@ -70,7 +70,6 @@ def test_get_issue_content_bad(mocker):
 
 @pytest.mark.parametrize(
     "url_to_repo_info, expected_return_dicts_name",
-    # C1-c4: cwd_dir contains repos.json and groups.json files.
     #   home_dir/.skpkgrc contains a correct url_to_repo_info entry.
     [
         # C1: URL input. Expect correct broadcast repos dicts are returned.
