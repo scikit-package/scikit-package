@@ -150,7 +150,11 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
     def _load_json_or_yaml_from_repo(repo_url, file_stems):
         with TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
-            subprocess.run(["git", "clone", repo_url, str(tmp_path)])
+            subprocess.run(
+                ["git", "clone", repo_url, str(tmp_path)],
+                capture_output=True,
+                text=True,
+            )
             return _load_json_or_yaml_from_dir(tmp_path, file_stems)
 
     def is_github_repo_url(url: str) -> bool:

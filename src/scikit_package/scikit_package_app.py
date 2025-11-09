@@ -47,10 +47,10 @@ def _add_broadcast_args(p):
     p.add_argument(
         "group_name",
         type=str,
-        help="If set, only broadcast to repositories in the specified group.",
+        help="The name of the group of repositories to broadcast to.",
     )
     p.add_argument(
-        "--url_to_repo_info",
+        "--url-to-repo-info",
         type=str,
         help=(
             "The path or url to a JSON/YAML files "
@@ -60,7 +60,7 @@ def _add_broadcast_args(p):
     p.add_argument(
         "--actual-run",
         action="store_true",
-        help="If set, do not actually create issues, just simulate.",
+        help="If set, actually create issues in the target repositories.",
     )
 
 
