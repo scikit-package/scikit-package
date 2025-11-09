@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import subprocess
 from pathlib import Path
@@ -9,6 +10,26 @@ import requests
 import yaml
 
 from scikit_package.utils.io import get_config_value
+
+
+def broadcast_issue_to_repos(args):
+    """Broadcast a GitHub issue to multiple repositories."""
+    source_repo_url, issue_content = _get_issue_content(args.issue_url)
+    groups_dict, repos_dict = _get_broadcast_repos_dict(args.url_to_repo_info)
+    broadcast_urls = _get_broadcast_urls(
+        args.group_name, groups_dict, repos_dict
+    )
+    if source_repo_url in broadcast_urls:
+        print("Excluding the source repository from the broadcast list.")
+        broadcast_urls.remove(source_repo_url)
+    gh_token = os.environ.get("GITHUB_TOKEN", None)
+    dry_run = not args.actual_run
+    _ = _broadcast_issue_to_urls(
+        issue_content,
+        broadcast_urls,
+        gh_token,
+        dry_run,
+    )
 
 
 def _get_issue_content(issue_url):
@@ -296,6 +317,7 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
     }
     non_gh_urls = []
     failed_gh_urls = []
+    success_gh_urls = []
     for i in range(len(repo_urls)):
         try:
             api_url = _get_post_api_url(repo_urls[i])
@@ -306,8 +328,9 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
             response = requests.post(api_url, json=data, headers=headers)
             if response.status_code != 201:
                 failed_gh_urls.append(repo_urls[i])
+        success_gh_urls.append(repo_urls[i])
     if dry_run:
-        _print_dry_run_message(non_gh_urls)
+        _print_dry_run_message(non_gh_urls, success_gh_urls)
     return non_gh_urls, failed_gh_urls, dry_run
 
 
@@ -333,5 +356,19 @@ def _get_post_api_url(repo_url):
     return api_url
 
 
-def _print_dry_run_message(none_gh_urls=[]):
-    pass
+def _print_dry_run_message(non_gh_urls, success_gh_urls):
+    print("Dry run mode is on. No issues have been created.")
+    if len(success_gh_urls) > 0:
+        print(
+            "The issue would be broadcasted to the following "
+            "GitHub repositories:"
+        )
+        for url in success_gh_urls:
+            print(f"  - {url}")
+    if len(non_gh_urls) > 0:
+        print(
+            "The following URLs found in repos.json/yaml "
+            "do not point to GitHub repositories:"
+        )
+        for url in non_gh_urls:
+            print(f"  - {url}")

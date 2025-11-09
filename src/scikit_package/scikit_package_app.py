@@ -3,6 +3,7 @@ from argparse import ArgumentParser
 
 from scikit_package.cli import add, create
 from scikit_package.cli.build import api_doc
+from scikit_package.cli.gh import broadcast_issue_to_repos
 from scikit_package.cli.update import cf
 from scikit_package.version import __version__
 
@@ -34,6 +35,32 @@ def _add_news_flags(p):
         "--no-news",
         action="store_true",
         help="Inform a brief reason why no news item is needed.",
+    )
+
+
+def _add_broadcast_args(p):
+    p.add_argument(
+        "issue_url",
+        type=str,
+        help="The URL of the issue to be broadcasted.",
+    )
+    p.add_argument(
+        "group_name",
+        type=str,
+        help="If set, only broadcast to repositories in the specified group.",
+    )
+    p.add_argument(
+        "--url_to_repo_info",
+        type=str,
+        help=(
+            "The path or url to a JSON/YAML files "
+            "containing repository info."
+        ),
+    )
+    p.add_argument(
+        "--actual-run",
+        action="store_true",
+        help="If set, do not actually create issues, just simulate.",
     )
 
 
@@ -102,6 +129,12 @@ def setup_subparsers(parser):
     _add_subcommands(subparsers_build, build_commands, api_doc.build)
     _add_news_flags(parser_news)
     parser_news.set_defaults(func=add.news_item, subcommand="news")
+
+    parser_broadcast = parser.add_parser(
+        "broadcast", help="Broadcast a issue to many GitHub repositories."
+    )
+    _add_broadcast_args(parser_broadcast)
+    parser_broadcast.set_defaults(func=broadcast_issue_to_repos)
 
 
 def main():
