@@ -23,9 +23,15 @@ def broadcast_issue_to_repos(args):
         print("Excluding the source repository from the broadcast list.")
         broadcast_urls.remove(source_repo_url)
     gh_token = os.environ.get("GITHUB_TOKEN", None)
+    if gh_token is None:
+        raise EnvironmentError(
+            "GITHUB_TOKEN environment variable is not set. "
+            "Please set it to a valid GitHub token with "
+            "permissions to create issues in the target repositories."
+        )
     dry_run = True
     dry_run = not (args.dry_run == "n")
-    _ = _broadcast_issue_to_urls(
+    return _broadcast_issue_to_urls(
         issue_content,
         broadcast_urls,
         gh_token,
@@ -311,6 +317,8 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
         The list of non-GitHub repo urls.
     failed_gh_urls: list of str
         The list of GhitHub repo urls where issue creation failed.
+    dry_run: bool
+        Whether it is in dry-run mode.
     """
     data = {
         "title": issue_content["title"],
@@ -328,14 +336,31 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
             api_url = _get_post_api_url(repo_urls[i])
         except (IndexError, AssertionError):
             non_gh_urls.append(repo_urls[i])
+            print("Skipping non-GitHub URL:", repo_urls[i])
             continue
-        if not dry_run:
+        if dry_run:
+            success_gh_urls.append(repo_urls[i])
+        else:
             response = requests.post(api_url, json=data, headers=headers)
             if response.status_code != 201:
                 failed_gh_urls.append(repo_urls[i])
-        success_gh_urls.append(repo_urls[i])
-    if dry_run:
-        _print_dry_run_message(non_gh_urls, success_gh_urls)
+                print(f"Failed to create issue in {repo_urls[i]}")
+                print(f"Response: {response.status_code}, {response.text}")
+            else:
+                success_gh_urls.append(repo_urls[i])
+    if len(success_gh_urls) > 0:
+        if dry_run:
+            print(
+                "The issue would be broadcasted to the following "
+                "GitHub repositories:"
+            )
+        else:
+            print(
+                "Successfully created issues in the following "
+                "GitHub repositories:"
+            )
+        for url in success_gh_urls:
+            print(f"  - {url}")
     return non_gh_urls, failed_gh_urls, dry_run
 
 
@@ -359,21 +384,3 @@ def _get_post_api_url(repo_url):
     repo = path_parts[1]
     api_url = f"https://api.github.com/repos/{owner}/{repo}/issues"
     return api_url
-
-
-def _print_dry_run_message(non_gh_urls, success_gh_urls):
-    print("Dry run mode is on. No issues have been created.")
-    if len(success_gh_urls) > 0:
-        print(
-            "The issue would be broadcasted to the following "
-            "GitHub repositories:"
-        )
-        for url in success_gh_urls:
-            print(f"  - {url}")
-    if len(non_gh_urls) > 0:
-        print(
-            "The following URLs found in repos.json/yaml "
-            "do not point to GitHub repositories:"
-        )
-        for url in non_gh_urls:
-            print(f"  - {url}")
