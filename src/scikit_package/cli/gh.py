@@ -23,7 +23,8 @@ def broadcast_issue_to_repos(args):
         print("Excluding the source repository from the broadcast list.")
         broadcast_urls.remove(source_repo_url)
     gh_token = os.environ.get("GITHUB_TOKEN", None)
-    dry_run = args.dry_run.lower() == "yes"
+    dry_run = True
+    dry_run = not (args.dry_run == "n")
     _ = _broadcast_issue_to_urls(
         issue_content,
         broadcast_urls,

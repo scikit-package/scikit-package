@@ -62,12 +62,12 @@ def _add_broadcast_args(p):
     )
     p.add_argument(
         "--dry-run",
-        choices=["yes", "no"],
-        default="yes",
+        choices=["y", "n"],
+        default="y",
         help=(
-            "Specify whether to run in dry-run mode. In a dry run, "
-            "the process is simulated and no issues are created in the "
-            "target repositories (default: yes)."
+            "Specify whether to run in dry-run mode (y/n). In this mode, the "
+            "process is simulated and no issues are created in the target "
+            "repositories (default: y)."
         ),
     )
 
