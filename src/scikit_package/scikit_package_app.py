@@ -54,13 +54,21 @@ def _add_broadcast_args(p):
         type=str,
         help=(
             "The path or url to a JSON/YAML files "
-            "containing repository info."
+            "containing repository info. When not provided, "
+            "the command will search the current working directory first, "
+            "then the directory specified by ~/.skpkgrc "
+            "(default: none)."
         ),
     )
     p.add_argument(
-        "--actual-run",
-        action="store_true",
-        help="If set, actually create issues in the target repositories.",
+        "--dry-run",
+        choices=["yes", "no"],
+        default="yes",
+        help=(
+            "Specify whether to run in dry-run mode. In a dry run, "
+            "the process is simulated and no issues are created in the "
+            "target repositories (default: yes)."
+        ),
     )
 
 
