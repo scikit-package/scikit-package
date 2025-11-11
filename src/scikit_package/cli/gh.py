@@ -337,7 +337,7 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
             non_gh_urls.append(repo_urls[i])
     repo_urls = [url for url in repo_urls if url not in non_gh_urls]
     if not dry_run:
-        failed_gh_urls = []
+        failed_gh_urls_info = []
         success_gh_urls = []
         for i in range(len(repo_urls)):
             if dry_run:
@@ -345,7 +345,7 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
             else:
                 response = requests.post(api_url, json=data, headers=headers)
                 if response.status_code != 201:
-                    failed_gh_urls.append((repo_urls[i], response))
+                    failed_gh_urls_info.append((repo_urls[i], response))
                 else:
                     success_gh_urls.append(repo_urls[i])
 
@@ -353,7 +353,10 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
         _print_dry_run_message(non_gh_urls, repo_urls)
         return non_gh_urls, [], dry_run
     else:
-        _print_no_dry_run_message(non_gh_urls, failed_gh_urls, success_gh_urls)
+        _print_no_dry_run_message(
+            non_gh_urls, failed_gh_urls_info, success_gh_urls
+        )
+        failed_gh_urls = [url for url, _ in failed_gh_urls_info]
         return non_gh_urls, failed_gh_urls, dry_run
 
 
@@ -396,14 +399,16 @@ def _print_dry_run_message(non_gh_urls, repo_urls):
             print(f"  - {url}")
 
 
-def _print_no_dry_run_message(non_gh_urls, failed_gh_urls, success_gh_urls):
+def _print_no_dry_run_message(
+    non_gh_urls, failed_gh_urls_info, success_gh_urls
+):
     print("Dry-run mode disabled: Issues will be created. ")
     if len(non_gh_urls) > 0:
         print("The following non-GitHub repository URLs will be skipped:")
         for url in non_gh_urls:
             print(f"  - {url}")
-    if len(failed_gh_urls) > 0:
-        for url, response in failed_gh_urls:
+    if len(failed_gh_urls_info) > 0:
+        for url, response in failed_gh_urls_info:
             print(f"Failed to create issue in {url}")
             print(f"Response: {response.status_code}, {response.text}")
     if len(success_gh_urls) > 0:
