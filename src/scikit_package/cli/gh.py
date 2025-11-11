@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 
 import requests
 import yaml
+from requests.exceptions import JSONDecodeError
 
 from scikit_package.utils.io import get_config_value
 
@@ -338,12 +339,15 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
     if dry_run:
         might_fail_gh_urls_info = []
         might_succeed_gh_urls = []
-        for repo_url in repo_urls:
-            response = requests.get(repo_url)
-            if response.status_code != 200:
-                might_fail_gh_urls_info.append((repo_url, response))
-            else:
-                might_succeed_gh_urls.append(repo_url)
+        for i in range(len(repo_urls)):
+            api_url = _get_post_api_url(repo_urls[i])
+            response = requests.get(api_url)
+            try:
+                assert response.status_code == 200
+                assert response.json().get("owner", False)
+                might_succeed_gh_urls.append(repo_urls[i])
+            except (AssertionError, JSONDecodeError):
+                might_fail_gh_urls_info.append((repo_urls[i], response))
     else:
         failed_gh_urls_info = []
         success_gh_urls = []

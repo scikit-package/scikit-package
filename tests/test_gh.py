@@ -328,8 +328,9 @@ def test_get_broadcast_urls_bad():
 
 @pytest.mark.parametrize(
     (
-        "broadcast_urls,expected_non_gh_urls,expected_failed_urls,"
-        "dry_run, create_issue_return_value, dry_run_check_return_value,"
+        "broadcast_urls, expected_non_gh_urls, expected_failed_urls, "
+        "dry_run, create_issue_mocker_return_value, "
+        "dry_run_mocker_return_value"
     ),
     [
         # C1: a list of target repo urls and dry_run is True.
@@ -343,7 +344,13 @@ def test_get_broadcast_urls_bad():
             [],
             True,
             SimpleNamespace(status_code=201, reason="OK"),
-            SimpleNamespace(status_code=200, reason="OK"),
+            SimpleNamespace(
+                status_code=200,
+                reason="OK",
+                json=lambda: {
+                    "owner": {"login": "user-or-orgname"},
+                },
+            ),
         ),
         # C2: a list of target repo urls, and dry_run is False.
         #   Expect non_gh_urls, failed_gh_urls to be empty, and
@@ -357,7 +364,13 @@ def test_get_broadcast_urls_bad():
             [],
             False,
             SimpleNamespace(status_code=201, reason="OK"),
-            SimpleNamespace(status_code=200, reason="OK"),
+            SimpleNamespace(
+                status_code=200,
+                reason="OK",
+                json=lambda: {
+                    "owner": {"login": "user-or-orgname"},
+                },
+            ),
         ),
         # C3: One URL is not with a format of GH repo, another URL is with
         #   a format of GH repo but doesn't point to a valid GH repo,
@@ -378,6 +391,7 @@ def test_get_broadcast_urls_bad():
             SimpleNamespace(
                 status_code=404,
                 reason="Not Found",
+                json=lambda: {},
             ),
         ),
         # C4: One URL is not with a format of GH repo, another URL is with
@@ -400,6 +414,7 @@ def test_get_broadcast_urls_bad():
             SimpleNamespace(
                 status_code=404,
                 reason="Not Found",
+                json=lambda: {},
             ),
         ),
     ],
@@ -410,16 +425,16 @@ def test_broadcast_issue_to_urls(
     expected_non_gh_urls,
     expected_failed_urls,
     dry_run,
-    create_issue_return_value,
-    dry_run_check_return_value,
+    create_issue_mocker_return_value,
+    dry_run_mocker_return_value,
 ):
     mocker.patch(
         "requests.post",
-        return_value=create_issue_return_value,
+        return_value=create_issue_mocker_return_value,
     )
     mocker.patch(
         "requests.get",
-        return_value=dry_run_check_return_value,
+        return_value=dry_run_mocker_return_value,
     )
     issue_content = {"title": "issue-title", "body": "issue-body"}
     actual_non_gh_urls, actual_failed_urls, actual_dry_run = (
@@ -459,7 +474,13 @@ def test_broadcast_issue_to_repos(mocker, user_filesystem):
     )
     mocker.patch(
         "requests.get",
-        return_value=SimpleNamespace(status_code=200, reason="OK"),
+        return_value=SimpleNamespace(
+            status_code=200,
+            reason="OK",
+            json=lambda: {
+                "owner": {"login": "user-or-orgname"},
+            },
+        ),
     )
     non_gh_urls, failed_gh_urls, dry_run = broadcast_issue_to_repos(args)
     assert non_gh_urls == []
