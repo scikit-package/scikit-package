@@ -337,10 +337,13 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
     repo_urls = [url for url in repo_urls if url not in non_gh_urls]
     if dry_run:
         might_fail_gh_urls_info = []
+        might_succeed_gh_urls = []
         for repo_url in repo_urls:
             response = requests.get(repo_url)
             if response.status_code != 200:
                 might_fail_gh_urls_info.append((repo_url, response))
+            else:
+                might_succeed_gh_urls.append(repo_url)
     else:
         failed_gh_urls_info = []
         success_gh_urls = []
@@ -352,7 +355,11 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
             else:
                 success_gh_urls.append(repo_urls[i])
     if dry_run:
-        _print_dry_run_message(non_gh_urls, might_fail_gh_urls_info, repo_urls)
+        _print_dry_run_message(
+            non_gh_urls,
+            might_fail_gh_urls_info,
+            might_succeed_gh_urls,
+        )
         might_fail_gh_urls = [url for url, _ in might_fail_gh_urls_info]
         return non_gh_urls, might_fail_gh_urls, dry_run
     else:
@@ -385,7 +392,9 @@ def _get_post_api_url(repo_url):
     return api_url
 
 
-def _print_dry_run_message(non_gh_urls, might_fail_gh_urls_info, repo_urls):
+def _print_dry_run_message(
+    non_gh_urls, might_fail_gh_urls_info, might_succeed_gh_urls
+):
     print(
         "Dry-run mode: No issues will be created. "
         "To create issues, rerun with the '--dry-run n' option."
@@ -401,11 +410,11 @@ def _print_dry_run_message(non_gh_urls, might_fail_gh_urls_info, repo_urls):
         )
         for url, response in might_fail_gh_urls_info:
             print(f"  - [{response.status_code} {response.reason}] {url}")
-    if len(repo_urls) > 0:
+    if len(might_succeed_gh_urls) > 0:
         print(
             "Issues would be created in the following GitHub " "repositories:"
         )
-        for url in repo_urls:
+        for url in might_succeed_gh_urls:
             print(f"  - {url}")
 
 
@@ -418,8 +427,8 @@ def _print_no_dry_run_message(
         for url in non_gh_urls:
             print(f"  - {url}")
     if len(failed_gh_urls_info) > 0:
+        print("Failed to create issue in the following GitHub repositories:")
         for url, response in failed_gh_urls_info:
-            print("Failed to create issue in:")
             print(f"  - [{response.status_code} {response.reason}] {url}")
     if len(success_gh_urls) > 0:
         print(
