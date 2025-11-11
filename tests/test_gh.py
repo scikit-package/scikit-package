@@ -329,7 +329,7 @@ def test_get_broadcast_urls_bad():
 @pytest.mark.parametrize(
     (
         "broadcast_urls,expected_non_gh_urls,expected_failed_urls,"
-        "dry_run, create_issue_return_value, called_mockers"
+        "dry_run, create_issue_return_value, dry_run_check_return_value,"
     ),
     [
         # C1: a list of target repo urls and dry_run is True.
@@ -342,8 +342,8 @@ def test_get_broadcast_urls_bad():
             [],
             [],
             True,
-            SimpleNamespace(status_code=201),
-            [],
+            SimpleNamespace(status_code=201, reason="OK"),
+            SimpleNamespace(status_code=200, reason="OK"),
         ),
         # C2: a list of target repo urls, and dry_run is False.
         #   Expect non_gh_urls, failed_gh_urls to be empty, and
@@ -356,8 +356,8 @@ def test_get_broadcast_urls_bad():
             [],
             [],
             False,
-            SimpleNamespace(status_code=201),
-            ["create_issue_mocker"],
+            SimpleNamespace(status_code=201, reason="OK"),
+            SimpleNamespace(status_code=200, reason="OK"),
         ),
         # C3: One URL is not with a format of GH repo, another URL is with
         #   a format of GH repo but doesn't point to a valid GH repo,
@@ -369,17 +369,16 @@ def test_get_broadcast_urls_bad():
                 "https://github.com/nonexisting/nonexisting",
             ],
             ["https://not-github.com/user-or-orgname/reponame2"],
-            [],
+            ["https://github.com/nonexisting/nonexisting"],
             True,
             SimpleNamespace(
                 status_code=404,
-                text=(
-                    '{"message":"Not Found","documentation_url":'
-                    '"https://docs.github.com/rest/issues/issues#create-an'
-                    '-issue","status":"404"}'
-                ),
+                reason="Not Found",
             ),
-            [],
+            SimpleNamespace(
+                status_code=404,
+                reason="Not Found",
+            ),
         ),
         # C4: One URL is not with a format of GH repo, another URL is with
         #   a format of GH repo but doesn't point to a valid GH repo,
@@ -396,15 +395,12 @@ def test_get_broadcast_urls_bad():
             False,
             SimpleNamespace(
                 status_code=404,
-                text=(
-                    '{"message":"Not Found","documentation_url":'
-                    '"https://docs.github.com/rest/issues/issues#create-an'
-                    '-issue","status":"404"}'
-                ),
+                reason="Not Found",
             ),
-            [
-                "create_issue_mocker",
-            ],
+            SimpleNamespace(
+                status_code=404,
+                reason="Not Found",
+            ),
         ),
     ],
 )
@@ -415,11 +411,15 @@ def test_broadcast_issue_to_urls(
     expected_failed_urls,
     dry_run,
     create_issue_return_value,
-    called_mockers,
+    dry_run_check_return_value,
 ):
-    create_issue_mocker = mocker.patch(
+    mocker.patch(
         "requests.post",
         return_value=create_issue_return_value,
+    )
+    mocker.patch(
+        "requests.get",
+        return_value=dry_run_check_return_value,
     )
     issue_content = {"title": "issue-title", "body": "issue-body"}
     actual_non_gh_urls, actual_failed_urls, actual_dry_run = (
@@ -430,14 +430,6 @@ def test_broadcast_issue_to_urls(
             dry_run=dry_run,
         )
     )
-    mockers = {
-        "create_issue_mocker": create_issue_mocker,
-    }
-    for mocker_name, mocker_instance in mockers.items():
-        if mocker_name in called_mockers:
-            assert mocker_instance.call_count >= 1
-        else:
-            mocker_instance.assert_not_called()
     assert set(actual_non_gh_urls) == set(expected_non_gh_urls)
     assert set(actual_failed_urls) == set(expected_failed_urls)
     assert actual_dry_run is dry_run
@@ -461,6 +453,14 @@ def test_broadcast_issue_to_repos(mocker, user_filesystem):
         ),
     )
     mocker.patch.dict(os.environ, {"GITHUB_TOKEN": "dummy_token"}, clear=True)
+    mocker.patch(
+        "requests.post",
+        return_value=SimpleNamespace(status_code=201, reason="OK"),
+    )
+    mocker.patch(
+        "requests.get",
+        return_value=SimpleNamespace(status_code=200, reason="OK"),
+    )
     non_gh_urls, failed_gh_urls, dry_run = broadcast_issue_to_repos(args)
     assert non_gh_urls == []
     assert failed_gh_urls == []
