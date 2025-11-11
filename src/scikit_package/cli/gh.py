@@ -317,7 +317,6 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
         The list of non-GitHub repo urls.
     failed_gh_urls: list of str
         The list of GhitHub repo urls where issue creation failed.
-
     dry_run: bool
         Whether it is in dry-run mode.
     """
