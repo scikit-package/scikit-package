@@ -332,7 +332,7 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
     non_gh_urls = []
     for i in range(len(repo_urls)):
         try:
-            api_url = _get_post_api_url(repo_urls[i])
+            api_url = _get_api_url(repo_urls[i])
         except (IndexError, AssertionError):
             non_gh_urls.append(repo_urls[i])
     repo_urls = [url for url in repo_urls if url not in non_gh_urls]
@@ -340,7 +340,7 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
         might_fail_gh_urls_info = []
         might_succeed_gh_urls = []
         for i in range(len(repo_urls)):
-            api_url = _get_post_api_url(repo_urls[i])
+            api_url = _get_api_url(repo_urls[i], endpoint="repo")
             response = requests.get(api_url)
             try:
                 assert response.status_code == 200
@@ -352,7 +352,7 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
         failed_gh_urls_info = []
         success_gh_urls = []
         for i in range(len(repo_urls)):
-            api_url = _get_post_api_url(repo_urls[i])
+            api_url = _get_api_url(repo_urls[i], endpoint="issues")
             response = requests.post(api_url, json=data, headers=headers)
             if response.status_code != 201:
                 failed_gh_urls_info.append((repo_urls[i], response))
@@ -374,13 +374,15 @@ def _broadcast_issue_to_urls(issue_content, repo_urls, gh_token, dry_run=True):
         return non_gh_urls, failed_gh_urls, dry_run
 
 
-def _get_post_api_url(repo_url):
-    """Get the GitHub API URL for posting issues to a repository.
+def _get_api_url(repo_url, endpoint="issues"):
+    """Get the GitHub API URL for a given repository URL and endpoint.
 
     Parameters
     ----------
     repo_url : str
         The URL of the target GitHub repository.
+    endpoint : {"issues", "repo"}, str, optional
+        The API endpoint to access. Default is "issues".
 
     Returns
     -------
@@ -392,7 +394,12 @@ def _get_post_api_url(repo_url):
     path_parts = parsed.path.strip("/").split("/")
     owner = path_parts[0]
     repo = path_parts[1]
-    api_url = f"https://api.github.com/repos/{owner}/{repo}/issues"
+    if endpoint == "issues":
+        api_url = f"https://api.github.com/repos/{owner}/{repo}/issues"
+    elif endpoint == "repo":
+        api_url = f"https://api.github.com/repos/{owner}/{repo}"
+    else:
+        raise ValueError(f"Unsupported endpoint: {endpoint}")
     return api_url
 
 
