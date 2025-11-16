@@ -1,7 +1,7 @@
 .. _package_broadcast:
 
 Broadcast a GitHub issue to multiple repositories with ``scikit-package``
-=================================================================
+=========================================================================
 
 Overview
 --------
@@ -18,11 +18,11 @@ Setup GitHub Personal Access Token
 ----------------------------------
 
 Create a GitHub Personal Access Token
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For detailed information, please check `GitHub documentation <https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token>`_.
 
-#. Visit `Create GitHub Personal Access Tokens <https://github.com/settings/personal-access-tokens/new>`_
+#. Visit `Create GitHub Personal Access Tokens <https://github.com/settings/personal-access-tokens/new>`_.
 #. Enter the ``Token name``. You may use  ``scikit-package`` or any other name you like.
 #. Choose the ``Expiration`` date.
 #. Select the scope of ``Repository access``.
@@ -30,16 +30,16 @@ For detailed information, please check `GitHub documentation <https://docs.githu
 #. Copy the generated token into a safe place.
 
 Add the token as an environment variable
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For Windows Users
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 #. Press ``Win + R`` and type ``sysdm.cpl`` or ``SystemPropertiesAdvanced``. Either command works.
 #. Click the :guilabel:`Environment Variables...` tab in the :guilabel:`Advanced` tab.
 #. Under the :guilabel:`User variables` section, click the :guilabel:`New...` button.
 #. Set the :guilabel:`Variable name` to ``GITHUB_TOKEN``.
-#. Set the :guilabel:`Variable value` to the GitHub Personal Access Token you created in Step 1.
+#. Set the :guilabel:`Variable value` to the GitHub Personal Access Token you created in previous section.
 #. Click :guilabel:`OK` to save the new environment variable.
 #. Done!
 
@@ -91,9 +91,9 @@ Example of ``groups.json``
 
 ``scikit-package`` will look for the configuration files in this order:
 
-#. The GitHub repository URL or local path provided by ``--url-to-repo-info``.
+#. The GitHub repository URL or directory path provided by ``--url-to-repo-info``.
 #. Current working directory.
-#. The GitHub repository URL or local path specified by the variable ``url_to_repo_info`` set in ``~/.skpkgrc``.
+#. The GitHub repository URL or directory path specified by the variable ``url_to_repo_info`` set in ``~/.skpkgrc``.
 
 In the next sections, we will show you how to use the command under different scenarios.
 
@@ -108,19 +108,21 @@ Use the configuration files in the current working directory
 #. **Mr Neutron** create two files in the current working directory
 
     - ``repos.json``
-    .. code-block:: text
 
-        {
-            "repo1": "https://github.come/MrNeutron/repo1",
-            "repo2": "https://github.come/MrNeutron/repo2"
-        }
+        .. code-block:: text
+
+            {
+                "repo1": "https://github.come/MrNeutron/repo1",
+                "repo2": "https://github.come/MrNeutron/repo2"
+            }
 
     - ``groups.json``
-    .. code-block:: text
 
-        {
-            "tmp_group" : ["repo1", "repo1"]
-        }
+        .. code-block:: text
+
+            {
+                "tmp_group" : ["repo1", "repo1"]
+            }
 
 
 #. **Mr Neutron** run the command:
@@ -141,35 +143,38 @@ Use the configuration files in the current working directory
 It works, but creating new configuration files every time **Mr. Neutron** wants to broadcast an issue would be very inconvenient. Therefore, he decides to organize and store the repository information for future use in a GitHub repository. **Mr. Neutron** does the following:
 
 Use the configuration files in a GitHub repository
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. **Mr Neutron** create a GitHub repository called ``repo-info``. Please see :ref:`create-new-github-repo` for more information.
 #. **Mr Neutron** organizes and classifies his repositories information in ``repos.json`` and ``groups.json`` files as below, so it can be better reused:
 
     - ``repos.json``
-    .. code-block:: text
 
-        {
-            "repo1": "https://github.come/MrNeutron/repo1",
-            "repo2": "https://github.come/MrNeutron/repo2",
-            "repo3": "https://github.come/MrNeutron/repo3",
-            "repo4": "https://github.come/MrNeutron/repo4",
-            "repo101": "https://github.come/MrNeutron/repo101",
-            "repo102": "https://github.come/MrNeutron/repo102"
-        }
+        .. code-block:: text
+
+            {
+                "repo1": "https://github.come/MrNeutron/repo1",
+                "repo2": "https://github.come/MrNeutron/repo2",
+                "repo3": "https://github.come/MrNeutron/repo3",
+                "repo4": "https://github.come/MrNeutron/repo4",
+                "repo101": "https://github.come/MrNeutron/repo101",
+                "repo102": "https://github.come/MrNeutron/repo102"
+            }
 
     - ``groups.json``
-    .. code-block:: text
 
-        {
-            "even_group" : ["repo2", "repo4", "repo102"],
-            "odd_group" : ["repo1", "repo3", "repo101"],
-            "small_group" : ["repo1", "repo2", "repo3", "repo4"],
-            "large_group" : [ "repo101", "repo102"],
-            "prime_group" : ["repo2", "repo3"],
-            "divisible_by_3_group" : ["repo3", "repo102"],
-            ...
-        }
+        .. code-block:: text
+
+            {
+                "even_group" : ["repo2", "repo4", "repo102"],
+                "odd_group" : ["repo1", "repo3", "repo101"],
+                "small_group" : ["repo1", "repo2", "repo3", "repo4"],
+                "large_group" : [ "repo101", "repo102"],
+                "prime_group" : ["repo2", "repo3"],
+                "divisible_by_3_group" : ["repo3", "repo102"],
+                ...
+            }
+
 #. **Mr Neutron** updates these two files in the ``repo-info`` repository.
 #. Done!
 
@@ -189,10 +194,15 @@ Now, suppose **Mr Neutron** needs to broadcast another issue with issue number `
 #. Done! The issue is created in ``repo1``, ``repo2``, ``repo3``, and ``repo4``.
 
 
-**Mr. Neutron** is still a bit unsatisfied, since he has to provide the URL of the ``repo-info`` repository every time he wants to broadcast an issue. Therefore, he decides to store the URL in ``~/.skpkgrc`` to avoid repeated typing:
+.. note::
+
+    You can also provide the path to the directory containing configuration files at the top level using the ``--url-to-repo-info`` argument.
+
+
+**Mr. Neutron** is still a bit unsatisfied, as he must provide the URL of the ``repo-info`` repository every time he wants to broadcast an issue. To avoid repeated typing, he decides to store the URL in ``~/.skpkgrc``:
 
 Use the configuration files specified in ``~/.skpkgrc``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. **Mr Neutron** open the ``~/.skpkgrc`` file in a text editor.
 #. **Mr Neutron** edit the file to include the following line:
@@ -215,7 +225,7 @@ Suppose **Mr Neutron** needs to broadcast another issue with issue number ``44``
 
         package broadcast https://github.come/MrNeutron/source-repo/issues/44 large_group
 
-#. After examining the output in the ``dry-run`` mode and finding everything is correct, **Mr Neutron** adds the ``--dry-run n`` in the command:
+#. The output in ``dry-run`` mode shows that everything is correct, so **Mr Neutron** adds ``--dry-run n`` in the command:
 
    .. code-block:: bash
 
@@ -231,6 +241,6 @@ Suppose **Mr Neutron** needs to broadcast another issue with issue number ``44``
 
 .. note::
 
-    You may also set the variable ``url_to_repo_info`` to a local path in ``~/.skpkgrc`` if you prefer to store the configuration files locally.
+    You may also set the variable ``url_to_repo_info`` to a directory path in ``~/.skpkgrc`` if you prefer to store the configuration files locally.
 
 **Mr Neutron** is very happy that he can now broadcast GitHub issues to multiple repositories so easily with ``scikit-package``!
