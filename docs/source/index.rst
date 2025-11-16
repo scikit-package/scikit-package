@@ -156,7 +156,7 @@ The Billinge Group's ``scikit-package`` has been modified from the NSLS-II scien
 .. toctree::
    :maxdepth: 2
    :hidden:
-   :caption: ADDITIONAL-FUNCTIONALITIES
+   :caption: ADDITIONAL FUNCTIONALITIES
 
    additional-functionalities/manuscript
    additional-functionalities/broadcast
