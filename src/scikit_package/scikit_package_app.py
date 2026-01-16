@@ -139,7 +139,8 @@ def setup_subparsers(parser):
     parser_news.set_defaults(func=add.news_item, subcommand="news")
 
     parser_broadcast = parser.add_parser(
-        "broadcast", help="Broadcast a issue to many GitHub repositories."
+        "broadcast",
+        help="Broadcast an issue to a list of GitHub repositories.",
     )
     _add_broadcast_args(parser_broadcast)
     parser_broadcast.set_defaults(func=broadcast_issue_to_repos)

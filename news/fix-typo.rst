@@ -4,7 +4,7 @@
 
 **Changed:**
 
-* <news item>
+* No news added: Fix typo in the help message for ``package broadcast``.
 
 **Deprecated:**
 
