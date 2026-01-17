@@ -314,7 +314,7 @@ Here is how you can **automate** the process of generating API documentation for
             "sphinx.ext.intersphinx",
             "sphinx_rtd_theme",
             "sphinx_copybutton",
-            "m2r",
+            "m2r2",
         ]
 
     to
@@ -329,7 +329,7 @@ Here is how you can **automate** the process of generating API documentation for
             "sphinx.ext.intersphinx",
             "sphinx_rtd_theme",
             "sphinx_copybutton",
-            "m2r",
+            "m2r2",
         ]
 
         # Configure where to find the source code and write API .rst files

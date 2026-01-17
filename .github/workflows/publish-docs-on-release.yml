@@ -5,7 +5,7 @@ on:
 
 jobs:
   docs:
-    uses: scikit-package/release-scripts/.github/workflows/_publish-docs-on-release.yml@v0
+    uses: scikit-package/release-scripts/.github/workflows/_release-docs.yml@v0
     with:
       project: scikit-package
       c_extension: false
