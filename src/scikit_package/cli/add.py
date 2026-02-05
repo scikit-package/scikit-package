@@ -1,6 +1,8 @@
 import os
 import shutil
 
+from diffpy.utils._deprecator import generate_deprecation_docstring
+
 from scikit_package.utils import auth, io
 
 NEWS_HEADER_MAP = {
@@ -75,3 +77,12 @@ def news_item(args):
         updated = _insert_news_item(lines, flags_used, message)
     io.write_file(path, updated)
     print(f"Done! Appended news item to {path}")
+
+
+def print_deprecation_docstring(args):
+    """Generate a standardized docstring for deprecated functions."""
+    generate_deprecation_docstring(
+        new_name=args.new_name,
+        removal_version=args.removal_version,
+        new_base=args.new_base,
+    )

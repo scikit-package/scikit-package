@@ -88,7 +88,11 @@ def setup_subparsers(parser):
     _add_subcommands(subparsers_create, create_commands, create.package)
     # "add" subparser
     parser_add = parser.add_parser(
-        "add", help="Add a new file like a news item"
+        "add",
+        help=(
+            "Add a new file like a news item or generate a "
+            "deprecation docstring."
+        ),
     )
     subparsers_add = parser_add.add_subparsers(
         dest="subcommand", required=True
@@ -108,6 +112,35 @@ def setup_subparsers(parser):
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
+    parser_deprecation = subparsers_add.add_parser(
+        "deprecation",
+        help="Print a standardized docstring for deprecated functions.",
+        description=(
+            "Generate a standardized deprecation docstring for copy-pasting "
+            "into deprecated functions or classes.\n\n"
+            "Examples:\n"
+            "  package add deprecation new_func 4.0.0\n"
+            "  package add deprecation new_func 4.0.0 --new-base diffpy.foo"
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser_deprecation.add_argument(
+        "new_name",
+        help="Name of the replacement function or class.",
+    )
+
+    parser_deprecation.add_argument(
+        "removal_version",
+        help="Version when the deprecated item will be removed (e.g. 4.0.0).",
+    )
+
+    parser_deprecation.add_argument(
+        "-n",
+        "--new-base",
+        default=None,
+        help='Base module if necessary (e.g. "diffpy.foo").',
+    )
+    parser_deprecation.set_defaults(func=add.print_deprecation_docstring)
     # "update" subparser
     parser_update = parser.add_parser(
         "update", help="Update an existing scikit-package standard package."

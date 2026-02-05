@@ -9,7 +9,8 @@ from scikit_package.cli.add import print_deprecation_docstring
     "input,expected_print",
     [
         (
-            [
+            [  # UC: user prints docstring without new base
+                # expect: deprecation docstring prints without new base
                 "new_func",
                 "4.0.0",
             ],
@@ -17,7 +18,8 @@ from scikit_package.cli.add import print_deprecation_docstring
             "removed in version 4.0.0.\n"
             "Please use new_func instead.",
         ),
-        (
+        (  # UC: user prints docstring with new base
+            # expect: deprecation docstring prints with new base
             ["new_func", "4.0.0", "-n", "diffpy.foo"],
             "This function has been deprecated and will be "
             "removed in version 4.0.0.\n"
@@ -26,7 +28,6 @@ from scikit_package.cli.add import print_deprecation_docstring
     ],
 )
 def test_print_deprecation_docstring(capsys, input, expected_print):
-    # Test the deprecation docstring prints given args
     parser = argparse.ArgumentParser()
     parser.add_argument("new_name")
     parser.add_argument("removal_version")
