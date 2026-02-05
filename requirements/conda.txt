@@ -1,3 +1,4 @@
 cookiecutter
 click
 packaging
+diffpy.utils
