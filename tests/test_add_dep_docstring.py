@@ -1,4 +1,4 @@
-import argparse
+from argparse import Namespace
 
 import pytest
 
@@ -28,11 +28,11 @@ from scikit_package.cli.add import print_deprecation_docstring
     ],
 )
 def test_print_deprecation_docstring(capsys, input, expected_print):
-    parser = argparse.ArgumentParser()
-    parser.add_argument("new_name")
-    parser.add_argument("removal_version")
-    parser.add_argument("-n", "--new-base", default=None)
-    args = parser.parse_args(input)
+    args = Namespace(
+        new_name=input[0],
+        removal_version=input[1],
+        new_base=input[3] if len(input) > 3 else None,
+    )
     print_deprecation_docstring(args)
     captured = capsys.readouterr()
     actual_print = captured.out.rstrip()
