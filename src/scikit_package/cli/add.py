@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from diffpy.utils._deprecator import build_deprecation_docstring
+from diffpy.utils._deprecator import generate_deprecation_docstring
 
 from scikit_package.utils import auth, io
 
@@ -81,7 +81,7 @@ def news_item(args):
 
 def print_deprecation_docstring(args):
     """Generate a standardized docstring for deprecated functions."""
-    build_deprecation_docstring(
+    generate_deprecation_docstring(
         new_name=args.new_name,
         removal_version=args.removal_version,
         new_base=args.new_base,
