@@ -82,7 +82,7 @@ def news_item(args):
 def print_deprecation_docstring(args):
     """Generate a standardized docstring for deprecated functions."""
     generate_deprecation_docstring(
-        new_name=args.new_name,
-        removal_version=args.removal_version,
+        args.new_name,
+        args.removal_version,
         new_base=args.new_base,
     )
