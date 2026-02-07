@@ -41,8 +41,8 @@ def update_package():
         ),
         "docs/source/getting-started.rst",
         "tests/test_functions.py",
-        "docs/source/img/.placeholder",
-        "docs/source/snippets/.placeholder",
+        "docs/source/img/scikit-package-logo-text.png",
+        "docs/source/snippets/example-table.rst",
     ]
     example_files_in_src = [
         "src/{{ cookiecutter.package_dir_name }}/functions.py",
