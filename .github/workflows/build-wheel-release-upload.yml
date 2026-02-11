@@ -8,11 +8,11 @@ on:
 
 jobs:
   release:
-    uses: scikit-package/release-scripts/.github/workflows/_release-github.yml@v0
+    uses: scikit-package/release-scripts/.github/workflows/_build-wheel-release-upload.yml@v0
     with:
       project: scikit-package
       c_extension: false
-      maintainer_github_username: sbillinge
+      maintainer_GITHUB_username: sbillinge
 
     secrets:
       PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
