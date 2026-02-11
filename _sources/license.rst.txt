@@ -9,9 +9,10 @@ OPEN SOURCE LICENSE AGREEMENT
 =============================
 BSD 3-Clause License
 
-Copyright (c) 2024, The Trustees of Columbia University in
-the City of New York.
-All Rights Reserved.
+Copyright (c) 2024-2025, The Trustees of Columbia University in the City of New York.
+All rights reserved.
+
+Copyright (c) 2026-present, The scikit-package developers. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
