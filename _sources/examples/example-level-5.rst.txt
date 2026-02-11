@@ -16,7 +16,7 @@ We show the responses of **Sir Lancelot** to the ``scikit-package`` prompts belo
 .. code-block:: bash
 
     [1/16] maintainer_name (Simon Billinge): Sir Lancelot
-    [2/16] maintainer_email (sb2896@columbia.edu): sirlancelotbrave@montypy.com
+    [2/16] maintainer_email (sbillinge@ucsb.edu): sirlancelotbrave@montypy.com
     [3/16] maintainer_github_username (sbillinge): sirlancelotbrave
     [4/16] contributors (Sangjoon Lee, Simon Billinge, Billinge Group members):
         Sir Lancelot, Sir Robin, King Arthur
@@ -30,8 +30,8 @@ We show the responses of **Sir Lancelot** to the ``scikit-package`` prompts belo
     [11/16] project_short_description (Python package for doing science.): A
         Python package for the the Knights of the Round Table.
     [12/16] project_keywords (diffraction, PDF, X-ray, neutron): knights, castle, Monty, Python
-    [13/16] minimum_supported_python_version (3.11):
-    [14/16] maximum_supported_python_version (3.13):
+    [13/16] minimum_supported_python_version (3.12):
+    [14/16] maximum_supported_python_version (3.14):
     [15/16] Select project_needs_c_code_compiled
     1 - No
     2 - Yes

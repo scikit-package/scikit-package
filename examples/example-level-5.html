@@ -6,18 +6,18 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Example 2. Create your first Level 5 public package &mdash; scikit-package 0.2.1 documentation</title>
+  <title>Example 2. Create your first Level 5 public package &mdash; scikit-package 0.3.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3ca669d2"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=1ad4c97d"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
@@ -59,7 +59,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ADDITIONAL FUNCTIONALITIES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../additional-functionalities/manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../additional-functionalities/broadcast.html">Broadcast a GitHub issue to multiple repositories with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul>
@@ -127,7 +131,7 @@ $<span class="w"> </span>package<span class="w"> </span>create<span class="w"> <
 </div>
 <p>We show the responses of <strong>Sir Lancelot</strong> to the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> prompts below. As described in Example 1, he followed group practice and located the empty project under <code class="docutils literal notranslate"><span class="pre">∼/dev</span></code>. The text in parentheses are the default values supplied by <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>. These can be user-configured but in the example we show the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> defaults. Where there is no response <strong>Sir Lancelot</strong> simply hit the “Enter” key to accept the default value:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">1</span>/16<span class="o">]</span><span class="w"> </span>maintainer_name<span class="w"> </span><span class="o">(</span>Simon<span class="w"> </span>Billinge<span class="o">)</span>:<span class="w"> </span>Sir<span class="w"> </span>Lancelot
-<span class="o">[</span><span class="m">2</span>/16<span class="o">]</span><span class="w"> </span>maintainer_email<span class="w"> </span><span class="o">(</span>sb2896@columbia.edu<span class="o">)</span>:<span class="w"> </span>sirlancelotbrave@montypy.com
+<span class="o">[</span><span class="m">2</span>/16<span class="o">]</span><span class="w"> </span>maintainer_email<span class="w"> </span><span class="o">(</span>sbillinge@ucsb.edu<span class="o">)</span>:<span class="w"> </span>sirlancelotbrave@montypy.com
 <span class="o">[</span><span class="m">3</span>/16<span class="o">]</span><span class="w"> </span>maintainer_github_username<span class="w"> </span><span class="o">(</span>sbillinge<span class="o">)</span>:<span class="w"> </span>sirlancelotbrave
 <span class="o">[</span><span class="m">4</span>/16<span class="o">]</span><span class="w"> </span>contributors<span class="w"> </span><span class="o">(</span>Sangjoon<span class="w"> </span>Lee,<span class="w"> </span>Simon<span class="w"> </span>Billinge,<span class="w"> </span>Billinge<span class="w"> </span>Group<span class="w"> </span>members<span class="o">)</span>:
 <span class="w">    </span>Sir<span class="w"> </span>Lancelot,<span class="w"> </span>Sir<span class="w"> </span>Robin,<span class="w"> </span>King<span class="w"> </span>Arthur
@@ -141,8 +145,8 @@ $<span class="w"> </span>package<span class="w"> </span>create<span class="w"> <
 <span class="o">[</span><span class="m">11</span>/16<span class="o">]</span><span class="w"> </span>project_short_description<span class="w"> </span><span class="o">(</span>Python<span class="w"> </span>package<span class="w"> </span><span class="k">for</span><span class="w"> </span>doing<span class="w"> </span>science.<span class="o">)</span>:<span class="w"> </span>A
 <span class="w">    </span>Python<span class="w"> </span>package<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>the<span class="w"> </span>Knights<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Round<span class="w"> </span>Table.
 <span class="o">[</span><span class="m">12</span>/16<span class="o">]</span><span class="w"> </span>project_keywords<span class="w"> </span><span class="o">(</span>diffraction,<span class="w"> </span>PDF,<span class="w"> </span>X-ray,<span class="w"> </span>neutron<span class="o">)</span>:<span class="w"> </span>knights,<span class="w"> </span>castle,<span class="w"> </span>Monty,<span class="w"> </span>Python
-<span class="o">[</span><span class="m">13</span>/16<span class="o">]</span><span class="w"> </span>minimum_supported_python_version<span class="w"> </span><span class="o">(</span><span class="m">3</span>.11<span class="o">)</span>:
-<span class="o">[</span><span class="m">14</span>/16<span class="o">]</span><span class="w"> </span>maximum_supported_python_version<span class="w"> </span><span class="o">(</span><span class="m">3</span>.13<span class="o">)</span>:
+<span class="o">[</span><span class="m">13</span>/16<span class="o">]</span><span class="w"> </span>minimum_supported_python_version<span class="w"> </span><span class="o">(</span><span class="m">3</span>.12<span class="o">)</span>:
+<span class="o">[</span><span class="m">14</span>/16<span class="o">]</span><span class="w"> </span>maximum_supported_python_version<span class="w"> </span><span class="o">(</span><span class="m">3</span>.14<span class="o">)</span>:
 <span class="o">[</span><span class="m">15</span>/16<span class="o">]</span><span class="w"> </span>Select<span class="w"> </span>project_needs_c_code_compiled
 <span class="m">1</span><span class="w"> </span>-<span class="w"> </span>No
 <span class="m">2</span><span class="w"> </span>-<span class="w"> </span>Yes
@@ -376,7 +380,7 @@ $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

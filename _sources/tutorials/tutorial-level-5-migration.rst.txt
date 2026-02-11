@@ -380,7 +380,7 @@ Move essential files to run local tests
 
     .. code-block:: bash
 
-        conda create -n <package-name>-env python=3.13 \
+        conda create -n <package-name>-env python=3.14 \
             --file requirements/conda.txt \
             --file requirements/tests.txt
         conda activate <package-name>-env

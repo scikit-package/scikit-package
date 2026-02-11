@@ -22,7 +22,7 @@ following responses to the scikit-package prompts:
     $ package create public
 
     [1/16] maintainer_name (Simon Billinge): Sir Lancelot
-    [2/16] maintainer_email (sb2896@columbia.edu): sirlancelotbrave@montpy.com
+    [2/16] maintainer_email (sbillinge@ucsb.edu): sirlancelotbrave@montpy.com
     [3/16] maintainer_github_username (sbillinge): sirlancelotbrave
     [4/16] contributors (Sangjoon Lee, Simon Billinge, Billinge Group members):
         Sir Lancelot, King Arthur,
@@ -46,7 +46,7 @@ key for ``github_repo_name``, ``conda_pypi_package_dist_name``, and ``package_di
 
     $ package create public
     [1/16] maintainer_name (Simon Billinge): Sir Lancelot
-    [2/16] maintainer_email (sb2896@columbia.edu): sirlancelotbrave@montpy.com
+    [2/16] maintainer_email (sbillinge@ucsb.edu): sirlancelotbrave@montpy.com
     [3/16] maintainer_github_username (sbillinge): sirlancelotbrave
     [4/16] contributors (Sangjoon Lee, Simon Billinge, Billinge Group members):
     Sir Lancelot, Sir Robin, King Arthur,→

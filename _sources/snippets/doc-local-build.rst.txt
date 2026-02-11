@@ -21,7 +21,7 @@
 
     .. code-block:: bash
 
-        cd dosc && make html && open _build/html/index.html && cd ..
+        cd docs && make html && open _build/html/index.html && cd ..
 
     .. seealso::
 

@@ -6,18 +6,18 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Billinge Group standards &mdash; scikit-package 0.2.1 documentation</title>
+  <title>Billinge Group standards &mdash; scikit-package 0.3.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3ca669d2"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=1ad4c97d"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
@@ -59,7 +59,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ADDITIONAL FUNCTIONALITIES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../additional-functionalities/manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../additional-functionalities/broadcast.html">Broadcast a GitHub issue to multiple repositories with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul>
@@ -102,6 +106,18 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#error-message">Error message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deprecating-functions">Deprecating functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#import-the-deprecation-utilities">Import the deprecation utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-the-deprecation-message">Define the deprecation message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-the-new-function">Add the new function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mark-the-old-function-as-deprecated">Mark the old function as deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#duplicate-tests-for-the-new-function">Duplicate tests for the new function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-internal-usage">Update internal usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-the-deprecation-warning">Verify the deprecation warning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-the-documentation">Check the documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#removal">Removal</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#other-considerations-for-maintaining-group-infrastructure">Other considerations for maintaining group infrastructure</a></li>
 </ul>
 </li>
@@ -462,6 +478,191 @@ skpkg: Using scikit-package to create a new package or maintain an existing pack
 <h2>Error message<a class="headerlink" href="#error-message" title="Link to this heading"></a></h2>
 <p>Divide an error message into two sections: (1) reason for error, (2) what to do to fix it. Ex) “Both release and pre-release specified. Please re-run the command specifying either release or pre_release.” Error messages are for users. Consider users without programming knowledge.</p>
 </section>
+<section id="deprecating-functions">
+<h2>Deprecating functions<a class="headerlink" href="#deprecating-functions" title="Link to this heading"></a></h2>
+<p>As codebases evolve, function and method names are sometimes updated to
+follow improved naming conventions. When this happens, we want to warn
+users that the old name will be removed in a future release while keeping
+their existing code working in the meantime. This process is called
+<strong>deprecation</strong>.</p>
+<p>This guide describes the <strong>simplest and most common case</strong>:
+renaming a function <strong>in place</strong>, without changing its location or API.</p>
+<p>Example:</p>
+<ul class="simple">
+<li><p>Old name: <code class="docutils literal notranslate"><span class="pre">diffpy.package.MyClass.myFunction</span></code></p></li>
+<li><p>New name: <code class="docutils literal notranslate"><span class="pre">diffpy.package.MyClass.my_function</span></code></p></li>
+</ul>
+<section id="import-the-deprecation-utilities">
+<h3>Import the deprecation utilities<a class="headerlink" href="#import-the-deprecation-utilities" title="Link to this heading"></a></h3>
+<p>For Python versions <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">3.13</span></code>, we use DiffPy’s internal deprecation
+decorator. (The syntax matches Python’s built-in decorator in newer
+versions.)</p>
+<p>Add the following import near the top of the module,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.utils._deprecator</span><span class="w"> </span><span class="kn">import</span> <span class="n">deprecated</span><span class="p">,</span> <span class="n">build_deprecation_message</span>
+</pre></div>
+</div>
+</section>
+<section id="define-the-deprecation-message">
+<h3>Define the deprecation message<a class="headerlink" href="#define-the-deprecation-message" title="Link to this heading"></a></h3>
+<p>Define a single deprecation message near the top of the file. This message
+should clearly state,</p>
+<ul class="simple">
+<li><p>what is deprecated</p></li>
+<li><p>when it will be removed</p></li>
+<li><p>what to use instead</p></li>
+</ul>
+<p>For this example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;diffpy.package.MyClass&quot;</span>
+<span class="n">removal_version</span> <span class="o">=</span> <span class="s2">&quot;4.0.0&quot;</span>
+
+<span class="n">myFunction_deprecation_msg</span> <span class="o">=</span> <span class="n">build_deprecation_message</span><span class="p">(</span>
+    <span class="n">base</span><span class="p">,</span>
+    <span class="s2">&quot;myFunction&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;my_function&quot;</span><span class="p">,</span>
+    <span class="n">removal_version</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Because the function is not moving, <code class="docutils literal notranslate"><span class="pre">new_base</span></code> is omitted.</p>
+</section>
+<section id="add-the-new-function">
+<h3>Add the new function<a class="headerlink" href="#add-the-new-function" title="Link to this heading"></a></h3>
+<p>Create the new function with its updated name. This should be the
+<em>canonical implementation</em> going forward.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform an important calculation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</section>
+<section id="mark-the-old-function-as-deprecated">
+<h3>Mark the old function as deprecated<a class="headerlink" href="#mark-the-old-function-as-deprecated" title="Link to this heading"></a></h3>
+<p>Keep the old function name, but,</p>
+<ol class="arabic simple">
+<li><p>Decorate it with <code class="docutils literal notranslate"><span class="pre">&#64;deprecated</span></code></p></li>
+<li><p>Replace its body with a call to the new function</p></li>
+<li><p>Update its docstring to clearly state the deprecation</p></li>
+</ol>
+<p>To generate a consistent deprecation docstring, use the helper command,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span> <span class="n">add</span> <span class="n">deprecation</span> <span class="n">my_function</span> <span class="mf">4.0.0</span> <span class="o">-</span><span class="n">n</span> <span class="n">diffpy</span><span class="o">.</span><span class="n">package</span><span class="o">.</span><span class="n">MyClass</span>
+</pre></div>
+</div>
+<p>This command prints a ready-to-use docstring indicating the removal
+version and the replacement function. Copy and paste the output into the
+deprecated function.</p>
+<p>The deprecated method should then look like this,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform an important calculation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+
+    <span class="nd">@deprecated</span><span class="p">(</span><span class="n">myFunction_deprecation_msg</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">myFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This function has been deprecated and will be removed in</span>
+<span class="sd">        version 4.0.0.</span>
+
+<span class="sd">        Please use diffpy.package.MyClass.my_function instead.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">my_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="duplicate-tests-for-the-new-function">
+<h3>Duplicate tests for the new function<a class="headerlink" href="#duplicate-tests-for-the-new-function" title="Link to this heading"></a></h3>
+<p>Next, ensure that both the deprecated function and the new function are
+covered by tests.</p>
+<p>Locate the existing tests that exercise the old function name
+<code class="docutils literal notranslate"><span class="pre">myFunction</span></code>. Copy these tests and update them to call the new function
+name <code class="docutils literal notranslate"><span class="pre">my_function</span></code> instead. This ensures that:</p>
+<ul class="simple">
+<li><p>The new function behaves identically to the old one</p></li>
+<li><p>Refactoring does not accidentally change behavior</p></li>
+<li><p>Both code paths are validated during the deprecation period</p></li>
+</ul>
+<p>Ideally, when you run tests in the following steps, only one
+deprecation warning should be emitted per function that has been deprecated.
+This is to keep the deprecation task organize.</p>
+<p>For example, if the original test looks like this,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_myFunction</span><span class="p">():</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">obj</span><span class="o">.</span><span class="n">myFunction</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>Duplicate it for the new function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_my_function</span><span class="p">():</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">obj</span><span class="o">.</span><span class="n">my_function</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>At this stage, <strong>both tests should pass</strong> and exercise the same underlying
+logic.</p>
+<p>Do not remove the tests for the deprecated function until the removal
+release. These tests act as a safeguard to ensure the deprecated wrapper
+continues to work as expected.</p>
+</section>
+<section id="update-internal-usage">
+<h3>Update internal usage<a class="headerlink" href="#update-internal-usage" title="Link to this heading"></a></h3>
+<p>Now that both the new and deprecated function names exist, update the
+codebase to use the <strong>new function name everywhere internally</strong>.</p>
+<p>Do a global search for the old name <code class="docutils literal notranslate"><span class="pre">myFunction</span></code> and replace it with
+<code class="docutils literal notranslate"><span class="pre">my_function</span></code> in all source files <em>except</em> for,</p>
+<ul class="simple">
+<li><p>The deprecated wrapper function itself</p></li>
+<li><p>Test cases that explicitly test the deprecated behavior</p></li>
+<li><p>API documentation where the function is intentionally marked as
+<code class="docutils literal notranslate"><span class="pre">&#64;deprecated</span></code></p></li>
+</ul>
+<p>The goal is to ensure that,</p>
+<ul class="simple">
+<li><p>All internal code paths exercise the new implementation</p></li>
+<li><p>The deprecated function exists only as a thin compatibility layer
+for external users</p></li>
+<li><p>No new internal code is added that depends on the deprecated name</p></li>
+</ul>
+<p>After this step, the only remaining references to <code class="docutils literal notranslate"><span class="pre">myFunction</span></code> should
+be the deprecated method definition and its associated tests.</p>
+<p>This ensures that removing the deprecated function in the future will
+not require any additional internal refactoring.</p>
+</section>
+<section id="verify-the-deprecation-warning">
+<h3>Verify the deprecation warning<a class="headerlink" href="#verify-the-deprecation-warning" title="Link to this heading"></a></h3>
+<p>Install the package locally and run the test suite,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pytest</span>
+<span class="n">pytest</span>
+</pre></div>
+</div>
+<p>If done correctly, pytest should pass and emit a warning when using <code class="docutils literal notranslate"><span class="pre">myFunction</span></code>.
+The message should look something like,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;diffpy.package.MyClass.myFunction&#39;</span> <span class="ow">is</span> <span class="n">deprecated</span> <span class="ow">and</span> <span class="n">will</span> <span class="n">be</span> <span class="n">removed</span>
+<span class="ow">in</span> <span class="n">version</span> <span class="mf">4.0.0</span><span class="o">.</span> <span class="n">Please</span> <span class="n">use</span> <span class="s1">&#39;diffpy.package.MyClass.my_function&#39;</span> <span class="n">instead</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="check-the-documentation">
+<h3>Check the documentation<a class="headerlink" href="#check-the-documentation" title="Link to this heading"></a></h3>
+<p>To check if the documentation is updated with the deprecation message,
+build the documentation locally and open the index page,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span> <span class="n">docs</span><span class="o">/</span> <span class="o">&amp;&amp;</span> <span class="nb">open</span> <span class="n">docs</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>Note, this command might vary depending on your project’s documentation setup.</p>
+</section>
+<section id="removal">
+<h3>Removal<a class="headerlink" href="#removal" title="Link to this heading"></a></h3>
+<p>In the removal release (e.g. <code class="docutils literal notranslate"><span class="pre">4.0.0</span></code>),</p>
+<ul class="simple">
+<li><p>Delete <code class="docutils literal notranslate"><span class="pre">myFunction</span></code></p></li>
+<li><p>Remove the deprecation message</p></li>
+<li><p>Remove the tests for <code class="docutils literal notranslate"><span class="pre">myFunction</span></code></p></li>
+<li><p>Keep <code class="docutils literal notranslate"><span class="pre">my_function</span></code> as the sole implementation</p></li>
+</ul>
+<p>Congrats, you have successfully deprecated a function!</p>
+</section>
+</section>
 <section id="other-considerations-for-maintaining-group-infrastructure">
 <h2>Other considerations for maintaining group infrastructure<a class="headerlink" href="#other-considerations-for-maintaining-group-infrastructure" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
@@ -484,7 +685,7 @@ skpkg: Using scikit-package to create a new package or maintain an existing pack
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

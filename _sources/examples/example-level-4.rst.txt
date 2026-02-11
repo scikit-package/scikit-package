@@ -105,12 +105,12 @@ First, **Mr Neutron** needs to specify the package dependencies within the ``con
 
 In general, ``conda.txt`` and ``pip.txt`` will contain the same list of dependencies. They are the dependencies that will be installed when installing from conda and PyPI, respectively. The reason we need separate files is that some packages have a different name on Conda and PyPI, respectively. For example, to install the lightest-weight vesrsion of ``matplotlib``, for historical reasons, the Conda package is called ``matplotlib-base`` while it is ``matplotlib`` on PyPI. Any other such differences in package names across conda-forge and PyPI can also be handled this way.
 
-Second, **Mr Neutron** must build a virtual environment and install his new ``scikit-package`` package in it. **Mr Neutron** decides to create a new conda environment dedicated for his ``diffraction-utils`` package (he could have chosen to install the package in one of his existing environments). He first deactivates the ``skpkg-env`` (conda deactivate) as he has finished the work of using ``scikit-package`` to create a new project. He then creates a new conda environment called ``diff-utils-env`` using Python 3.13, installing the dependencies listed under ``conda.txt``, and builds and installs his own ``diffraction-utils`` package, using the following commands:
+Second, **Mr Neutron** must build a virtual environment and install his new ``scikit-package`` package in it. **Mr Neutron** decides to create a new conda environment dedicated for his ``diffraction-utils`` package (he could have chosen to install the package in one of his existing environments). He first deactivates the ``skpkg-env`` (conda deactivate) as he has finished the work of using ``scikit-package`` to create a new project. He then creates a new conda environment called ``diff-utils-env`` using Python 3.14, installing the dependencies listed under ``conda.txt``, and builds and installs his own ``diffraction-utils`` package, using the following commands:
 
 .. code-block:: bash
 
     $ cd ~/dev/diffraction-utils
-    $ conda create -n diff-utils-env python=3.13
+    $ conda create -n diff-utils-env python=3.14
     $ conda activate diff-utils-env
     $ conda install --file requirements/conda.txt
     $ pip install . --no-deps

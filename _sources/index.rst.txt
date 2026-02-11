@@ -121,7 +121,7 @@ Authors
 - Caden Myers (cjm2304@columbia.edu)
 - Andrew Yang (ay2546@columbia.edu)
 - Tieqiong Zhang (tz2600@columbia.edu)
-- Simon Billinge (sb2896@columbia.edu)
+- Simon Billinge (sbillinge@ucsb.edu)
 
 ``scikit-package`` is developed by Billinge Group and its community contributors.
 
@@ -152,7 +152,14 @@ The Billinge Group's ``scikit-package`` has been modified from the NSLS-II scien
    tutorials/tutorial-level-5
    tutorials/tutorial-level-4-to-5
    tutorials/tutorial-level-5-migration
-   tutorials/tutorial-manuscript
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: ADDITIONAL FUNCTIONALITIES
+
+   additional-functionalities/manuscript
+   additional-functionalities/broadcast
 
 .. toctree::
    :maxdepth: 2

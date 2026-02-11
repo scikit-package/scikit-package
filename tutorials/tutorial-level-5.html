@@ -6,18 +6,18 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(Level 5) Share your code as a publicly installable package &mdash; scikit-package 0.2.1 documentation</title>
+  <title>(Level 5) Share your code as a publicly installable package &mdash; scikit-package 0.3.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3ca669d2"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=1ad4c97d"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
@@ -88,13 +88,18 @@
 <li class="toctree-l3"><a class="reference internal" href="#preview-documentation-in-each-pull-request">Preview documentation in each pull request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#build-api-reference-documentation">Build API reference documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#set-up-default-prompt-values">Set up default prompt values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-your-level-5-packages-without-manual-file-migration">Update your level-5 packages without manual file migration</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ADDITIONAL FUNCTIONALITIES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../additional-functionalities/manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../additional-functionalities/broadcast.html">Broadcast a GitHub issue to multiple repositories with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul>
@@ -234,17 +239,25 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>maintainer_name</p></td>
-<td><p>The name of the project maintainer. This person will make the public releases.
-e.g., Simon Billinge</p></td>
+<tr class="row-even"><td><p>author_names</p></td>
+<td><p>The name(s) of the project author(s). Please separate names by commas.
+e.g. Simon Billinge, Sangjoon Bob Lee</p></td>
 </tr>
-<tr class="row-odd"><td><p>maintainer_email</p></td>
-<td><p>The maintainer’s email address.
-e.g., <a class="reference external" href="mailto:sbillinge&#37;&#52;&#48;columbia&#46;edu">sbillinge<span>&#64;</span>columbia<span>&#46;</span>edu</a></p></td>
+<tr class="row-odd"><td><p>author_emails</p></td>
+<td><p>The author(s)’ email address. Please separated emails by commas. The number and order of emails should match author_names.
+e.g. <a class="reference external" href="mailto:sbillinge&#37;&#52;&#48;columbia&#46;edu">sbillinge<span>&#64;</span>columbia<span>&#46;</span>edu</a>, <a class="reference external" href="mailto:bob&#37;&#52;&#48;columbia&#46;edu">bob<span>&#64;</span>columbia<span>&#46;</span>edu</a></p></td>
 </tr>
-<tr class="row-even"><td><p>maintainer_github_username</p></td>
-<td><p>The maintainer’s GitHub username.
-e.g., sbillinge</p></td>
+<tr class="row-even"><td><p>maintainer_names</p></td>
+<td><p>The name(s) of the project maintainer(s). These persons will make the public releases. Please separate with commas.
+e.g., Simon Billinge, Yuchen Xiao</p></td>
+</tr>
+<tr class="row-odd"><td><p>maintainer_emails</p></td>
+<td><p>The maintainer(s)’ email address. Please separate with commas. The number and order of emails should match maintainer_names.
+e.g., <a class="reference external" href="mailto:sbillinge&#37;&#52;&#48;columbia&#46;edu">sbillinge<span>&#64;</span>columbia<span>&#46;</span>edu</a>, <a class="reference external" href="mailto:yxiao&#37;&#52;&#48;columbia&#46;edu">yxiao<span>&#64;</span>columbia<span>&#46;</span>edu</a></p></td>
+</tr>
+<tr class="row-even"><td><p>maintainer_github_usernames</p></td>
+<td><p>The maintainer(s)’ GitHub username. Please separate with commas. The number and order of emails should match maintainer_names.
+e.g., simon-gh, yuchen-gh</p></td>
 </tr>
 <tr class="row-odd"><td><p>contributors</p></td>
 <td><p>Individuals or groups contributing to the project.
@@ -286,12 +299,12 @@ e.g., PDF, diffraction, neutron, x-ray</p></td>
 </tr>
 <tr class="row-even"><td><p>min_python_version</p></td>
 <td><p>The minimum supported Python version.
-e.g. 3.11.  Current practice (<a class="reference external" href="https://scientific-python.org/specs/spec-0000/">SPEC 0 specification</a>) is to drop support
+e.g. 3.12.  Current practice (<a class="reference external" href="https://scientific-python.org/specs/spec-0000/">SPEC 0 specification</a>) is to drop support
 for Python versions that were released more than 72 months ago.</p></td>
 </tr>
 <tr class="row-odd"><td><p>max_python_version</p></td>
 <td><p>The maximum supported Python version
-e.g. 3.13.  Ideally, the current latest version.</p></td>
+e.g. 3.14.  Ideally, the current latest version.</p></td>
 </tr>
 <tr class="row-even"><td><p>needs_c_code_compiled</p></td>
 <td><p>Specifies whether C code compilation is required.
@@ -319,7 +332,7 @@ yes if your app has a gui and there are tests that run the GUI.</p></td>
 <ol class="arabic">
 <li><p>Create a new conda environment. Let’s call this environment <code class="docutils literal notranslate"><span class="pre">my-package-env</span></code>:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>my-package-env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.13<span class="w"> </span><span class="se">\</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>my-package-env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.14<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--file<span class="w"> </span>requirements/conda.txt<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--file<span class="w"> </span>requirements/tests.txt
 </pre></div>
@@ -393,7 +406,7 @@ make<span class="w"> </span>html
 </li>
 <li><p>Here is a shortcut if you want to use it from the root directory of the project:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>dosc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>open<span class="w"> </span>_build/html/index.html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>open<span class="w"> </span>_build/html/index.html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
 </pre></div>
 </div>
 <div class="admonition seealso">
@@ -718,6 +731,10 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 <p>When you create a new project in Level 3, 4 or 5, you will be prompted to enter the values for some variables, like <code class="docutils literal notranslate"><span class="pre">maintainer_name</span></code>, <code class="docutils literal notranslate"><span class="pre">maintainer_email</span></code> and <code class="docutils literal notranslate"><span class="pre">maintainer_github_username</span></code>. These variables have default values in the package. It can save your time and reduce errors if you can change the default values that are more relevant for your installation of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code>.</p>
 <p>To set up your own default promprt values, please refer to <a class="reference internal" href="../support/frequently-asked-questions.html#faq-set-default-prompt-value"><span class="std std-ref">How can I change the default values that appear in the prompt when creating projects in Level 3,4,5?</span></a>.</p>
 </section>
+<section id="update-your-level-5-packages-without-manual-file-migration">
+<h3>Update your level-5 packages without manual file migration<a class="headerlink" href="#update-your-level-5-packages-without-manual-file-migration" title="Link to this heading"></a></h3>
+<p>Tired of manually migrating files when updating your level-5 packages to the newest <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> standard? Try the <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">update</span></code> command! It works like <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span> <span class="pre">public</span></code>, but it automatically migrates your existing package files and removes placeholder files in the template.</p>
+</section>
 </section>
 </section>
 
@@ -732,7 +749,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

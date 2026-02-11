@@ -2,7 +2,7 @@
 
     .. code-block:: bash
 
-        conda create -n my-package-env python=3.13 \
+        conda create -n my-package-env python=3.14 \
             --file requirements/conda.txt \
             --file requirements/tests.txt
 

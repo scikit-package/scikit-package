@@ -6,25 +6,25 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create a configured LaTeX manuscript folder with scikit-package &mdash; scikit-package 0.2.1 documentation</title>
+  <title>Create a configured LaTeX manuscript folder with scikit-package &mdash; scikit-package 0.3.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3ca669d2"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=1ad4c97d"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Publish on GitHub and to PyPI" href="../release-guides/pypi-github.html" />
-    <link rel="prev" title="Migrate your existing package with scikit-package" href="tutorial-level-5-migration.html" /> 
+    <link rel="next" title="Broadcast a GitHub issue to multiple repositories with scikit-package" href="broadcast.html" />
+    <link rel="prev" title="Migrate your existing package with scikit-package" href="../tutorials/tutorial-level-5-migration.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,12 +53,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../overview.html#where-do-i-begin">Where do I begin?</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">TUTORIALS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-1-2-3.html">(Level 1-3) Reuse code within a file, across files and folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4.html">(Level 4) Share your code as a locally installable Python package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ADDITIONAL FUNCTIONALITIES</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="tutorial-level-1-2-3.html">(Level 1-3) Reuse code within a file, across files and folders</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-level-4.html">(Level 4) Share your code as a locally installable Python package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
@@ -72,6 +75,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#want-a-new-manuscript-template">Want a new manuscript template?</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="broadcast.html">Broadcast a GitHub issue to multiple repositories with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul>
@@ -116,7 +120,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/tutorials/tutorial-manuscript.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/scikit-package/scikit-package/blob/main/docs/source/additional-functionalities/manuscript.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -125,7 +129,7 @@
            <div itemprop="articleBody">
              
   <section id="create-a-configured-latex-manuscript-folder-with-scikit-package">
-<span id="scikit-package-manuscript-tutorials"></span><h1>Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code><a class="headerlink" href="#create-a-configured-latex-manuscript-folder-with-scikit-package" title="Link to this heading"></a></h1>
+<h1>Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code><a class="headerlink" href="#create-a-configured-latex-manuscript-folder-with-scikit-package" title="Link to this heading"></a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>This is a tutorial for using <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> to create a configured manuscript folder by running the command</p>
@@ -139,7 +143,7 @@
 <h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
 <p>To proceed with the following steps, we assume that you</p>
 <ol class="arabic simple">
-<li><p>know how to use <code class="docutils literal notranslate"><span class="pre">conda</span></code> to create an environment and install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> in the environment. Please see <a class="reference internal" href="tutorial-level-1-2-3.html#conda-env-setup-simple"><span class="std std-ref">(Required) Use conda environment to install packages and run Python code</span></a> for more information.</p></li>
+<li><p>know how to use <code class="docutils literal notranslate"><span class="pre">conda</span></code> to create an environment and install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> in the environment. Please see <a class="reference internal" href="../tutorials/tutorial-level-1-2-3.html#conda-env-setup-simple"><span class="std std-ref">(Required) Use conda environment to install packages and run Python code</span></a> for more information.</p></li>
 <li><p>(Optional) know how to manage repositories on GitHub. Please see the GitHub tutorial <a class="reference external" href="https://docs.github.com/en/get-started/start-your-journey/hello-world">GitHub Hello World</a> for more information.</p></li>
 </ol>
 </section>
@@ -147,7 +151,7 @@
 <section id="create-a-manuscript-folder-with-minimum-setup">
 <span id="manuscript-run-the-command"></span><h2>Create a manuscript folder with minimum setup.<a class="headerlink" href="#create-a-manuscript-folder-with-minimum-setup" title="Link to this heading"></a></h2>
 <ol class="arabic">
-<li><p>Create a <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> installed and activate the environment. Please see <a class="reference internal" href="tutorial-level-1-2-3.html#conda-env-setup-simple"><span class="std std-ref">(Required) Use conda environment to install packages and run Python code</span></a> for more information.</p>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> installed and activate the environment. Please see <a class="reference internal" href="../tutorials/tutorial-level-1-2-3.html#conda-env-setup-simple"><span class="std std-ref">(Required) Use conda environment to install packages and run Python code</span></a> for more information.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>&lt;project-name&gt;-env<span class="w"> </span>scikit-package
 conda<span class="w"> </span>activate<span class="w"> </span>&lt;project-name&gt;-env
 </pre></div>
@@ -209,7 +213,7 @@ e.g., <code class="docutils literal notranslate"><span class="pre">https://githu
 <section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h3>
 <ol class="arabic">
-<li><p>Create a GitHub repository. Please see <a class="reference internal" href="tutorial-level-4.html#create-new-github-repo"><span class="std std-ref">Create a new GitHub repository</span></a> for more information. As an example, set <code class="docutils literal notranslate"><span class="pre">Repository</span> <span class="pre">name</span></code> to be <code class="docutils literal notranslate"><span class="pre">my-latex-repo-example</span></code>, choose the visibility to be <code class="docutils literal notranslate"><span class="pre">public</span></code>, and select <code class="docutils literal notranslate"><span class="pre">None</span></code> for <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> and <code class="docutils literal notranslate"><span class="pre">license</span></code>. You will be directed to the <code class="docutils literal notranslate"><span class="pre">my-latex-repo-example</span></code> page in GitHub after it is created.</p></li>
+<li><p>Create a GitHub repository. Please see <a class="reference internal" href="../tutorials/tutorial-level-4.html#create-new-github-repo"><span class="std std-ref">Create a new GitHub repository</span></a> for more information. As an example, set <code class="docutils literal notranslate"><span class="pre">Repository</span> <span class="pre">name</span></code> to be <code class="docutils literal notranslate"><span class="pre">my-latex-repo-example</span></code>, choose the visibility to be <code class="docutils literal notranslate"><span class="pre">public</span></code>, and select <code class="docutils literal notranslate"><span class="pre">None</span></code> for <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> and <code class="docutils literal notranslate"><span class="pre">license</span></code>. You will be directed to the <code class="docutils literal notranslate"><span class="pre">my-latex-repo-example</span></code> page in GitHub after it is created.</p></li>
 <li><p>Find the <code class="docutils literal notranslate"><span class="pre">Quick</span> <span class="pre">setup</span></code> section in the <code class="docutils literal notranslate"><span class="pre">my-latex-repo-example</span></code> page, choose the <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> option and copy the URL in the section. The URL will be referred to as <code class="docutils literal notranslate"><span class="pre">&lt;copied-my-latex-repo-example-url&gt;</span></code> in the following steps.</p></li>
 <li><p>Open the terminal and clone the <code class="docutils literal notranslate"><span class="pre">my-latex-repo-example</span></code> repository. After the command, a <code class="docutils literal notranslate"><span class="pre">my-latex-repo-example</span></code> folder will be created locally.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~
@@ -277,14 +281,14 @@ package<span class="w"> </span>create<span class="w"> </span>manuscript
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tutorial-level-5-migration.html" class="btn btn-neutral float-left" title="Migrate your existing package with scikit-package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../release-guides/pypi-github.html" class="btn btn-neutral float-right" title="Publish on GitHub and to PyPI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../tutorials/tutorial-level-5-migration.html" class="btn btn-neutral float-left" title="Migrate your existing package with scikit-package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="broadcast.html" class="btn btn-neutral float-right" title="Broadcast a GitHub issue to multiple repositories with scikit-package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -6,24 +6,24 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Migrate your existing package with scikit-package &mdash; scikit-package 0.2.1 documentation</title>
+  <title>Migrate your existing package with scikit-package &mdash; scikit-package 0.3.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3ca669d2"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=1ad4c97d"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Create a configured LaTeX manuscript folder with scikit-package" href="tutorial-manuscript.html" />
+    <link rel="next" title="Create a configured LaTeX manuscript folder with scikit-package" href="../additional-functionalities/manuscript.html" />
     <link rel="prev" title="Migrate your package from Level 4 to Level 5" href="tutorial-level-4-to-5.html" /> 
 </head>
 
@@ -83,7 +83,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#ready-for-release">Ready for release?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ADDITIONAL FUNCTIONALITIES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../additional-functionalities/manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../additional-functionalities/broadcast.html">Broadcast a GitHub issue to multiple repositories with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul>
@@ -584,7 +588,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 </li>
 <li><p>Test your package from a new conda environment:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>&lt;package-name&gt;-env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.13<span class="w"> </span><span class="se">\</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>&lt;package-name&gt;-env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.14<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--file<span class="w"> </span>requirements/conda.txt<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--file<span class="w"> </span>requirements/tests.txt
 conda<span class="w"> </span>activate<span class="w"> </span>&lt;package-name&gt;-env
@@ -621,7 +625,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 </div>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>If your package does not support the latest Python version of 3.13, you will need to specify the Python version supported by your package. Follow the instructions here to set the Python version under <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> in <a class="reference internal" href="../support/frequently-asked-questions.html#faq-github-actions-python-versions"><span class="std std-ref">In Level 5, How do I set different Python versions for GitHub CI?</span></a>.</p>
+<p>If your package does not support the latest Python version of 3.14, you will need to specify the Python version supported by your package. Follow the instructions here to set the Python version under <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> in <a class="reference internal" href="../support/frequently-asked-questions.html#faq-github-actions-python-versions"><span class="std std-ref">In Level 5, how do I set different Python versions for GitHub CI?</span></a>.</p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -865,13 +869,13 @@ pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tutorial-level-4-to-5.html" class="btn btn-neutral float-left" title="Migrate your package from Level 4 to Level 5" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tutorial-manuscript.html" class="btn btn-neutral float-right" title="Create a configured LaTeX manuscript folder with scikit-package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../additional-functionalities/manuscript.html" class="btn btn-neutral float-right" title="Create a configured LaTeX manuscript folder with scikit-package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

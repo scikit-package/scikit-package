@@ -226,7 +226,7 @@ After the code is moved over, it should be possible to build the code in the new
 
 .. code-block:: bash
 
-    $ conda create -n flying-circus-env python=3.13
+    $ conda create -n flying-circus-env python=3.14
     $ conda install --file requirements/conda.txt
     $ conda install --file requirements/tests.txt
     $ pip install -e . --no-deps

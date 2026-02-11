@@ -290,7 +290,7 @@ Before running code, you need to set the ``PYTHONPATH`` environment variable to 
      .. code-block:: text
 
           ========================== test session starts ==========================
-          platform darwin -- Python 3.13.3, pytest-8.3.5, pluggy-1.6.0
+          platform darwin -- Python 3.xx
           rootdir: /Users/imac/dev/
           configfile: pyproject.toml
           plugins: env-1.1.5, cov-6.1.1

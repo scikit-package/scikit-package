@@ -4,15 +4,21 @@
 
       * - Prompt
         - Description and example
-      * - maintainer_name
-        - The name of the project maintainer. This person will make the public releases.
-          e.g., Simon Billinge
-      * - maintainer_email
-        - The maintainer's email address.
-          e.g., sbillinge@columbia.edu
-      * - maintainer_github_username
-        - The maintainer's GitHub username.
-          e.g., sbillinge
+      * - author_names
+        - The name(s) of the project author(s). Please separate names by commas.
+          e.g. Simon Billinge, Sangjoon Bob Lee
+      * - author_emails
+        - The author(s)' email address. Please separated emails by commas. The number and order of emails should match author_names.
+          e.g. sbillinge@columbia.edu, bob@columbia.edu
+      * - maintainer_names
+        - The name(s) of the project maintainer(s). These persons will make the public releases. Please separate with commas.
+          e.g., Simon Billinge, Yuchen Xiao
+      * - maintainer_emails
+        - The maintainer(s)' email address. Please separate with commas. The number and order of emails should match maintainer_names.
+          e.g., sbillinge@columbia.edu, yxiao@columbia.edu
+      * - maintainer_github_usernames
+        - The maintainer(s)' GitHub username. Please separate with commas. The number and order of emails should match maintainer_names.
+          e.g., simon-gh, yuchen-gh
       * - contributors
         - Individuals or groups contributing to the project.
           e.g., Sangjoon Lee, Simon Billinge, Billinge Group members

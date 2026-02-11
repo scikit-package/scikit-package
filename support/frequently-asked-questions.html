@@ -6,18 +6,18 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Frequently asked questions (FAQ) &mdash; scikit-package 0.2.1 documentation</title>
+  <title>Frequently asked questions (FAQ) &mdash; scikit-package 0.3.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3ca669d2"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=1ad4c97d"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
@@ -59,7 +59,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5.html">(Level 5) Share your code as a publicly installable package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-4-to-5.html">Migrate your package from Level 4 to Level 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-level-5-migration.html">Migrate your existing package with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial-manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ADDITIONAL FUNCTIONALITIES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../additional-functionalities/manuscript.html">Create a configured LaTeX manuscript folder with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../additional-functionalities/broadcast.html">Broadcast a GitHub issue to multiple repositories with <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">RELEASE GUIDES</span></p>
 <ul>
@@ -125,7 +129,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#github-actions">GitHub Actions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#in-level-5-how-do-i-set-different-python-versions-for-github-ci">In Level 5, How do I set different Python versions for GitHub CI?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#in-level-5-how-do-i-set-different-python-versions-for-github-ci">In Level 5, how do I set different Python versions for GitHub CI?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#in-level-5-what-are-the-workflows-running-in-each-pull-request">In Level 5, what are the workflows running in each pull request?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#in-level-5-i-see-that-another-workflow-is-running-once-a-pr-is-merged-to-main-what-is-it">In Level 5, I see that another workflow is running once a PR is merged to <code class="docutils literal notranslate"><span class="pre">main</span></code>. What is it?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#i-am-encountering-a-build-is-requesting-pull-requests-write-error-how-do-i-fix-it">I am encountering a ‘build’ is requesting ‘pull-requests: write’ error. How do I fix it?</a></li>
@@ -459,7 +463,7 @@ make<span class="w"> </span>html
 </li>
 <li><p>Here is a shortcut if you want to use it from the root directory of the project:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>dosc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>open<span class="w"> </span>_build/html/index.html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>open<span class="w"> </span>_build/html/index.html<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
 </pre></div>
 </div>
 <div class="admonition seealso">
@@ -532,7 +536,7 @@ sphinxcontrib-apidoc
     <span class="s2">&quot;sphinx.ext.intersphinx&quot;</span><span class="p">,</span>
     <span class="s2">&quot;sphinx_rtd_theme&quot;</span><span class="p">,</span>
     <span class="s2">&quot;sphinx_copybutton&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;m2r&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;m2r2&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -545,7 +549,7 @@ sphinxcontrib-apidoc
     <span class="s2">&quot;sphinx.ext.intersphinx&quot;</span><span class="p">,</span>
     <span class="s2">&quot;sphinx_rtd_theme&quot;</span><span class="p">,</span>
     <span class="s2">&quot;sphinx_copybutton&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;m2r&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;m2r2&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="c1"># Configure where to find the source code and write API .rst files</span>
@@ -694,47 +698,59 @@ sphinxcontrib-apidoc
 <section id="github-actions">
 <span id="faq-github-actions"></span><h2>GitHub Actions<a class="headerlink" href="#github-actions" title="Link to this heading"></a></h2>
 <section id="in-level-5-how-do-i-set-different-python-versions-for-github-ci">
-<span id="faq-github-actions-python-versions"></span><h3>In Level 5, How do I set different Python versions for GitHub CI?<a class="headerlink" href="#in-level-5-how-do-i-set-different-python-versions-for-github-ci" title="Link to this heading"></a></h3>
-<p>Python 3.13 is the current default Python version in <code class="docutils literal notranslate"><span class="pre">.github/workflows/tests-on-pr.yml</span></code> and <code class="docutils literal notranslate"><span class="pre">.github/workflows/publish-docs-on-release.yml</span></code>. Python 3.11 to 3.13 are used in <code class="docutils literal notranslate"><span class="pre">.github/workflows/matrix-and-codecov-on-merge-to-main.yml</span></code>. To override the defaults, modify the three <code class="docutils literal notranslate"><span class="pre">.yml</span></code> files mentioned above in <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> as shown below:</p>
+<span id="faq-github-actions-python-versions"></span><h3>In Level 5, how do I set different Python versions for GitHub CI?<a class="headerlink" href="#in-level-5-how-do-i-set-different-python-versions-for-github-ci" title="Link to this heading"></a></h3>
+<p>By default, GitHub CI uses the Python versions declared in the
+<code class="docutils literal notranslate"><span class="pre">Programming</span> <span class="pre">Language</span> <span class="pre">::</span> <span class="pre">Python</span> <span class="pre">::</span></code> classifiers in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Programming Language :: Python :: 3.12&#39;</span>
+<span class="s1">&#39;Programming Language :: Python :: 3.13&#39;</span>
+<span class="s1">&#39;Programming Language :: Python :: 3.14&#39;</span>
+</pre></div>
+</div>
+<p>You may override the Python versions above (those in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>)
+for GitHub CI workflows by specifying them directly in the workflow files:</p>
 <ol class="arabic simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">python_version</span></code> in <code class="docutils literal notranslate"><span class="pre">.github/workflows/tests-on-pr.yml</span></code>:</p></li>
 </ol>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
-<span class="w"> </span><span class="nt">tests-on-pr</span><span class="p">:</span>
-<span class="w">   </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scikit-package/release-scripts/.github/workflows/_tests-on-pr.yml@v0</span>
-<span class="w"> </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">   </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">package-name</span>
-<span class="w">   </span><span class="nt">c_extension</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">   </span><span class="nt">headless</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">   </span><span class="nt">python_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.12</span>
-<span class="w"> </span><span class="nt">secrets</span><span class="p">:</span>
-<span class="w">   </span><span class="nt">CODECOV_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.CODECOV_TOKEN }}</span>
+<span class="w">  </span><span class="nt">tests-on-pr</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scikit-package/release-scripts/.github/workflows/_tests-on-pr.yml@v0</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scikit-package</span>
+<span class="w">      </span><span class="nt">c_extension</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">headless</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">python_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.12</span>
+<span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">CODECOV_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.CODECOV_TOKEN }}</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">python_version</span></code> in <code class="docutils literal notranslate"><span class="pre">.github/workflows/_publish-docs-on-release.yml</span></code>:</p></li>
 </ol>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
-<span class="w"> </span><span class="nt">docs</span><span class="p">:</span>
-<span class="w">   </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scikit-package/release-scripts/.github/workflows/_tests-on-pr.yml@v0</span>
-<span class="w"> </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">   </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">package-name</span>
-<span class="w">   </span><span class="nt">c_extension</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">   </span><span class="nt">headless</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">   </span><span class="nt">python_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.12</span>
+<span class="w">  </span><span class="nt">docs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scikit-package/release-scripts/.github/workflows/_publish-docs-on-release.yml@v0</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scikit-package</span>
+<span class="w">      </span><span class="nt">c_extension</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">headless</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">python_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.12</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">python_versions</span></code> in <code class="docutils literal notranslate"><span class="pre">.github/workflows/_matrix-and-codecov-on-merge-to-main.yml</span></code>:</p></li>
 </ol>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobs</span><span class="p">:</span>
-<span class="w"> </span><span class="nt">matrix-coverage</span><span class="p">:</span>
-<span class="w">   </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scikit-package/release-scripts/.github/workflows/_matrix-and-codecov-on-merge-to-main.yml@v0</span>
-<span class="w"> </span><span class="nt">with</span><span class="p">:</span>
-<span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">python_versions</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;3.11,</span><span class="nv"> </span><span class="s">3.12&quot;</span>
+<span class="w">  </span><span class="nt">matrix-coverage</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scikit-package/release-scripts/.github/workflows/_matrix-and-codecov-on-merge-to-main.yml@v0</span>
+<span class="w">    </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scikit-package</span>
+<span class="w">      </span><span class="nt">c_extension</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">headless</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">python_versions</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.11,3.12&quot;</span>
 </pre></div>
 </div>
+<p>If no Python versions are provided in either <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> or the workflow
+files, the default Python version used in GitHub CI is 3.14.</p>
 </section>
 <section id="in-level-5-what-are-the-workflows-running-in-each-pull-request">
 <h3>In Level 5, what are the workflows running in each pull request?<a class="headerlink" href="#in-level-5-what-are-the-workflows-running-in-each-pull-request" title="Link to this heading"></a></h3>
@@ -747,7 +763,7 @@ sphinxcontrib-apidoc
 </section>
 <section id="in-level-5-i-see-that-another-workflow-is-running-once-a-pr-is-merged-to-main-what-is-it">
 <h3>In Level 5, I see that another workflow is running once a PR is merged to <code class="docutils literal notranslate"><span class="pre">main</span></code>. What is it?<a class="headerlink" href="#in-level-5-i-see-that-another-workflow-is-running-once-a-pr-is-merged-to-main-what-is-it" title="Link to this heading"></a></h3>
-<p>The workflow <code class="docutils literal notranslate"><span class="pre">.github/workflows/matrix-and-codecov-on-merge-to-main.yml</span></code> is triggered. The goal is to ensure the latest code is tested not only on Linux but also across multiple operating systems and Python versions. This workflow runs tests on macOS (both Apple Silicon and Intel chips), Linux, and Windows and against three different Python versions, including the latest configured version. To modify the Python versions used in the workflows, refer to <a class="reference internal" href="#faq-github-actions-python-versions"><span class="std std-ref">In Level 5, How do I set different Python versions for GitHub CI?</span></a>.</p>
+<p>The workflow <code class="docutils literal notranslate"><span class="pre">.github/workflows/matrix-and-codecov-on-merge-to-main.yml</span></code> is triggered. The goal is to ensure the latest code is tested not only on Linux but also across multiple operating systems and Python versions. This workflow runs tests on macOS (both Apple Silicon and Intel chips), Linux, and Windows and against three different Python versions, including the latest configured version. To modify the Python versions used in the workflows, refer to <a class="reference internal" href="#faq-github-actions-python-versions"><span class="std std-ref">In Level 5, how do I set different Python versions for GitHub CI?</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>These workflow files call scripts located at <a class="reference external" href="https://github.com/scikit-package/release-scripts">https://github.com/scikit-package/release-scripts</a>, which are centrally managed by the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> development team. This centralized approach ensures that individual packages do not need to be updated separately when adding support for new Python versions or operating systems.</p>
@@ -1109,7 +1125,7 @@ git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

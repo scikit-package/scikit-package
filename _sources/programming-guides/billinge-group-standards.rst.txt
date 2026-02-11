@@ -274,6 +274,231 @@ Error message
 
 Divide an error message into two sections: (1) reason for error, (2) what to do to fix it. Ex) "Both release and pre-release specified. Please re-run the command specifying either release or pre_release.” Error messages are for users. Consider users without programming knowledge.
 
+Deprecating functions
+---------------------
+
+As codebases evolve, function and method names are sometimes updated to
+follow improved naming conventions. When this happens, we want to warn
+users that the old name will be removed in a future release while keeping
+their existing code working in the meantime. This process is called
+**deprecation**.
+
+This guide describes the **simplest and most common case**:
+renaming a function **in place**, without changing its location or API.
+
+Example:
+
+* Old name: ``diffpy.package.MyClass.myFunction``
+* New name: ``diffpy.package.MyClass.my_function``
+
+
+Import the deprecation utilities
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For Python versions ``< 3.13``, we use DiffPy’s internal deprecation
+decorator. (The syntax matches Python’s built-in decorator in newer
+versions.)
+
+Add the following import near the top of the module,
+
+::
+
+   from diffpy.utils._deprecator import deprecated, build_deprecation_message
+
+
+Define the deprecation message
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Define a single deprecation message near the top of the file. This message
+should clearly state,
+
+- what is deprecated
+- when it will be removed
+- what to use instead
+
+For this example,
+
+::
+
+   base = "diffpy.package.MyClass"
+   removal_version = "4.0.0"
+
+   myFunction_deprecation_msg = build_deprecation_message(
+       base,
+       "myFunction",
+       "my_function",
+       removal_version,
+   )
+
+Because the function is not moving, ``new_base`` is omitted.
+
+
+Add the new function
+^^^^^^^^^^^^^^^^^^^^
+
+Create the new function with its updated name. This should be the
+*canonical implementation* going forward.
+
+::
+
+   class MyClass:
+
+       def my_function(self, x):
+           """Perform an important calculation."""
+           return x * 2
+
+
+Mark the old function as deprecated
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Keep the old function name, but,
+
+1. Decorate it with ``@deprecated``
+2. Replace its body with a call to the new function
+3. Update its docstring to clearly state the deprecation
+
+To generate a consistent deprecation docstring, use the helper command,
+
+::
+
+   package add deprecation my_function 4.0.0 -n diffpy.package.MyClass
+
+This command prints a ready-to-use docstring indicating the removal
+version and the replacement function. Copy and paste the output into the
+deprecated function.
+
+The deprecated method should then look like this,
+
+::
+
+   class MyClass:
+
+       def my_function(self, x):
+           """Perform an important calculation."""
+           return x * 2
+
+       @deprecated(myFunction_deprecation_msg)
+       def myFunction(self, x):
+           """This function has been deprecated and will be removed in
+           version 4.0.0.
+
+           Please use diffpy.package.MyClass.my_function instead.
+           """
+           return self.my_function(x)
+
+Duplicate tests for the new function
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Next, ensure that both the deprecated function and the new function are
+covered by tests.
+
+Locate the existing tests that exercise the old function name
+``myFunction``. Copy these tests and update them to call the new function
+name ``my_function`` instead. This ensures that:
+
+- The new function behaves identically to the old one
+- Refactoring does not accidentally change behavior
+- Both code paths are validated during the deprecation period
+
+Ideally, when you run tests in the following steps, only one
+deprecation warning should be emitted per function that has been deprecated.
+This is to keep the deprecation task organize.
+
+For example, if the original test looks like this,
+
+::
+
+   def test_myFunction():
+       obj = MyClass()
+       assert obj.myFunction(2) == 4
+
+Duplicate it for the new function:
+
+::
+
+   def test_my_function():
+       obj = MyClass()
+       assert obj.my_function(2) == 4
+
+At this stage, **both tests should pass** and exercise the same underlying
+logic.
+
+Do not remove the tests for the deprecated function until the removal
+release. These tests act as a safeguard to ensure the deprecated wrapper
+continues to work as expected.
+
+
+Update internal usage
+^^^^^^^^^^^^^^^^^^^^^
+
+Now that both the new and deprecated function names exist, update the
+codebase to use the **new function name everywhere internally**.
+
+Do a global search for the old name ``myFunction`` and replace it with
+``my_function`` in all source files *except* for,
+
+- The deprecated wrapper function itself
+- Test cases that explicitly test the deprecated behavior
+- API documentation where the function is intentionally marked as
+  ``@deprecated``
+
+The goal is to ensure that,
+
+- All internal code paths exercise the new implementation
+- The deprecated function exists only as a thin compatibility layer
+  for external users
+- No new internal code is added that depends on the deprecated name
+
+After this step, the only remaining references to ``myFunction`` should
+be the deprecated method definition and its associated tests.
+
+This ensures that removing the deprecated function in the future will
+not require any additional internal refactoring.
+
+
+Verify the deprecation warning
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Install the package locally and run the test suite,
+
+::
+
+   pip install .
+   pip install pytest
+   pytest
+
+If done correctly, pytest should pass and emit a warning when using ``myFunction``.
+The message should look something like,
+
+::
+
+   'diffpy.package.MyClass.myFunction' is deprecated and will be removed
+   in version 4.0.0. Please use 'diffpy.package.MyClass.my_function' instead.
+
+Check the documentation
+^^^^^^^^^^^^^^^^^^^^^^^
+
+To check if the documentation is updated with the deprecation message,
+build the documentation locally and open the index page,
+
+::
+
+   make html docs/ && open docs/build/html/index.html
+
+Note, this command might vary depending on your project’s documentation setup.
+
+Removal
+^^^^^^^
+
+In the removal release (e.g. ``4.0.0``),
+
+- Delete ``myFunction``
+- Remove the deprecation message
+- Remove the tests for ``myFunction``
+- Keep ``my_function`` as the sole implementation
+
+Congrats, you have successfully deprecated a function!
+
 Other considerations for maintaining group infrastructure
 ---------------------------------------------------------
 
