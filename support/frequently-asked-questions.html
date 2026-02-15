@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Frequently asked questions (FAQ) &mdash; scikit-package 0.3.0rc2 documentation</title>
+  <title>Frequently asked questions (FAQ) &mdash; scikit-package 0.3.0rc3 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=3a655396"></script>
+      <script src="../_static/documentation_options.js?v=932527f0"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -157,6 +157,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#maintaining-scikit-package">Maintaining <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-locally-install-scikit-package-with-edits-i-ve-made-to-the-source-code">How can I locally install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with edits I’ve made to the source code?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#when-should-we-expect-different-python-versions-to-be-supported-in-the-github-workflows">When should we expect different Python versions to be supported in the GitHub workflows?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#which-files-should-be-modified-when-there-is-a-new-python-version">Which files should be modified when there is a new Python version?</a></li>
 </ul>
@@ -1056,6 +1057,31 @@ git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> 
 </section>
 <section id="maintaining-scikit-package">
 <h2>Maintaining <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code><a class="headerlink" href="#maintaining-scikit-package" title="Link to this heading"></a></h2>
+<section id="how-can-i-locally-install-scikit-package-with-edits-i-ve-made-to-the-source-code">
+<h3>How can I locally install <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> with edits I’ve made to the source code?<a class="headerlink" href="#how-can-i-locally-install-scikit-package-with-edits-i-ve-made-to-the-source-code" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span> <span class="pre">public</span></code> commands automatically reuse templates saved locally to
+<code class="docutils literal notranslate"><span class="pre">~/.cookiecutters/</span></code>. If you have made local edits to these commands and want to use/test them,
+begin by moving into the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> repository on your local machine and locally install
+the package,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/to/local/scikit-package
+pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+<p>Then remove the existing template in the <code class="docutils literal notranslate"><span class="pre">.cookiecutters/</span></code> directory and
+copy the current version of the <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> repository to the <code class="docutils literal notranslate"><span class="pre">.cookiecutters/</span></code> directory,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>~/.cookiecutters/scikit-package
+cp<span class="w"> </span>-R<span class="w"> </span>.<span class="w"> </span>~/.cookiecutters/scikit-package
+</pre></div>
+</div>
+<p>If you want to test a git version of the template, you can also <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>
+the repository to the <code class="docutils literal notranslate"><span class="pre">.cookiecutters/</span></code> directory,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>~/.cookiecutters/scikit-package
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/scikit-package/scikit-package<span class="w"> </span>~/.cookiecutters/scikit-package
+</pre></div>
+</div>
+<p>Then run <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span></code> or <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">update</span></code> command and
+reply <code class="docutils literal notranslate"><span class="pre">n</span></code> to the first prompt asking you to redownload.</p>
+</section>
 <section id="when-should-we-expect-different-python-versions-to-be-supported-in-the-github-workflows">
 <h3>When should we expect different Python versions to be supported in the GitHub workflows?<a class="headerlink" href="#when-should-we-expect-different-python-versions-to-be-supported-in-the-github-workflows" title="Link to this heading"></a></h3>
 <p>Please check the <strong>Support Window</strong> section in the official Scientific Python specification: <a class="reference external" href="https://scientific-python.org/specs/spec-0000/">https://scientific-python.org/specs/spec-0000/</a></p>

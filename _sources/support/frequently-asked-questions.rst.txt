@@ -890,6 +890,39 @@ Add a description of the edits made in this PR. This should be a user-facing hig
 Maintaining ``scikit-package``
 ------------------------------
 
+How can I locally install ``scikit-package`` with edits I've made to the source code?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``package update`` and ``package create public`` commands automatically reuse templates saved locally to
+``~/.cookiecutters/``. If you have made local edits to these commands and want to use/test them,
+begin by moving into the ``scikit-package`` repository on your local machine and locally install
+the package,
+
+.. code-block:: bash
+
+    cd path/to/local/scikit-package
+    pip install .
+
+Then remove the existing template in the ``.cookiecutters/`` directory and
+copy the current version of the ``scikit-package`` repository to the ``.cookiecutters/`` directory,
+
+.. code-block:: bash
+
+  rm -rf ~/.cookiecutters/scikit-package
+  cp -R . ~/.cookiecutters/scikit-package
+
+If you want to test a git version of the template, you can also ``git clone``
+the repository to the ``.cookiecutters/`` directory,
+
+.. code-block:: bash
+
+  rm -rf ~/.cookiecutters/scikit-package
+  git clone https://github.com/scikit-package/scikit-package ~/.cookiecutters/scikit-package
+
+Then run ``package create`` or ``package update`` command and
+reply ``n`` to the first prompt asking you to redownload.
+
+
 When should we expect different Python versions to be supported in the GitHub workflows?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
