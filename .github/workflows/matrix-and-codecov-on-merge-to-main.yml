@@ -1,6 +1,9 @@
-name: CI
+name: Matrix and Codecov
 
 on:
+  # push:
+  #   branches:
+  #     - main
   release:
     types:
       - prereleased
