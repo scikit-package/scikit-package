@@ -6,16 +6,16 @@
         - Description and example
       * - author_names
         - The name(s) of the project author(s). Please separate names by commas.
-          e.g. Simon Billinge, Sangjoon Bob Lee
+          e.g. Simon Billinge, Sangjoon Lee
       * - author_emails
         - The author(s)' email address. Please separated emails by commas. The number and order of emails should match author_names.
-          e.g. sbillinge@columbia.edu, bob@columbia.edu
+          e.g. sbillinge@ucsb.edu, bobleesj@stanford.edu
       * - maintainer_names
         - The name(s) of the project maintainer(s). These persons will make the public releases. Please separate with commas.
           e.g., Simon Billinge, Yuchen Xiao
       * - maintainer_emails
         - The maintainer(s)' email address. Please separate with commas. The number and order of emails should match maintainer_names.
-          e.g., sbillinge@columbia.edu, yxiao@columbia.edu
+          e.g., sbillinge@ucsb.edu, yxiao@columbia.edu
       * - maintainer_github_usernames
         - The maintainer(s)' GitHub username. Please separate with commas. The number and order of emails should match maintainer_names.
           e.g., simon-gh, yuchen-gh

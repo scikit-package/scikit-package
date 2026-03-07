@@ -117,7 +117,7 @@ Do you have any new features? Please make an issue via the GitHub issue tracker 
 Authors
 =======
 
-- Sangjoon Lee (sl5400@columbia.edu)
+- Sangjoon Lee (bobleesj@stanford.edu)
 - Caden Myers (cjm2304@columbia.edu)
 - Andrew Yang (ay2546@columbia.edu)
 - Tieqiong Zhang (tz2600@columbia.edu)

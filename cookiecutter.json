@@ -1,6 +1,6 @@
 {
-  "author_names": "Simon Billinge, Sangjoon Bob Lee",
-  "author_emails": "sbillinge@ucsb.edu, sl5400@columbia.edu",
+  "author_emails": "sbillinge@ucsb.edu, bobleesj@stanford.edu",
+  "author_names": "Simon Billinge, Sangjoon Lee",
   "maintainer_names": "{{ cookiecutter.author_names }}",
   "maintainer_emails": "{{ cookiecutter.author_emails }}",
   "maintainer_github_usernames": "sbillinge, bobleesj",
