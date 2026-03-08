@@ -60,7 +60,7 @@ def __gen_init__(module_name):
     __init__ = r"""#!/usr/bin/env python
 ##############################################################################
 #
-# (c) {% now 'utc', '%Y' %} The Trustees of Columbia University in the City of New York.
+# (c) {% now 'utc', '%Y' %} {{ cookiecutter.license_holders }}.
 # All rights reserved.
 #
 # File coded by: Billinge Group members and community contributors.

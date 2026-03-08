@@ -79,7 +79,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "scikit-package"
-copyright = "%Y, The Trustees of Columbia University in the City of New York"
+copyright = "%Y, scikit-package contributors"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

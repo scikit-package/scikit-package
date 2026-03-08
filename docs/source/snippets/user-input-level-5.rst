@@ -24,7 +24,7 @@
           e.g., Sangjoon Lee, Simon Billinge, Billinge Group members
       * - license_holders
         - The license holders listed in ``LICENSE.rst``.
-          e.g., The Trustees of Columbia University in the City of New York
+          e.g., diffpy.utils contributors
       * - project_name
         - The name displayed in the ``README.rst`` and documentation.
           Use ``name-with-hyphens`` e.g., ``my-package``.
