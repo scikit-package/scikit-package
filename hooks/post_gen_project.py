@@ -233,7 +233,8 @@ def update_workflow():
 
         def replace_match(match):
             key = match.group(1)
-            return str(workflow_input[key])
+            default = match.group(2)
+            return str(workflow_input.get(key, default))
 
         pattern = re.compile(r"\{\{\s*(\w+)\s*/\s*([^\s\}]+)\s*\}\}")
         return pattern.sub(replace_match, content)
