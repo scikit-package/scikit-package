@@ -63,7 +63,7 @@ ignore-words = ".codespell/ignore_words.txt"
 skip = "*.cif,*.dat"
 
 [tool.ruff]
-line-length = 115
+line-length = 79
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
