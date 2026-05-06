@@ -23,7 +23,7 @@ We also want to ensure we report that tests are written for the incoming code an
 
         CODECOV_TOKEN=abcd1234-5678-1234-5678-b862619523bd
 
-#. In your GitHub repository, visit :menuselection:`Settings --> Actions --> Secrets and Variables`.
+#. In your GitHub repository, visit :menuselection:`Settings --> Secrets and Variables --> Actions`.
 
 #. If the repository is under your personal account, click :guilabel:`New repository secret`.
 
