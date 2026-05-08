@@ -10,6 +10,7 @@ jobs:
       python_version: 0
 
   docs:
+    needs: get-python-version
     uses: scikit-package/release-scripts/.github/workflows/_release-docs.yml@v0
     with:
       project: scikit-package
