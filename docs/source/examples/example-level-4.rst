@@ -51,6 +51,9 @@ Using the bash terminal, **Mr Neutron** navigates to his ``dev`` directory, acti
 
     ~/dev/
         |-- diffraction-utils/
+            |-- CODE-OF-CONDUCT.rst
+            |-- cookiecutter.json
+            |-- pyproject.toml
             |-- .flake8
             |-- .github
                 |-- ISSUE_TEMPLATE

@@ -72,6 +72,7 @@ Given the answers to the questions in the example, **Sir Lancelot** sees the fol
             |-- AUTHORS.rst
             |-- CHANGELOG.rst
             |-- CODE-OF-CONDUCT.rst
+            |-- cookiecutter.json
             |-- LICENSE.rst
             |-- MANIFEST.in
             |-- README.rst
@@ -107,6 +108,7 @@ Given the answers to the questions in the example, **Sir Lancelot** sees the fol
                     |-- __init__.py
                     |-- functions.py
                     |-- version.py
+                    |-- montypy_app.py
             |-- tests
                 |-- conftest.py
                 |-- test_functions.py

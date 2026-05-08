@@ -943,26 +943,5 @@ In https://github.com/scikit-package/scikit-package:
    * - ``docs/source/conf.py``
      - ``PYTHON_DEFAULT_MAX_VERSION`` and ``PYTHON_DEFAULT_MIN_VERSION``
 
-In https://github.com/scikit-package/release-scripts:
-
-.. list-table::
-   :header-rows: 1
-
-   * - Workflow file
-     - Key to update
-   * - ``.github/workflows/_matrix-and-codecov-on-merge-to-main.yml``
-     - ``python_versions``
-   * - ``.github/workflows/_matrix-no-codecov-on-merge-to-main.yml``
-     - ``python_versions``
-   * - ``.github/workflows/_publish-docs-on-release.yml``
-     - ``python_version``
-   * - ``.github/workflows/_check-news-item.yml``
-     - ``python_version``
-   * - ``.github/workflows/_build-pure-python-package.yml``
-     - ``python-version``
-   * - ``.github/workflows/_tests-on-pr.yml``
-     - ``python_version``
-   * - ``.github/workflows/_tests-on-pr-no-codecov.yml``
-     - ``python_version``
-   * - ``.github/workflows/_tests-on-pr-no-codecov-no-headless.yml``
-     - ``python-version``
+In https://github.com/scikit-package/release-scripts, please modify the following file
+``.github/workflows/_get-python-versions.yml`` for new fallback Python versions.

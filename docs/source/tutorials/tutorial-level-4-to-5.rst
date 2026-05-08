@@ -71,18 +71,21 @@ Create a new project with ``scikit-package``
             ├── AUTHORS.rst
             ├── CHANGELOG.rst
             ├── CODE-OF-CONDUCT.rst
+            ├── cookiecutter.json
+            ├── docs
             ├── LICENSE.rst
             ├── MANIFEST.in
-            ├── README.rst
-            ├── docs
             ├── news
             ├── pyproject.toml
+            ├── README.rst
             ├── requirements
             ├── src
             └── tests
+        ├── CODE-OF-CONDUCT.rst
+        ├── cookiecutter.json
         ├── LICENSE.rst
-        ├── README.md
         ├── pyproject.toml
+        ├── README.md
         ├── requirements
         ├── src
         └── tests
