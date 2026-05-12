@@ -65,13 +65,6 @@ exclude-file = ".codespell/ignore_lines.txt"
 ignore-words = ".codespell/ignore_words.txt"
 skip = "*.cif,*.dat"
 
-[tool.ruff]
-line-length = 79
-exclude = ["hooks/post_gen_project.py"]
-
-[tool.ruff.lint.pydocstyle]
-convention = "numpy"
-
 [tool.black]
 line-length = 79
 include = '\.pyi?$'
