@@ -17,28 +17,28 @@ def test_copy_all_files(user_filesystem):
     source_dir = user_filesystem / "package-dir"
     expected_files = {
         # files already exists in target dir
-        ".git/COMMIT_EDITMSG": """
-The file already exists in the new project
-skpkg: last commit message in skpkg-package
-""",
-        "docs/source/tutorial.rst": """
-The file already exists in the new project
-The tutorial for skpkg-package.
-""",
+        ".git/COMMIT_EDITMSG": (
+            "The file already exists in the new project\n"
+            "skpkg: last commit message in skpkg-package\n"
+        ),
+        "docs/source/tutorial.rst": (
+            "The file already exists in the new project\n"
+            "The tutorial for skpkg-package.\n"
+        ),
         # files only in source dir
-        "README.rst": """
-|Icon| |title|_
-===============
-
-.. |title| replace:: title of README.rst in skpkg-package
-""",
-        "docs/source/index.rst": """
-#######
-|title|
-#######
-
-.. |title| replace:: title of skpkg-package documentation
-""",
+        "README.rst": (
+            "|Icon| |title|_\n"
+            "===============\n"
+            "\n"
+            ".. |title| replace:: title of README.rst in skpkg-package\n"
+        ),
+        "docs/source/index.rst": (
+            "#######\n"
+            "|title|\n"
+            "#######\n"
+            "\n"
+            ".. |title| replace:: title of skpkg-package documentation\n"
+        ),
     }
     # files with duplicated name exist in target_dir
     target_dir = user_filesystem / "target-dir"

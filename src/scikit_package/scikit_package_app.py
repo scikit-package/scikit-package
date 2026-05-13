@@ -212,22 +212,21 @@ def setup_subparsers(parser):
             "url_to_repo_info entry of ~/.skpkgrc. "
             "See https://scikit-package.github.io/scikit-package/"
             "additional-functionalities/broadcast.html for details.\n"
-        )
-        + """Example of repos.json:
-{
-    "<repo1>": "https://github.come/<org-name>/<repo1>",
-    "<repo2>": "https://github.come/<org-name>/<repo2>",
-    "<repo3>": "https://github.come/<org-name>/<repo3>",
-    "<repo4>": "https://github.come/<org-name>/<repo4>"
-}
-Example of groups.json:
-{
-    "even_group" : ["<repo2>", "<repo4>"],
-    "odd_group" : ["<repo1>", "<repo3>"]
-}
-Example of usage:
-    package broadcast <issue-url> even_group
-""",
+            "Example of repos.json:\n"
+            "{\n"
+            '    "<repo1>": "https://github.come/<org-name>/<repo1>",\n'
+            '    "<repo2>": "https://github.come/<org-name>/<repo2>",\n'
+            '    "<repo3>": "https://github.come/<org-name>/<repo3>",\n'
+            '    "<repo4>": "https://github.come/<org-name>/<repo4>"\n'
+            "}\n"
+            "Example of groups.json:\n"
+            "{\n"
+            '    "even_group" : ["<repo2>", "<repo4>"],\n'
+            '    "odd_group" : ["<repo1>", "<repo3>"]\n'
+            "}\n"
+            "Example of usage:\n"
+            "    package broadcast <issue-url> even_group\n"
+        ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     _add_broadcast_args(parser_broadcast)

@@ -5,35 +5,32 @@ import pytest
 import yaml
 
 files_in_old_project = {
-    ".git/COMMIT_EDITMSG": """
-skpkg: last commit message in skpkg-package
-""",
-    "docs/source/tutorial.rst": """
-The tutorial for skpkg-package.
-""",
-    "README.rst": """
-|Icon| |title|_
-===============
-
-.. |title| replace:: title of README.rst in skpkg-package
-""",
-    "docs/source/index.rst": """
-#######
-|title|
-#######
-
-.. |title| replace:: title of skpkg-package documentation
-""",
+    ".git/COMMIT_EDITMSG": ("skpkg: last commit message in skpkg-package\n"),
+    "docs/source/tutorial.rst": ("The tutorial for skpkg-package.\n"),
+    "README.rst": (
+        "|Icon| |title|_\n"
+        "===============\n"
+        "\n"
+        ".. |title| replace:: title of README.rst in skpkg-package\n"
+    ),
+    "docs/source/index.rst": (
+        "#######\n"
+        "|title|\n"
+        "#######\n"
+        "\n"
+        ".. |title| replace:: title of skpkg-package documentation\n"
+    ),
 }
+
 files_in_new_project = {
-    ".git/COMMIT_EDITMSG": """
-The file already exists in the new project
-skpkg: last commit message in skpkg-package
-""",
-    "docs/source/tutorial.rst": """
-The file already exists in the new project
-The tutorial for skpkg-package.
-""",
+    ".git/COMMIT_EDITMSG": (
+        "The file already exists in the new project\n"
+        "skpkg: last commit message in skpkg-package\n"
+    ),
+    "docs/source/tutorial.rst": (
+        "The file already exists in the new project\n"
+        "The tutorial for skpkg-package.\n"
+    ),
 }
 
 

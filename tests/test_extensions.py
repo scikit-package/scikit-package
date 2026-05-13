@@ -23,20 +23,20 @@ extended_env = Environment(
         (
             "Alice",
             "alice@email.com",
-            """[
-  {name='Alice', email='alice@email.com'},
-]""",
+            ("[\n" "  {name='Alice', email='alice@email.com'},\n" "]"),
         ),
         # multiple authors, expect return str with the form of
         #   a list with multiple dicts
         (
             "Alice, Bob, Charlie",
             "alice@email.com, bob@email.com, charlie@email.com",
-            """[
-  {name='Alice', email='alice@email.com'},
-  {name='Bob', email='bob@email.com'},
-  {name='Charlie', email='charlie@email.com'},
-]""",
+            (
+                "[\n"
+                "  {name='Alice', email='alice@email.com'},\n"
+                "  {name='Bob', email='bob@email.com'},\n"
+                "  {name='Charlie', email='charlie@email.com'},\n"
+                "]"
+            ),
         ),
     ],
 )

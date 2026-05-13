@@ -62,10 +62,10 @@ repos:
         additional_dependencies:
           - "prettier@^3.2.4"
         types: [yaml, markdown, json]
-  # docformatter - formatter for .py docstrings
+  # docformatter - PEP 257 compliant docstring formatter
   - repo: https://github.com/PyCQA/docformatter
     rev: v1.7.8
     hooks:
       - id: docformatter
-        exclude: "^(tests/(test_io|test_extensions|conftest)\\.py|src/scikit_package/scikit_package_app\\.py)$"
-        args: ["--wrap-summaries=72", "--wrap-descriptions=72", "--recursive", "--in-place", "--black"]
+        additional_dependencies: [tomli]
+        args: [--in-place, --config, ./pyproject.toml]
