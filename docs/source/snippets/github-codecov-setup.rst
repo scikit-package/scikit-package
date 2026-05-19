@@ -7,7 +7,7 @@ We also want to ensure we report that tests are written for the incoming code an
 
 .. warning::
 
-    **Is this NOT your first time setting up Codecov?** Setting up the Codecov report can be done just once for all projects under your account or a GitHub organization with the "global token." Please check whether you already have a Codecov token. If it exists, you may still follow the steps, but you don't have to create a new token. Instead, you can use the existing token. Please note that the following instructions are written at the time of writing and may change over time.
+    **Is this NOT your first time setting up Codecov?** Setting up the Codecov report can be done just once for all projects under your account or a GitHub organization with the "global token." Please check whether you already have a Codecov token. If it exists, you may still follow the steps, but you don't have to create a new token. Instead, you can use the existing token.
 
 #. Ensure your GitHub repository is public.
 

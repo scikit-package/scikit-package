@@ -5,6 +5,10 @@ Welcome to the ``scikit-package`` official documentation!
 
 ``scikit-package`` offers tools and practices for the scientific community to make better and more reusable Scientific Python packages and applications.
 
+.. note::
+
+    These instructions reference third-party web interfaces (PyPI, conda-forge, GitHub, Codecov, Read the Docs, pre-commit.ci, and others) that are written at the time of writing and may change over time. If a screenshot or click-path no longer matches what you see, please open a `GitHub issue <https://github.com/scikit-package/scikit-package/issues>`_.
+
 How to cite ``scikit-package``
 ------------------------------
 
