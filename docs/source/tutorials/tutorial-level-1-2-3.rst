@@ -223,6 +223,24 @@ Initiate a new project with ``scikit-package``
                ├── __init__.py
                └── test_shared_functions.py
 
+#. At this point, you can manually add more projects under ``data-analysis-project`` and reuse shared functionality. For example, you could manually add ``proj-two`` and all of its contents in a similar structure as ``proj-one`` (making sure to include the ``__init__.py`` file).
+
+
+     .. code-block:: text
+
+          data-analysis-project/
+          ├── README.md
+          ├── requirements.txt
+          ├── shared_functions.py
+          ├── proj-one
+          │   ├── __init__.py
+          │   └── proj_one_code.py
+          ├── proj-two
+          │   ├── __init__.py
+          │   └── proj_two_code.py
+          └── tests
+               ├── __init__.py
+               └── test_shared_functions.py
 
 File descriptions
 ^^^^^^^^^^^^^^^^^^
