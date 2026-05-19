@@ -67,7 +67,11 @@ The full list of packages is as follows:
 - `cifkit <https://github.com/bobleesj/cifkit>`_
 - `SAF <https://github.com/bobleesj/structure-analyzer-featurizer>`_
 - `CAF <https://github.com/bobleesj/composition-analyzer-featurizer>`_
-- `bobleesej.utils <https://github.com/bobleesj/bobleesj.utils>`_
+- `High-throughput-LMTO <https://github.com/balaranjan/High-throughput-LMTO>`_
+- `cif-site-analyzer <https://github.com/OliynykLab/cif-site-analyzer>`_
+- `wdfkit <https://github.com/dshirya/wdfkit>`_
+- `XANES-diffusion-visualize <https://github.com/tinatn29/XANES-diffusion-visualize>`_
+- `pytentiostat <https://github.com/juami/pytentiostat>`_
 - ...
 
 How do I get started?
