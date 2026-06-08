@@ -7,20 +7,15 @@ Release notes
 0.3.1
 =====
 
-**Added:**
-
-* Use `PyCQA/docformatter` to format python docstring.
-
 **Changed:**
 
+* Use PyCQA/docformatter to format python docstring.
 * Updated pre-commit hook versions in pre-commit-config file.
-* Use the non-forked version of ``docformatter`` in pre-commit hooks.
-* Changed `pre-commit` workflow from docformatter to ruff
 
-**Fixed:**
+**Fixed**:
 
-* Fixed running single `docs-on-dispatch` workflow on Github Action
-* fix post_gen hook: fall back to template default for unknown workflow_input keys
+* Fixed running single docs-on-dispatch workflow on Github Action
+* Fix post_gen hook: fall back to template default for unknown workflow_input keys
 
 
 0.3.0
