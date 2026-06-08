@@ -196,11 +196,12 @@ Initiate a new project with ``scikit-package``
 
           Did you encounter an error with the above command? You may need to install Git on your computer. For Windows, we recommend installing Git for Windows (https://gitforwindows.org/) and for macOS/Linux, install Git from https://git-scm.com/downloads. Once Git is installed, try the command again after restarting your terminal.
 
-#. Enter ``data-analysis-project`` for the ``project-name``:
+#. Enter ``data-analysis-project`` for the ``workspace_name`` and ``proj-one`` for ``subproject_name``:
 
      .. code-block:: bash
 
-          [1/1] workspace_name (workspace-folder): data-analysis-projects
+          [1/2] workspace_name (workspace-folder): data-analysis-projects
+          [2/2] subproject_name (my-project): proj-one
 
 #. ``cd`` into the new directory:
 

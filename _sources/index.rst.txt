@@ -5,6 +5,10 @@ Welcome to the ``scikit-package`` official documentation!
 
 ``scikit-package`` offers tools and practices for the scientific community to make better and more reusable Scientific Python packages and applications.
 
+.. note::
+
+    These instructions reference third-party web interfaces (PyPI, conda-forge, GitHub, Codecov, Read the Docs, pre-commit.ci, and others) that are written at the time of writing and may change over time. If a screenshot or click-path no longer matches what you see, please open a `GitHub issue <https://github.com/scikit-package/scikit-package/issues>`_.
+
 How to cite ``scikit-package``
 ------------------------------
 
@@ -63,7 +67,11 @@ The full list of packages is as follows:
 - `cifkit <https://github.com/bobleesj/cifkit>`_
 - `SAF <https://github.com/bobleesj/structure-analyzer-featurizer>`_
 - `CAF <https://github.com/bobleesj/composition-analyzer-featurizer>`_
-- `bobleesej.utils <https://github.com/bobleesj/bobleesj.utils>`_
+- `High-throughput-LMTO <https://github.com/balaranjan/High-throughput-LMTO>`_
+- `cif-site-analyzer <https://github.com/OliynykLab/cif-site-analyzer>`_
+- `wdfkit <https://github.com/dshirya/wdfkit>`_
+- `XANES-diffusion-visualize <https://github.com/tinatn29/XANES-diffusion-visualize>`_
+- `pytentiostat <https://github.com/juami/pytentiostat>`_
 - ...
 
 How do I get started?
@@ -117,7 +125,7 @@ Do you have any new features? Please make an issue via the GitHub issue tracker 
 Authors
 =======
 
-- Sangjoon Lee (sl5400@columbia.edu)
+- Sangjoon Lee (bobleesj@stanford.edu)
 - Caden Myers (cjm2304@columbia.edu)
 - Andrew Yang (ay2546@columbia.edu)
 - Tieqiong Zhang (tz2600@columbia.edu)

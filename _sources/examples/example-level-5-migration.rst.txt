@@ -273,6 +273,7 @@ all his code, resulting in the directory structure,
             |-- AUTHORS.rst
             |-- CHANGELOG.rst
             |-- CODE-OF-CONDUCT.rst
+            |-- cookiecutter.json
             |-- LICENSE.rst
             |-- MANIFEST.in
             |-- README.rst
@@ -284,6 +285,7 @@ all his code, resulting in the directory structure,
                 |-- flying_circus
                     |-- __init__.py
                     |-- surreal.py
+                    |-- flying_circus_app.py
             |-- tests
                 |-- test_surreal.py
 

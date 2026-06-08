@@ -15,13 +15,13 @@
 
     .. code-block:: bash
 
-        open _build/html/index.html
+        open build/html/index.html
 
 #. Here is a shortcut if you want to use it from the root directory of the project:
 
     .. code-block:: bash
 
-        cd docs && make html && open _build/html/index.html && cd ..
+        cd docs && make html && open build/html/index.html && cd ..
 
     .. seealso::
 
@@ -29,7 +29,7 @@
 
         .. code-block:: bash
 
-            alias doc='cd docs && make html && open _build/html/index.html && cd ..'
+            alias doc='cd docs && make html && open build/html/index.html && cd ..'
 
         Apply the changes to your current terminal session:
 

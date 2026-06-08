@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Example 2. Create your first Level 5 public package &mdash; scikit-package 0.3.0 documentation</title>
+  <title>Example 2. Create your first Level 5 public package &mdash; scikit-package 0.3.1rc0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../_static/scikit-package-logo-blank.png"/>
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=f129cdf0"></script>
+      <script src="../_static/documentation_options.js?v=c241f742"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -135,9 +135,8 @@ $<span class="w"> </span>package<span class="w"> </span>create<span class="w"> <
 <span class="o">[</span><span class="m">3</span>/16<span class="o">]</span><span class="w"> </span>maintainer_github_username<span class="w"> </span><span class="o">(</span>sbillinge<span class="o">)</span>:<span class="w"> </span>sirlancelotbrave
 <span class="o">[</span><span class="m">4</span>/16<span class="o">]</span><span class="w"> </span>contributors<span class="w"> </span><span class="o">(</span>Sangjoon<span class="w"> </span>Lee,<span class="w"> </span>Simon<span class="w"> </span>Billinge,<span class="w"> </span>Billinge<span class="w"> </span>Group<span class="w"> </span>members<span class="o">)</span>:
 <span class="w">    </span>Sir<span class="w"> </span>Lancelot,<span class="w"> </span>Sir<span class="w"> </span>Robin,<span class="w"> </span>King<span class="w"> </span>Arthur
-<span class="o">[</span><span class="m">5</span>/16<span class="o">]</span><span class="w"> </span>license_holders<span class="w"> </span><span class="o">(</span>The<span class="w"> </span>Trustees<span class="w"> </span>of<span class="w"> </span>Columbia<span class="w"> </span>University<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>City<span class="w"> </span>of<span class="w"> </span>New
-<span class="w">    </span>York<span class="o">)</span>:<span class="w"> </span>The<span class="w"> </span>Knights<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Round<span class="w"> </span>Table
-<span class="o">[</span><span class="m">6</span>/16<span class="o">]</span><span class="w"> </span>project_name<span class="w"> </span><span class="o">(</span>diffpy.my-project<span class="o">)</span>:<span class="w"> </span>montypy
+<span class="o">[</span><span class="m">5</span>/16<span class="o">]</span><span class="w"> </span>project_name<span class="w"> </span><span class="o">(</span>diffpy.my-project<span class="o">)</span>:<span class="w"> </span>montypy
+<span class="o">[</span><span class="m">6</span>/16<span class="o">]</span><span class="w"> </span>license_holders<span class="w"> </span><span class="o">(</span>montypy<span class="w"> </span>contributors<span class="o">)</span>:<span class="w"> </span>The<span class="w"> </span>Knights<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Round<span class="w"> </span>Table
 <span class="o">[</span><span class="m">7</span>/16<span class="o">]</span><span class="w"> </span>github_username_or_orgname<span class="w"> </span><span class="o">(</span>diffpy<span class="o">)</span>:<span class="w"> </span>kot-roundtable
 <span class="o">[</span><span class="m">8</span>/16<span class="o">]</span><span class="w"> </span>github_repo_name<span class="w"> </span><span class="o">(</span>montypy<span class="o">)</span>:
 <span class="o">[</span><span class="m">9</span>/16<span class="o">]</span><span class="w"> </span>conda_pypi_package_dist_name<span class="w"> </span><span class="o">(</span>montypy<span class="o">)</span>:
@@ -185,6 +184,7 @@ Choose<span class="w"> </span>from<span class="w"> </span><span class="o">[</spa
 <span class="w">        </span><span class="p">|</span>--<span class="w"> </span>AUTHORS.rst
 <span class="w">        </span><span class="p">|</span>--<span class="w"> </span>CHANGELOG.rst
 <span class="w">        </span><span class="p">|</span>--<span class="w"> </span>CODE-OF-CONDUCT.rst
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>cookiecutter.json
 <span class="w">        </span><span class="p">|</span>--<span class="w"> </span>LICENSE.rst
 <span class="w">        </span><span class="p">|</span>--<span class="w"> </span>MANIFEST.in
 <span class="w">        </span><span class="p">|</span>--<span class="w"> </span>README.rst
@@ -220,6 +220,7 @@ Choose<span class="w"> </span>from<span class="w"> </span><span class="o">[</spa
 <span class="w">                </span><span class="p">|</span>--<span class="w"> </span>__init__.py
 <span class="w">                </span><span class="p">|</span>--<span class="w"> </span>functions.py
 <span class="w">                </span><span class="p">|</span>--<span class="w"> </span>version.py
+<span class="w">                </span><span class="p">|</span>--<span class="w"> </span>montypy_app.py
 <span class="w">        </span><span class="p">|</span>--<span class="w"> </span>tests
 <span class="w">            </span><span class="p">|</span>--<span class="w"> </span>conftest.py
 <span class="w">            </span><span class="p">|</span>--<span class="w"> </span>test_functions.py
@@ -380,7 +381,7 @@ $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, scikit-package contributors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

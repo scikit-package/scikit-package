@@ -43,8 +43,8 @@ For Windows Users
 #. Click :guilabel:`OK` to save the new environment variable.
 #. Done!
 
-For Linux Users
-~~~~~~~~~~~~~~~
+For Linux and macOS Users
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Open the terminal profile, e.g., ``.bashrc``, ``.zshrc``, etc.
 #. Add the following line to the end of the file:

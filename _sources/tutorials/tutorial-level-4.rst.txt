@@ -91,19 +91,23 @@ Create a new project with ``scikit-package``
     .. code-block:: text
 
         my-package/
+        ├── CODE-OF-CONDUCT.rst
+        ├── cookiecutter.json
         ├── LICENSE.rst
-        ├── README.md
         ├── pyproject.toml
+        ├── README.md
         ├── requirements
         │   ├── conda.txt
         │   ├── pip.txt
         │   └── tests.txt
         ├── src
         │   └── my_package
-        │   ├── __init__.py
-        │   └── functions.py
+        │       ├── __init__.py
+        │       └── functions.py
         └── tests
             └── test_functions.py
+
+
 
 #. Done! Let's now install your package in your local computer where the code can be used in any Python script or Jupyter notebook.
 

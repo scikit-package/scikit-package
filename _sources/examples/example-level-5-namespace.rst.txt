@@ -26,9 +26,8 @@ following responses to the scikit-package prompts:
     [3/16] maintainer_github_username (sbillinge): sirlancelotbrave
     [4/16] contributors (Sangjoon Lee, Simon Billinge, Billinge Group members):
         Sir Lancelot, King Arthur,
-    [5/16] license_holders (The Trustees of Columbia University in the City of New
-        York): The Knights of the Round Table
-    [6/16] project_name (diffpy.my-project): montypy.grail
+    [5/16] project_name (diffpy.my-project): montypy.grail
+    [6/16] license_holders (montypy.grail contributors): The Knights of the Round Table
     [7/16] github_username_or_orgname (diffpy): kot-roundtable
     [8/16] github_repo_name (montypy.grail):
     [9/16] conda_pypi_package_dist_name (montypy.grail):
@@ -50,9 +49,8 @@ key for ``github_repo_name``, ``conda_pypi_package_dist_name``, and ``package_di
     [3/16] maintainer_github_username (sbillinge): sirlancelotbrave
     [4/16] contributors (Sangjoon Lee, Simon Billinge, Billinge Group members):
     Sir Lancelot, Sir Robin, King Arthur,→
-    [5/16] license_holders (The Trustees of Columbia University in the City of New
-    York): The Knights of the Round Table,→
-    [6/16] project_name (diffpy.my-project): montypy.meaning
+    [5/16] project_name (diffpy.my-project): montypy.meaning
+    [6/16] license_holders (montypy.meaning contributors): The Knights of the Round Table,→
     [7/16] github_username_or_orgname (diffpy): kot-roundtable
     [8/16] github_repo_name (montypy.meaning):
     [9/16] conda_pypi_package_dist_name (montypy.meaning):
