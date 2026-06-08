@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Release notes &mdash; scikit-package 0.3.1rc0 documentation</title>
+  <title>Release notes &mdash; scikit-package 0.3.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="_static/scikit-package-logo-blank.png"/>
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=c241f742"></script>
+      <script src="_static/documentation_options.js?v=5869b996"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -89,13 +89,14 @@
 <p class="caption" role="heading"><span class="caption-text">REFERENCE</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">0.3.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">0.2.1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">0.2.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">0.1.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">0.0.3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">0.0.2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">0.0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">0.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">0.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">0.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">0.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">0.0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">0.0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">0.0.1</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -128,7 +129,25 @@
   <section id="release-notes">
 <span id="index-0"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading"></a></h1>
 <section id="id1">
-<h2>0.3.0<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<h2>0.3.1<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p><strong>Added:</strong></p>
+<ul class="simple">
+<li><p>Use <cite>PyCQA/docformatter</cite> to format python docstring.</p></li>
+</ul>
+<p><strong>Changed:</strong></p>
+<ul class="simple">
+<li><p>Updated pre-commit hook versions in pre-commit-config file.</p></li>
+<li><p>Use the non-forked version of <code class="docutils literal notranslate"><span class="pre">docformatter</span></code> in pre-commit hooks.</p></li>
+<li><p>Changed <cite>pre-commit</cite> workflow from docformatter to ruff</p></li>
+</ul>
+<p><strong>Fixed:</strong></p>
+<ul class="simple">
+<li><p>Fixed running single <cite>docs-on-dispatch</cite> workflow on Github Action</p></li>
+<li><p>fix post_gen hook: fall back to template default for unknown workflow_input keys</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>0.3.0<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <p><strong>Added:</strong></p>
 <ul class="simple">
 <li><p>Enable configuring Python versions either in pyproject.toml or GitHub workflow .yml files.</p></li>
@@ -157,16 +176,16 @@
 <li><p>Remove Python 3.11.</p></li>
 </ul>
 </section>
-<section id="id2">
-<h2>0.2.1<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id3">
+<h2>0.2.1<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p><strong>Fixed:</strong></p>
 <ul class="simple">
 <li><p>Remove the directory <code class="docutils literal notranslate"><span class="pre">news/</span></code> dependency to pass the tests.</p></li>
 <li><p>handle package names containing dashes during <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">update</span></code>.</p></li>
 </ul>
 </section>
-<section id="id3">
-<h2>0.2.0<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id4">
+<h2>0.2.0<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <p><strong>Added:</strong></p>
 <ul class="simple">
 <li><p>Let <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">create</span> <span class="pre">&lt;subcommand&gt;</span> <span class="pre">-h</span></code> display help text.</p></li>
@@ -201,8 +220,8 @@
 <li><p>Remove <code class="docutils literal notranslate"><span class="pre">$</span></code> from codeblock in documentation.</p></li>
 </ul>
 </section>
-<section id="id4">
-<h2>0.1.0<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="id5">
+<h2>0.1.0<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <p><strong>Added:</strong></p>
 <ul class="simple">
 <li><p>Describe the difference between public and private functions in level 2 of the documentation.</p></li>
@@ -282,8 +301,8 @@
 <li><p>Remove environment.yml in the cookiecutter and skpkg repos since the centralized scripts no longer require it as the conda-forge channel is set in those scripts by default.</p></li>
 </ul>
 </section>
-<section id="id5">
-<h2>0.0.3<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<section id="id6">
+<h2>0.0.3<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
 <p><strong>Added:</strong></p>
 <ul class="simple">
 <li><p>Added new logo</p></li>
@@ -291,15 +310,15 @@
 <li><p>Add logo for Github social preview.</p></li>
 </ul>
 </section>
-<section id="id6">
-<h2>0.0.2<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<section id="id7">
+<h2>0.0.2<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
 <p><strong>Changed:</strong></p>
 <ul class="simple">
 <li><p>Provide separate documentation instructions for starting a new project vs. migrating an existing package.</p></li>
 </ul>
 </section>
-<section id="id7">
-<h2>0.0.1<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<section id="id8">
+<h2>0.0.1<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
 <p><strong>Added:</strong></p>
 <ul class="simple">
 <li><p>Add full description of <code class="docutils literal notranslate"><span class="pre">scikit-package</span></code> in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p></li>
