@@ -600,11 +600,11 @@ After this step, the reusable workflow then runs the ``pytest`` command. To see 
 I have a private repo and don't have a Codecov paid plan.  Can I modify the CI workflows for this situation?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, the workflows in ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml`` will have a section that uploads the code coverage to Codecov, and CI will fail if unsuccessful. Codecov is available for free on public repositories but requires a paid plan to run on private repositories. In the latter case, if you would like to turn off Codecov, we offer an alternative CI workflow that runs the tests without it.
+By default, the workflows in ``tests-on-pr.yml`` and ``matrix-and-codecov.yml`` will have a section that uploads the code coverage to Codecov, and CI will fail if unsuccessful. Codecov is available for free on public repositories but requires a paid plan to run on private repositories. In the latter case, if you would like to turn off Codecov, we offer an alternative CI workflow that runs the tests without it.
 
-In addition to being able to customize additional commands to be run in the ``run:`` section (see :ref:`faq-github-actions-extra-cli-commands` above), you can also change the workflows that you want your repository to run. By default, ``scikit-package`` will run the ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml`` workflows in the ``scikit-package/release-scripts`` repository. It is possible to override this default and run a different workflow for your CI if it is available in ``scikit-package/release-scripts``. For example, for the situation above we offer we offer ``tests-on-pr-no-codecov.yml`` and ``matrix-no-codecov-on-merge-to-main.yml`` which run the tests without Codecov.
+In addition to being able to customize additional commands to be run in the ``run:`` section (see :ref:`faq-github-actions-extra-cli-commands` above), you can also change the workflows that you want your repository to run. By default, ``scikit-package`` will run the ``tests-on-pr.yml`` and ``matrix-and-codecov.yml`` workflows in the ``scikit-package/release-scripts`` repository. It is possible to override this default and run a different workflow for your CI if it is available in ``scikit-package/release-scripts``. For example, for the situation above we offer we offer ``tests-on-pr-no-codecov.yml`` and ``matrix-no-codecov-on-merge-to-main.yml`` which run the tests without Codecov.
 
-To do so, you can modify the script that your workflow files are calling in the ``uses:`` section. Normally, you'd be calling the following in ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml``, respectively.
+To do so, you can modify the script that your workflow files are calling in the ``uses:`` section. Normally, you'd be calling the following in ``tests-on-pr.yml`` and ``matrix-and-codecov.yml``, respectively.
 
 .. code-block:: yaml
 
@@ -614,7 +614,7 @@ To do so, you can modify the script that your workflow files are calling in the 
 
   uses: scikit-package/release-scripts/.github/workflows/_matrix-and-codecov-on-merge-to-main.yml@v0
 
-Instead, call the following in ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml``, respectively.
+Instead, call the following in ``tests-on-pr.yml`` and ``matrix-and-codecov.yml``, respectively.
 
 .. code-block:: yaml
 
