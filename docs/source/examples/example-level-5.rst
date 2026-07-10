@@ -62,7 +62,7 @@ Given the answers to the questions in the example, **Sir Lancelot** sees the fol
                 |-- workflows
                     |-- build-wheel-release-upload.yml
                     |-- check-news-item.yml
-                    |-- matrix-and-codecov-on-merge-to-main.yml
+                    |-- matrix-and-codecov.yml
                     |-- publish-docs-on-release.yml
                     |-- tests-on-pr.yml
             |-- .gitignore

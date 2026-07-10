@@ -14,7 +14,7 @@ How to cite ``scikit-package``
 
 If you use ``scikit-package`` to standardize your Python software, we would like you to cite scikit-package:
 
-  S. Lee and C. Myers and A. Yang and T. Zhang and S. J. L. Billinge, scikit-package - software packaging standards and roadmap for sharing reproducible scientific software (https://arxiv.org/abs/2507.03328)
+  S. Lee, C. Myers, A. Yang, T. Zhang, Y. Xiao and S. J. L. Billinge, scikit-package: software packaging standards and roadmap for sharing reproducible scientific software, *Digital Discovery*, 2026. https://doi.org/10.1039/d6dd00121a
 
 How does ``scikit-package`` benefit scientists?
 -----------------------------------------------
