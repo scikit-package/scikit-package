@@ -519,7 +519,7 @@ In Level 5, what are the workflows running in each pull request?
 
 #. The second workflow uses ``pre-commit CI``. This workflow checks the incoming code in the PR using ``pre-commit`` hooks and automatically applies fixes when possible. If any fixes are made, an additional commit is created by the ``pre-commit`` app. However, some hooks, such as spell checkers, may still fail even after auto-fixes. In such cases, the CI fails. The user first needs to pull the additional commit made by the ``pre-commit CI``, fix the error manually, and then push a commit to the working branch.
 
-#. The third workflow uses the ``Codecov`` app, which adds a comment to the PR summarizing the changes in code coverage as part of the ``.github/workflows/tests-on-pr.yml`` workflow. This workflow fails if no tests are provided for the new code or if the test coverage percentage decreases below the acceptable threshold. The threshold can be adjusted in the ``.codecov.yml`` file located in the project root directory. If you have a private repository and Codecov cannot be run, refer to :ref:`faq-private-repo-no-codecov`.
+#. Optionally, if you chose ``use_codecov: Yes`` at package create time, the PR test workflow can upload coverage to the ``Codecov`` app, which may comment on the PR with coverage changes. That path fails if coverage drops below the threshold in ``.codecov.yml``. Codecov is **off by default**; see :ref:`faq-private-repo-no-codecov`.
 
 #. The fourth workflow checks for a news file in the PR using ``.github/workflows/check-news-item.yml``. If no news item is included for the proposed changes, this workflow fails and leaves a comment prompting the contributor to submit a new PR with the appropriate news file. Please refer to the best practices section on :ref:`news items <news-item-practice>`.
 
@@ -597,12 +597,40 @@ After this step, the reusable workflow then runs the ``pytest`` command. To see 
 
 .. _faq-private-repo-no-codecov:
 
-I have a private repo and don't have a Codecov paid plan.  Can I modify the CI workflows for this situation?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+How do I turn Codecov on or off for a package?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, the workflows in ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml`` will have a section that uploads the code coverage to Codecov, and CI will fail if unsuccessful. Codecov is available for free on public repositories but requires a paid plan to run on private repositories. In the latter case, if you would like to turn off Codecov, we offer an alternative CI workflow that runs the tests without it.
+When you run ``package create`` (or the Level 5 cookiecutter), the
+``use_codecov`` prompt controls whether CI uploads coverage to Codecov.
 
-In addition to being able to customize additional commands to be run in the ``run:`` section (see :ref:`faq-github-actions-extra-cli-commands` above), you can also change the workflows that you want your repository to run. By default, ``scikit-package`` will run the ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml`` workflows in the ``scikit-package/release-scripts`` repository. It is possible to override this default and run a different workflow for your CI if it is available in ``scikit-package/release-scripts``. For example, for the situation above we offer we offer ``tests-on-pr-no-codecov.yml`` and ``matrix-no-codecov-on-merge-to-main.yml`` which run the tests without Codecov.
+- **No (default):** PR and matrix workflows call the
+  ``_tests-on-pr-no-codecov.yml`` and
+  ``_matrix-no-codecov-on-merge-to-main.yml`` reusable workflows. No
+  ``CODECOV_TOKEN`` secret is required, and ``.codecov.yml`` is not kept
+  in the new project.
+- **Yes:** CI uses the Codecov upload path
+  (``_tests-on-pr.yml`` / ``_matrix-and-codecov-on-merge-to-main.yml``)
+  and expects a ``CODECOV_TOKEN`` repository or org secret. See
+  :ref:`codecov-token-setup` for how to obtain the token.
+
+If you already generated a package with Codecov enabled and want to
+disable it (for example on a private repo without a Codecov paid plan,
+or simply because you prefer not to use Codecov), switch the reusable
+workflows manually as follows.
+
+When Codecov is enabled, the workflows in ``tests-on-pr.yml`` and
+``matrix-and-codecov.yml`` upload coverage, and CI fails if that upload
+is unsuccessful. Codecov is free on public repositories but needs a paid
+plan on private repositories.
+
+You can also change the workflows that your repository runs. When
+``use_codecov`` is No (the default for new packages), ``scikit-package``
+points at the no-Codecov reusable workflows in
+``scikit-package/release-scripts``. When Codecov is enabled, it uses
+``_tests-on-pr.yml`` and ``_matrix-and-codecov-on-merge-to-main.yml``.
+To switch an existing repo off Codecov, use
+``_tests-on-pr-no-codecov.yml`` and
+``_matrix-no-codecov-on-merge-to-main.yml`` as shown below.
 
 To do so, you can modify the script that your workflow files are calling in the ``uses:`` section. Normally, you'd be calling the following in ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml``, respectively.
 

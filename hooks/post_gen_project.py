@@ -264,6 +264,54 @@ def update_workflow():
         print(f"Error: {str(e)}")
 
 
+def configure_codecov():
+    """Enable or disable Codecov based on the use_codecov cookiecutter prompt.
+
+    Default is No: point PR/matrix CI at the no-codecov release-scripts
+    workflows, drop CODECOV_TOKEN secrets, and remove .codecov.yml plus
+    the optional codecov test dependency. Choose Yes at create time to
+    keep the Codecov upload path (and CODECOV_TOKEN secret requirement).
+    """
+    use_codecov = "{{ cookiecutter.use_codecov }}" == "Yes"
+    if use_codecov:
+        return
+
+    workflows_dir = ROOT / ".github" / "workflows"
+    replacements = {
+        "tests-on-pr.yml": (
+            "workflows/_tests-on-pr.yml@",
+            "workflows/_tests-on-pr-no-codecov.yml@",
+        ),
+        "matrix-and-codecov.yml": (
+            "workflows/_matrix-and-codecov-on-merge-to-main.yml@",
+            "workflows/_matrix-no-codecov-on-merge-to-main.yml@",
+        ),
+    }
+    secrets_block = re.compile(
+        r"\n    secrets:\n      CODECOV_TOKEN: \$\{\{ secrets\.CODECOV_TOKEN \}\}\n"
+    )
+
+    for filename, (old, new) in replacements.items():
+        path = workflows_dir / filename
+        if not path.exists():
+            continue
+        content = path.read_text(encoding="utf-8")
+        content = content.replace(old, new)
+        content = secrets_block.sub("\n", content)
+        path.write_text(content, encoding="utf-8")
+
+    codecov_yml = ROOT / ".codecov.yml"
+    if codecov_yml.exists():
+        codecov_yml.unlink()
+
+    tests_req = ROOT / "requirements" / "tests.txt"
+    if tests_req.exists():
+        lines = tests_req.read_text(encoding="utf-8").splitlines()
+        kept = [line for line in lines if line.strip() != "codecov"]
+        if kept != lines:
+            tests_req.write_text("\n".join(kept) + ("\n" if kept else ""), encoding="utf-8")
+
+
 def main():
     """Execute when user runs cookiecutter."""
     if "." in "{{ cookiecutter.project_name }}":
@@ -271,6 +319,7 @@ def main():
     if "{{ cookiecutter.project_needs_c_code_compiled }}" == "Yes":
         wrapper_setup()
     update_workflow()
+    configure_codecov()
     print(
         f"""
     Congratulations! A new Python project is created!

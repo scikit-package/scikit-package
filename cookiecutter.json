@@ -17,6 +17,7 @@
   "maximum_supported_python_version": "3.14",
   "project_needs_c_code_compiled": ["No", "Yes"],
   "project_has_gui_tests": ["No", "Yes"],
+  "use_codecov": ["No", "Yes"],
   "_is_skpkg_update": "No",
   "_copy_without_render": ["*.html", "*.js", ".github/*"],
   "_extensions": ["hooks.local_extensions.people_contact_info_Extension"]
