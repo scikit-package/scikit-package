@@ -15,8 +15,8 @@
 .. |Black| image:: https://img.shields.io/badge/code_style-black-black
         :target: https://github.com/psf/black
 
-.. |CI| image:: https://github.com/scikit-package/scikit-package/actions/workflows/matrix-and-codecov-on-merge-to-main.yml/badge.svg
-        :target: https://github.com/scikit-package/scikit-package/actions/workflows/matrix-and-codecov-on-merge-to-main.yml
+.. |CI| image:: https://github.com/scikit-package/scikit-package/actions/workflows/matrix-and-codecov.yml/badge.svg
+        :target: https://github.com/scikit-package/scikit-package/actions/workflows/matrix-and-codecov.yml
 
 .. |Codecov| image:: https://codecov.io/gh/scikit-package/scikit-package/branch/main/graph/badge.svg
         :target: https://codecov.io/gh/scikit-package/scikit-package
@@ -119,7 +119,7 @@ How to cite ``scikit-package``
 
 If you use ``scikit-package`` to standardize your Python software, we would like you to cite scikit-package:
 
-  S. Lee and C. Myers and A. Yang and T. Zhang and S. J. L. Billinge, scikit-package - software packaging standards and roadmap for sharing reproducible scientific software (https://arxiv.org/abs/2507.03328)
+  S. Lee, C. Myers, A. Yang, T. Zhang, Y. Xiao and S. J. L. Billinge, scikit-package: software packaging standards and roadmap for sharing reproducible scientific software, *Digital Discovery*, 2026. https://doi.org/10.1039/d6dd00121a
 
 Support and Contribute
 ----------------------

@@ -496,7 +496,7 @@ for GitHub CI workflows by specifying them directly in the workflow files:
           headless: false
           python_version: 3.12
 
-3. Add ``python_versions`` in ``.github/workflows/_matrix-and-codecov-on-merge-to-main.yml``:
+3. Add ``python_versions`` in ``.github/workflows/matrix-and-codecov.yml``:
 
 .. code-block:: yaml
 
@@ -526,7 +526,7 @@ In Level 5, what are the workflows running in each pull request?
 In Level 5, I see that another workflow is running once a PR is merged to ``main``. What is it?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The workflow ``.github/workflows/matrix-and-codecov-on-merge-to-main.yml`` is triggered. The goal is to ensure the latest code is tested not only on Linux but also across multiple operating systems and Python versions. This workflow runs tests on macOS (both Apple Silicon and Intel chips), Linux, and Windows and against three different Python versions, including the latest configured version. To modify the Python versions used in the workflows, refer to :ref:`faq-github-actions-python-versions`.
+The workflow ``.github/workflows/matrix-and-codecov.yml`` is triggered. The goal is to ensure the latest code is tested not only on Linux but also across multiple operating systems and Python versions. This workflow runs tests on macOS (both Apple Silicon and Intel chips), Linux, and Windows and against three different Python versions, including the latest configured version. To modify the Python versions used in the workflows, refer to :ref:`faq-github-actions-python-versions`.
 
 .. note:: These workflow files call scripts located at https://github.com/scikit-package/release-scripts, which are centrally managed by the ``scikit-package`` development team. This centralized approach ensures that individual packages do not need to be updated separately when adding support for new Python versions or operating systems.
 
@@ -572,7 +572,7 @@ To do so, you can enter the ``run:`` command under the ``with:`` section in the 
       echo "Done installing <package-name>"
     ...
 
-- In Level 5, the relevant workflow files are ``.github/workflows/matrix-and-codecov-on-merge-to-main.yml`` and ``.github/workflows/tests-on-pr.yml``.
+- In Level 5, the relevant workflow files are ``.github/workflows/matrix-and-codecov.yml`` and ``.github/workflows/tests-on-pr.yml``.
 - In Level 4, the relevant workflow file is ``.github/workflows/_tests-on-pr-no-codecov-no-headless.yml``.
 
 Here we provide a bit more context on how the ``run:`` commands are used. The extra CLI commands are inserted into the reusable GitHub workflow under the ``Run extra user-defined CLI commands`` section of the reusable workflow file:
@@ -600,11 +600,11 @@ After this step, the reusable workflow then runs the ``pytest`` command. To see 
 I have a private repo and don't have a Codecov paid plan.  Can I modify the CI workflows for this situation?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, the workflows in ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml`` will have a section that uploads the code coverage to Codecov, and CI will fail if unsuccessful. Codecov is available for free on public repositories but requires a paid plan to run on private repositories. In the latter case, if you would like to turn off Codecov, we offer an alternative CI workflow that runs the tests without it.
+By default, the workflows in ``tests-on-pr.yml`` and ``matrix-and-codecov.yml`` will have a section that uploads the code coverage to Codecov, and CI will fail if unsuccessful. Codecov is available for free on public repositories but requires a paid plan to run on private repositories. In the latter case, if you would like to turn off Codecov, we offer an alternative CI workflow that runs the tests without it.
 
-In addition to being able to customize additional commands to be run in the ``run:`` section (see :ref:`faq-github-actions-extra-cli-commands` above), you can also change the workflows that you want your repository to run. By default, ``scikit-package`` will run the ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml`` workflows in the ``scikit-package/release-scripts`` repository. It is possible to override this default and run a different workflow for your CI if it is available in ``scikit-package/release-scripts``. For example, for the situation above we offer we offer ``tests-on-pr-no-codecov.yml`` and ``matrix-no-codecov-on-merge-to-main.yml`` which run the tests without Codecov.
+In addition to being able to customize additional commands to be run in the ``run:`` section (see :ref:`faq-github-actions-extra-cli-commands` above), you can also change the workflows that you want your repository to run. By default, ``scikit-package`` will run the ``tests-on-pr.yml`` and ``matrix-and-codecov.yml`` workflows in the ``scikit-package/release-scripts`` repository. It is possible to override this default and run a different workflow for your CI if it is available in ``scikit-package/release-scripts``. For example, for the situation above we offer we offer ``tests-on-pr-no-codecov.yml`` and ``matrix-no-codecov-on-merge-to-main.yml`` which run the tests without Codecov.
 
-To do so, you can modify the script that your workflow files are calling in the ``uses:`` section. Normally, you'd be calling the following in ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml``, respectively.
+To do so, you can modify the script that your workflow files are calling in the ``uses:`` section. Normally, you'd be calling the following in ``tests-on-pr.yml`` and ``matrix-and-codecov.yml``, respectively.
 
 .. code-block:: yaml
 
@@ -614,7 +614,7 @@ To do so, you can modify the script that your workflow files are calling in the 
 
   uses: scikit-package/release-scripts/.github/workflows/_matrix-and-codecov-on-merge-to-main.yml@v0
 
-Instead, call the following in ``tests-on-pr.yml`` and ``matrix-and-codecov-on-merge-to-main.yml``, respectively.
+Instead, call the following in ``tests-on-pr.yml`` and ``matrix-and-codecov.yml``, respectively.
 
 .. code-block:: yaml
 
