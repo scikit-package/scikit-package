@@ -52,7 +52,7 @@ exclude = []  # exclude packages matching these glob patterns (empty by default)
 namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
 
 [project.scripts]
-{{ cookiecutter.conda_pypi_package_dist_name|replace('.', '-') }} = "{{ cookiecutter.project_name|replace(' ', '_')|replace('-', '_')|lower }}.app:main"
+{{ cookiecutter.conda_pypi_package_dist_name|replace('.', '-') }} = "{{ cookiecutter.package_dir_name }}.{{ cookiecutter.package_dir_name.split('.')[-1] }}_app:main"
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements/pip.txt"]}
