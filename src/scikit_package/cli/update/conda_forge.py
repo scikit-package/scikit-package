@@ -1,5 +1,5 @@
-import os
 import subprocess
+from pathlib import Path
 
 import click
 
@@ -10,17 +10,15 @@ from scikit_package.utils.shell import run
 
 def _update_meta_yaml(meta_file_path, new_version, new_sha256):
     """Update the meta.yaml file with the new version and SHA256."""
-    with open(meta_file_path, "r") as file:
-        lines = file.readlines()
-    with open(meta_file_path, "w") as file:
-        for line in lines:
-            if "{%- set version =" in line:
-                line = f'{{%- set version = "{new_version}" -%}}\n'
-            elif "{% set version =" in line:
-                line = f'{{% set version = "{new_version}" %}}\n'
-            elif "sha256:" in line:
-                line = f"  sha256: {new_sha256}\n"
-            file.write(line)
+    lines = io.read_file(meta_file_path)
+    for index, line in enumerate(lines):
+        if "{%- set version =" in line:
+            lines[index] = f'{{%- set version = "{new_version}" -%}}\n'
+        elif "{% set version =" in line:
+            lines[index] = f'{{% set version = "{new_version}" %}}\n'
+        elif "sha256:" in line:
+            lines[index] = f"  sha256: {new_sha256}\n"
+    io.write_file(meta_file_path, lines)
 
 
 def _check_remote_exists(cwd, pkg_name):
@@ -28,10 +26,7 @@ def _check_remote_exists(cwd, pkg_name):
     remotes = run("git remote", cwd=cwd, capture_output=True)
     feedstock_url = f"https://github.com/conda-forge/{pkg_name}-feedstock.git"
     if "upstream" not in remotes.stdout.split():
-        run(
-            f"git remote add upstream {feedstock_url}",
-            cwd=cwd,
-        )
+        run(f"git remote add upstream {feedstock_url}", cwd=cwd)
 
 
 def _check_branch_exists(cwd, branch_name):
@@ -66,10 +61,7 @@ def _run_commands(cwd, meta_file_path, version, SHA256, username, pkg_name):
         )
         return
     run(f"git push origin {version}", cwd=cwd)
-    run(
-        f"gh repo set-default conda-forge/{pkg_name}-feedstock",
-        cwd=cwd,
-    )
+    run(f"gh repo set-default conda-forge/{pkg_name}-feedstock", cwd=cwd)
     pr_command = (
         f"gh pr create --base main --head {username}:{version} "
         f"--title 'Release {version}' "
@@ -79,17 +71,15 @@ def _run_commands(cwd, meta_file_path, version, SHA256, username, pkg_name):
 
 def _list_feedstock(feedstock_path):
     """List all feedstocks in the feedstock directory."""
-    feedstock_path = io.get_config_value("feedstock_path")
     feedstocks = [
-        f
-        for f in os.listdir(feedstock_path)
-        if f.endswith("-feedstock")
-        and os.path.isdir(os.path.join(feedstock_path, f))
+        path.name
+        for path in Path(feedstock_path).iterdir()
+        if path.is_dir() and path.name.endswith("-feedstock")
     ]
     if not feedstocks:
         raise ValueError(
             f"No feedstocks found in {feedstock_path}. "
-            "Please ensure you have feedstocks cloned in {feedstock_path}."
+            f"Please ensure you have feedstocks cloned in {feedstock_path}."
         )
     return feedstocks
 
@@ -107,7 +97,7 @@ def update_conda_forge():
     - Create a pull request to conda-forge/main.
     - Prompt the user to use the pull request template via the CLI.
     """
-    feedstock_path = io.get_config_value("feedstock_path")
+    feedstock_path = Path(io.get_config_value("feedstock_path"))
     feedstock_names = _list_feedstock(feedstock_path)
     print("Available feedstocks with the latest PyPI version/SHA256:")
     version_map = {}
@@ -115,14 +105,13 @@ def update_conda_forge():
         pkg_name = feedstock_name.replace("-feedstock", "")
         pkg_pypi_data = pypi.get_pypi_version_sha(pkg_name, count=1)
         pkg_version, pkg_sha256 = next(iter(pkg_pypi_data.items()))
+        feedstock_dir_path = feedstock_path / feedstock_name
         version_map[i] = {
             "package_name": pkg_name,
             "version": pkg_version,
             "sha256": pkg_sha256,
-            "feedstock_dir_path": os.path.join(feedstock_path, feedstock_name),
-            "meta_file_path": os.path.join(
-                feedstock_path, feedstock_name, "recipe", "meta.yaml"
-            ),
+            "feedstock_dir_path": feedstock_dir_path,
+            "meta_file_path": feedstock_dir_path / "recipe" / "meta.yaml",
         }
         print(f"  {i}. {pkg_name}, {pkg_version}, SHA256: {pkg_sha256[:5]}..")
     choice = click.prompt(
