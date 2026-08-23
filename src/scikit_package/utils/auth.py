@@ -8,15 +8,16 @@ def get_github_username():
             ["gh", "api", "user", "--jq", ".login"], text=True
         ).strip()
         return username
-    except subprocess.CalledProcessError:
+    except (subprocess.CalledProcessError, FileNotFoundError):
         raise RuntimeError(
             "Could not retrieve GitHub username using GitHub CLI. "
-            "Please make sure your local machine is authenticated with GitHub."
+            "Please make sure the GitHub CLI ('gh') is installed and that "
+            "your local machine is authenticated by running 'gh auth login'."
         )
 
 
-def get_current_branch():
+def get_current_branch(cwd=None):
     result = subprocess.check_output(
-        ["git", "rev-parse", "--abbrev-ref", "HEAD"], text=True
+        ["git", "rev-parse", "--abbrev-ref", "HEAD"], text=True, cwd=cwd
     )
     return result.strip()
