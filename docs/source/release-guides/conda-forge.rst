@@ -175,7 +175,7 @@ First, copy the ``SHA256`` value from `pypi.org <http://pypi.org>`_:
 
 #. If you haven't already, fork and clone the feedstock repository.
 
-#. Run ``git checkout main && git pull upstream main`` to sync with the main branch.
+#. Run ``git checkout main && git pull upstream main`` to sync with the default branch. A small number of feedstocks use a default branch other than ``main``. If you are unsure, run ``git remote show upstream`` and substitute the branch it reports as ``HEAD branch`` here and in the pull request below.
 
 #. Run ``git checkout -b <version-number>`` to create a new branch.
 
@@ -201,14 +201,84 @@ First, copy the ``SHA256`` value from `pypi.org <http://pypi.org>`_:
 
 .. _conda-forge-pr-automate:
 
-Can I automate the process of making a PR to the feedstock after PyPI/GitHub release?
-----------------------------------------------------------------------------------------
+Automate the feedstock PR for an existing feedstock
+----------------------------------------------------
 
-Yes! We provide ``package update conda-forge`` to streamline the conda-forge release process after a PyPI release.
+Once your package already has a feedstock, every new release repeats the same twelve mechanical steps from :ref:`conda-forge-feedstock-release`: look up the version and SHA256 on PyPI, sync your clone, branch, edit two lines of ``meta.yaml``, commit, push, and open a PR. The ``package update conda-forge`` command does exactly those steps for you.
 
-#. Open ``~/.skpkgrc``.
+What the command does, and what it deliberately leaves to you
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. If you have not already, add ``feedstock_path`` where your cloned ``<package-name>-feedstock`` directories are located.
+The guiding idea is that the command automates only the parts that are purely mechanical and have exactly one correct answer. Anything that needs a human decision is left to you, because a wrong automated guess in a feedstock is much more expensive to undo than doing the step by hand.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 50 50
+
+   * - The command does this for you
+     - You still do this yourself
+   * - Reads the latest stable version and its source distribution SHA256 from PyPI
+     - Releasing to PyPI in the first place
+   * - Rewrites ``version`` and ``sha256`` in ``recipe/meta.yaml``
+     - Any other change to the recipe, such as new or changed dependencies, a new license file, or a changed build script
+   * - Creates the release branch, commits, and pushes it to your fork
+     - Completing the checklists in the PR description
+   * - Opens the pull request against the feedstock's default branch
+     - Re-rendering the feedstock, if the recipe needs it
+   * - Restores your clone if any step fails
+     - Reviewing, requesting review, and merging
+
+.. important::
+
+    The command reads the version and SHA256 from **PyPI**, not from your source tree. Release to PyPI first, as described in :ref:`release-pypi-github`, and wait until the new version is visible at ``https://pypi.org/project/<package-name>``. If you run the command before that, it will find only the previous version and tell you there is nothing to commit.
+
+Before you start
+^^^^^^^^^^^^^^^^
+
+This is one-time setup. Once it is done, each subsequent release is a single command.
+
+#. Install the GitHub CLI and authenticate it. The command uses ``gh`` to look up your username and to open the pull request:
+
+    .. code-block:: bash
+
+        conda install -c conda-forge gh
+        gh auth login
+
+#. Choose one directory to hold all of your feedstock clones. Any location works; this guide uses ``~/dev/feedstocks``.
+
+#. For each package you maintain, fork ``https://github.com/conda-forge/<package-name>-feedstock`` on GitHub, then clone **your fork** into that directory:
+
+    .. code-block:: bash
+
+        cd ~/dev/feedstocks
+        git clone https://github.com/<your-github-username>/<package-name>-feedstock.git
+
+    The result should look like this, with one directory per feedstock and nothing else that ends in ``-feedstock``:
+
+    .. code-block:: text
+
+        ~/dev/feedstocks/
+        ├── diffpy.structure-feedstock/
+        │   └── recipe/meta.yaml
+        ├── diffpy.utils-feedstock/
+        │   └── recipe/meta.yaml
+        └── scikit-package-feedstock/
+            └── recipe/meta.yaml
+
+    .. note::
+
+        The directory name matters. The command strips ``-feedstock`` from the directory name and looks the remainder up on PyPI, so ``diffpy.utils-feedstock`` is looked up as ``diffpy.utils``. A feedstock whose name does not match its PyPI project name is reported and skipped rather than guessed at.
+
+#. Check the remotes in each clone. ``origin`` must be your fork, because that is where the release branch is pushed from:
+
+    .. code-block:: bash
+
+        cd ~/dev/feedstocks/<package-name>-feedstock
+        git remote -v
+
+    You do not need to add ``upstream`` by hand. If it is missing, the command adds it pointing at ``https://github.com/conda-forge/<package-name>-feedstock.git``. If it is already set but points somewhere else, the command stops and tells you how to correct it, rather than opening a pull request against the wrong repository.
+
+#. Open ``~/.skpkgrc`` and add ``feedstock_path``, pointing at the directory from Step 2:
 
     .. code-block:: json
 
@@ -228,13 +298,86 @@ Yes! We provide ``package update conda-forge`` to streamline the conda-forge rel
 
     .. note:: What are the ``<local-default-...>`` values under ``default_context``? You can override the existing default prompts when a new package is created. For more, please read :ref:`faq-set-default-prompt-value`.
 
-#. Save ``~/.skpkgrc``.
+#. Save ``~/.skpkgrc``. Setup is done.
 
-#. Type ``package update conda-forge``.
+Running the command
+^^^^^^^^^^^^^^^^^^^
 
-#. Enter the number corresponding to the package. It will create a PR from ``origin/<latest-version>`` to ``upstream/main``.
+#. Make sure the feedstock clone you are about to update has no uncommitted changes. The command creates the release branch from the feedstock's default branch, so it refuses to run on a dirty clone rather than risk discarding your work. If ``git status`` shows changes you want to keep, commit them or run ``git stash`` first.
 
-#. Done! Finish the rest of the steps provided in :ref:`conda-forge-feedstock-release`.
+#. Run the command from anywhere:
+
+    .. code-block:: bash
+
+        package update conda-forge
+
+#. The command lists each feedstock alongside the latest version and SHA256 it found on PyPI:
+
+    .. code-block:: text
+
+        Available feedstocks with the latest PyPI version/SHA256:
+          1. diffpy.structure, 3.2.0, SHA256: 4f1a2..
+          2. diffpy.utils, 3.6.0, SHA256: 9c0be..
+          3. scikit-package, 0.3.1, SHA256: 1b71d..
+        Enter the corresponding number of the feedstock you want to update:
+
+    Compare the version shown against the release you just made. If it is not the version you expect, PyPI has not caught up yet, or the release did not complete.
+
+#. Enter the number of the feedstock you want to update, and the command does the rest. When it finishes, it prints the URL of the new pull request.
+
+What the command does under the hood
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Knowing the sequence makes it much easier to pick up by hand if you ever need to. After you choose a feedstock, the command:
+
+#. Checks that the clone is clean, that ``upstream`` points at the right feedstock, and that a branch named after the new version does not already exist.
+
+#. Asks GitHub for the feedstock's default branch. Most feedstocks use ``main``, but not all do, so this is looked up rather than assumed.
+
+#. Checks out the default branch and pulls from ``upstream``.
+
+#. Creates a branch named after the new version, for example ``3.6.0``.
+
+#. Rewrites ``version`` and ``sha256`` in ``recipe/meta.yaml``. Only the SHA256 belonging to the top-level ``source`` section is touched.
+
+#. Commits with the message ``release: update to <version>``.
+
+#. Pushes the branch to ``origin``, your fork.
+
+#. Opens a pull request titled ``Release <version>`` against the feedstock's default branch.
+
+If something goes wrong
+^^^^^^^^^^^^^^^^^^^^^^^
+
+If any step fails, the command puts your clone back on the branch it started on and removes the release branch, so you can fix the problem and simply run it again. The one exception is a failure *after* the commit has been made, such as the push being rejected: in that case the branch is kept, because it holds real work, and the command tells you the branch name so you can push it and open the PR by hand.
+
+Each error explains both what went wrong and what to do about it. The most common ones are:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 45 55
+
+   * - Message
+     - What to do
+   * - ``The GitHub CLI ('gh') was not found on your PATH``
+     - Install it with ``conda install -c conda-forge gh`` and run ``gh auth login``. This is checked before anything is modified.
+   * - ``The feedstock clone in ... has uncommitted changes``
+     - Commit the changes, or set them aside with ``git stash`` in that clone, then run the command again.
+   * - ``The branch '<version>' already exists``
+     - A previous attempt left the branch behind. Delete it with ``git branch -D <version>`` once you are sure it holds nothing you need.
+   * - ``The 'upstream' remote in ... points to ...``
+     - The clone's ``upstream`` is not the conda-forge feedstock. Correct it with the ``git remote set-url`` command shown in the message.
+   * - ``There is nothing to commit``
+     - ``meta.yaml`` already has this version and SHA256. Either the release is already done, or PyPI has not yet published the new version.
+   * - ``Expected exactly one 'sha256:' entry under 'source:'``
+     - The recipe declares more than one source, so there is no single correct hash to update. Edit ``meta.yaml`` by hand and open the PR manually.
+   * - ``no source distribution on PyPI``
+     - The feedstock directory name does not match a PyPI project with a source distribution. Check the directory name, or update that feedstock by hand.
+
+After the pull request is created
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The command stops once the pull request exists. Continue from Step 13 of :ref:`conda-forge-feedstock-release`: complete the checklists in the PR description, wait for CI, tag the maintainers for review, and confirm the new version appears at ``https://anaconda.org/conda-forge/<package-name>`` once the PR is merged.
 
 
 

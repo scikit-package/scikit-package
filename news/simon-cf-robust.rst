@@ -4,6 +4,7 @@
 
 **Changed:**
 
+* Rewrote the ``package update conda-forge`` documentation to explain what the command automates and what it deliberately leaves to the user, the one-time fork/clone/remote setup it expects, the git operations it performs, its rollback behaviour, and a troubleshooting table of its error messages.
 * Use ``pathlib.Path`` instead of ``os.path`` for path handling in the conda-forge update command.
 * Renamed the internal ``cf`` module to ``conda_forge`` for readability. No change to the ``package update conda-forge`` CLI.
 
