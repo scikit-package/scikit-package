@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from scikit_package.cli.update.cf import _update_meta_yaml
+from scikit_package.cli.update.conda_forge import _update_meta_yaml
 
 
 def test_update_meta_yaml_realistic(tmpdir):

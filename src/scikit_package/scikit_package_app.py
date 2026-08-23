@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 from scikit_package.cli import add, create
 from scikit_package.cli.build import api_doc
 from scikit_package.cli.gh import broadcast_issue_to_repos
-from scikit_package.cli.update import cf
+from scikit_package.cli.update import conda_forge
 from scikit_package.version import __version__
 
 SKPKG_GITHUB_URL = "https://github.com/scikit-package/scikit-package"
@@ -173,7 +173,7 @@ def setup_subparsers(parser):
     parser_update = parser.add_parser(
         "update", help="Update an existing scikit-package standard package."
     )
-    parser_update.set_defaults(func=cf.update)
+    parser_update.set_defaults(func=conda_forge.update)
     subparsers_update = parser_update.add_subparsers(
         dest="subcommand", required=False
     )
@@ -183,7 +183,7 @@ def setup_subparsers(parser):
             "Update conda-forge recipe meta.yml file after release.",
         ),
     ]
-    _add_subcommands(subparsers_update, update_commands, cf.update)
+    _add_subcommands(subparsers_update, update_commands, conda_forge.update)
     # "build" subparser
     parser_build = parser.add_parser("build", help="Build API docs")
     subparsers_build = parser_build.add_subparsers(
