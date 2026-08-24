@@ -1,8 +1,35 @@
+import json
 import re
+from pathlib import Path
 
 import pytest
 
-from scikit_package.utils.io import copy_all_files
+from scikit_package.utils.io import copy_all_files, get_config_path_value
+
+
+@pytest.mark.parametrize(
+    "configured_value, expected_path",
+    [
+        # Test that a configured path is expanded to an absolute path
+        # C1: Leading ~, expect the home directory substituted
+        ("~/dev/feedstocks", Path.home() / "dev" / "feedstocks"),
+        # C2: Trailing separator, expect it dropped
+        ("~/dev/feedstocks/", Path.home() / "dev" / "feedstocks"),
+        # C3: Environment variable, expect its value substituted
+        ("$SKPKG_TEST_ROOT/feedstocks", Path("/tmp/skpkg") / "feedstocks"),
+        # C4: Already absolute, expect it unchanged
+        (str(Path.home() / "feedstocks"), Path.home() / "feedstocks"),
+    ],
+)
+def test_get_config_path_value(
+    configured_value, expected_path, tmp_path, monkeypatch
+):
+    monkeypatch.setenv("SKPKG_TEST_ROOT", "/tmp/skpkg")
+    config_path = tmp_path / ".skpkgrc"
+    config_path.write_text(json.dumps({"feedstock_path": configured_value}))
+    assert (
+        get_config_path_value("feedstock_path", config_path) == expected_path
+    )
 
 
 # C1: Source dir and target dir exist. Some files exist in target have the

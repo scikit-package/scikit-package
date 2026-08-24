@@ -137,6 +137,16 @@ def get_config_value(key, config_path=config_file):
     return value
 
 
+def get_config_path_value(key, config_path=config_file):
+    """Given the key, get the value from ~/.skpkgrc as an absolute path.
+
+    Environment variables and a leading ``~`` are expanded, so that a
+    value such as ``~/dev/feedstocks`` resolves on every platform.
+    """
+    value = get_config_value(key, config_path)
+    return Path(os.path.expandvars(value)).expanduser()
+
+
 def get_latest_release_tag(owner, repo):
     """Get the latest release tag from a GitHub repository."""
     url = f"https://api.github.com/repos/{owner}/{repo}/releases/latest"

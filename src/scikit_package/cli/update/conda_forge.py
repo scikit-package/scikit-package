@@ -293,7 +293,7 @@ def update_conda_forge():
     step fails, the clone is returned to the branch it started on.
     """
     _check_gh_installed()
-    feedstock_path = Path(io.get_config_value("feedstock_path"))
+    feedstock_path = io.get_config_path_value("feedstock_path")
     feedstock_names = _list_feedstock(feedstock_path)
     print("Available feedstocks with the latest PyPI version/SHA256:")
     version_map = _get_feedstock_choices(feedstock_path, feedstock_names)
