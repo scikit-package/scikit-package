@@ -1,4 +1,4 @@
-.. _package_create_manuscript::
+.. _package_create_manuscript:
 
 Create a configured LaTeX manuscript folder with ``scikit-package``
 ===================================================================

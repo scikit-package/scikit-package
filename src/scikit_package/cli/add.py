@@ -1,5 +1,5 @@
-import os
 import shutil
+from pathlib import Path
 
 from diffpy.utils._deprecator import generate_deprecation_docstring
 
@@ -20,8 +20,8 @@ NEWS_DIR = "news"
 
 def _check_news_file_exists(branch_name):
     """Ensure <branch-name>.rst file exists, otherwise create it."""
-    path = os.path.join(NEWS_DIR, f"{branch_name}.rst")
-    if not os.path.exists(path):
+    path = Path(NEWS_DIR) / f"{branch_name}.rst"
+    if not path.exists():
         shutil.copy(TEMPLATE_PATH, path)
     return path
 

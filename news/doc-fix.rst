@@ -4,7 +4,7 @@
 
 **Changed:**
 
-* <news item>
+* Use ``pathlib.Path`` instead of ``os.path`` when resolving the news file path.
 
 **Deprecated:**
 
@@ -16,6 +16,7 @@
 
 **Fixed:**
 
+* Fix a malformed hyperlink target in the manuscript documentation that raised a warning on every documentation build.
 * Add ``pip`` to the documented ``conda create`` command. Python 3.14 environments do not include it by default, so the following ``pip install`` step failed with "command not found".
 * Local development installs now use ``pip install -e . --no-deps --no-build-isolation`` with the build backend installed from conda-forge, so no package is downloaded from PyPI. Previously pip fetched ``setuptools`` and ``setuptools-git-versioning`` from PyPI through build isolation despite ``--no-deps``.
 
