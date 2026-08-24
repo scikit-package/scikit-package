@@ -226,10 +226,10 @@ After the code is moved over, it should be possible to build the code in the new
 
 .. code-block:: bash
 
-    $ conda create -n flying-circus-env python=3.14
+    $ conda create -n flying-circus-env python=3.14 pip setuptools setuptools-git-versioning
     $ conda install --file requirements/conda.txt
     $ conda install --file requirements/tests.txt
-    $ pip install -e . --no-deps
+    $ pip install -e . --no-deps --no-build-isolation
     $ pytest
 
 These changes can be committed, pushed and turned into a PR into the ``upstream/migration`` branch. Now, the tests are passing locally, but for them to pass in the CI on GitHub some more files need to be added to the Git database. In particular, add and commit the ``.github``directory, as well as the ``src/``, ``tests/``, and ``requirements/``, directories. If these are added to the PR, the unit tests should now also pass in the CI.

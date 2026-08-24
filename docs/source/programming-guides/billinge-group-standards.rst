@@ -463,9 +463,11 @@ Install the package locally and run the test suite,
 
 ::
 
-   pip install .
-   pip install pytest
+   conda install -c conda-forge pytest
+   pip install -e . --no-deps --no-build-isolation
    pytest
+
+See :ref:`faq-dependency-management` for why dependencies are installed from conda-forge rather than PyPI.
 
 If done correctly, pytest should pass and emit a warning when using ``myFunction``.
 The message should look something like,

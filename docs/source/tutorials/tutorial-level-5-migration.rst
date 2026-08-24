@@ -381,10 +381,11 @@ Move essential files to run local tests
     .. code-block:: bash
 
         conda create -n <package-name>-env python=3.14 \
+            pip setuptools setuptools-git-versioning \
             --file requirements/conda.txt \
             --file requirements/tests.txt
         conda activate <package-name>-env
-        pip install -e . --no-deps
+        pip install -e . --no-deps --no-build-isolation
         pytest
 
     .. note::
