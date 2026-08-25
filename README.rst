@@ -128,10 +128,19 @@ If you see a bug or want to request a feature, please `report it as an issue <ht
 
 Feel free to fork the project and contribute. To install scikit-package
 in a development mode, with its sources being directly used by Python
-rather than copied to a package directory, use the following in the root
+rather than copied to a package directory, run the following in the root
 directory ::
 
-        pip install -e .
+        conda create -n scikit-package-env python=3.14 \
+            pip setuptools setuptools-git-versioning \
+            --file requirements/conda.txt \
+            --file requirements/tests.txt
+        conda activate scikit-package-env
+        pip install -e . --no-deps --no-build-isolation
+
+This installs every dependency from conda-forge and uses ``pip`` only to
+link your local source code into the environment, so nothing is
+downloaded from PyPI.
 
 To ensure code quality and to prevent accidental commits into the default branch, please set up the use of our pre-commit
 hooks.
