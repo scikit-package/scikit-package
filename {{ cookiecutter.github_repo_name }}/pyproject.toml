@@ -58,8 +58,8 @@ namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
 dependencies = {file = ["requirements/pip.txt"]}
 
 [tool.codespell]
-exclude-file = ".codespell/ignore_lines.txt"
-ignore-words = ".codespell/ignore_words.txt"
+exclude-file = ".codespell/ignore-lines.txt"
+ignore-words = ".codespell/ignore-words.txt"
 skip = "*.cif,*.dat"
 
 [tool.docformatter]

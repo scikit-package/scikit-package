@@ -61,8 +61,8 @@ package = "scikit_package.scikit_package_app:main"
 scikit-package = "scikit_package.scikit_package_app:main"
 
 [tool.codespell]
-exclude-file = ".codespell/ignore_lines.txt"
-ignore-words = ".codespell/ignore_words.txt"
+exclude-file = ".codespell/ignore-lines.txt"
+ignore-words = ".codespell/ignore-words.txt"
 skip = "*.cif,*.dat"
 
 [tool.docformatter]
