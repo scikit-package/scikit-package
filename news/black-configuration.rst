@@ -1,6 +1,6 @@
 **Added:**
 
-* <news item>
+* Added black configuration load in pyproject.toml for linting workflow
 
 **Changed:**
 

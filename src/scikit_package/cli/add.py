@@ -1,4 +1,5 @@
 import shutil
+import tomllib
 from pathlib import Path
 
 from diffpy.utils._deprecator import generate_deprecation_docstring
@@ -16,6 +17,29 @@ NEWS_HEADER_MAP = {
 
 TEMPLATE_PATH = "news/TEMPLATE.rst"
 NEWS_DIR = "news"
+BLACK_CONFIG = r"""[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | \.rst
+  | \.txt
+  | _build
+  | buck-out
+  | build
+  | dist
+
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+)/
+'''
+"""
 
 
 def _check_news_file_exists(branch_name):
@@ -89,3 +113,34 @@ def print_deprecation_docstring(args):
         args.removal_version,
         new_base=args.new_base,
     )
+
+
+def black_config(args):
+    """Add the standard Black configuration to pyproject.toml."""
+    path = Path("pyproject.toml")
+
+    try:
+        original = path.read_bytes().decode("utf-8") if path.exists() else ""
+        config = tomllib.loads(original)
+        tool = config.get("tool", {})
+
+        if not isinstance(tool, dict):
+            raise ValueError("'tool' must be a TOML table.")
+        # Case 1: if we have black configuration before in pyproject.toml,
+        # it leaves toml unchanged but proposes the latest scikit-package
+        # black configuration for users.
+        if "black" in tool:
+            print("Black is already configured; pyproject.toml unchanged.")
+            print("Proposed scikit-package configuration:")
+            print(BLACK_CONFIG)
+            return
+        # Case 2: if we don't have black configuration in pyproject.toml,
+        # or we don't have it, add the latest black configuration.
+        updated = original + ("\n\n" if original else "") + BLACK_CONFIG
+        tomllib.loads(updated)
+        path.write_bytes(updated.encode("utf-8"))
+    except (OSError, ValueError) as error:
+        raise SystemExit(f"Cannot add Black configuration: {error}") from error
+
+    print("Added Black configuration to pyproject.toml.")
+    print("Run 'black .' when ready.")

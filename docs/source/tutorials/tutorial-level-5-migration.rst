@@ -64,42 +64,24 @@ Run ``black`` in your codebase
         conda activate skpkg-env
         conda install black
 
-#. Create a new branch called ``black-edits`` and create a new file called ``pyproject.toml``:
+#. Create a new branch called ``black-edits``:
 
     .. code-block:: bash
 
         git checkout -b black-edits
 
-#. If you do not have a ``pyproject.toml`` file, you can create one by running the following command:
+#. Add the standard Black configuration to ``pyproject.toml``:
 
     .. code-block:: bash
 
-        touch pyproject.toml
+        package add black-toml
 
-#. Copy and paste the following content at the bottom of ``pyproject.toml``:
+    This command creates ``pyproject.toml`` if it does not exist.
+    If the file exists without Black configuration, the command appends
+    the standard settings while preserving the existing content.
 
-    .. code-block:: text
-
-        [tool.black]
-        line-length = 79
-        include = '\.pyi?$'
-        exclude = '''
-        /(
-            \.git
-        | \.hg
-        | \.mypy_cache
-        | \.tox
-        | \.venv
-        | \.rst
-        | \.txt
-        | _build
-        | buck-out
-        | build
-        | dist
-        | blib2to3
-        | tests/data
-        )/
-        '''
+    If Black is already configured, the command leaves the file unchanged
+    and prints the proposed settings for manual comparison.
 
 #. Lint the code:
 
