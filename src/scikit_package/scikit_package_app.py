@@ -140,6 +140,18 @@ def setup_subparsers(parser):
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
+    parser_black = subparsers_add.add_parser(
+        "black-toml",
+        help="Add the standard Black configuration to pyproject.toml.",
+        description=(
+            "Run black on all Python files in the package."
+            "By default, we would add the latest black configuration "
+            "into pyproject.toml.\n\n"
+            "Examples:\n"
+            "  package add black-toml\n"
+        ),
+    )
+    parser_black.set_defaults(func=add.black_config)
     parser_deprecation = subparsers_add.add_parser(
         "deprecation",
         help="Print a standardized docstring for deprecated functions.",
