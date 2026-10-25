@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 def _detect_import_and_module_path():
-    import_name = Path.cwd().name
+    import_name = Path.cwd().name.replace("-", "_")
     module_path = Path("src") / Path(
         import_name.replace(".", "/").replace("-", "_")
     )
@@ -101,4 +101,6 @@ def build(args):
     """
     _clean_api_dir()
     import_name, module_path = _detect_import_and_module_path()
+    if not module_path.is_dir():
+        raise SystemExit(f"Package directory not found: {module_path}")
     _generate_api_doc(import_name, module_path)
