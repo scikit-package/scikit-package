@@ -83,10 +83,10 @@ To add "conda-forge" to the conda channels, run the following in a terminal. ::
         conda config --add channels conda-forge
 
 We want to install our packages in a suitable conda environment.
-The following creates and activates a new environment named ``skpkg_env`` ::
+The following creates and activates a new environment named ``skpkg-env`` ::
 
-        conda create -n skpkg_env scikit-package
-        conda activate skpkg_env
+        conda create -n skpkg-env scikit-package
+        conda activate skpkg-env
 
 To confirm that the installation was successful, type ::
 
@@ -96,7 +96,7 @@ The output should print the latest version displayed on the badges above.
 
 If the above does not work, you can use ``pip`` to download and install the latest release from
 `Python Package Index <https://pypi.python.org>`_.
-To install using ``pip`` into your ``skpkg_env`` environment, type ::
+To install using ``pip`` into your ``skpkg-env`` environment, type ::
 
         pip install scikit-package
 
