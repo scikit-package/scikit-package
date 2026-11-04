@@ -1,8 +1,10 @@
 {
   "author_emails": "sbillinge@ucsb.edu, bobleesj@stanford.edu",
   "author_names": "Simon Billinge, Sangjoon Lee",
+  "__validate_authors": "{% if cookiecutter.author_names is defined and cookiecutter.author_emails is defined %}{{ cookiecutter.author_names | validate_contact_pair(cookiecutter.author_emails, 'author') }}{% endif %}",
   "maintainer_names": "{{ cookiecutter.author_names }}",
   "maintainer_emails": "{{ cookiecutter.author_emails }}",
+  "__validate_maintainers": "{% if cookiecutter.maintainer_names is defined and cookiecutter.maintainer_emails is defined %}{{ cookiecutter.maintainer_names | validate_contact_pair(cookiecutter.maintainer_emails, 'maintainer') }}{% endif %}",
   "maintainer_github_usernames": "sbillinge, bobleesj",
   "contributors": "Sangjoon Lee, Simon Billinge, Billinge Group members",
   "project_name": "diffpy.my-project",

@@ -1,8 +1,10 @@
 {
   "author_names": "{{ cookiecutter.author_names }}",
   "author_emails": "{{ cookiecutter.author_emails }}",
+  "__validate_authors": "{% if cookiecutter.author_names is defined and cookiecutter.author_emails is defined %}{{ cookiecutter.author_names | validate_contact_pair(cookiecutter.author_emails, 'author') }}{% endif %}",
   "maintainer_names": "{{ cookiecutter.maintainer_names }}",
   "maintainer_emails": "{{ cookiecutter.maintainer_emails }}",
+  "__validate_maintainers": "{% if cookiecutter.maintainer_names is defined and cookiecutter.maintainer_emails is defined %}{{ cookiecutter.maintainer_names | validate_contact_pair(cookiecutter.maintainer_emails, 'maintainer') }}{% endif %}",
   "maintainer_github_usernames": "{{ cookiecutter.maintainer_github_usernames }}",
   "contributors": "{{ cookiecutter.contributors }}",
   "project_name": "{{ cookiecutter.project_name }}",
