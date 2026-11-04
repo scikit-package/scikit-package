@@ -55,23 +55,52 @@ def _run_generated_pre_commit(name, tmp_path, monkeypatch):
 
 @pytest.mark.parametrize(
     "name",
-    ["mypackage", "my-package", "thisis.mypackage", "thisis.my-package"],
+    [
+        # C1: Generate a non-namespace package without a hyphen.
+        # Expected: Pre-commit passes without changing any files.
+        "mypackage",
+        # C2: Generate a non-namespace package with a hyphen.
+        # Expected: Pre-commit passes without changing any files.
+        "my-package",
+        # C3: Generate a namespace package without a hyphen.
+        # Expected: Pre-commit passes without changing any files.
+        "thisis.mypackage",
+        # C4: Generate a namespace package with a hyphen in the package name.
+        # Expected: Pre-commit passes without changing any files.
+        "thisis.my-package",
+    ],
 )
 def test_generated_package_passes_pre_commit(name, tmp_path, monkeypatch):
-    returncode, output, changed_files = _run_generated_pre_commit(
-        name, tmp_path, monkeypatch
+    actual_returncode, actual_output, actual_changed_files = (
+        _run_generated_pre_commit(name, tmp_path, monkeypatch)
     )
-    assert returncode == 0, output
-    assert not changed_files, output
+    expected_returncode = 0
+    expected_changed_files = []
+
+    assert actual_returncode == expected_returncode, actual_output
+    assert actual_changed_files == expected_changed_files, actual_output
 
 
 def test_long_package_name_triggers_black_rewrite(tmp_path, monkeypatch):
-    returncode, output, changed_files = _run_generated_pre_commit(
-        "this-is-my-package.with-a-long-name", tmp_path, monkeypatch
+    # C1: Generate a package with a long, hyphenated namespace and name.
+    # Expected: Pre-commit fails only in Black, which rewrites conf.py.
+    actual_returncode, actual_output, actual_changed_files = (
+        _run_generated_pre_commit(
+            "this-is-my-package.with-a-long-name", tmp_path, monkeypatch
+        )
     )
-    assert returncode == 1, output
-    assert re.findall(r"^- hook id: (.+)$", output, re.MULTILINE) == [
-        "black"
-    ], output
-    assert "files were modified by this hook" in output, output
-    assert changed_files == ["docs/source/conf.py"], output
+    actual_failed_hooks = re.findall(
+        r"^- hook id: (.+)$", actual_output, re.MULTILINE
+    )
+    actual_reports_rewrite = (
+        "files were modified by this hook" in actual_output
+    )
+    expected_returncode = 1
+    expected_failed_hooks = ["black"]
+    expected_reports_rewrite = True
+    expected_changed_files = ["docs/source/conf.py"]
+
+    assert actual_returncode == expected_returncode, actual_output
+    assert actual_failed_hooks == expected_failed_hooks, actual_output
+    assert actual_reports_rewrite == expected_reports_rewrite, actual_output
+    assert actual_changed_files == expected_changed_files, actual_output
