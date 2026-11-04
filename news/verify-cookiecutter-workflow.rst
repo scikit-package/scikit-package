@@ -4,7 +4,8 @@
 
 **Changed:**
 
-* Changed build or update package with early-stopping if the number of maintainer does not correspond to the number of emails
+* Report mismatched author or maintainer contacts during package creation
+  and updates.
 
 **Deprecated:**
 
