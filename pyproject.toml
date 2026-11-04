@@ -97,3 +97,6 @@ exclude = '''
 addopts = [
     "--ignore={{ cookiecutter.github_repo_name }}",
 ]
+
+[tool.coverage.run]
+omit = ["*/{{ cookiecutter.github_repo_name }}/*"]
