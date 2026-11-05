@@ -9,9 +9,14 @@ from cookiecutter.main import cookiecutter
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
-def _run_generated_pre_commit(name, tmp_path, monkeypatch):
-    monkeypatch.chdir(tmp_path)
-    monkeypatch.delenv("SKIP", raising=False)
+def _run_generated_pre_commit(name, tmp_path, mocker):
+    """Generate a local package and run its real pre-commit hooks.
+
+    Return the exit code, captured output, and changed file paths.
+    """
+    # Run every hook even when the caller has set SKIP.
+    environment = mocker.patch.dict("os.environ")
+    environment.pop("SKIP", None)
 
     project = Path(
         cookiecutter(
@@ -70,9 +75,9 @@ def _run_generated_pre_commit(name, tmp_path, monkeypatch):
         "thisis.my-package",
     ],
 )
-def test_generated_package_passes_pre_commit(name, tmp_path, monkeypatch):
+def test_generated_package_passes_pre_commit(name, tmp_path, mocker):
     actual_returncode, actual_output, actual_changed_files = (
-        _run_generated_pre_commit(name, tmp_path, monkeypatch)
+        _run_generated_pre_commit(name, tmp_path, mocker)
     )
     expected_returncode = 0
     expected_changed_files = []
@@ -81,12 +86,12 @@ def test_generated_package_passes_pre_commit(name, tmp_path, monkeypatch):
     assert actual_changed_files == expected_changed_files, actual_output
 
 
-def test_long_package_name_triggers_black_rewrite(tmp_path, monkeypatch):
+def test_long_package_name_triggers_black_rewrite(tmp_path, mocker):
     # C1: Generate a package with a long, hyphenated namespace and name.
     # Expected: Pre-commit fails only in Black, which rewrites conf.py.
     actual_returncode, actual_output, actual_changed_files = (
         _run_generated_pre_commit(
-            "this-is-my-package.with-a-long-name", tmp_path, monkeypatch
+            "this-is-my-package.with-a-long-name", tmp_path, mocker
         )
     )
     actual_failed_hooks = re.findall(
