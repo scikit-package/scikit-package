@@ -1,8 +1,6 @@
 {
-  "author_names": "{{ cookiecutter.author_names }}",
-  "author_emails": "{{ cookiecutter.author_emails }}",
-  "maintainer_names": "{{ cookiecutter.maintainer_names }}",
-  "maintainer_emails": "{{ cookiecutter.maintainer_emails }}",
+  "authors": "{{ (cookiecutter.authors | tojson)[1:-1] }}",
+  "maintainers": "{{ (cookiecutter.maintainers | tojson)[1:-1] }}",
   "maintainer_github_usernames": "{{ cookiecutter.maintainer_github_usernames }}",
   "contributors": "{{ cookiecutter.contributors }}",
   "project_name": "{{ cookiecutter.project_name }}",

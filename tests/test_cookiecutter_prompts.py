@@ -1,6 +1,7 @@
 import json
 import subprocess
 import sys
+import tomllib
 from pathlib import Path
 
 import pytest
@@ -13,23 +14,19 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 @pytest.mark.parametrize(
     "answers, expected_last_prompt, expected_error",
     [
-        # C1: Enter one author name for the two default author emails.
-        # Expected: Stop after author_names, before asking about maintainers.
+        # C1: Enter an author without an email.
+        # Expected: Stop at authors, before asking about maintainers.
         (
-            {"author_names": "Alice"},
-            "author_names",
-            "author_names and author_emails: "
-            "The number of names and emails must be the same. "
-            "Got 1 names and 2 emails.",
+            {"authors": "Alice"},
+            "authors",
+            "authors: Use Name <email> pairs separated by semicolons.",
         ),
-        # C2: Enter one maintainer name for the two default maintainer emails.
-        # Expected: Stop after maintainer_emails, before asking for usernames.
+        # C2: Enter a maintainer without an email.
+        # Expected: Stop at maintainers, before asking for usernames.
         (
-            {"maintainer_names": "Alice"},
-            "maintainer_emails",
-            "maintainer_names and maintainer_emails: "
-            "The number of names and emails must be the same. "
-            "Got 1 names and 2 emails.",
+            {"maintainers": "Alice"},
+            "maintainers",
+            "maintainers: Use Name <email> pairs separated by semicolons.",
         ),
     ],
 )
