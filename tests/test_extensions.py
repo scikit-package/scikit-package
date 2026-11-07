@@ -1,4 +1,5 @@
 import importlib
+import tomllib
 from pathlib import Path
 
 import pytest
@@ -16,20 +17,19 @@ extended_env = Environment(
 
 
 @pytest.mark.parametrize(
-    "author_names, author_emails, expected_output",
+    "contacts, expected_output",
     [
         # single author, expect return str with the form of
         #   a list with one dict
         (
-            "Alice",
-            "alice@email.com",
+            "Alice <alice@email.com>",
             ("[\n" "  {name='Alice', email='alice@email.com'},\n" "]"),
         ),
         # multiple authors, expect return str with the form of
         #   a list with multiple dicts
         (
-            "Alice, Bob, Charlie",
-            "alice@email.com, bob@email.com, charlie@email.com",
+            "Alice <alice@email.com>; Bob <bob@email.com>; "
+            "Charlie <charlie@email.com>",
             (
                 "[\n"
                 "  {name='Alice', email='alice@email.com'},\n"
@@ -40,50 +40,44 @@ extended_env = Environment(
         ),
     ],
 )
-def test_expand_to_dict_with_name(
-    author_names, author_emails, expected_output
-):
+def test_expand_to_dict_with_name(contacts, expected_output):
 
     template = extended_env.from_string(
-        "{{ author_names | expand_to_dict_with_email(author_emails) }}"
+        "{{ contacts | expand_to_dict_with_email }}"
     )
-    actual_output = template.render(
-        author_names=author_names, author_emails=author_emails
+    actual_output = template.render(contacts=contacts)
+    assert tomllib.loads("people = " + actual_output) == tomllib.loads(
+        "people = " + expected_output
     )
-    assert actual_output == expected_output
 
 
 def test_expand_to_dict_with_name_bad():
     template = extended_env.from_string(
-        "{{ author_names | expand_to_dict_with_email(author_emails) }}"
+        "{{ contacts | expand_to_dict_with_email }}"
     )
-    # mismatch number of names and emails, expect KeyError
+    # C1: One contact is missing its email. Expected: Reject the pair.
     with pytest.raises(KeyError) as excinfo:
-        template.render(
-            author_names="Alice, Bob", author_emails="alice@email.com"
-        )
+        template.render(contacts="Alice <alice@email.com>; Bob")
     assert str(excinfo.value.args[0]) == (
-        "The number of names and emails must be the same. "
-        "Got 2 names and 1 emails."
+        "Use Name <email> pairs separated by semicolons."
     )
 
 
 @pytest.mark.parametrize(
-    "author_names, author_emails, expected_output",
+    "contacts, expected_output",
     [
         # single author, expect return "Name(email)"
-        ("Alice", "alice@email.com", "Alice(alice@email.com)"),
+        ("Alice <alice@email.com>", "Alice(alice@email.com)"),
         # two authors, expect return "Name1(email1) and Name2(email2)"
         (
-            "Alice, Bob",
-            "alice@email.com, bob@email.com",
+            "Alice <alice@email.com>; Bob <bob@email.com>",
             "Alice(alice@email.com) and Bob(bob@email.com)",
         ),
         # multiple authors, expect return
         #   "Name1(email1), ..., and Name3(email3)"
         (
-            "Alice, Bob, Charlie",
-            "alice@email.com, bob@email.com, charlie@email.com",
+            "Alice <alice@email.com>; Bob <bob@email.com>; "
+            "Charlie <charlie@email.com>",
             (
                 "Alice(alice@email.com), Bob(bob@email.com), "
                 "and Charlie(charlie@email.com)"
@@ -91,15 +85,11 @@ def test_expand_to_dict_with_name_bad():
         ),
     ],
 )
-def test_expand_to_str_with_email(
-    author_names, author_emails, expected_output
-):
+def test_expand_to_str_with_email(contacts, expected_output):
     template = extended_env.from_string(
-        "{{ author_names | expand_to_str_with_email(author_emails) }}"
+        "{{ contacts | expand_to_str_with_email }}"
     )
-    actual_output = template.render(
-        author_names=author_names, author_emails=author_emails
-    )
+    actual_output = template.render(contacts=contacts)
     assert actual_output == expected_output
 
 

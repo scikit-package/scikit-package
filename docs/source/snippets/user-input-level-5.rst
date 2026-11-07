@@ -4,21 +4,15 @@
 
       * - Prompt
         - Description and example
-      * - author_names
-        - The name(s) of the project author(s). Please separate names by commas.
-          e.g. Simon Billinge, Sangjoon Lee
-      * - author_emails
-        - The author(s)' email address. Please separated emails by commas. The number and order of emails should match author_names.
-          e.g. sbillinge@ucsb.edu, bobleesj@stanford.edu
-      * - maintainer_names
-        - The name(s) of the project maintainer(s). These persons will make the public releases. Please separate with commas.
-          e.g., Simon Billinge, Yuchen Xiao
-      * - maintainer_emails
-        - The maintainer(s)' email address. Please separate with commas. The number and order of emails should match maintainer_names.
-          e.g., sbillinge@ucsb.edu, yxiao@columbia.edu
+      * - authors
+        - The name(s) and email address(es) of the project author(s). Please separate people with semicolons.
+          e.g., Simon Billinge <sbillinge@ucsb.edu>; Sangjoon Lee <bobleesj@stanford.edu>
+      * - maintainers
+        - The name(s) and email address(es) of the project maintainer(s), using the same format as authors. Defaults to the authors. Both roles are listed in ``AUTHORS.rst``.
+          e.g., Simon Billinge <sbillinge@ucsb.edu>; Yuchen Xiao <yxiao@columbia.edu>
       * - maintainer_github_usernames
-        - The maintainer(s)' GitHub username. Please separate with commas. The number and order of emails should match maintainer_names.
-          e.g., simon-gh, yuchen-gh
+        - The single GitHub username authorized to publish releases, even if the project has multiple maintainers.
+          e.g., sbillinge
       * - contributors
         - Individuals or groups contributing to the project.
           e.g., Sangjoon Lee, Simon Billinge, Billinge Group members
