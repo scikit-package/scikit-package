@@ -4,8 +4,6 @@
 
 **Changed:**
 
-* Report mismatched author or maintainer contacts during package creation
-  and updates.
 * Enter author and maintainer name/email pairs together and list both roles
   in AUTHORS.rst.
 * Accept contacts with optional emails and optional email angle brackets.
