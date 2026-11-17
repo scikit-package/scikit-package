@@ -456,14 +456,22 @@ GitHub Actions
 In Level 5, how do I set different Python versions for GitHub CI?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, GitHub CI uses the Python versions declared in the
-``Programming Language :: Python ::`` classifiers in ``pyproject.toml``.
+By default, GitHub CI uses ``requires-python`` in ``pyproject.toml``.
+Keep this field up to date when changing the package's Python support:
 
 .. code-block:: toml
 
-  'Programming Language :: Python :: 3.12'
-  'Programming Language :: Python :: 3.13'
-  'Programming Language :: Python :: 3.14'
+  [project]
+  requires-python = ">=3.11, <3.14"
+
+This example selects Python 3.11, 3.12, and 3.13. Automatic selection supports
+one-line ranges of the form ``>=3.x, <3.y``, with minor versions only.
+Other forms, including open-ended ranges and patch-specific constraints,
+stop the workflow with an error. Use explicit workflow versions when a
+different selection is needed.
+
+If ``requires-python`` is absent, CI uses the
+``Programming Language :: Python ::`` classifiers instead.
 
 You may override the Python versions above (those in ``pyproject.toml``)
 for GitHub CI workflows by specifying them directly in the workflow files:
@@ -509,8 +517,9 @@ for GitHub CI workflows by specifying them directly in the workflow files:
           headless: false
           python_versions: "3.11,3.12"
 
-If no Python versions are provided in either ``pyproject.toml`` or the workflow
-files, the default Python version used in GitHub CI is |PYTHON_MAX_VERSION|.
+If neither source provides versions and there is no workflow override,
+CI uses the scikit-package default versions. Single-version jobs use the
+latest selected version.
 
 In Level 5, what are the workflows running in each pull request?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
