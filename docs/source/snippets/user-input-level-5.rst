@@ -5,10 +5,10 @@
       * - Prompt
         - Description and example
       * - authors
-        - The name(s) and email address(es) of the project author(s). Please separate people with semicolons.
-          e.g., Simon Billinge <sbillinge@ucsb.edu>; Sangjoon Lee <bobleesj@stanford.edu>
+        - The name(s) of the project author(s), with optional email addresses. Use ``Name``, ``Name email``, or ``Name <email>``. Please separate people with semicolons.
+          e.g., Simon Billinge sbillinge@ucsb.edu; Sangjoon Lee <bobleesj@stanford.edu>
       * - maintainers
-        - The name(s) and email address(es) of the project maintainer(s), using the same format as authors. Defaults to the authors. Both roles are listed in ``AUTHORS.rst``.
+        - The name(s) and optional email address(es) of the project maintainer(s), using the same format as authors. Defaults to the authors; press Enter to accept. Both roles are listed in ``AUTHORS.rst``.
           e.g., Simon Billinge <sbillinge@ucsb.edu>; Yuchen Xiao <yxiao@columbia.edu>
       * - maintainer_github_usernames
         - The single GitHub username authorized to publish releases, even if the project has multiple maintainers.

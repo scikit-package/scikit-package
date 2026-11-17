@@ -38,6 +38,18 @@ extended_env = Environment(
                 "]"
             ),
         ),
+        # C3: Type an email without angle brackets.
+        # Expected: Generate the same name/email metadata.
+        (
+            "Alice alice@email.com",
+            "[{name='Alice', email='alice@email.com'}]",
+        ),
+        # C4: Omit one email and include punctuation in the name.
+        # Expected: Omit that email field and preserve both contacts.
+        (
+            "Doe, Jane; Bob bob@email.com",
+            "[{name='Doe, Jane'}, {name='Bob', email='bob@email.com'}]",
+        ),
     ],
 )
 def test_expand_to_dict_with_name(contacts, expected_output):
@@ -51,15 +63,29 @@ def test_expand_to_dict_with_name(contacts, expected_output):
     )
 
 
-def test_expand_to_dict_with_name_bad():
+@pytest.mark.parametrize(
+    "contacts",
+    [
+        # C1: Unclosed bracket. Expected: Reject the malformed email.
+        "Alice <alice@email.com",
+        # C2: Unmatched closing bracket. Expected: Reject the malformed email.
+        "Alice alice@email.com>",
+        # C3: No name. Expected: Still require a name.
+        "alice@email.com",
+        # C4: Missing separator. Expected: Reject multiple emails in one entry.
+        "Alice alice@email.com Bob bob@email.com",
+        # C5: Empty entry. Expected: Still require a name.
+        "",
+    ],
+)
+def test_expand_to_dict_with_name_bad(contacts):
     template = extended_env.from_string(
         "{{ contacts | expand_to_dict_with_email }}"
     )
-    # C1: One contact is missing its email. Expected: Reject the pair.
     with pytest.raises(KeyError) as excinfo:
-        template.render(contacts="Alice <alice@email.com>; Bob")
+        template.render(contacts=contacts)
     assert str(excinfo.value.args[0]) == (
-        "Use Name <email> pairs separated by semicolons."
+        "Use Name, Name email, or Name <email>, separated by semicolons."
     )
 
 
@@ -83,6 +109,12 @@ def test_expand_to_dict_with_name_bad():
                 "and Charlie(charlie@email.com)"
             ),
         ),
+        # C4: Mix names with and without emails.
+        # Expected: Do not add empty parentheses for missing emails.
+        ("Alice; Bob bob@email.com", "Alice and Bob(bob@email.com)"),
+        # C5: A name contains a comma.
+        # Expected: Preserve it as one person's name.
+        ("Doe, Jane", "Doe, Jane"),
     ],
 )
 def test_expand_to_str_with_email(contacts, expected_output):

@@ -1,6 +1,7 @@
 import json
 import subprocess
 import sys
+import tomllib
 from pathlib import Path
 
 import pytest
@@ -13,19 +14,21 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 @pytest.mark.parametrize(
     "answers, expected_last_prompt, expected_error",
     [
-        # C1: Enter an author without an email.
+        # C1: Enter an author with an unmatched email bracket.
         # Expected: Stop at authors, before asking about maintainers.
         (
-            {"authors": "Alice"},
+            {"authors": "Alice <alice@example.org"},
             "authors",
-            "authors: Use Name <email> pairs separated by semicolons.",
+            "authors: Use Name, Name email, or Name <email>, "
+            "separated by semicolons.",
         ),
-        # C2: Enter a maintainer without an email.
+        # C2: Enter a maintainer with an incomplete email address.
         # Expected: Stop at maintainers, before asking for usernames.
         (
-            {"maintainers": "Alice"},
+            {"maintainers": "Alice alice@"},
             "maintainers",
-            "maintainers: Use Name <email> pairs separated by semicolons.",
+            "maintainers: Use Name, Name email, or Name <email>, "
+            "separated by semicolons.",
         ),
     ],
 )
@@ -58,9 +61,38 @@ def test_invalid_answers_stop_cookiecutter_prompts(
     assert actual_output_created == expected_output_created
 
 
-def test_valid_answers_generate_project_settings(tmp_path):
-    # C1: Accept the default author and maintainer contacts.
-    # Expected: Generate the project and save only user settings.
+@pytest.mark.parametrize(
+    "contacts, expected_people, expected_enforcement",
+    [
+        # C1: Type emails without brackets, then press Enter for maintainers.
+        # Expected: Reuse both contacts and include their email addresses.
+        (
+            "Alice alice@example.org; Bob bob@example.org",
+            [
+                {"name": "Alice", "email": "alice@example.org"},
+                {"name": "Bob", "email": "bob@example.org"},
+            ],
+            "enforcement at alice@example.org, bob@example.org.",
+        ),
+        # C2: Paste a bracketed email and omit the other person's email.
+        # Expected: Reuse both contacts and include only the available email.
+        (
+            "Alice <alice@example.org>; Bob",
+            [{"name": "Alice", "email": "alice@example.org"}, {"name": "Bob"}],
+            "enforcement at alice@example.org.",
+        ),
+        # C3: Enter names only, then press Enter for maintainers.
+        # Expected: Generate name-only metadata and no empty contact sentence.
+        (
+            "Alice; Bob",
+            [{"name": "Alice"}, {"name": "Bob"}],
+            "enforcement. All complaints",
+        ),
+    ],
+)
+def test_valid_answers_generate_project_settings(
+    contacts, expected_people, expected_enforcement, tmp_path
+):
     output_dir = tmp_path / "output"
     expected_project = output_dir / "diffpy.my-project"
     config = tmp_path / "cookiecutter.json"
@@ -74,7 +106,6 @@ def test_valid_answers_generate_project_settings(tmp_path):
             "-m",
             "cookiecutter",
             str(REPO_ROOT),
-            "--no-input",
             "--output-dir",
             str(output_dir),
             "--config-file",
@@ -84,6 +115,8 @@ def test_valid_answers_generate_project_settings(tmp_path):
         ],
         cwd=tmp_path,
         check=True,
+        input=contacts + "\n" + "\n" * 16,
+        text=True,
     )
     actual_projects = list(output_dir.iterdir())
     expected_projects = [expected_project]
@@ -96,3 +129,14 @@ def test_valid_answers_generate_project_settings(tmp_path):
     expected_internal_settings = []
     assert actual_projects == expected_projects
     assert actual_internal_settings == expected_internal_settings
+    assert saved_settings["authors"] == contacts
+    assert saved_settings["maintainers"] == contacts
+    metadata = tomllib.loads(
+        (expected_project / "pyproject.toml").read_text(encoding="utf-8")
+    )["project"]
+    assert metadata["authors"] == expected_people
+    assert metadata["maintainers"] == expected_people
+    actual_enforcement = " ".join(
+        (expected_project / "CODE-OF-CONDUCT.rst").read_text().split()
+    )
+    assert expected_enforcement in actual_enforcement

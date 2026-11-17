@@ -8,6 +8,7 @@
   and updates.
 * Enter author and maintainer name/email pairs together and list both roles
   in AUTHORS.rst.
+* Accept contacts with optional emails and optional email angle brackets.
 * Use project-specific contributor and license-holder defaults and a single
   release-authorized GitHub username.
 
