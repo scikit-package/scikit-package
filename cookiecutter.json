@@ -5,7 +5,7 @@
   "__validate_maintainers": "{% if cookiecutter.maintainers is defined %}{{ cookiecutter.maintainers | validate_contact_pair('maintainers') }}{% endif %}",
   "maintainer_github_usernames": "sbillinge",
   "project_name": "diffpy.my-project",
-  "contributors": "Contributors to the {{ cookiecutter.project_name }} project",
+  "contributors": "{{ cookiecutter.project_name }} contributors",
   "license_holders": "{{ cookiecutter.project_name }} project contributors",
   "github_username_or_orgname": "diffpy",
   "github_repo_name": "{{ cookiecutter.project_name|replace(' ', '-')|lower }}",
