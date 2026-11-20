@@ -1,4 +1,5 @@
 {
+  "_skpkg_schema_version": "{{ cookiecutter._skpkg_schema_version }}",
   "authors": "{{ (cookiecutter.authors | tojson)[1:-1] }}",
   "maintainers": "{{ (cookiecutter.maintainers | tojson)[1:-1] }}",
   "maintainer_github_usernames": "{{ cookiecutter.maintainer_github_usernames }}",

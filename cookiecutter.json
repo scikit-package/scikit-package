@@ -1,4 +1,5 @@
 {
+  "_skpkg_schema_version": "0.0.1",
   "authors": "Simon Billinge <sbillinge@ucsb.edu>; Sangjoon Lee <bobleesj@stanford.edu>",
   "__validate_authors": "{% if cookiecutter.authors is defined %}{{ cookiecutter.authors | validate_contact_pair('authors') }}{% endif %}",
   "maintainers": "{{ cookiecutter.authors }}",

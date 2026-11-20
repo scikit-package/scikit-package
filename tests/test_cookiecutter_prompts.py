@@ -8,6 +8,8 @@ import pytest
 from click import ClickException
 from cookiecutter.main import cookiecutter
 
+from scikit_package.utils.cookie import SCHEMA_KEY
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -126,7 +128,15 @@ def test_valid_answers_generate_project_settings(
     actual_internal_settings = [
         key for key in saved_settings if key.startswith("_")
     ]
-    expected_internal_settings = []
+    template_settings = json.loads(
+        (REPO_ROOT / "cookiecutter.json").read_text(encoding="utf-8")
+    )
+
+    expected_internal_settings = [SCHEMA_KEY]
+    expected_schema_version = template_settings[SCHEMA_KEY]
+    actual_schema_version = saved_settings[SCHEMA_KEY]
+
+    assert actual_schema_version == expected_schema_version
     assert actual_projects == expected_projects
     assert actual_internal_settings == expected_internal_settings
     assert saved_settings["authors"] == contacts
