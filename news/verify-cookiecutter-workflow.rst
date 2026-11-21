@@ -1,0 +1,27 @@
+**Added:**
+
+* <news item>
+
+**Changed:**
+
+* Enter author and maintainer name/email pairs together and list both roles
+  in AUTHORS.rst.
+* Accept contacts with optional emails and optional email angle brackets.
+* Use project-specific contributor and license-holder defaults and a single
+  release-authorized GitHub username.
+
+**Deprecated:**
+
+* <news item>
+
+**Removed:**
+
+* <news item>
+
+**Fixed:**
+
+* <news item>
+
+**Security:**
+
+* <news item>

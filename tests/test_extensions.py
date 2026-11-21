@@ -1,4 +1,5 @@
 import importlib
+import tomllib
 from pathlib import Path
 
 import pytest
@@ -16,20 +17,19 @@ extended_env = Environment(
 
 
 @pytest.mark.parametrize(
-    "author_names, author_emails, expected_output",
+    "contacts, expected_output",
     [
         # single author, expect return str with the form of
         #   a list with one dict
         (
-            "Alice",
-            "alice@email.com",
+            "Alice <alice@email.com>",
             ("[\n" "  {name='Alice', email='alice@email.com'},\n" "]"),
         ),
         # multiple authors, expect return str with the form of
         #   a list with multiple dicts
         (
-            "Alice, Bob, Charlie",
-            "alice@email.com, bob@email.com, charlie@email.com",
+            "Alice <alice@email.com>; Bob <bob@email.com>; "
+            "Charlie <charlie@email.com>",
             (
                 "[\n"
                 "  {name='Alice', email='alice@email.com'},\n"
@@ -38,68 +38,90 @@ extended_env = Environment(
                 "]"
             ),
         ),
+        # C3: Type an email without angle brackets.
+        # Expected: Generate the same name/email metadata.
+        (
+            "Alice alice@email.com",
+            "[{name='Alice', email='alice@email.com'}]",
+        ),
+        # C4: Omit one email and include punctuation in the name.
+        # Expected: Omit that email field and preserve both contacts.
+        (
+            "Doe, Jane; Bob bob@email.com",
+            "[{name='Doe, Jane'}, {name='Bob', email='bob@email.com'}]",
+        ),
     ],
 )
-def test_expand_to_dict_with_name(
-    author_names, author_emails, expected_output
-):
+def test_expand_to_dict_with_name(contacts, expected_output):
 
     template = extended_env.from_string(
-        "{{ author_names | expand_to_dict_with_email(author_emails) }}"
+        "{{ contacts | expand_to_dict_with_email }}"
     )
-    actual_output = template.render(
-        author_names=author_names, author_emails=author_emails
-    )
-    assert actual_output == expected_output
-
-
-def test_expand_to_dict_with_name_bad():
-    template = extended_env.from_string(
-        "{{ author_names | expand_to_dict_with_email(author_emails) }}"
-    )
-    # mismatch number of names and emails, expect KeyError
-    with pytest.raises(KeyError) as excinfo:
-        template.render(
-            author_names="Alice, Bob", author_emails="alice@email.com"
-        )
-    assert str(excinfo.value.args[0]) == (
-        "The number of names and emails must be the same. "
-        "Got 2 names and 1 emails."
+    actual_output = template.render(contacts=contacts)
+    assert tomllib.loads("people = " + actual_output) == tomllib.loads(
+        "people = " + expected_output
     )
 
 
 @pytest.mark.parametrize(
-    "author_names, author_emails, expected_output",
+    "contacts",
+    [
+        # C1: Unclosed bracket. Expected: Reject the malformed email.
+        "Alice <alice@email.com",
+        # C2: Unmatched closing bracket. Expected: Reject the malformed email.
+        "Alice alice@email.com>",
+        # C3: No name. Expected: Still require a name.
+        "alice@email.com",
+        # C4: Missing separator. Expected: Reject multiple emails in one entry.
+        "Alice alice@email.com Bob bob@email.com",
+        # C5: Empty entry. Expected: Still require a name.
+        "",
+    ],
+)
+def test_expand_to_dict_with_name_bad(contacts):
+    template = extended_env.from_string(
+        "{{ contacts | expand_to_dict_with_email }}"
+    )
+    with pytest.raises(KeyError) as excinfo:
+        template.render(contacts=contacts)
+    assert str(excinfo.value.args[0]) == (
+        "Use Name, Name email, or Name <email>, separated by semicolons."
+    )
+
+
+@pytest.mark.parametrize(
+    "contacts, expected_output",
     [
         # single author, expect return "Name(email)"
-        ("Alice", "alice@email.com", "Alice(alice@email.com)"),
+        ("Alice <alice@email.com>", "Alice(alice@email.com)"),
         # two authors, expect return "Name1(email1) and Name2(email2)"
         (
-            "Alice, Bob",
-            "alice@email.com, bob@email.com",
+            "Alice <alice@email.com>; Bob <bob@email.com>",
             "Alice(alice@email.com) and Bob(bob@email.com)",
         ),
         # multiple authors, expect return
         #   "Name1(email1), ..., and Name3(email3)"
         (
-            "Alice, Bob, Charlie",
-            "alice@email.com, bob@email.com, charlie@email.com",
+            "Alice <alice@email.com>; Bob <bob@email.com>; "
+            "Charlie <charlie@email.com>",
             (
                 "Alice(alice@email.com), Bob(bob@email.com), "
                 "and Charlie(charlie@email.com)"
             ),
         ),
+        # C4: Mix names with and without emails.
+        # Expected: Do not add empty parentheses for missing emails.
+        ("Alice; Bob bob@email.com", "Alice and Bob(bob@email.com)"),
+        # C5: A name contains a comma.
+        # Expected: Preserve it as one person's name.
+        ("Doe, Jane", "Doe, Jane"),
     ],
 )
-def test_expand_to_str_with_email(
-    author_names, author_emails, expected_output
-):
+def test_expand_to_str_with_email(contacts, expected_output):
     template = extended_env.from_string(
-        "{{ author_names | expand_to_str_with_email(author_emails) }}"
+        "{{ contacts | expand_to_str_with_email }}"
     )
-    actual_output = template.render(
-        author_names=author_names, author_emails=author_emails
-    )
+    actual_output = template.render(contacts=contacts)
     assert actual_output == expected_output
 
 

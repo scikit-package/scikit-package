@@ -174,13 +174,13 @@ Here are the steps you can follow to override the default values for Level 5 usa
     {
       "default_context":
         {
-            "maintainer_name": "<local-default-maintainer-name>",
-            "maintainer_email": "<local-default-maintainer-email>",
+            "authors": "Your Name <you@example.org>",
+            "maintainers": "Your Name <you@example.org>",
             "maintainer_github_username": "<local-default-maintainer-github-username>",
             "github_username_or_orgname": "<local-default-github-username-or-orgname>",
             "contributors": "<local-default-contributors-name>",
             "license_holders": "<local-default-license-holders-name>",
-            "project_name": "<local-default-project-name>",
+            "project_name": "<local-default-project-name>"
         }
     }
 
