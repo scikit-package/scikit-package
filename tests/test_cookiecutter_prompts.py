@@ -8,7 +8,7 @@ import pytest
 from click import ClickException
 from cookiecutter.main import cookiecutter
 
-from scikit_package.utils.cookie import SCHEMA_KEY, _check_project_config
+from scikit_package.utils.cookie import SCHEMA_KEY
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
