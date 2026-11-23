@@ -17,7 +17,7 @@ We show the responses of **Sir Lancelot** to the ``scikit-package`` prompts belo
 
     [1/16] maintainer_name (Simon Billinge): Sir Lancelot
     [2/16] maintainer_email (sbillinge@ucsb.edu): sirlancelotbrave@montypy.com
-    [3/16] maintainer_github_username (sbillinge): sirlancelotbrave
+    [3/16] authorized_maintainer_github_username (sbillinge): sirlancelotbrave
     [4/16] contributors (Sangjoon Lee, Simon Billinge, Billinge Group members):
         Sir Lancelot, Sir Robin, King Arthur
     [5/16] project_name (diffpy.my-project): montypy
@@ -310,7 +310,7 @@ with exactly this format (included dashes and dots).
 
 The default release obtained by typing pip install montypy remains as the existing release, but the pre-release can be installed in a test environment by explicitly specifying the release number, ``pip install montypy==0.1.0-rc.0`` If needed, a second rc release with some problems fixed would be numbered ``0.1.0-rc.1``, and so on.
 
-Whether it is a release-candidate or a full release, the GitHub tag pushed to the upstream repository triggers a series of GitHub workflows, including a check to verify whether the user executing the tag is authorized. When the package was created, **Sir Lancelot** entered sirlancelotbrave in response to the ``maintainer_github_username`` prompt. The ``maintainer_github_username`` specified person (this can be updated manually in the workflows) is the only GitHub user authorized to run this release workflow. Otherwise, the workflow will fail and the release process will not proceed. This ensures that only an authorized person can release the code. Once the workflow succeeds, it will then create a new pre-release/release on GitHub and publish the package to PyPI.
+Whether it is a release-candidate or a full release, the GitHub tag pushed to the upstream repository triggers a series of GitHub workflows, including a check to verify whether the user executing the tag is authorized. When the package was created, **Sir Lancelot** entered sirlancelotbrave in response to the ``authorized_maintainer_github_username`` prompt. This value is written to the ``maintainer_github_username`` workflow input, which identifies the only GitHub user authorized to run this release workflow and can be updated manually. Otherwise, the workflow will fail and the release process will not proceed. This ensures that only an authorized person can release the code. Once the workflow succeeds, it will then create a new pre-release/release on GitHub and publish the package to PyPI.
 
 We recommend to also make packages available on conda-forge which can host not just python and has powerful methods for checking the dependency tree of all packages. For hints for how to do this please visit :ref:`release-pypi-github`.
 

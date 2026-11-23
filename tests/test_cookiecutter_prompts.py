@@ -35,10 +35,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
         # C3: Enter multiple GitHub usernames.
         # Expected: Stop at the release username, before the project name.
         (
-            {"maintainer_github_username": "alice, bob"},
-            "maintainer_github_username",
-            "maintainer_github_username: Enter exactly one GitHub "
-            "username, without @, spaces, commas, or semicolons.",
+            {"authorized_maintainer_github_username": "alice, bob"},
+            "authorized_maintainer_github_username",
+            "authorized_maintainer_github_username: Enter exactly "
+            "one GitHub username, without @, spaces, commas, "
+            "or semicolons.",
         ),
     ],
 )
@@ -150,7 +151,8 @@ def test_valid_answers_generate_project_settings(
     assert actual_internal_settings == expected_internal_settings
     assert saved_settings["authors"] == contacts
     assert saved_settings["maintainers"] == contacts
-    assert saved_settings["maintainer_github_username"] == expected_username
+    actual_username = saved_settings["authorized_maintainer_github_username"]
+    assert actual_username == expected_username
     metadata = tomllib.loads(
         (expected_project / "pyproject.toml").read_text(encoding="utf-8")
     )["project"]
@@ -160,24 +162,3 @@ def test_valid_answers_generate_project_settings(
         (expected_project / "CODE-OF-CONDUCT.rst").read_text().split()
     )
     assert expected_enforcement in actual_enforcement
-
-
-def test_plural_github_username_key_is_rejected(tmp_path, mocker):
-    # C1: Saved settings still use the old plural GitHub username key.
-    # Expected: Reject that key without replacing the user's settings.
-    template_settings = json.loads(
-        (REPO_ROOT / "cookiecutter.json").read_text(encoding="utf-8")
-    )
-    config = tmp_path / "cookiecutter.json"
-    expected_settings = {
-        SCHEMA_KEY: template_settings[SCHEMA_KEY],
-        "maintainer_github_usernames": "release-user",
-    }
-    config.write_text(json.dumps(expected_settings), encoding="utf-8")
-    mocker.patch("scikit_package.utils.cookie.io.proj_config_file", config)
-
-    with pytest.raises(ValueError, match="maintainer_github_usernames"):
-        _check_project_config(template_settings)
-
-    actual_settings = json.loads(config.read_text(encoding="utf-8"))
-    assert actual_settings == expected_settings

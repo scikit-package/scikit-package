@@ -90,7 +90,8 @@ class people_contact_info_Extension(Extension):
             r"[A-Za-z0-9_-]+", username
         ):
             raise ClickException(
-                "maintainer_github_username: Enter exactly one GitHub "
-                "username, without @, spaces, commas, or semicolons."
+                "authorized_maintainer_github_username: Enter exactly "
+                "one GitHub username, without @, spaces, commas, "
+                "or semicolons."
             )
         return ""

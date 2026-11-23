@@ -192,7 +192,7 @@ def test_validate_single_github_username_bad(username):
         template.render(username=username)
     actual_error = str(excinfo.value)
     expected_error = (
-        "maintainer_github_username: Enter exactly one GitHub "
-        "username, without @, spaces, commas, or semicolons."
+        "authorized_maintainer_github_username: Enter exactly "
+        "one GitHub username, without @, spaces, commas, or semicolons."
     )
     assert actual_error == expected_error

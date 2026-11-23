@@ -4,11 +4,12 @@
 
 **Changed:**
 
-* Renamed ``maintainer_github_usernames`` to ``maintainer_github_username``
-  and require one release-authorized GitHub username. Multiple project
+* Renamed ``maintainer_github_usernames`` to
+  ``authorized_maintainer_github_username`` for the single
+  release-authorized GitHub user. Multiple project
   maintainers remain supported.
-* Update saved ``cookiecutter.json`` files to use the singular key. Rename the key in personal
-  defaults as well.
+* Update saved ``cookiecutter.json`` files to use the authorized username
+  key. Rename the key in personal defaults as well.
 
 **Deprecated:**
 
