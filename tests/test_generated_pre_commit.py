@@ -35,7 +35,8 @@ def _run_generated_pre_commit(name, tmp_path, mocker):
     # The generation hook can continue after a failed workflow download.
     assert (project / ".github/workflows/check-news-item.yml").is_file()
 
-    # The prompt name maps to the existing release-scripts workflow input.
+    # Expected: The supplied authorized username is written to the existing
+    # maintainer_github_username workflow input.
     workflow = yaml.safe_load(
         (
             project / ".github/workflows/build-wheel-release-upload.yml"
@@ -81,16 +82,20 @@ def _run_generated_pre_commit(name, tmp_path, mocker):
     "name",
     [
         # C1: Generate a non-namespace package without a hyphen.
-        # Expected: Pre-commit passes without changing any files.
+        # Expected: Preserve the release username in the workflow and pass
+        # pre-commit without changing any files.
         "mypackage",
         # C2: Generate a non-namespace package with a hyphen.
-        # Expected: Pre-commit passes without changing any files.
+        # Expected: Preserve the release username in the workflow and pass
+        # pre-commit without changing any files.
         "my-package",
         # C3: Generate a namespace package without a hyphen.
-        # Expected: Pre-commit passes without changing any files.
+        # Expected: Preserve the release username in the workflow and pass
+        # pre-commit without changing any files.
         "thisis.mypackage",
         # C4: Generate a namespace package with a hyphen in the package name.
-        # Expected: Pre-commit passes without changing any files.
+        # Expected: Preserve the release username in the workflow and pass
+        # pre-commit without changing any files.
         "thisis.my-package",
     ],
 )
@@ -107,7 +112,8 @@ def test_generated_package_passes_pre_commit(name, tmp_path, mocker):
 
 def test_long_package_name_triggers_black_rewrite(tmp_path, mocker):
     # C1: Generate a package with a long, hyphenated namespace and name.
-    # Expected: Pre-commit fails only in Black, which rewrites conf.py.
+    # Expected: Preserve the release username in the workflow; only Black
+    # fails and rewrites docs/source/conf.py.
     actual_returncode, actual_output, actual_changed_files = (
         _run_generated_pre_commit(
             "this-is-my-package.with-a-long-name", tmp_path, mocker

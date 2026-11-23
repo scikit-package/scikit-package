@@ -33,7 +33,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
             "separated by semicolons.",
         ),
         # C3: Enter multiple GitHub usernames.
-        # Expected: Stop at the release username, before the project name.
+        # Expected: Raise ClickException at the release username prompt,
+        # before asking for the project name or creating an output directory.
         (
             {"authorized_maintainer_github_username": "alice, bob"},
             "authorized_maintainer_github_username",
@@ -76,7 +77,8 @@ def test_invalid_answers_stop_cookiecutter_prompts(
     "contacts, expected_people, expected_enforcement",
     [
         # C1: Type emails without brackets, then press Enter for maintainers.
-        # Expected: Reuse both contacts and include their email addresses.
+        # Expected: Reuse both contacts with emails and save the supplied
+        # authorized GitHub username.
         (
             "Alice alice@example.org; Bob bob@example.org",
             [
@@ -86,14 +88,16 @@ def test_invalid_answers_stop_cookiecutter_prompts(
             "enforcement at alice@example.org, bob@example.org.",
         ),
         # C2: Paste a bracketed email and omit the other person's email.
-        # Expected: Reuse both contacts and include only the available email.
+        # Expected: Reuse both contacts, include only the available email,
+        # and save the supplied authorized GitHub username.
         (
             "Alice <alice@example.org>; Bob",
             [{"name": "Alice", "email": "alice@example.org"}, {"name": "Bob"}],
             "enforcement at alice@example.org.",
         ),
         # C3: Enter names only, then press Enter for maintainers.
-        # Expected: Generate name-only metadata and no empty contact sentence.
+        # Expected: Save both names without emails and the supplied authorized
+        # GitHub username, without an empty contact-email clause.
         (
             "Alice; Bob",
             [{"name": "Alice"}, {"name": "Bob"}],

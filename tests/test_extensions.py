@@ -147,15 +147,17 @@ def test_list_in_str(author_names, expected_output):
     "username",
     [
         # C1: A single personal username.
+        # Expected: Accept the login and return an empty string.
         "alice",
         # C2: A single username containing a hyphen.
+        # Expected: Accept the hyphenated login and return an empty string.
         "release-user",
         # C3: A managed user's login can include an underscore.
+        # Expected: Accept the managed-user login and return an empty string.
         "mona-cat_octo",
     ],
 )
 def test_validate_single_github_username(username):
-    # Expected: Accept one login without adding text to the context.
     template = extended_env.from_string(
         "{{ username | validate_single_github_username }}"
     )
@@ -168,23 +170,29 @@ def test_validate_single_github_username(username):
     "username",
     [
         # C1: Multiple usernames separated by a comma.
+        # Expected: Raise ClickException and request exactly one username.
         "alice, bob",
         # C2: Multiple usernames separated by a semicolon.
+        # Expected: Reject the multiple usernames with ClickException.
         "alice;bob",
         # C3: Multiple usernames separated by whitespace.
+        # Expected: Reject the multiple usernames with ClickException.
         "alice bob",
         # C4: A pasted mention rather than a bare username.
+        # Expected: Raise ClickException and request a username without @.
         "@alice",
         # C5: A profile URL rather than a bare username.
+        # Expected: Reject the profile URL with ClickException.
         "https://github.com/alice",
         # C6: No release username supplied.
+        # Expected: Raise ClickException because a username is required.
         "",
         # C7: A list instead of a single username.
+        # Expected: Reject the list with ClickException; require one string.
         ["alice", "bob"],
     ],
 )
 def test_validate_single_github_username_bad(username):
-    # Expected: Reject the value with guidance for entering one login.
     template = extended_env.from_string(
         "{{ username | validate_single_github_username }}"
     )
