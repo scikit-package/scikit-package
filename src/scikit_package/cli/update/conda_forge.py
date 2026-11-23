@@ -217,7 +217,7 @@ def _run_commands(cwd, meta_file_path, version, SHA256, username, pkg_name):
         run(f"gh repo set-default conda-forge/{pkg_name}-feedstock", cwd=cwd)
         run(
             f"gh pr create --base {default_branch} "
-            f"--head {username}:{version} --title 'Release {version}' ",
+            f'--head {username}:{version} --title "Release {version}" ',
             cwd=cwd,
         )
     except Exception:

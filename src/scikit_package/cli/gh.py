@@ -145,7 +145,7 @@ def _get_broadcast_repos_dict(url_to_repo_info=None):
                 file_path = dir_path / f"{file_stem}{ext}"
                 if file_path.is_file():
                     find_file = True
-                    with open(file_path, "r") as f:
+                    with open(file_path, "r", encoding="utf-8") as f:
                         if ext == ".json":
                             return_dict[file_stem] = json.load(f)
                         elif ext == ".yaml":

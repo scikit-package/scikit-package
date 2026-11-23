@@ -20,12 +20,12 @@ proj_config_file = Path(SKPKG_PROJ_CONFIG_FILE).expanduser()
 
 
 def read_file(path):
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         return f.readlines()
 
 
 def write_file(path, lines):
-    with open(path, "w") as f:
+    with open(path, "w", encoding="utf-8") as f:
         f.writelines(lines)
 
 
@@ -54,7 +54,7 @@ def create_example_files(target_dir, example_files):
         )
     for name, content in example_files.items():
         file_path = target_dir / name
-        file_path.write_text(content)
+        file_path.write_text(content, encoding="utf-8")
 
 
 def copy_all_files(source_dir, target_dir, exists_ok=False):
@@ -122,7 +122,7 @@ def read_skpkg_config(config_path=config_file):
             "not found. Please try again after  running "
             f"'touch {str(config_file)}'."
         )
-    with config_path.open() as f:
+    with config_path.open(encoding="utf-8") as f:
         return json.load(f)
 
 

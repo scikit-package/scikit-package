@@ -1,4 +1,5 @@
 import subprocess
+import sys
 from pathlib import Path
 from urllib.parse import quote
 
@@ -23,7 +24,7 @@ def run(repo_url, update=False):
         pypi.check_pypi_package_exists(package_name)
     print(f"> The latest release version of {tag} of {repo_name} is used.")
     try:
-        cmd = ["cookiecutter", repo_url]
+        cmd = [sys.executable, "-m", "cookiecutter", repo_url]
         cmd.extend(["--checkout", tag])
         config_cmd = io.get_config_cmd()
         if update:
