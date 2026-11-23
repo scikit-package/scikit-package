@@ -2,11 +2,9 @@ name: Check for News
 
 on:
   pull_request_target:
-    branches:
-      - main
 
 jobs:
   check-news-item:
     uses: scikit-package/release-scripts/.github/workflows/_check-news-item.yml@v0
     with:
-      project: scikit-package
+      project: libdiffpy
