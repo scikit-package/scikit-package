@@ -136,6 +136,8 @@ The following practices have been developed to ensure consistency in writing tes
 
 #. Divide a test case comment into two parts: ``x, y, z (conditions), expect...``. Ensure there is a ``expect`` keyword after the test conditions provided.
 
+#. Give every parametrized case a short hyphenated id with ``pytest.param(..., id="...")``, so that failures and ``pytest -k`` refer to the case by name. The id names the case; the ``C1`` comment still explains the conditions and the expected result.
+
 #. Use descriptive yet concise variable names for expected values (e.g., ``expected_xarrays`` instead of ``expected``)
 
 #. Order test cases from the most general to edge cases. This helps readers understand the basic function behavior first before utilizing or encountering unusual features or behaviors.
@@ -151,14 +153,12 @@ Pytest example 1
       [
           # Test whether on_xtype returns the correct xarray values
           # C1: tth to tth, expect no change in xarray value
-          # 1. "tth" provided, expect tth
-          # 2. "2theta" provided, expect tth
-          ("tth", np.array([30, 60])),
-          ("2theta", np.array([30, 60])),
+          pytest.param("tth", np.array([30, 60]), id="tth"),
+          pytest.param("2theta", np.array([30, 60]), id="2theta-alias"),
           # C2: "q" provided, expect q converted from tth
-          ("q", np.array([0.51764, 1])),
+          pytest.param("q", np.array([0.51764, 1]), id="q-from-tth"),
           # C3: "d" provided, expect d converted from tth
-          ("d", np.array([12.13818, 6.28319])),
+          pytest.param("d", np.array([12.13818, 6.28319]), id="d-from-tth"),
       ],
   )
   def test_on_xtype(xtype, expected_xarray, do_minimal_tth):
@@ -174,7 +174,7 @@ Pytest example 2 - multi-line arguments
       "do_args_1, do_args_2, expected_equality, wavelength_warning_expected",
       [
           # Test when __eq__ returns True and False
-          (  # C1: Identical args, expect equality
+          pytest.param(  # C1: Identical args, expect equality
               {
                   "name": "same",
                   "scat_quantity": "x-ray",
@@ -195,8 +195,9 @@ Pytest example 2 - multi-line arguments
               },
               True,
               False,
+              id="identical-args",
           ),
-          (  # C2: Different names, expect inequality
+          pytest.param(  # C2: Different names, expect inequality
               {
                   "name": "something",
                   "xtype": "tth",
@@ -213,6 +214,7 @@ Pytest example 2 - multi-line arguments
               },
               False,
               True,
+              id="different-names",
           ),
       ],
   )

@@ -157,7 +157,7 @@ def add_supermodules(ROOT, name):
 
         # Make __init__.py file
         init_file = d_dir / "__init__.py"
-        with open(init_file, "w") as ifile:
+        with open(init_file, "w", encoding="utf-8") as ifile:
             ifile.write(__gen_init__(ns_module_name))
         c_dir = c_dir / ns_module_name
         cp_dir = c_dir / package_dir_name
@@ -185,7 +185,7 @@ def wrapper_setup():
 
     # Make __init__.py file
     setuppy_file = ROOT / "setup.py"
-    with open(setuppy_file, "w") as spfile:
+    with open(setuppy_file, "w", encoding="utf-8") as spfile:
         spfile.write(__gen_setuppy__())
 
 

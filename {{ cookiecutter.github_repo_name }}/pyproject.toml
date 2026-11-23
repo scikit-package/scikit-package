@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=62.0", "setuptools-git-versioning>=2.0"]
+requires = ["setuptools>=77.0", "setuptools-git-versioning>=2.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -16,12 +16,13 @@ description = "{{ cookiecutter.project_short_description }}"
 keywords = {{ ns.keywords_trim }}
 readme = "README.rst"
 requires-python = ">={{ cookiecutter.minimum_supported_python_version }}, <{{ cookiecutter.maximum_supported_python_version.split('.')[0] }}.{{ cookiecutter.maximum_supported_python_version.split('.')[1] | int + 1 }}"
+license = "BSD-3-Clause"
+license-files = ["LICENSE.rst"]
 classifiers = [
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: BSD License',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX',

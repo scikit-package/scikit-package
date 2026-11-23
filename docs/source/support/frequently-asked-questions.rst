@@ -656,7 +656,7 @@ What are ``docs.txt``, ``tests.txt``, ``build.txt``, and ``conda.txt`` files und
 
 :conda.txt: list all Conda packages required for running the package in GitHub CI. It should be typically identcal as the ``pip.txt`` file.
 
-:tests.txt: packages required for the testing suite to ensure all tests pass.
+:tests.txt: packages required for the testing suite to ensure all tests pass. It also lists ``scikit-package`` so that the ``package`` CLI, e.g., ``package add news``, is available in the package environment without switching to the ``skpkg-env`` environment.
 
 :docs.txt: packages required for building the package documentation page.
 

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=62.0", "setuptools-git-versioning>=2.0"]
+requires = ["setuptools>=77.0", "setuptools-git-versioning>=2.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -20,12 +20,13 @@ description = "A Python package standard and generator for scientific code. Use 
 keywords = ['Package template', 'open-source software']
 readme = "README.rst"
 requires-python = ">=3.12, <3.15"
+license = "BSD-3-Clause"
+license-files = ["LICENSE.rst"]
 classifiers = [
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: BSD License',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX',

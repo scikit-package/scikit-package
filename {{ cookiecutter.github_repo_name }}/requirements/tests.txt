@@ -4,3 +4,4 @@ codecov
 coverage
 pytest-cov
 pytest-env
+scikit-package

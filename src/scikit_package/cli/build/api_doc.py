@@ -78,7 +78,7 @@ Submodules
 
     subpkg = subpkg.rstrip() + "\n"  # clean ending
     package_file = api_dir / f"{package_name}.rst"
-    with open(package_file, "w") as pfile:
+    with open(package_file, "w", encoding="utf-8") as pfile:
         pfile.write(subpkg)
     # Recurse on all subpackages
     for idx, path in enumerate(subpkg_paths):
