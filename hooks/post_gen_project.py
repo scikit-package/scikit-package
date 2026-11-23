@@ -198,7 +198,7 @@ def update_workflow():
 
     workflow_input = {
         "PROJECT": "{{ cookiecutter.project_name }}",
-        "MAINTAINER_GITHUB_USERNAME": "{{ cookiecutter.maintainer_github_usernames }}",
+        "MAINTAINER_GITHUB_USERNAME": "{{ cookiecutter.maintainer_github_username }}",
         "C_EXTENSION": str(
             "{{ cookiecutter.project_needs_c_code_compiled }}" == "Yes"
         ).lower(),

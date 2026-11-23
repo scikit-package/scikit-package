@@ -3,6 +3,7 @@ import tomllib
 from pathlib import Path
 
 import pytest
+from click import ClickException
 from jinja2 import Environment
 
 spec = importlib.util.spec_from_file_location(
@@ -140,3 +141,58 @@ def test_list_in_str(author_names, expected_output):
     template = extended_env.from_string("{{ author_names | list_in_str }}")
     actual_output = template.render(author_names=author_names)
     assert actual_output == expected_output
+
+
+@pytest.mark.parametrize(
+    "username",
+    [
+        # C1: A single personal username.
+        "alice",
+        # C2: A single username containing a hyphen.
+        "release-user",
+        # C3: A managed user's login can include an underscore.
+        "mona-cat_octo",
+    ],
+)
+def test_validate_single_github_username(username):
+    # Expected: Accept one login without adding text to the context.
+    template = extended_env.from_string(
+        "{{ username | validate_single_github_username }}"
+    )
+    actual_output = template.render(username=username)
+    expected_output = ""
+    assert actual_output == expected_output
+
+
+@pytest.mark.parametrize(
+    "username",
+    [
+        # C1: Multiple usernames separated by a comma.
+        "alice, bob",
+        # C2: Multiple usernames separated by a semicolon.
+        "alice;bob",
+        # C3: Multiple usernames separated by whitespace.
+        "alice bob",
+        # C4: A pasted mention rather than a bare username.
+        "@alice",
+        # C5: A profile URL rather than a bare username.
+        "https://github.com/alice",
+        # C6: No release username supplied.
+        "",
+        # C7: A list instead of a single username.
+        ["alice", "bob"],
+    ],
+)
+def test_validate_single_github_username_bad(username):
+    # Expected: Reject the value with guidance for entering one login.
+    template = extended_env.from_string(
+        "{{ username | validate_single_github_username }}"
+    )
+    with pytest.raises(ClickException) as excinfo:
+        template.render(username=username)
+    actual_error = str(excinfo.value)
+    expected_error = (
+        "maintainer_github_username: Enter exactly one GitHub "
+        "username, without @, spaces, commas, or semicolons."
+    )
+    assert actual_error == expected_error

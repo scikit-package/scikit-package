@@ -8,7 +8,7 @@ import pytest
 from click import ClickException
 from cookiecutter.main import cookiecutter
 
-from scikit_package.utils.cookie import SCHEMA_KEY
+from scikit_package.utils.cookie import SCHEMA_KEY, _check_project_config
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -31,6 +31,14 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
             "maintainers",
             "maintainers: Use Name, Name email, or Name <email>, "
             "separated by semicolons.",
+        ),
+        # C3: Enter multiple GitHub usernames.
+        # Expected: Stop at the release username, before the project name.
+        (
+            {"maintainer_github_username": "alice, bob"},
+            "maintainer_github_username",
+            "maintainer_github_username: Enter exactly one GitHub "
+            "username, without @, spaces, commas, or semicolons.",
         ),
     ],
 )
@@ -97,6 +105,7 @@ def test_valid_answers_generate_project_settings(
 ):
     output_dir = tmp_path / "output"
     expected_project = output_dir / "diffpy.my-project"
+    expected_username = "release-user"
     config = tmp_path / "cookiecutter.json"
     config.write_text(
         json.dumps({"replay_dir": str(tmp_path / "replay")}), encoding="utf-8"
@@ -117,7 +126,7 @@ def test_valid_answers_generate_project_settings(
         ],
         cwd=tmp_path,
         check=True,
-        input=contacts + "\n" + "\n" * 16,
+        input=f"{contacts}\n\n{expected_username}\n" + "\n" * 14,
         text=True,
     )
     actual_projects = list(output_dir.iterdir())
@@ -141,6 +150,7 @@ def test_valid_answers_generate_project_settings(
     assert actual_internal_settings == expected_internal_settings
     assert saved_settings["authors"] == contacts
     assert saved_settings["maintainers"] == contacts
+    assert saved_settings["maintainer_github_username"] == expected_username
     metadata = tomllib.loads(
         (expected_project / "pyproject.toml").read_text(encoding="utf-8")
     )["project"]
@@ -150,3 +160,24 @@ def test_valid_answers_generate_project_settings(
         (expected_project / "CODE-OF-CONDUCT.rst").read_text().split()
     )
     assert expected_enforcement in actual_enforcement
+
+
+def test_plural_github_username_key_is_rejected(tmp_path, mocker):
+    # C1: Saved settings still use the old plural GitHub username key.
+    # Expected: Reject that key without replacing the user's settings.
+    template_settings = json.loads(
+        (REPO_ROOT / "cookiecutter.json").read_text(encoding="utf-8")
+    )
+    config = tmp_path / "cookiecutter.json"
+    expected_settings = {
+        SCHEMA_KEY: template_settings[SCHEMA_KEY],
+        "maintainer_github_usernames": "release-user",
+    }
+    config.write_text(json.dumps(expected_settings), encoding="utf-8")
+    mocker.patch("scikit_package.utils.cookie.io.proj_config_file", config)
+
+    with pytest.raises(ValueError, match="maintainer_github_usernames"):
+        _check_project_config(template_settings)
+
+    actual_settings = json.loads(config.read_text(encoding="utf-8"))
+    assert actual_settings == expected_settings
