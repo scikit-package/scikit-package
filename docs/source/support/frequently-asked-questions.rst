@@ -263,7 +263,7 @@ To exclude files globally, use ``globally-exclude``:
    global-exclude .DS_Store  # Exclude Mac filesystem artifacts.
    global-exclude __pycache__  # Exclude Python cache directories.
    global-exclude .git*  # Exclude git files and directories.
-   
+
 .. _faq-runtime-data:
 
 How do I include data files that my package needs at runtime?
