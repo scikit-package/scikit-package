@@ -263,6 +263,60 @@ To exclude files globally, use ``globally-exclude``:
    global-exclude .DS_Store  # Exclude Mac filesystem artifacts.
    global-exclude __pycache__  # Exclude Python cache directories.
    global-exclude .git*  # Exclude git files and directories.
+   
+.. _faq-runtime-data:
+
+How do I include data files that my package needs at runtime?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some packages need data files at runtime, such as pre-computed coefficients.
+This applies only to small data files that the code needs in order to run.
+Data used only for tests, examples, or documentation should not be shipped
+with the package. Place runtime data files inside your package under ``src``
+so they are installed together with the code:
+
+.. code-block:: text
+
+  ├── src
+  │   ├── <package_name>
+  │   │   ├── __init__.py
+  │   │   ├── functions.py
+  │   │   └── data
+  │   │       ├── coefficients.csv
+  │   │       └── table.xy
+
+The ``MANIFEST.in`` file in ``scikit-package`` already includes everything
+under ``src`` with ``graft src``. To make it explicit that these files must be
+installed with the package, also add the following to ``pyproject.toml``:
+
+.. code-block:: toml
+
+  [tool.setuptools.package-data]
+  "<package_name>" = ["data/*"]
+
+For a namespace package, use the full import name, e.g., ``"diffpy.labpdfproc"``.
+
+In your code, locate the files with ``importlib.resources.files``, the
+standard-library way to access data inside an installed package, instead of
+building paths from ``__file__``:
+
+.. code-block:: python
+
+  from importlib.resources import files
+
+  import numpy as np
+
+  data_dir = files("<package_name>") / "data"
+  coefficients = np.loadtxt(data_dir / "coefficients.csv", delimiter=",")
+
+``files()`` finds the data wherever the package is installed, whether from
+PyPI, conda-forge, or a local ``pip install .``. A path relative to the
+current working directory, such as ``"data/coefficients.csv"``, only works
+when the code is run from a particular directory.
+
+.. seealso::
+
+  For a working example, see https://github.com/diffpy/diffpy.labpdfproc/pull/216.
 
 Why have we decided to include test files in the PyPI source distribution?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
