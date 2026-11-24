@@ -903,7 +903,14 @@ the package,
     cd path/to/local/scikit-package
     pip install .
 
-Then remove the existing template in the ``.cookiecutters/`` directory and
+The ``package create public`` and ``package update`` commands do not read templates
+from your installed Python package. Instead, they read templates saved in
+``~/.cookiecutters/scikit-package``. This means ``pip install .`` alone is
+**not** enough to test local edits to the templates: ``pip install .`` installs (or updates)
+the command-line tool in your Python environment, but it does not change the
+templates in ``~/.cookiecutters/``.
+
+First, move into your local ``scikit-package`` repository and install it,Then remove the existing template in the ``.cookiecutters/`` directory and
 copy the current version of the ``scikit-package`` repository to the ``.cookiecutters/`` directory,
 
 .. code-block:: bash
