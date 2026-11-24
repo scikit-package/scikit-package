@@ -148,13 +148,13 @@ def test_list_in_str(author_names, expected_output):
     [
         # C1: A single personal username.
         # Expected: Accept the login and return an empty string.
-        "alice",
+        pytest.param("alice", id="single-username"),
         # C2: A single username containing a hyphen.
         # Expected: Accept the hyphenated login and return an empty string.
-        "release-user",
+        pytest.param("release-user", id="hyphenated-username"),
         # C3: A managed user's login can include an underscore.
         # Expected: Accept the managed-user login and return an empty string.
-        "mona-cat_octo",
+        pytest.param("mona-cat_octo", id="managed-username"),
     ],
 )
 def test_validate_single_github_username(username):
@@ -171,25 +171,25 @@ def test_validate_single_github_username(username):
     [
         # C1: Multiple usernames separated by a comma.
         # Expected: Raise ClickException and request exactly one username.
-        "alice, bob",
+        pytest.param("alice, bob", id="comma-separated-usernames"),
         # C2: Multiple usernames separated by a semicolon.
         # Expected: Reject the multiple usernames with ClickException.
-        "alice;bob",
+        pytest.param("alice;bob", id="semicolon-separated-usernames"),
         # C3: Multiple usernames separated by whitespace.
         # Expected: Reject the multiple usernames with ClickException.
-        "alice bob",
+        pytest.param("alice bob", id="space-separated-usernames"),
         # C4: A pasted mention rather than a bare username.
         # Expected: Raise ClickException and request a username without @.
-        "@alice",
+        pytest.param("@alice", id="at-prefixed-username"),
         # C5: A profile URL rather than a bare username.
         # Expected: Reject the profile URL with ClickException.
-        "https://github.com/alice",
+        pytest.param("https://github.com/alice", id="profile-url"),
         # C6: No release username supplied.
         # Expected: Raise ClickException because a username is required.
-        "",
+        pytest.param("", id="empty-username"),
         # C7: A list instead of a single username.
         # Expected: Reject the list with ClickException; require one string.
-        ["alice", "bob"],
+        pytest.param(["alice", "bob"], id="username-list"),
     ],
 )
 def test_validate_single_github_username_bad(username):

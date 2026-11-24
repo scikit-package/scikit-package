@@ -18,29 +18,32 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
     [
         # C1: Enter an author with an unmatched email bracket.
         # Expected: Stop at authors, before asking about maintainers.
-        (
+        pytest.param(
             {"authors": "Alice <alice@example.org"},
             "authors",
             "authors: Use Name, Name email, or Name <email>, "
             "separated by semicolons.",
+            id="unclosed-author-email",
         ),
         # C2: Enter a maintainer with an incomplete email address.
         # Expected: Stop at maintainers, before asking for usernames.
-        (
+        pytest.param(
             {"maintainers": "Alice alice@"},
             "maintainers",
             "maintainers: Use Name, Name email, or Name <email>, "
             "separated by semicolons.",
+            id="incomplete-maintainer-email",
         ),
         # C3: Enter multiple GitHub usernames.
         # Expected: Raise ClickException at the release username prompt,
         # before asking for the project name or creating an output directory.
-        (
+        pytest.param(
             {"authorized_maintainer_github_username": "alice, bob"},
             "authorized_maintainer_github_username",
             "authorized_maintainer_github_username: Enter exactly "
             "one GitHub username, without @, spaces, commas, "
             "or semicolons.",
+            id="multiple-release-usernames",
         ),
     ],
 )
@@ -79,29 +82,32 @@ def test_invalid_answers_stop_cookiecutter_prompts(
         # C1: Type emails without brackets, then press Enter for maintainers.
         # Expected: Reuse both contacts with emails and save the supplied
         # authorized GitHub username.
-        (
+        pytest.param(
             "Alice alice@example.org; Bob bob@example.org",
             [
                 {"name": "Alice", "email": "alice@example.org"},
                 {"name": "Bob", "email": "bob@example.org"},
             ],
             "enforcement at alice@example.org, bob@example.org.",
+            id="plain-emails",
         ),
         # C2: Paste a bracketed email and omit the other person's email.
         # Expected: Reuse both contacts, include only the available email,
         # and save the supplied authorized GitHub username.
-        (
+        pytest.param(
             "Alice <alice@example.org>; Bob",
             [{"name": "Alice", "email": "alice@example.org"}, {"name": "Bob"}],
             "enforcement at alice@example.org.",
+            id="mixed-optional-emails",
         ),
         # C3: Enter names only, then press Enter for maintainers.
         # Expected: Save both names without emails and the supplied authorized
         # GitHub username, without an empty contact-email clause.
-        (
+        pytest.param(
             "Alice; Bob",
             [{"name": "Alice"}, {"name": "Bob"}],
             "enforcement. All complaints",
+            id="names-only",
         ),
     ],
 )

@@ -84,19 +84,19 @@ def _run_generated_pre_commit(name, tmp_path, mocker):
         # C1: Generate a non-namespace package without a hyphen.
         # Expected: Preserve the release username in the workflow and pass
         # pre-commit without changing any files.
-        "mypackage",
+        pytest.param("mypackage", id="plain-package"),
         # C2: Generate a non-namespace package with a hyphen.
         # Expected: Preserve the release username in the workflow and pass
         # pre-commit without changing any files.
-        "my-package",
+        pytest.param("my-package", id="hyphenated-package"),
         # C3: Generate a namespace package without a hyphen.
         # Expected: Preserve the release username in the workflow and pass
         # pre-commit without changing any files.
-        "thisis.mypackage",
+        pytest.param("thisis.mypackage", id="namespace-package"),
         # C4: Generate a namespace package with a hyphen in the package name.
         # Expected: Preserve the release username in the workflow and pass
         # pre-commit without changing any files.
-        "thisis.my-package",
+        pytest.param("thisis.my-package", id="namespace-hyphenated-package"),
     ],
 )
 def test_generated_package_passes_pre_commit(name, tmp_path, mocker):
