@@ -287,7 +287,7 @@ This is one-time setup. Once it is done, each subsequent release is a single com
             {
                 "maintainer_name": "<local-default-maintainer-name>",
                 "maintainer_email": "<local-default-maintainer-email>",
-                "maintainer_github_username": "<local-default-maintainer-github-username>",
+                "authorized_maintainer_github_username": "<local-default-maintainer-github-username>",
                 "github_username_or_orgname": "<local-default-github-username-or-orgname>",
                 "contributors": "<local-default-contributors-name>",
                 "license_holders": "<local-default-license-holders-name>",

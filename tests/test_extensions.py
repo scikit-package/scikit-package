@@ -3,6 +3,7 @@ import tomllib
 from pathlib import Path
 
 import pytest
+from click import ClickException
 from jinja2 import Environment
 
 spec = importlib.util.spec_from_file_location(
@@ -140,3 +141,66 @@ def test_list_in_str(author_names, expected_output):
     template = extended_env.from_string("{{ author_names | list_in_str }}")
     actual_output = template.render(author_names=author_names)
     assert actual_output == expected_output
+
+
+@pytest.mark.parametrize(
+    "username",
+    [
+        # C1: A single personal username.
+        # Expected: Accept the login and return an empty string.
+        pytest.param("alice", id="single-username"),
+        # C2: A single username containing a hyphen.
+        # Expected: Accept the hyphenated login and return an empty string.
+        pytest.param("release-user", id="hyphenated-username"),
+        # C3: A managed user's login can include an underscore.
+        # Expected: Accept the managed-user login and return an empty string.
+        pytest.param("mona-cat_octo", id="managed-username"),
+    ],
+)
+def test_validate_single_github_username(username):
+    template = extended_env.from_string(
+        "{{ username | validate_single_github_username }}"
+    )
+    actual_output = template.render(username=username)
+    expected_output = ""
+    assert actual_output == expected_output
+
+
+@pytest.mark.parametrize(
+    "username",
+    [
+        # C1: Multiple usernames separated by a comma.
+        # Expected: Raise ClickException and request exactly one username.
+        pytest.param("alice, bob", id="comma-separated-usernames"),
+        # C2: Multiple usernames separated by a semicolon.
+        # Expected: Reject the multiple usernames with ClickException.
+        pytest.param("alice;bob", id="semicolon-separated-usernames"),
+        # C3: Multiple usernames separated by whitespace.
+        # Expected: Reject the multiple usernames with ClickException.
+        pytest.param("alice bob", id="space-separated-usernames"),
+        # C4: A pasted mention rather than a bare username.
+        # Expected: Raise ClickException and request a username without @.
+        pytest.param("@alice", id="at-prefixed-username"),
+        # C5: A profile URL rather than a bare username.
+        # Expected: Reject the profile URL with ClickException.
+        pytest.param("https://github.com/alice", id="profile-url"),
+        # C6: No release username supplied.
+        # Expected: Raise ClickException because a username is required.
+        pytest.param("", id="empty-username"),
+        # C7: A list instead of a single username.
+        # Expected: Reject the list with ClickException; require one string.
+        pytest.param(["alice", "bob"], id="username-list"),
+    ],
+)
+def test_validate_single_github_username_bad(username):
+    template = extended_env.from_string(
+        "{{ username | validate_single_github_username }}"
+    )
+    with pytest.raises(ClickException) as excinfo:
+        template.render(username=username)
+    actual_error = str(excinfo.value)
+    expected_error = (
+        "authorized_maintainer_github_username: Enter exactly "
+        "one GitHub username, without @, spaces, commas, or semicolons."
+    )
+    assert actual_error == expected_error

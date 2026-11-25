@@ -176,7 +176,7 @@ Here are the steps you can follow to override the default values for Level 5 usa
         {
             "authors": "Your Name <you@example.org>",
             "maintainers": "Your Name <you@example.org>",
-            "maintainer_github_username": "<local-default-maintainer-github-username>",
+            "authorized_maintainer_github_username": "<local-default-maintainer-github-username>",
             "github_username_or_orgname": "<local-default-github-username-or-orgname>",
             "contributors": "<local-default-contributors-name>",
             "license_holders": "<local-default-license-holders-name>",

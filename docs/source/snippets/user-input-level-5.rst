@@ -10,8 +10,9 @@
       * - maintainers
         - The name(s) and optional email address(es) of the project maintainer(s), using the same format as authors. Defaults to the authors; press Enter to accept. Both roles are listed in ``AUTHORS.rst``.
           e.g., Simon Billinge <sbillinge@ucsb.edu>; Yuchen Xiao <yxiao@columbia.edu>
-      * - maintainer_github_usernames
+      * - authorized_maintainer_github_username
         - The single GitHub username authorized to publish releases, even if the project has multiple maintainers.
+          Enter one username without ``@``, spaces, commas, or semicolons.
           e.g., sbillinge
       * - contributors
         - Individuals or groups contributing to the project.
