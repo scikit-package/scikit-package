@@ -36,6 +36,9 @@ class people_contact_info_Extension(Extension):
         environment.filters["validate_contact_pair"] = (
             self.validate_contact_pair
         )
+        environment.filters["validate_single_github_username"] = (
+            self.validate_single_github_username
+        )
 
     def expand_to_dict_with_email(self, contacts):
         """Expand names and emails to a list of dicts."""
@@ -79,4 +82,16 @@ class people_contact_info_Extension(Extension):
             _split_contacts(contacts)
         except KeyError as error:
             raise ClickException(f"{role}: {error.args[0]}") from None
+        return ""
+
+    def validate_single_github_username(self, username):
+        """Validate a single GitHub login during prompting."""
+        if not isinstance(username, str) or not re.fullmatch(
+            r"[A-Za-z0-9_-]+", username
+        ):
+            raise ClickException(
+                "authorized_maintainer_github_username: Enter exactly "
+                "one GitHub username, without @, spaces, commas, "
+                "or semicolons."
+            )
         return ""

@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 
 import pytest
+import yaml
 from cookiecutter.main import cookiecutter
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -17,18 +18,37 @@ def _run_generated_pre_commit(name, tmp_path, mocker):
     # Run every hook even when the caller has set SKIP.
     environment = mocker.patch.dict("os.environ")
     environment.pop("SKIP", None)
+    expected_username = "release-user"
 
     project = Path(
         cookiecutter(
             str(REPO_ROOT),
             no_input=True,
-            extra_context={"project_name": name},
+            extra_context={
+                "project_name": name,
+                "authorized_maintainer_github_username": expected_username,
+            },
             output_dir=str(tmp_path),
             default_config={"replay_dir": str(tmp_path / "replay")},
         )
     )
     # The generation hook can continue after a failed workflow download.
     assert (project / ".github/workflows/check-news-item.yml").is_file()
+
+    # Expected: The supplied authorized username is written to the existing
+    # maintainer_github_username workflow input.
+    workflow = yaml.safe_load(
+        (
+            project / ".github/workflows/build-wheel-release-upload.yml"
+        ).read_text()
+    )
+    actual_usernames = {
+        job["with"]["maintainer_github_username"]
+        for job in workflow["jobs"].values()
+        if "maintainer_github_username" in job.get("with", {})
+    }
+    expected_usernames = {expected_username}
+    assert actual_usernames == expected_usernames
 
     subprocess.run(
         ["git", "init", "-b", "pre-commit-test"], cwd=project, check=True
@@ -62,17 +82,21 @@ def _run_generated_pre_commit(name, tmp_path, mocker):
     "name",
     [
         # C1: Generate a non-namespace package without a hyphen.
-        # Expected: Pre-commit passes without changing any files.
-        "mypackage",
+        # Expected: Preserve the release username in the workflow and pass
+        # pre-commit without changing any files.
+        pytest.param("mypackage", id="plain-package"),
         # C2: Generate a non-namespace package with a hyphen.
-        # Expected: Pre-commit passes without changing any files.
-        "my-package",
+        # Expected: Preserve the release username in the workflow and pass
+        # pre-commit without changing any files.
+        pytest.param("my-package", id="hyphenated-package"),
         # C3: Generate a namespace package without a hyphen.
-        # Expected: Pre-commit passes without changing any files.
-        "thisis.mypackage",
+        # Expected: Preserve the release username in the workflow and pass
+        # pre-commit without changing any files.
+        pytest.param("thisis.mypackage", id="namespace-package"),
         # C4: Generate a namespace package with a hyphen in the package name.
-        # Expected: Pre-commit passes without changing any files.
-        "thisis.my-package",
+        # Expected: Preserve the release username in the workflow and pass
+        # pre-commit without changing any files.
+        pytest.param("thisis.my-package", id="namespace-hyphenated-package"),
     ],
 )
 def test_generated_package_passes_pre_commit(name, tmp_path, mocker):
@@ -88,7 +112,8 @@ def test_generated_package_passes_pre_commit(name, tmp_path, mocker):
 
 def test_long_package_name_triggers_black_rewrite(tmp_path, mocker):
     # C1: Generate a package with a long, hyphenated namespace and name.
-    # Expected: Pre-commit fails only in Black, which rewrites conf.py.
+    # Expected: Preserve the release username in the workflow; only Black
+    # fails and rewrites docs/source/conf.py.
     actual_returncode, actual_output, actual_changed_files = (
         _run_generated_pre_commit(
             "this-is-my-package.with-a-long-name", tmp_path, mocker
