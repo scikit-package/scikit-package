@@ -16,7 +16,7 @@
 
 **Fixed:**
 
-* remove branch qualifier from check-news-item.yml
+* remove branch qualifier from git check-news-item.yml workflow file
 
 **Security:**
 
