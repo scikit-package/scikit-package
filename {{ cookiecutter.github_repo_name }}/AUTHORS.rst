@@ -11,7 +11,7 @@ Maintainers
 Contributors
 ------------
 
-{{ cookiecutter.contributors }}
+{{ cookiecutter.__contributors_str }}
 
 For a list of contributors, visit
 https://github.com/{{ cookiecutter.github_username_or_orgname }}/{{ cookiecutter.github_repo_name }}/graphs/contributors

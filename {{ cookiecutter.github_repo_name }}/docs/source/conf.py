@@ -32,7 +32,7 @@ sys.path.insert(0, str(Path("../..").resolve()))
 sys.path.insert(0, str(Path("../../src").resolve()))
 
 # abbreviations
-ab_authors = "{{ cookiecutter.contributors }}"
+ab_authors = "{{ cookiecutter.__contributors_str }}"
 
 # -- General configuration ------------------------------------------------
 

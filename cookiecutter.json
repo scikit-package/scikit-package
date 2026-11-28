@@ -7,8 +7,12 @@
   "authorized_maintainer_github_username": "sbillinge",
   "__validate_authorized_maintainer_github_username": "{% if cookiecutter.authorized_maintainer_github_username is defined %}{{ cookiecutter.authorized_maintainer_github_username | validate_single_github_username }}{% endif %}",
   "project_name": "diffpy.my-project",
-  "contributors": "{{ cookiecutter.project_name }} contributors",
-  "license_holders": "{{ cookiecutter.project_name }} project contributors",
+  "__prompts__": {
+    "contributors": "contributors, comma-separated (\"and contributors to the project\" is added automatically)"
+  },
+  "contributors": "{{ (cookiecutter.authors | split_contacts)[0] | join(', ') }}",
+  "__contributors_str": "{{ (cookiecutter.contributors ~ ', contributors to the project') | list_in_str }}",
+  "license_holders": "Contributors to the {{ cookiecutter.project_name }} project",
   "github_username_or_orgname": "diffpy",
   "github_repo_name": "{{ cookiecutter.project_name|replace(' ', '-')|lower }}",
   "conda_pypi_package_dist_name": "{{ cookiecutter.project_name|replace(' ', '-')|lower }}",

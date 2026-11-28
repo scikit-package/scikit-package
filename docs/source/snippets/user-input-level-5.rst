@@ -15,11 +15,12 @@
           Enter one username without ``@``, spaces, commas, or semicolons.
           e.g., sbillinge
       * - contributors
-        - Individuals or groups contributing to the project.
-          e.g., Sangjoon Lee, Simon Billinge, Billinge Group members
+        - Individuals or groups contributing to the project, separated by commas. Defaults to the author names. ``and contributors to the project`` is added to the end automatically, so do not type it yourself.
+          e.g., Sangjoon Lee, Simon Billinge
       * - license_holders
         - The license holders listed in ``LICENSE.rst``.
-          e.g., diffpy.utils contributors
+          Defaults to ``Contributors to the <project_name> project``.
+          e.g., Contributors to the diffpy.utils project
       * - project_name
         - The name displayed in the ``README.rst`` and documentation.
           Use ``name-with-hyphens`` e.g., ``my-package``.
