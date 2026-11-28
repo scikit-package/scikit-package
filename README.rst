@@ -142,6 +142,14 @@ This installs every dependency from conda-forge and uses ``pip`` only to
 link your local source code into the environment, so nothing is
 downloaded from PyPI.
 
+Note that this does **not** update the templates used by ``package create``
+and ``package update``. Those commands read templates from
+``~/.cookiecutters/scikit-package``, not from your installed package. To test
+local edits to the templates, follow the steps in
+`How can I locally install scikit-package with edits I've made to the source code?
+<https://scikit-package.github.io/scikit-package/support/frequently-asked-questions.html>`_
+in the FAQ.
+
 To ensure code quality and to prevent accidental commits into the default branch, please set up the use of our pre-commit
 hooks.
 
